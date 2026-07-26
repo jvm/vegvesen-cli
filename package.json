@@ -1,0 +1,33 @@
+{
+  "name": "vegvesen-cli",
+  "version": "0.1.0",
+  "description": "A Node.js CLI for Norwegian Public Roads Administration services",
+  "license": "MIT",
+  "author": "Jose Mocito",
+  "type": "module",
+  "bin": {
+    "vegvesen": "bin/vegvesen.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvm/vegvesen-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jvm/vegvesen-cli/issues"
+  },
+  "homepage": "https://github.com/jvm/vegvesen-cli#readme",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "cli",
+    "norway",
+    "vegvesen"
+  ]
+}
