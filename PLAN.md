@@ -23,7 +23,7 @@ Status meanings:
 |---|---|
 | CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
 | Product coverage | 307 exact units (206 contract operations and 101 protocol units) plus 125 runtime mapping records checked by `scripts/check-coverage.mjs` |
-| Offline tests | 42 passing Node tests, including real executable, kernel PTY, signal, cancellation, and supply-chain process tests |
+| Offline tests | 45 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
 | Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed; research introspection excluded from tarball |
@@ -39,9 +39,9 @@ Status meanings:
 | 0 — scope/specification | **COMPLETE** | Scope/CLI ADRs, anonymous boundary, 21 pinned sources/overlays, 206 derived contract operations, 101 protocol units, health gates, and exact generated coverage | Continue scheduled drift review and owner review when upstream contracts change |
 | 1 — foundation | **COMPLETE** | TypeScript/Commander executable, nested help, schemas, config, doctor, output/errors, prompt policy, package probe, full/mixed PTYs, and cooperative SIGINT/SIGTERM | Continue regression coverage as process behavior evolves |
 | 2 — transport/simple reads | **COMPLETE** | HTTP policy, retries/timeouts, redirect/origin controls, config, artifact writer, Catalog, Parking, NVDB catalog/areas/status REST | Continue regression coverage as adapters evolve |
-| 3 — NVDB core | **PARTIAL** | Objects, versions, changes, statistics, links, segments, nodes, positions, routes, monitor, cursors, streams; exact `/uberiket` exclusions and generated grouped statistics | Explicit fresh-read agreement tests plus remaining cursor/stream negative fixtures |
-| 4 — Routing/Trafikkdata | **PARTIAL** | All 9 profiles, matrix, 2 road-feature reads, validated persisted GraphQL queries, partial-result behavior | Dedicated matrix/road-feature process fixtures; exact raw GeoJSON fixture; re-attest anonymous policy immediately before release |
-| 5 — OGC/TN-ITS/export | **PARTIAL** | Legacy and modern OGC commands, axis handling, next-link traversal, TN-ITS, NVDB CSV/SOSI exports, native streaming | Live independent WFS semantic check; repeated-next-link fixture; interrupted large-stream cleanup test; Tiles/DGGS remain blocked |
+| 3 — NVDB core | **PARTIAL** | Objects, versions, changes, statistics, links, segments, nodes, positions, routes, monitor, cursors, streams; exact `/uberiket` exclusions and generated grouped statistics; repeated-cursor, server-capped-page, and mid-stream failure fixtures | Explicit fresh-read agreement tests |
+| 4 — Routing/Trafikkdata | **PARTIAL** | All 9 profiles, matrix, 2 road-feature reads, validated persisted GraphQL queries, partial-result behavior, matrix/road-feature process and read-only POST retry fixtures | Exact raw GeoJSON fixture; re-attest anonymous policy immediately before release |
+| 5 — OGC/TN-ITS/export | **PARTIAL** | Legacy and modern OGC commands, axis handling, next-link traversal, TN-ITS, NVDB CSV/SOSI exports, native streaming, repeated-next-link and interrupted-download cleanup fixtures | Live independent WFS semantic check; Tiles/DGGS remain blocked |
 | 6 — lifecycle/mutations | **PARTIAL** | Report generation/job/wait/download, bounded live report lifecycle, Fiks anonymous reads/create/attachments with dry-run/confirmation | Status WebSocket contract; Stedfesting health gate; complete report-family classification; job/watch signal tests |
 | 7 — generated/release | **PARTIAL** | Constrained generated registry, generated docs, completion, Node matrix, security/release workflows, package minimization | Expand generated registry beyond 3 advanced operations; fixture every mapping; clean-context agent evaluations; configure npm trusted publishing; observe first remote CI/security run |
 
@@ -53,9 +53,9 @@ This maps directly to Section 2.
 2. **COMPLETE** — service metadata distinguishes stable, caution, dynamic, excluded, experimental, and blocked surfaces.
 3. **COMPLETE for supported commands** — structured output and stdout/stderr separation are implemented and process-tested.
 4. **COMPLETE** — explicit machine modes and detached stdin do not prompt or hang.
-5. **PARTIAL** — bounded defaults and explicit `--all` exist; OGC multi-page/loop fixtures and broader per-command paging proofs remain.
+5. **PARTIAL** — bounded defaults, explicit `--all`, and NVDB/OGC loop and server-capped-page fixtures exist; broader per-command paging proofs remain.
 6. **COMPLETE for implemented artifacts** — streamed atomic writes, overwrite protection, binary-TTY guard, size, and SHA-256 receipts exist.
-7. **PARTIAL** — mutation, report job, retry, anonymous-access, and partial-result contracts exist; Status WebSocket and full signal lifecycle remain.
+7. **PARTIAL** — mutation, report job, retry, anonymous-access, partial-result, and interrupted-artifact contracts exist; Status WebSocket remains.
 8. **PARTIAL** — source drift, GraphQL validation, docs generation, exact operation/protocol regeneration, and overlay target validation exist; full generated client regeneration does not.
 9. **PARTIAL** — representative offline process and live product tests exist, but not one fixture for every one of the 131 mappings.
 10. **PARTIAL** — the installed-package probe passes on the local Node runtime and the Node 20/22/24 remote matrix is configured, but that matrix has not run and npm publication is not configured.
@@ -87,27 +87,27 @@ This maps directly to Section 2.
 #### Phase 3
 
 - **COMPLETE** — curated V4 operations, generated grouped statistics, and each `/uberiket` long-tail operation have exact owner-reviewed dispositions.
-- **PARTIAL** — opaque cursor/all-page fixtures prove ordered traversal without duplicates; explicit repeated-cursor and server-capped-page negative fixtures remain.
-- **PARTIAL** — large NVDB route bodies select reviewed read-only POST semantics in code, but the POST mapping lacks a dedicated process fixture.
-- **PARTIAL** — NDJSON is tagged and backpressure-aware; a dedicated mid-stream failure process fixture remains.
+- **COMPLETE** — opaque cursor/all-page fixtures prove ordered traversal without duplicates, and explicit repeated-cursor and server-capped-page negative fixtures fail with exit `7` bounded and exit `9` streaming.
+- **COMPLETE** — large NVDB route bodies select reviewed read-only POST semantics in code, and the road-feature POST mapping has a dedicated retry fixture.
+- **COMPLETE** — NDJSON is tagged and backpressure-aware, and a mid-stream failure fixture proves an `complete:false` summary, a structured stderr error, and exit `9`.
 - **PARTIAL** — no explicit fresh-read agreement fixture exists for every applicable operation result.
 
 #### Phase 4
 
 - **COMPLETE** — every route profile has an offline process fixture and anonymous live smoke evidence.
 - **COMPLETE** — 401/403/429 are actionable and no fixed quota is claimed.
-- **PARTIAL** — matrix and road-feature POSTs are classified read-only and safely retryable in code, but lack dedicated process/retry fixtures.
+- **COMPLETE** — matrix maps to a checked GET and the road-feature POST is classified read-only, with a fixture proving it is retried after a transient `503`.
 - **COMPLETE** — all persisted queries validate against the pinned schema.
 - **COMPLETE** — HTTP 200 GraphQL request/partial errors follow exit `7`/`9` contracts and `--allow-partial` behavior.
 
 #### Phase 5
 
 - **PARTIAL** — live WMS PNG passed an independent file check; WFS semantic validation is fixture-only.
-- **PARTIAL** — next-link traversal and loop detection exist, but no multi-page repeated-link fixture proves gaps/duplicates behavior.
+- **COMPLETE** — next-link traversal and loop detection have a repeated-link fixture that emits an incomplete summary and exits `9`.
 - **COMPLETE** — collection/style counts remain runtime discovery data rather than fixed enums.
 - **PARTIAL** — WMS 1.3 EPSG:4326 axis logic exists; explicit resolved-axis diagnostics/tests remain limited.
 - **PARTIAL** — TN-ITS ordering logic and the 180-day retention caveat are represented; a multi-update oldest-to-newest fixture remains.
-- **PARTIAL** — native backpressure, checksums, atomic writes, and cleanup exist; interrupted large-file process coverage remains.
+- **COMPLETE** — native backpressure, checksums, and atomic writes exist, and an interrupted endless download exits `130` leaving neither the target nor a temporary file.
 
 #### Phase 6
 

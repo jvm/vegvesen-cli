@@ -387,6 +387,58 @@ test('Phase 7 generated API exposes reviewed operations only', () => {
   assert.equal(requests().length, before);
 });
 
+test('paging loops, server-capped pages, and mid-stream failures are explicit', () => {
+  const bounded = run(['nvdb', 'object', 'list', '901', '--page-size', '1', '--limit', '10', '--json', '--retries', '0']);
+  assert.equal(bounded.status, 7);
+  assert.equal(bounded.stdout, '');
+  assert.equal(JSON.parse(bounded.stderr).error.code, 'REPEATED_CURSOR');
+
+  const streamed = run(['nvdb', 'object', 'list', '901', '--page-size', '1', '--all', '--format', 'ndjson', '--retries', '0']);
+  assert.equal(streamed.status, 9);
+  const looped = streamed.stdout.trim().split('\n').map(JSON.parse);
+  assert.equal(JSON.parse(streamed.stderr).error.code, 'REPEATED_CURSOR');
+  assert.equal(looped.at(-1).type, 'summary');
+  assert.equal(looped.at(-1).meta.complete, false);
+
+  const capped = run(['nvdb', 'object', 'list', '902', '--page-size', '50', '--all', '--format', 'ndjson']);
+  assert.equal(capped.status, 0, capped.stderr);
+  const records = capped.stdout.trim().split('\n').map(JSON.parse);
+  assert.deepEqual(records.filter((record) => record.type === 'item').map((record) => record.data.id), [9021, 9022, 9023, 9024, 9025]);
+  assert.equal(records.at(-1).meta.complete, true);
+
+  const failed = run(['nvdb', 'object', 'list', '903', '--page-size', '2', '--all', '--format', 'ndjson', '--retries', '0']);
+  assert.equal(failed.status, 9);
+  const partial = failed.stdout.trim().split('\n').map(JSON.parse);
+  assert.deepEqual(partial.filter((record) => record.type === 'item').map((record) => record.data.id), [9031, 9032]);
+  assert.equal(partial.at(-1).type, 'summary');
+  assert.equal(partial.at(-1).meta.complete, false);
+  assert.equal(partial.at(-1).meta.next_cursor, 'page2');
+  assert.equal(JSON.parse(failed.stderr).error.code, 'UPSTREAM_HTTP_ERROR');
+
+  const ogcLoop = run(['ogc', 'feature', 'item', 'list', 'loop', '--all', '--format', 'ndjson', '--retries', '0']);
+  assert.equal(ogcLoop.status, 9);
+  assert.equal(JSON.parse(ogcLoop.stderr).error.code, 'REPEATED_CURSOR');
+  assert.equal(ogcLoop.stdout.trim().split('\n').map(JSON.parse).at(-1).meta.complete, false);
+});
+
+test('route matrix and road-feature POSTs are mapped and retried as read-only', () => {
+  const matrix = run(['route', 'matrix', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json', '--no-input']);
+  assert.equal(matrix.status, 0, matrix.stderr);
+  const matrixRequest = requests().findLast((request) => /\/Matrix\?/.test(request.url));
+  assert.equal(matrixRequest.method, 'GET');
+  assert.equal(new URL(matrixRequest.url, origin).searchParams.get('Stops'), '10.7,59.9;10.8,60.0');
+
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-road-feature-'));
+  const bodyPath = join(directory, 'query.json');
+  writeFileSync(bodyPath, JSON.stringify({ stops: [[10.7, 59.9], [10.8, 60.0]] }));
+  const before = requests().filter((request) => /roadFeatures$/.test(request.url)).length;
+  const queried = run(['route', 'road-feature', 'query', '--body', `@${bodyPath}`, '--retries', '1', '--json', '--no-input']);
+  assert.equal(queried.status, 0, queried.stderr);
+  assert.equal(JSON.parse(queried.stdout).data.roadFeatures[0].id, 'rf1');
+  const posts = requests().filter((request) => /roadFeatures$/.test(request.url)).slice(before);
+  assert.deepEqual(posts.map((request) => request.method), ['POST', 'POST']);
+});
+
 test('existing normalized output fails before network access', () => {
   const directory = mkdtempSync(join(tmpdir(), 'vegvesen-output-'));
   writeFileSync(join(directory, 'result.json'), 'existing');

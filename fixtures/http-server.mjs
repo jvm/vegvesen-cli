@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 
 const log = process.env.REQUEST_LOG;
 let retryAttempts = 0;
+let roadFeatureAttempts = 0;
 const server = createServer(async (request, response) => {
   if (log) appendFileSync(log, `${JSON.stringify({ method: request.method, url: request.url, headers: request.headers })}\n`);
   const url = new URL(request.url, 'http://fixture');
@@ -12,10 +13,28 @@ const server = createServer(async (request, response) => {
   } else if (request.method === 'POST' && url.pathname === '/') {
     const body = JSON.parse(await readBody(request));
     response.end(JSON.stringify(graphQlFixture(body.query, body.variables ?? {})));
+  } else if (/\/open\/routingservice\/api\/roadfeature\/roadfeatures$/i.test(url.pathname)) {
+    await readBody(request);
+    if (request.method !== 'POST') { response.statusCode = 405; response.end('{}'); }
+    else if (roadFeatureAttempts++ === 0) { response.statusCode = 503; response.end('{}'); }
+    else response.end(JSON.stringify({ roadFeatures: [{ id: 'rf1' }] }));
   } else if (url.pathname.toLowerCase().startsWith('/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingservice/')) {
     response.end(JSON.stringify({ routes: [{ type: 'FeatureCollection', features: [], profile: url.pathname.split('/').at(-1), stops: url.searchParams.get('Stops') }], externalApiStatus: null }));
   } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/statistikk$/.test(url.pathname)) {
     response.end(JSON.stringify({ antall: 3 }));
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekter/901') {
+    const href = `${url.origin}${url.pathname}?start=stuck`;
+    response.end(JSON.stringify({ objekter: [{ id: 9010 }], metadata: { antall: 99, returnert: 1, sidestørrelse: 1, neste: { start: 'stuck', href } } }));
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekter/902') {
+    const all = [9021, 9022, 9023, 9024, 9025].map((id) => ({ id }));
+    const offset = Number(url.searchParams.get('start') ?? 0);
+    const objects = all.slice(offset, offset + 2);
+    const nextOffset = offset + objects.length;
+    const next = nextOffset < all.length ? { start: String(nextOffset), href: `${url.origin}${url.pathname}?start=${nextOffset}` } : null;
+    response.end(JSON.stringify({ objekter: objects, metadata: { antall: all.length, returnert: objects.length, sidestørrelse: 2, neste: next } }));
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekter/903') {
+    if (url.searchParams.get('start') === 'page2') { response.statusCode = 500; response.end('{}'); }
+    else response.end(JSON.stringify({ objekter: [{ id: 9031 }, { id: 9032 }], metadata: { antall: 4, returnert: 2, sidestørrelse: 2, neste: { start: 'page2', href: `${url.origin}${url.pathname}?start=page2` } } }));
   } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+$/.test(url.pathname)) {
     const all = [{ id: 101 }, { id: 102 }, { id: 103 }];
     const offset = url.searchParams.get('start') === 'opaque-2' ? 2 : 0;
@@ -84,6 +103,8 @@ const server = createServer(async (request, response) => {
   } else if (/^\/(vegvar_1_0|norstoy_1_0|nvdb_2_0|rapportweb_1_0|datex_3_1)\/(wms|wfs)$/.test(url.pathname)) {
     response.setHeader('content-type', url.pathname.endsWith('/wms') ? 'image/png' : 'application/geo+json');
     response.end(url.pathname.endsWith('/wms') ? Buffer.from('native-ogc-fixture') : JSON.stringify({ type: 'FeatureCollection', features: [] }));
+  } else if (url.pathname === '/ogc/features/v1/collections/loop/items') {
+    response.end(JSON.stringify({ type: 'FeatureCollection', features: [{ id: 'f1' }], links: [{ rel: 'next', href: '/ogc/features/v1/collections/loop/items?page=2' }] }));
   } else if (/^\/ogc\/(features|maps|styles)\/v1\//.test(url.pathname)) {
     response.end(JSON.stringify(url.pathname.includes('/items') ? { type: 'FeatureCollection', features: [{ id: 'f1' }], links: [] } : url.pathname.includes('/styles') ? { styles: [{ id: 'style1' }] } : { collections: [{ id: 'collection1' }], links: [] }));
   } else if (url.pathname === '/api-docs' || url.pathname === '/swagger.json') {
@@ -95,7 +116,12 @@ const server = createServer(async (request, response) => {
     response.end(JSON.stringify({ [key]: [{ href: '/api/v1/download?path=fixture.gml', timestamp: '2026-07-27T00:00:00Z', size: 12 }] }));
   } else if (url.pathname === '/api/v1/download') {
     response.setHeader('content-type', 'application/gml+xml');
-    response.end('<gml>fixture</gml>');
+    if (url.searchParams.get('path') === 'endless.gml') {
+      // Never completes: proves interrupted large artifact writes clean up their temp file.
+      response.write('<gml>');
+      const pump = () => { if (response.destroyed) return; response.write('x'.repeat(64 * 1024)); setTimeout(pump, 10); };
+      pump();
+    } else response.end('<gml>fixture</gml>');
   } else if (/^\/(vegobjekter\/\d+\.(csv|sosi)|vegnett\/veglenkesekvenser\/segmentert\.csv)$/.test(url.pathname)) {
     response.setHeader('content-type', 'text/csv');
     response.end('id,name\n1,fixture\n');

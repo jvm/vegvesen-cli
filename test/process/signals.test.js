@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, before, test } from 'node:test';
@@ -52,6 +52,25 @@ async function interrupt(signal) {
   assert.ok(Date.now() - started < 2000, 'signal shutdown should be prompt');
   return { ...result, stdout, stderr };
 }
+
+test('interrupting a large artifact download leaves no partial file', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-interrupt-'));
+  const child = spawn(process.execPath, [cli, 'tnits', 'snapshot', 'download', '/api/v1/download?path=endless.gml', '--output', join(directory, 'big.gml'), '--no-input'], {
+    env: { ...process.env, NO_COLOR: '1', VEGVESEN_TNITS_BASE_URL: origin },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stderr = '';
+  child.stderr.setEncoding('utf8').on('data', (chunk) => { stderr += chunk; });
+  await waitUntil(() => readdirSync(directory).some((entry) => entry.includes('.tmp-')));
+  child.kill('SIGINT');
+  const code = await new Promise((resolve, reject) => {
+    child.once('error', reject);
+    child.once('exit', resolve);
+  });
+  assert.equal(code, 130);
+  assert.equal(JSON.parse(stderr).error.code, 'INTERRUPTED');
+  assert.deepEqual(readdirSync(directory), []);
+});
 
 for (const [signal, expectedExit, expectedCode] of [['SIGINT', 130, 'INTERRUPTED'], ['SIGTERM', 143, 'TERMINATED']]) {
   test(`${signal} returns a numeric resumable exit without remote cancellation`, async () => {

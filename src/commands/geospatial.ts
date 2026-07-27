@@ -73,16 +73,21 @@ async function* featurePages(runtime: Runtime, initialPath: string, options: Que
   let path = initialPath;
   let query: Record<string, QueryValue> = { limit: Number(options.pageSize ?? 100) };
   let count = 0;
-  while (true) {
-    const result = await requestJson<any>(runtime, { service: 'ogc', canonicalOrigin: ogcOrigin, path, query, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true, accept: 'application/geo+json,application/json' });
-    for (const data of result.data?.features ?? []) { count += 1; yield { type: 'item', data }; }
-    const href = result.data?.links?.find((link: any) => link.rel === 'next')?.href;
-    if (!href) break;
-    const next = new URL(href, `${ogcOrigin}/`);
-    if (next.origin !== ogcOrigin || !next.pathname.startsWith('/ogc/features/v1/')) throw new CliError({ code: 'INVALID_NEXT_LINK', message: 'OGC next link left the approved feature origin/path', exitCode: EXIT.access, retryable: false, service: 'ogc', hint: 'Report the upstream link-policy violation' });
-    const key = next.toString();
-    if (seen.has(key)) throw new CliError({ code: 'REPEATED_CURSOR', message: 'OGC repeated a next link', exitCode: EXIT.protocol, retryable: false, service: 'ogc', hint: 'Resume later after upstream paging is repaired' });
-    seen.add(key); path = next.pathname; query = Object.fromEntries(next.searchParams);
+  try {
+    while (true) {
+      const result = await requestJson<any>(runtime, { service: 'ogc', canonicalOrigin: ogcOrigin, path, query, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true, accept: 'application/geo+json,application/json' });
+      for (const data of result.data?.features ?? []) { count += 1; yield { type: 'item', data }; }
+      const href = result.data?.links?.find((link: any) => link.rel === 'next')?.href;
+      if (!href) break;
+      const next = new URL(href, `${ogcOrigin}/`);
+      if (next.origin !== ogcOrigin || !next.pathname.startsWith('/ogc/features/v1/')) throw new CliError({ code: 'INVALID_NEXT_LINK', message: 'OGC next link left the approved feature origin/path', exitCode: EXIT.access, retryable: false, service: 'ogc', hint: 'Report the upstream link-policy violation' });
+      const key = next.toString();
+      if (seen.has(key)) throw new CliError({ code: 'REPEATED_CURSOR', message: 'OGC repeated a next link', exitCode: EXIT.protocol, retryable: false, service: 'ogc', hint: 'Resume later after upstream paging is repaired' });
+      seen.add(key); path = next.pathname; query = Object.fromEntries(next.searchParams);
+    }
+  } catch (error) {
+    yield { type: 'summary', meta: { count, complete: false, has_more: true } };
+    throw error;
   }
   yield { type: 'summary', meta: { count, complete: true, has_more: false } };
 }

@@ -19,9 +19,16 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
     }
     if (execution.result.stream) {
       const format = execution.options.format === 'raw' ? 'raw' : 'ndjson';
-      for await (const record of execution.result.stream) {
-        const chunk = renderStreamRecord(record, format, execution.options.field);
-        if (chunk && !runtime.stdout.write(chunk)) await waitForDrain(runtime.stdout, runtime.signal);
+      let items = 0;
+      try {
+        for await (const record of execution.result.stream) {
+          if (record.type === 'item') items += 1;
+          const chunk = renderStreamRecord(record, format, execution.options.field);
+          if (chunk && !runtime.stdout.write(chunk)) await waitForDrain(runtime.stdout, runtime.signal);
+        }
+      } catch (error) {
+        if (items === 0 || runtime.signal.aborted || !(error instanceof CliError)) throw error;
+        throw new CliError({ ...error.details, exitCode: EXIT.partial }, { cause: error });
       }
       return execution.result.exitCode ?? 0;
     }
