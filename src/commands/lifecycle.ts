@@ -1,7 +1,7 @@
 import { basename } from 'node:path';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
 import type { CommandResult, OutputFormat } from '../contracts/output.js';
-import { artifactToStream, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
+import { artifactToStream, assertArtifactResponse, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
 import { request, requestJson, parseDuration, type QueryValue } from '../core/http.js';
 import { serviceSource } from '../core/metadata.js';
 import type { Runtime } from '../runtime.js';
@@ -61,7 +61,7 @@ export async function nativeRead(runtime: Runtime, command: string, service: 'fi
   if (options.format !== undefined && !['auto', 'raw'].includes(options.format)) throw usageError('Native artifact commands accept only --format auto|raw', 'Use --format raw', 'format');
   const destination = validateArtifactDestination(runtime, options.output, options.overwrite === true, options.allowTerminalBinary === true);
   const upstream = await request(runtime, { service, canonicalOrigin: origin, path, query, accept: '*/*', timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true });
-  if (destination === '-') return { command, source: serviceSource(service), data: null, nativeStream: artifactToStream(upstream.response), outputHandled: true };
+  if (destination === '-') { assertArtifactResponse(upstream.response, service); return { command, source: serviceSource(service), data: null, nativeStream: artifactToStream(upstream.response), outputHandled: true }; }
   return { command, source: serviceSource(service), data: await saveArtifact(runtime, upstream.response, destination, service, options.overwrite === true), outputHandled: true };
 }
 

@@ -20,9 +20,7 @@ export function validateArtifactDestination(runtime: Runtime, destination: strin
 }
 
 export async function saveArtifact(runtime: Runtime, response: Response, path: string, source: string, overwrite: boolean, allowJson = false): Promise<ArtifactDescriptor> {
-  if (!response.body) throw new CliError({ code: 'EMPTY_ARTIFACT_BODY', message: 'Upstream artifact response has no body', exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check upstream service health' });
-  const mediaType = response.headers.get('content-type')?.split(';', 1)[0]?.trim().toLowerCase() ?? 'application/octet-stream';
-  if (!allowJson && (mediaType === 'application/json' || mediaType.endsWith('+json'))) throw new CliError({ code: 'UNEXPECTED_ARTIFACT_RESPONSE', message: `Expected native artifact but received ${mediaType}`, exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check request identifier and upstream service health' });
+  const mediaType = assertArtifactResponse(response, source, allowJson);
   const temporary = `${path}.tmp-${runtime.pid}-${runtime.now().getTime()}`;
   const hash = createHash('sha256');
   let size = 0;
@@ -61,6 +59,13 @@ export async function saveBytes(runtime: Runtime, body: string | Uint8Array, pat
     if (runtime.fs.existsSync(temporary)) runtime.fs.unlinkSync(temporary);
     throw new CliError({ code: 'OUTPUT_IO_FAILED', message: `Could not write output: ${path}`, exitCode: EXIT.io, retryable: false, field: 'output', hint: 'Check destination permissions, free space, and --overwrite' }, { cause: error });
   }
+}
+
+export function assertArtifactResponse(response: Response, source: string, allowJson = false): string {
+  if (!response.body) throw new CliError({ code: 'EMPTY_ARTIFACT_BODY', message: 'Upstream artifact response has no body', exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check upstream service health' });
+  const mediaType = response.headers.get('content-type')?.split(';', 1)[0]?.trim().toLowerCase() ?? 'application/octet-stream';
+  if (!allowJson && (mediaType === 'application/json' || mediaType.endsWith('+json'))) throw new CliError({ code: 'UNEXPECTED_ARTIFACT_RESPONSE', message: `Expected native artifact but received ${mediaType}`, exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check request identifier and upstream service health' });
+  return mediaType;
 }
 
 export async function* artifactToStream(response: Response): AsyncGenerator<Uint8Array> {

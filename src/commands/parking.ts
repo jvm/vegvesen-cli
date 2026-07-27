@@ -1,6 +1,6 @@
 import { usageError } from '../contracts/error.js';
 import type { CommandResult, OutputFormat } from '../contracts/output.js';
-import { artifactToStream, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
+import { artifactToStream, assertArtifactResponse, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
 import { request } from '../core/http.js';
 import { serviceSource } from '../core/metadata.js';
 import type { Runtime } from '../runtime.js';
@@ -25,6 +25,7 @@ export async function parkingArtifact(runtime: Runtime, command: string, path: s
     accept: '*/*',
   });
   if (destination === '-') {
+    assertArtifactResponse(upstream.response, 'parking');
     return { command, source: serviceSource('parking'), data: null, nativeStream: artifactToStream(upstream.response), outputHandled: true, meta: { count: 1, has_more: false, next_cursor: null, partial: false } };
   }
   const descriptor = await saveArtifact(runtime, upstream.response, destination, 'parking', options.overwrite === true);

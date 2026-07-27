@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
 import type { CommandResult, OutputFormat } from '../contracts/output.js';
-import { artifactToStream, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
+import { artifactToStream, assertArtifactResponse, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
 import { request, requestJson, type QueryValue } from '../core/http.js';
 import { serviceSource } from '../core/metadata.js';
 import type { Runtime } from '../runtime.js';
@@ -29,6 +29,8 @@ export async function ogcArtifact(runtime: Runtime, command: string, family: str
   if (family) familyValue(family);
   const destination = nativeDestination(runtime, options);
   const upstream = await request(runtime, { service: 'ogc', canonicalOrigin: ogcOrigin, path: protocol === 'modern' ? path : `${family}/${protocol}`, query, accept, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true });
+  const mediaType = upstream.headers.get('content-type')?.split(';', 1)[0]?.trim().toLowerCase() ?? '';
+  if (accept.startsWith('image/') && !mediaType.startsWith('image/')) throw new CliError({ code: 'OGC_SERVICE_EXCEPTION', message: `Expected ${accept} but received ${mediaType || 'unknown content'}`, exitCode: EXIT.protocol, retryable: false, service: 'ogc', hint: 'Check layer, CRS, bbox, and supported map formats' });
   return artifactResult(runtime, command, 'ogc', upstream.response, destination, options.overwrite === true, accept.includes('json')); 
 }
 
@@ -90,7 +92,7 @@ function nativeDestination(runtime: Runtime, options: NativeOptions): string {
   return validateArtifactDestination(runtime, options.output, options.overwrite === true, options.allowTerminalBinary === true);
 }
 async function artifactResult(runtime: Runtime, command: string, service: string, response: Response, destination: string, overwrite: boolean, allowJson = false): Promise<CommandResult> {
-  if (destination === '-') return { command, source: serviceSource(service), data: null, nativeStream: artifactToStream(response), outputHandled: true };
+  if (destination === '-') { assertArtifactResponse(response, service, allowJson); return { command, source: serviceSource(service), data: null, nativeStream: artifactToStream(response), outputHandled: true }; }
   return { command, source: serviceSource(service), data: await saveArtifact(runtime, response, destination, service, overwrite, allowJson), outputHandled: true };
 }
 function boundedResult(command: string, service: string, data: any, raw: string, options: QueryOptions, keys: string[]): CommandResult {
