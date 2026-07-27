@@ -2,8 +2,9 @@
 
 _Status: implementation in progress_  
 _Research baseline: 26–27 July 2026_  
-_Implementation status last verified: 27 July 2026 in the working tree based on commit `9118bb9`_
-_Target: a production-quality Node.js CLI exposing the full anonymously accessible public API surface operated by Statens vegvesen._
+_Implementation status last verified: 27 July 2026 in the working tree_  
+_Scope revised: 27 July 2026 to anonymous, no-account, high-signal surface only. See 4.2 for what was removed._
+_Target: a production-quality Node.js CLI exposing the freely usable, no-account public API surface operated by Statens vegvesen._
 
 ## 0. Implementation status ledger
 
@@ -13,133 +14,75 @@ Status meanings:
 
 - **COMPLETE** — implemented and the stated acceptance evidence exists.
 - **PARTIAL** — useful implementation exists, but one or more acceptance requirements remain.
-- **BLOCKED** — implementation is intentionally gated by current upstream evidence.
-- **EXCLUDED** — reviewed as outside anonymous-only v1.
+- **EXCLUDED** — permanently outside this plan's scope. Not pending work.
 - **NOT STARTED** — no meaningful implementation exists.
+
+There is no **BLOCKED** state. A surface that cannot be verified anonymously from checked-in evidence is excluded outright rather than parked, so that every remaining item in this plan is implementable without waiting on an upstream change or a human decision.
 
 ### 0.1 Current verified baseline
 
 | Measure | Current evidence |
 |---|---|
 | CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
-| Product coverage | 307 exact units (206 contract operations and 101 protocol units) plus 125 runtime mapping records checked by `scripts/check-coverage.mjs` |
+| Product coverage | 307 exact units checked by `scripts/check-coverage.mjs`, of which 11 are known-misclassified — see 0.2 |
 | Offline tests | 45 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
-| Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed; research introspection excluded from tarball |
-| Live evidence | `docs/attestations/2026-07-27-phases-3-4.md` and `docs/attestations/2026-07-27-phases-5-7.md` |
-| Security | ESLint security rules, Semgrep, CodeQL workflow, Betterleaks, actionlint, zizmor, OpenSSF Scorecard, production audit, input/body limits, XML hardening, seeded redaction tests |
-| Repository policy | Private vulnerability reporting and Dependabot security updates enabled; strict protected `main` checks enabled |
-| Release | OIDC/provenance workflow implemented, but npm trusted publishing is not configured and the package is not published |
+| Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed |
+| Live evidence | `docs/attestations/2026-07-27-phases-0-1.md`, `-phases-3-4.md`, `-phases-5-7.md` |
+| Security | ESLint security rules, Semgrep, CodeQL, Betterleaks, actionlint, zizmor, Scorecard, production audit, input/body limits, XML hardening, seeded redaction tests |
+| Release | OIDC/provenance workflow implemented; npm trusted publishing not configured and the package is not published |
 
-### 0.2 Phase summary
+### 0.2 Known defect: the coverage gate is not bound to the CLI
 
-| Phase | State | Implemented | Remaining before phase acceptance is complete |
-|---|---|---|---|
-| 0 — scope/specification | **COMPLETE** | Scope/CLI ADRs, anonymous boundary, 21 pinned sources/overlays, 206 derived contract operations, 101 protocol units, health gates, and exact generated coverage | Continue scheduled drift review and owner review when upstream contracts change |
-| 1 — foundation | **COMPLETE** | TypeScript/Commander executable, nested help, schemas, config, doctor, output/errors, prompt policy, package probe, full/mixed PTYs, and cooperative SIGINT/SIGTERM | Continue regression coverage as process behavior evolves |
-| 2 — transport/simple reads | **COMPLETE** | HTTP policy, retries/timeouts, redirect/origin controls, config, artifact writer, Catalog, Parking, NVDB catalog/areas/status REST | Continue regression coverage as adapters evolve |
-| 3 — NVDB core | **PARTIAL** | Objects, versions, changes, statistics, links, segments, nodes, positions, routes, monitor, cursors, streams; exact `/uberiket` exclusions and generated grouped statistics; repeated-cursor, server-capped-page, and mid-stream failure fixtures | Explicit fresh-read agreement tests |
-| 4 — Routing/Trafikkdata | **PARTIAL** | All 9 profiles, matrix, 2 road-feature reads, validated persisted GraphQL queries, partial-result behavior, matrix/road-feature process and read-only POST retry fixtures | Exact raw GeoJSON fixture; re-attest anonymous policy immediately before release |
-| 5 — OGC/TN-ITS/export | **PARTIAL** | Legacy and modern OGC commands, axis handling, next-link traversal, TN-ITS, NVDB CSV/SOSI exports, native streaming, repeated-next-link and interrupted-download cleanup fixtures | Live independent WFS semantic check; Tiles/DGGS remain blocked |
-| 6 — lifecycle/mutations | **PARTIAL** | Report generation/job/wait/download, bounded live report lifecycle, Fiks anonymous reads/create/attachments with dry-run/confirmation | Status WebSocket contract; Stedfesting health gate; complete report-family classification; job/watch signal tests |
-| 7 — generated/release | **PARTIAL** | Constrained generated registry, generated docs, completion, Node matrix, security/release workflows, package minimization | Expand generated registry beyond 3 advanced operations; fixture every mapping; clean-context agent evaluations; configure npm trusted publishing; observe first remote CI/security run |
+`coverage.json` dispositions come from hand-authored overlays keyed on `target_id` (`scripts/generate-coverage.mjs`). Nothing verifies them against the operations the CLI actually calls, so the gate that is supposed to keep access-required surface out of the product currently measures a parallel bookkeeping artifact.
+
+Demonstrated consequences:
+
+- Eleven operations that ship as tested commands are recorded `access: unverified` and `excluded-with-reviewed-reason`, including `GET /api/v4/vegobjekter/{vegobjekttypeId}`, which backs `nvdb object list` and is directly attested as anonymous in `docs/attestations/2026-07-27-phases-3-4.md`.
+- Two units attribute the command `nvdb object list` to operations it does not call (`GET /api/v4/vegobjekt`, `GET /api/v4/veg`), while the operation it does call is marked excluded.
+- Twelve admin paths and mutations sit in the promotion queue under a gate reading "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture" — a bar an admin endpoint satisfies merely by answering anonymously.
+
+Until Phase 8 closes this, treat the 307-unit figure as arithmetic over unverified data. No claim in 0.3 or 0.4 that depends on operation classification is trustworthy.
 
 ### 0.3 Definition-of-done checklist
 
 This maps directly to Section 2.
 
-1. **COMPLETE** — all 206 pinned contract operations and 101 protocol-specific units have exactly one owner-reviewed disposition; missing/extra units and stale overlay targets fail the offline gate.
-2. **COMPLETE** — service metadata distinguishes stable, caution, dynamic, excluded, experimental, and blocked surfaces.
+1. **PARTIAL** — every in-scope coverage unit carries exactly one disposition, but 0.2 shows the dispositions themselves are unreliable. Closing Phase 8 completes this.
+2. **COMPLETE** — service metadata distinguishes stable, caution, dynamic, and excluded surfaces.
 3. **COMPLETE for supported commands** — structured output and stdout/stderr separation are implemented and process-tested.
 4. **COMPLETE** — explicit machine modes and detached stdin do not prompt or hang.
-5. **PARTIAL** — bounded defaults, explicit `--all`, and NVDB/OGC loop and server-capped-page fixtures exist; broader per-command paging proofs remain.
-6. **COMPLETE for implemented artifacts** — streamed atomic writes, overwrite protection, binary-TTY guard, size, and SHA-256 receipts exist.
-7. **PARTIAL** — mutation, report job, retry, anonymous-access, partial-result, and interrupted-artifact contracts exist; Status WebSocket remains.
-8. **PARTIAL** — source drift, GraphQL validation, docs generation, exact operation/protocol regeneration, and overlay target validation exist; full generated client regeneration does not.
-9. **PARTIAL** — representative offline process and live product tests exist, but not one fixture for every one of the 131 mappings.
-10. **PARTIAL** — the installed-package probe passes on the local Node runtime and the Node 20/22/24 remote matrix is configured, but that matrix has not run and npm publication is not configured.
+5. **COMPLETE** — bounded defaults, explicit `--all`, and NVDB/OGC loop plus server-capped-page fixtures exist.
+6. **COMPLETE** — streamed atomic writes, overwrite protection, binary-TTY guard, size, SHA-256 receipts, and interrupted-download cleanup exist.
+7. **COMPLETE** — mutation, report job, retry, anonymous-access, partial-result, and signal contracts exist and are process-tested.
+8. **PARTIAL** — source drift, GraphQL validation, docs generation, unit regeneration, and overlay target validation exist; the registry-to-coverage binding does not.
+9. **PARTIAL** — every command adapter and protocol unit has offline process coverage; per-operation fixtures for the generated registry remain.
+10. **PARTIAL** — the installed-package probe passes locally and the Node 20/22/24 matrix is configured, but that matrix has not run and npm publication is not configured.
 
-### 0.4 Acceptance checklist by phase
+### 0.4 Remaining work
 
-#### Phase 0
+Everything below is implementable offline, from checked-in evidence, with no approval step and no upstream change.
 
-- **COMPLETE** — every product named in Section 4 appears in `specs/manifest.json` and `coverage.json`.
-- **COMPLETE** — public status is owner-reviewed rather than inferred solely from missing OpenAPI security.
-- **COMPLETE** — credentials/login are absent and known authenticated/admin operations are excluded.
-- **COMPLETE** — all manifest products/sub-specs have pinned source metadata, deterministic digest or expected-health checking, derived units, and owner-reviewed overlays.
+| # | Work | Phase |
+|---|---|---|
+| 1 | Bind coverage to the registry; reclassify the 11 mislabeled operations; correct the 2 wrong attributions | 8 |
+| 2 | Replace free-text promotion gates with the deterministic rules in 8.3 | 8 |
+| 3 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
+| 4 | Remove excluded surfaces from the command tree, contracts, and dependency pins | 8 |
+| 5 | Per-operation process fixtures for every generated-registry operation | 7 |
+| 6 | Expand the generated registry to the full reviewed anonymous set | 7 |
+| 7 | Fresh-read agreement fixture for representative NVDB reads | 3 |
+| 8 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
+| 9 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
 
-#### Phase 1
+### 0.5 Owner-operated items outside this plan
 
-- **COMPLETE** — help/version and strict invalid-usage process behavior pass.
-- **COMPLETE** — detached stdin cannot hang and machine stdout/stderr parse cleanly.
-- **COMPLETE** — machine mode is automated under real full and mixed kernel PTYs and never prompts or contaminates machine streams.
-- **COMPLETE** — npm tarball installs and executes outside the checkout.
+These require credentials or privileges the implementation cannot hold. They are not blockers for anything in 0.4, and no item in 0.4 depends on them.
 
-#### Phase 2
-
-- **COMPLETE** — fixtures cover methods, encoding, mandatory headers, retry, timeout, cross-origin redirect refusal, and absent authorization/cookies.
-- **COMPLETE** — CKAN empty/search/paging behavior is bounded and explicit.
-- **COMPLETE** — Parking uses the Atlas origin and shared native artifact writer.
-- **COMPLETE** — NVDB requests centrally send `X-Client`.
-- **COMPLETE** — credential-like config/header input is rejected and seeded redaction tests prevent sensitive-value leakage.
-
-#### Phase 3
-
-- **COMPLETE** — curated V4 operations, generated grouped statistics, and each `/uberiket` long-tail operation have exact owner-reviewed dispositions.
-- **COMPLETE** — opaque cursor/all-page fixtures prove ordered traversal without duplicates, and explicit repeated-cursor and server-capped-page negative fixtures fail with exit `7` bounded and exit `9` streaming.
-- **PARTIAL** — `nvdb network route calculate --body` issues `POST /api/v4/beta/vegnett/rute`, but that operation is still classified `access: unverified` and excluded in `specs/overlays/nvdb-core--vegnett.json`, and no process fixture exercises the POST path. The Phase 4 road-feature POST fixture covers a different service and does not satisfy this.
-- **COMPLETE** — NDJSON is tagged and backpressure-aware, and a mid-stream failure fixture proves an `complete:false` summary, a structured stderr error, and exit `9`.
-- **PARTIAL** — no explicit fresh-read agreement fixture exists for every applicable operation result.
-
-#### Phase 4
-
-- **COMPLETE** — every route profile has an offline process fixture and anonymous live smoke evidence.
-- **COMPLETE** — 401/403/429 are actionable and no fixed quota is claimed.
-- **COMPLETE** — matrix maps to a checked GET and the road-feature POST is classified read-only, with a fixture proving it is retried after a transient `503`.
-- **COMPLETE** — all persisted queries validate against the pinned schema.
-- **COMPLETE** — HTTP 200 GraphQL request/partial errors follow exit `7`/`9` contracts and `--allow-partial` behavior.
-
-#### Phase 5
-
-- **PARTIAL** — live WMS PNG passed an independent file check; WFS semantic validation is fixture-only.
-- **COMPLETE** — next-link traversal and loop detection have a repeated-link fixture that emits an incomplete summary and exits `9`.
-- **COMPLETE** — collection/style counts remain runtime discovery data rather than fixed enums.
-- **PARTIAL** — WMS 1.3 EPSG:4326 axis logic exists; explicit resolved-axis diagnostics/tests remain limited.
-- **PARTIAL** — TN-ITS ordering logic and the 180-day retention caveat are represented; a multi-update oldest-to-newest fixture remains.
-- **COMPLETE** — native backpressure, checksums, and atomic writes exist, and an interrupted endless download exits `130` leaving neither the target nor a temporary file.
-
-#### Phase 6
-
-- **PARTIAL** — one bounded real report completed through start/poll/download; not every public report family is classified and tested.
-- **COMPLETE** — report IDs are resumable, starts are not retried, and explicit SIGINT/SIGTERM wait tests prove exits 130/143 without remote cancellation.
-- **NOT STARTED** — Status WebSocket reconnect, malformed-frame, event-tag, and signal tests await a verifiable public contract.
-- **BLOCKED** — Stedfesting remains gated by the obsolete upstream dependency path.
-- **COMPLETE** — Fiks dry-run and missing confirmation make zero network calls.
-- **COMPLETE** — Fiks mutations are not retried and ambiguous timeout behavior is tested.
-- **COMPLETE** — automated live CI executes no production Fiks mutation.
-
-#### Phase 7
-
-- **PARTIAL** — `api operation list/describe/call` exists for a constrained reviewed registry, currently only 3 advanced operations.
-- **PARTIAL** — process fixtures cover representative generated operations, not every upstream operation mapping.
-- **COMPLETE** — command reference and README examples are registry/generated or executed against fixtures.
-- **COMPLETE** — shell completion exists after the grammar freeze point.
-- **PARTIAL** — audits, Node matrix, package provenance workflow, branch protection, and release gates are implemented but have not run remotely.
-- **PARTIAL** — hosts/specs were re-attested during implementation; final immediate pre-release re-attestation remains.
-- **PARTIAL** — coverage has no undeclared record within its current manual inventory, but exhaustive upstream-derived coverage is not proven.
-- **COMPLETE** — no reviewed access-required/admin/paid operation appears in public help or generated registry.
-- **PARTIAL** — supported products have broad live attestations; Fiks deliberately has no live mutation and some dynamic families have representative rather than exhaustive smoke evidence.
-- **COMPLETE** — installed CLI works outside the source tree with shipped runtime assets/docs.
-- **NOT STARTED** — clean-context agent evaluations have not been run.
-- **COMPLETE locally** — package excludes research introspection and test endpoint overrides; first registry publication remains pending.
-
-### 0.5 Immediate follow-up
-
-Before declaring 1.0 complete:
-
-- Run the first protected GitHub PR and verify all required check context names.
-- Configure npm trusted publishing before creating the first release tag.
+- Configure npm trusted publishing, then create the first release tag.
+- Open the first protected pull request and confirm the required check context names.
+- Run the live anonymous re-attestation immediately before release. Offline gates are the release gate; live attestation records evidence, it does not unblock work.
 
 ## 1. Decision record
 
@@ -149,9 +92,11 @@ The approved first-version scope is **anonymous-only public access**:
 - Do not implement credential ingestion, login, token refresh, protected-data access, or authenticated live tests in the first version.
 - If an endpoint currently believed anonymous returns an access requirement, mark that operation unavailable and update the coverage manifest; do not add credential support implicitly.
 - Exclude registration-required, restricted, paid, provider-only, partner, and administrative workflows from the generated registry and curated command tree.
-- Keep unhealthy OGC Tiles/DGGS and degraded NVDB Stedfesting behind explicit health gates. Do not claim support until representative anonymous requests pass.
+- Exclude any surface whose anonymous contract cannot be established from checked-in evidence. Excluded means removed from the command tree and the behavior contracts, not parked behind a gate.
 
 This boundary is based on verified anonymous production behavior and documented public intent—not merely an absent OpenAPI security declaration.
+
+**Classification is rule-based, not approval-based.** Section 8.3 defines the disposition rules as deterministic predicates over pinned specification metadata and checked-in evidence. A human owner name recorded in an overlay is provenance, not a required approval step: any operation whose classification follows from those rules may be reclassified by regenerating the overlays. This is what makes the remaining work in 0.4 executable end to end without stopping for a decision.
 
 ## 2. Goal and definition of done
 
@@ -163,15 +108,15 @@ The implementation is complete when:
    - stable curated command;
    - generated advanced operation command;
    - dynamic protocol command, such as an OGC collection discovered at runtime; or
-   - reviewed exclusion with reason and promotion gate.
-2. Anonymous, degraded, experimental, and excluded surfaces are clearly distinguished in help and machine-readable service metadata.
+   - permanent exclusion with reason (Section 4.2).
+2. Supported and excluded surfaces are clearly distinguished in help and machine-readable service metadata.
 3. Every data command offers deterministic structured output; stdout never contains prompts, progress, warnings, or errors.
 4. Missing input never causes a non-interactive process to prompt or hang.
 5. Pagination is bounded by default and explicit when unbounded traversal is requested.
 6. Files are streamed safely, checksum-reported, and never emitted as binary to an interactive terminal by accident.
 7. Mutations, jobs, streams, retries, anonymous-access failures, and partial results have explicit contracts.
 8. Checked-in specifications, overlays, generated code, help, schemas, and operation coverage cannot drift silently.
-9. Offline process tests cover every command mapping; current live smoke tests attest each supported upstream product.
+9. Offline process tests cover every command adapter, every protocol unit, and every generated operation. Per-command duplicates of an already-covered adapter are not required.
 10. `npm pack` installs and runs from outside the source tree on Node.js 20 and supported newer releases.
 
 ## 3. Current repository state
@@ -180,12 +125,12 @@ The original scaffold has been replaced. Section 0 holds the authoritative statu
 
 - `bin/vegvesen.js` is the published launcher. It installs cooperative `SIGINT`/`SIGTERM` handlers, calls `main(argv, runtime)` from `dist/main.js`, and re-raises a second identical signal on the default handler.
 - `src` is strict `NodeNext` TypeScript compiled to `dist`: `main.ts` (process adapter and final output/exit), `cli.ts` and `service-cli.ts` (Commander parsing and dispatch), `registry.ts` (declarative metadata for 131 commands), `runtime.ts` (injected `fetch`, clock, filesystem, TTY, signals, streams), `contracts/`, `core/`, and `commands/`.
-- `specs/` holds the pinned manifest, source digests, owner-reviewed overlays, derived operation and protocol units, and Trafikkdata introspection. `coverage.json` classifies 307 units and is regenerated by `scripts/`.
+- `specs/` holds the pinned manifest, source digests, rule-generated overlays, derived operation and protocol units, and Trafikkdata introspection. `coverage.json` classifies 307 units and is regenerated by `scripts/`.
 - `test/` has 41 offline tests plus 4 kernel-PTY tests across five files, driven through the real executable against `fixtures/http-server.mjs`. `schemas/` holds the published command, error, and output JSON Schemas.
 - `package.json` requires Node.js 20+ and publishes `bin`, `dist`, `schemas`, `specs`, `coverage.json`, `README.md`, `COMMANDS.md`, `SECURITY.md`, and `LICENSE`, explicitly excluding the Trafikkdata research introspection. Runtime dependencies are `commander` 14, `zod` 4, and `fast-xml-parser` 5.
 - `.github/workflows/` holds CI, CodeQL, security, Scorecard, spec-drift, and provenance release workflows, none of which have run remotely yet.
 
-Two deliberate divergences from the Section 7.3 target tree: product adapters live in `src/commands/**` rather than a separate `src/services/**`, and there is no `src/generated/**` because the operation registry is driven from reviewed `specs/` metadata at runtime instead of generated code. Supply-chain scripts are `.mjs` rather than `.ts`. `ws` is absent because Status WebSocket support remains unimplemented.
+Two deliberate divergences from the Section 7.3 target tree: product adapters live in `src/commands/**` rather than a separate `src/services/**`, and there is no `src/generated/**` because the operation registry is driven from reviewed `specs/` metadata at runtime instead of generated code. Supply-chain scripts are `.mjs` rather than `.ts`. `ws` is absent because the Status WebSocket is a permanent exclusion (4.2).
 
 Preserve the executable name, `-h`/`--help`, `-v`/`--version`, ESM, Node.js 20 minimum, and process-boundary test style. Invalid usage now exits `2` as intended.
 
@@ -196,28 +141,54 @@ Preserve the executable name, `-h`/`--help`, `-v`/`--version`, ESM, Node.js 20 m
 | Product | Access | Protocol | Required coverage | Main gate or caveat |
 |---|---|---|---|---|
 | Dataportalen | Anonymous | CKAN Action JSON | Package/dataset/data-service discovery; package/resource reads; tags, groups, organizations, status | Resource URLs are metadata and may be stale; unknown maximum page size/rate |
-| NVDB API Les V4 | Anonymous responses only | REST JSON | Datakatalog, areas, road objects, versions, changes, statistics, road network, nodes, positions, routes, monitor | Send mandatory `X-Client`; exclude any authorization-only operation/data; never fall back to V3; preserve opaque cursors |
-| NVDB TN-ITS Export | Anonymous | REST plus GML files | Four data families, snapshot discovery/download, ordered daily updates | 180-day update retention; exclude admin paths found in combined specs |
+| NVDB API Les V4 | Anonymous | REST JSON | Datakatalog, areas, road objects, versions, changes, statistics, road network, nodes, positions, routes, monitor | Send mandatory `X-Client`; never fall back to V3; preserve opaque cursors |
+| NVDB TN-ITS Export | Anonymous | REST plus GML files | Four data families, snapshot discovery/download, ordered daily updates | 180-day update retention; `/api/v1/admin/*` is excluded |
 | Trafikkdata | Anonymous | GraphQL POST | Stations, volumes, AADT, indices, road categories, areas, quality/coverage | Capture full introspection; HTTP 200 may contain GraphQL errors |
-| Route Planning V3 `/open/` | Currently anonymous | REST, GeoJSON, JSON | Matrix, two road-feature operations, all nine route profiles | Anonymous access conflicts with stale credential/2,500-day metadata; handle 401/403/429 without promising quota |
+| Route Planning V3 `/open/` | Anonymous | REST, GeoJSON, JSON | Matrix, two road-feature operations, all nine route profiles | Anonymous access conflicts with stale credential/2,500-day metadata; handle 401/403/429 without promising quota |
 | Parking Register read API | Anonymous | REST JSON plus attachments | Providers, active providers, areas, versions, sign plans, assessments | Use Atlas host from current OpenAPI, never obsolete catalog URL |
-| Fiksvegdata public surface | Verified anonymous subset only | REST JSON and multipart | Only anonymously verified issue create/list/get and approved attachment reads/writes | Real mutation; live spec uses `/api/v1/feilmelding` and integer IDs; classify each operation manually |
+| Fiksvegdata public surface | Anonymous subset only | REST JSON and multipart | Anonymous issue list/get, anonymous issue creation, approved attachment reads/writes | Real mutation; `/api/v1/feilmelding/anonym` is the anonymous create path; account-scoped and responsible-person paths are excluded |
 | Legacy OGC | Anonymous | WMS/WFS XML/KVP | Capabilities, maps, feature info, feature types, feature retrieval for five official families | Capability-driven versions, formats, CRS, and axis order |
-| Modern OGC | Anonymous reads | OGC API Features, Maps, Styles | Landing, conformance, API definition, collections/styles, items, maps, metadata | Dynamic collection counts; no style writes; Tiles/DGGS excluded until healthy |
+| Modern OGC | Anonymous reads | OGC API Features, Maps, Styles | Landing, conformance, API definition, collections/styles, items, maps, metadata | Dynamic collection counts; no style writes |
 | NVDB Export | Anonymous | REST streamed CSV/SOSI | Road-object and segmented-network exports | Confirm canonical `nvdb-eksport-x` host; validate SOSI bounds |
-| NVDB Reports | Anonymous operations only after live verification | REST report requests and files; polling where verified | Public report families, support metadata, and verified download/lifecycle operations | Exclude any access-controlled/admin/stats/purge/update operation; probe each family before choosing synchronous artifact or job UX |
-| NVDB Status | Anonymous reads | REST JSON and WebSocket | Current status, dependencies, messages, watch | Exclude admin, feedback, and subscription mutations until separately approved |
-| NVDB Stedfesting | Anonymous but degraded | REST JSON and async jobs | Position, route, synchronous attach, async attach/status/result | Block supported release until position, route, sync, and async smoke tests pass |
+| NVDB Reports | Anonymous | REST report requests and files; polling where verified | Public report families, report metadata reads, and verified download/lifecycle operations | `/admin/*` and `/stats/*` are excluded; each family is probed before choosing synchronous artifact or job UX |
+| NVDB Status | Anonymous reads | REST JSON | Current status, systems, dependencies, incident messages, status statistics | Read-only. All status mutations are excluded |
 
-### 4.2 Explicit first-version exclusions
+### 4.2 Permanent exclusions
 
-| Surface | Disposition |
+These are release boundaries, not pending implementation tasks. Nothing in Section 0.4 depends on any of them, and none carries a promotion gate. Adding any of them requires a separately approved future plan, not a probe result.
+
+| Surface | Why excluded |
 |---|---|
-| Any operation requiring registration, credentials, access approval, or organization-specific roles | Excluded from v1; no command, credential code, generated operation, or authenticated live test |
-| Provider, partner, administrative, paid, or protected-data workflows | Excluded from v1 even when visible in a public specification |
-| OGC Tiles / DGGS | Experimental discovery only; promotion requires successful collection discovery and representative anonymous retrieval |
+| Any operation requiring registration, credentials, access approval, or organization-specific roles | Outside anonymous-only scope; no command, credential code, generated operation, or authenticated live test |
+| Provider, partner, administrative, paid, or protected-data workflows | Outside anonymous-only scope even when visible in a public specification |
+| Any path segment matching `/admin/` or `/stats/` | Administrative surface regardless of whether it currently answers anonymously. Covers `nvdb-reports:/admin/*`, `nvdb-reports:/stats/jobs`, `tnits:/api/v1/admin/files` |
+| Account-scoped Fiks paths — `/api/v1/meg/*`, `/api/v1/ansvarlig/*` | Bound to an authenticated identity; meaningless anonymously |
+| Fiks `POST /api/v1/feilmelding` | The credentialed sibling of the anonymous create path. `/api/v1/feilmelding/anonym` is the supported operation |
+| All NVDB Status mutations — `POST /feilmeldinger`, `POST /feilmeldinger/{id}/meldinger`, `POST /systemer/{id}/avhengigheter`, `POST /systemer/{id}/tjenester` | Writing incident and topology data into a public status service is outside a read-only anonymous client |
+| NVDB Reports `POST /rapporter/egendefinert` | Custom-report submission; unbounded cost and no anonymous contract evidence |
+| NVDB Status WebSocket | The public path, event schema, and reconnect contract are not available in the pinned OpenAPI or product documentation. Nothing anonymous can be built against an unknown frame contract |
+| NVDB Stedfesting (`nvdb georeference *`) | Representative anonymous calls fail through an obsolete upstream dependency path. Not implementable until Vegvesen repairs it |
+| OGC Tiles / DGGS | Tiles returns HTTP 500 and DGGS exposes no usable collections |
+| NVDB `/uberiket` long-tail (27 operations) | Unenriched duplicates of the V4 reads already exposed as curated commands; low marginal signal for a public CLI |
 
-These exclusions are release boundaries, not pending implementation tasks. Adding authenticated access requires a separately approved future plan.
+### 4.3 Anonymous reads to promote to curated commands
+
+These are public, no-account reads on hosts already attested anonymous, currently sitting in the exclusion bucket only because the overlay defaulted them there. Section 0.4 item 3 promotes them. No new probe is required: each is a GET on an adapter that already ships.
+
+| Service | Operations | Command |
+|---|---|---|
+| NVDB Status | `GET /api/v1/systemer/{id}`, `/api/v1/systemer/{id}/status` | `nvdb status system get`, `nvdb status system health` |
+| NVDB Status | `GET /api/v1/feilmeldinger/{systemId}`, `/{systemId}/aktive`, `/{systemId}/planlagt` | `nvdb status message list --system ID [--state active\|planned]` |
+| NVDB Status | `GET /api/v1/feilmeldinger/avsluttet`, `/planlagt`, `/siste`, `/mellom` | `nvdb status message list --state closed\|planned\|latest`, `--from`/`--to` |
+| NVDB Status | `GET /api/v1/statistikk`, `/api/v1/statistikk/nokkeldata` | `nvdb status statistics get [--key-data]` |
+| NVDB Reports | `GET /rapporter/bruksklasser`, `/kontraktsomraader`, `/omraader`, `/kostrarapporttyper`, `/driftskontraktrapporttyper` | `nvdb report reference list TYPE` |
+| NVDB Reports | `GET /rapporter/driftskontraktvegobjekttyper/default/{id}`, `/tilvalg/{id}` | `nvdb report reference object-type list {id} [--optional]` |
+| NVDB Reports | `GET /rapporter/egendefinert`, `/egendefinert/{reportid}`, `/egendefinert/aggregate` | `nvdb report custom list\|get\|aggregate` (reads only; the POST stays excluded) |
+| NVDB Reports | `GET /rapporter/kontraktZip` | `nvdb report contract-archive download` (native artifact) |
+| NVDB Datakatalog | `GET /api/v1/vegobjekttyper/{typeId}/{egenskapstypeId}` | Already shipped as `nvdb catalog property get`; reclassify only |
+| Fiksvegdata | `GET /api/v1/feilmelding/detaljert` | `fiks issue list --detailed` |
+
+Promotion rule applied: an operation is promoted only if it is a GET, its host already has an anonymous attestation, its path matches no exclusion rule in 4.2, and it can be exercised by an existing service adapter. Anything failing one of these stays excluded.
 
 ## 5. Public CLI contract
 
@@ -286,7 +257,7 @@ vegvesen config set KEY VALUE       # allowlisted non-sensitive keys only
 vegvesen config unset KEY
 ```
 
-`version --json` returns CLI version, supported machine-schema versions, Node version, and API manifest digest. `doctor` reports config validity, anonymous endpoint reachability, and health gates without offering login or credential setup.
+`version --json` returns CLI version, supported machine-schema versions, Node version, and API manifest digest. `doctor` reports config validity and anonymous endpoint reachability without offering login or credential setup.
 
 ### 5.4 Curated command tree
 
@@ -316,6 +287,10 @@ vegvesen nvdb monitor change-set get
 vegvesen nvdb export object
 vegvesen nvdb export network
 vegvesen nvdb report family list
+vegvesen nvdb report reference list TYPE
+vegvesen nvdb report reference object-type list ID
+vegvesen nvdb report custom list|get|aggregate
+vegvesen nvdb report contract-archive download
 vegvesen nvdb report generate
 # Add only for report families proven asynchronous in Phase 6:
 vegvesen nvdb report job get|wait
@@ -323,11 +298,8 @@ vegvesen nvdb report artifact download
 vegvesen nvdb status current
 vegvesen nvdb status dependency list
 vegvesen nvdb status message list|get
-vegvesen nvdb status watch
-vegvesen nvdb georeference position
-vegvesen nvdb georeference route
-vegvesen nvdb georeference attach
-vegvesen nvdb georeference job get|wait|result
+vegvesen nvdb status system get|health
+vegvesen nvdb status statistics get
 
 vegvesen tnits type list
 vegvesen tnits snapshot list|download
@@ -455,8 +427,8 @@ vegvesen fiks issue create --body @issue.json --yes --format json
 | Bounded query | Catalog, NVDB reads, Traffic, Route, Parking, OGC metadata/features | Default limits, filters, explicit empty success, deterministic order where upstream supports it |
 | File-producing query | TN-ITS, NVDB Export, Parking attachments, OGC maps | Streamed writes, content-type checks, checksum, overwrite protection, binary-TTY guard |
 | Mutation | Anonymous Fiks issue/attachment creation | Validate before request, meaningful dry-run, human confirmation or machine `--yes`, no automatic retry without idempotency |
-| Long-running job | Reports and async Stedfesting where proven | Durable job ID, status, bounded wait, timeout, resumable polling, no implicit remote cancel on SIGINT |
-| Stream | NVDB NDJSON, OGC all-pages output, Status WebSocket | Explicit opt-in, tagged NDJSON, reconnect/bounds, signal behavior |
+| Long-running job | Report families proven asynchronous | Durable job ID, status, bounded wait, timeout, resumable polling, no implicit remote cancel on SIGINT |
+| Stream | NVDB NDJSON, OGC all-pages output | Explicit opt-in, tagged NDJSON, bounds, signal behavior |
 | Setup/config | Non-sensitive config and endpoint readiness | No credential fields or login flow; non-interactive failure; inspectable source precedence |
 
 No destructive remote operation is in the approved public scope. Admin deletes, purges, write APIs, and style mutations must remain absent even if a live specification exposes them.
@@ -578,7 +550,7 @@ Adapter rules:
 - `--all` requires NDJSON or one-field raw output. Reject `--all --limit N` and unbounded buffered JSON with a correct alternative.
 - Never treat the observed 300/360/90 OGC collection/style counts as fixed tests or enums.
 
-### 6.6 Jobs and watches
+### 6.6 Jobs
 
 Normalized job state:
 
@@ -589,9 +561,7 @@ queued | running | succeeded | failed | cancelled | expired
 - Start returns a durable service/job ID immediately.
 - `--no-wait` is always prompt; `--wait --timeout DURATION` is bounded.
 - `job get` is one-shot and cheap.
-- SIGINT exits `130`; SIGTERM exits `143`. Both stop local wait/watch, clean only CLI-created temporary artifacts, and do not cancel remote work.
-- Status watch emits tagged NDJSON events only when explicitly requested.
-- WebSocket reconnect uses bounded backoff and surfaces gaps/reconnects as tagged control events, not fabricated status.
+- SIGINT exits `130`; SIGTERM exits `143`. Both stop local waiting, clean only CLI-created temporary artifacts, and do not cancel remote work.
 - Do not force synchronous NVDB Export into a job abstraction.
 
 ### 6.7 Artifacts
@@ -690,7 +660,6 @@ Implementation-time dependency pins must be registry-verified and locked. Verifi
 - `commander` 14.x for Node.js 20; do not adopt Commander 15 while retaining the current Node floor because v15 requires Node.js 22.12+;
 - `zod` 4.x for runtime config/input/normalized-envelope validation;
 - `fast-xml-parser` 5.x for bounded WMS/WFS capability and optional XML parsing;
-- `ws` 8.x for Status WebSocket support on Node.js 20;
 - `openapi-typescript` 7.x and `graphql` 16.x as generation/validation dependencies;
 - TypeScript plus the existing Node test runner.
 
@@ -755,7 +724,6 @@ src/
     graphql/
     ogc/
     xml/
-    websocket/
     catalog/
     nvdb/
     tnits/
@@ -804,9 +772,8 @@ Create one manifest record per product/sub-spec with:
 - retrieval timestamp and SHA-256;
 - license/provenance and redistribution decision;
 - access tier;
-- health state;
 - anonymous-access evidence and last verification time;
-- owner-reviewed overlay path.
+- overlay path.
 
 Access tiers:
 
@@ -816,8 +783,6 @@ requires-access
 restricted
 admin
 paid
-experimental
-upstream-degraded
 ```
 
 Check specification redistribution rights before committing raw snapshots. If rights are unclear, commit generated metadata/types plus URL/digest and permitted fixtures rather than assuming redistribution permission.
@@ -827,7 +792,7 @@ Check specification redistribution rights before committing raw snapshots. If ri
 - Fetch to a temporary directory, validate, hash, and update snapshots only through an explicit review command.
 - Never depend on live network during ordinary build, test, or package.
 - Keep raw upstream files immutable.
-- Put corrections and policy in overlays: canonical server, operation name, CLI alias, access class, effect class, retry safety, pagination, artifact/job semantics, sensitive fields, and health gate.
+- Put corrections and policy in overlays: canonical server, operation name, CLI alias, access class, effect class, retry safety, pagination, artifact/job semantics, and sensitive fields. Overlays carry no health gate and no promotion gate.
 - Every overlay must cite evidence and fail generation if its target operation disappears.
 - Missing security metadata never automatically means `public-anonymous`.
 
@@ -849,27 +814,50 @@ Coverage is measured with explicit, protocol-specific units so a non-OpenAPI pro
 - WMS/WFS: each supported protocol operation per official family; runtime layer/type instances are discovery data, not separate release units.
 - Modern OGC: each supported link relation/operation template for Features, Maps, and Styles; runtime collection/style instances are discovery data.
 - TN-ITS: each public HTTP operation plus each of the four data-family enum paths exercised through it.
-- WebSocket: channel handshake, each documented event/control type, reconnect behavior, and terminal signal behavior.
 - Jobs/artifacts: start, status, wait, result/download, expiry/failure, and signal behavior for each service that actually implements them.
 
-`scripts/check-coverage.ts` produces `coverage.json`. Every in-scope coverage unit must map to exactly one:
+`scripts/check-coverage.mjs` verifies `coverage.json`. Every in-scope coverage unit must map to exactly one:
 
 ```text
 curated-command
 generated-operation
 dynamic-protocol
-excluded-with-reviewed-reason
-blocked-by-health-gate
+excluded-permanent
 ```
+
+`blocked-by-health-gate` is retired. A surface that cannot be verified is excluded under 4.2, not parked.
+
+#### Deterministic disposition rules
+
+Dispositions follow from these predicates in order. The first matching rule wins, and every rule is decidable from pinned specification metadata plus checked-in evidence — no human judgement is required at classification time.
+
+1. Path contains `/admin/` or `/stats/`, or matches an account-scoped segment listed in 4.2 → `excluded-permanent`.
+2. Method is not GET, and the operation is not one of the explicitly approved anonymous mutations (`fiks POST /api/v1/feilmelding/anonym`, `fiks POST /api/v1/feilmelding/{id}/vedlegg`, `nvdb report generate` starts, `nvdb-core POST /api/v4/beta/vegnett/rute` as a reviewed read-only POST) → `excluded-permanent`.
+3. The operation appears in the 4.2 exclusion table by name → `excluded-permanent`.
+4. A registry command calls the operation → `curated-command`, and the unit's `command` field must equal that registry path exactly.
+5. The operation is a GET on a host with an anonymous attestation and matches no rule above → `generated-operation`, reachable through `api operation call`.
+6. Runtime-discovered OGC collections, styles, and layers → `dynamic-protocol`.
+
+An `excluded-permanent` unit carries a reason and no promotion gate. Promotion gates are removed from the schema: a surface is either in scope by rule or excluded by rule.
+
+#### Binding coverage to the CLI
+
+The gate is meaningless unless it measures the shipped product. `check-coverage` must additionally assert:
+
+- every `curated-command` unit's `command` value exists in `src/registry.ts`;
+- every registry command that performs an upstream request is claimed by at least one `curated-command` unit;
+- local-only commands (`version`, `completion`, `doctor`, `service *`, `schema *`, `config *`, `api service list`, `api operation list`, `api operation describe`) are declared in an explicit allowlist rather than passing by absence;
+- a unit's `command` field is a single exact registry path, never a free-text or semicolon-joined string.
 
 Fail CI when:
 
 - a coverage unit is unclassified;
-- a `requires-access`, restricted, or admin operation enters the public registry;
-- a curated mapping references a removed operation or schema field;
+- an `excluded-permanent` operation is reachable from any registry command or the generated registry;
+- a curated mapping references a removed operation, a schema field that no longer exists, or a command absent from the registry;
+- a registry command issuing upstream requests has no claiming unit;
 - generated files differ from a clean regeneration;
 - an in-scope coverage unit lacks a process fixture test;
-- an exclusion lacks rationale, evidence, owner, and review date.
+- an exclusion lacks a reason and evidence.
 
 Scheduled drift CI fetches current specs and reports operation, server, security, schema, enum, and media-type changes. It never silently regenerates or releases them.
 
@@ -887,9 +875,9 @@ Work:
 - Add `docs/design/cli-contract.md` from Sections 5–6.
 - Record ADRs for TypeScript, parser, machine envelope, default TTY presentation, anonymous-only access, and public mutation boundary.
 - Create `specs/manifest.json`, overlay schema, protocol-specific coverage-unit schema, fetch/hash/drift scripts, and initial `coverage.json`.
-- Capture generation-quality NVDB sub-specs, Routing, Parking, Fiks, TN-ITS public spec, Reports, Status, Stedfesting, and full Trafikkdata introspection.
+- Capture generation-quality NVDB sub-specs, Routing, Parking, Fiks, TN-ITS public spec, Reports, Status, and full Trafikkdata introspection.
 - Verify canonical hosts and specification redistribution rights.
-- Mark Stedfesting, Tiles, and DGGS with explicit health gates; classify every access-required operation as excluded from v1.
+- Classify every access-required, administrative, and unverifiable operation as a permanent exclusion under 4.2.
 
 Acceptance:
 
@@ -932,7 +920,7 @@ Work:
 - Implement CKAN Catalog.
 - Implement Parking Register reads and attachment downloads.
 - Implement NVDB Datakatalog and Områder, centrally enforcing `X-Client`.
-- Implement NVDB Status REST reads, without watch or mutations.
+- Implement NVDB Status REST reads. All status mutations are excluded.
 
 Acceptance:
 
@@ -1004,28 +992,24 @@ Acceptance:
 - TN-ITS updates preserve oldest-to-newest order and expose the 180-day retention caveat.
 - Large file tests prove backpressure, atomic replacement, checksum, and cleanup.
 
-### Phase 6 — jobs, watches, degraded services, and anonymous mutation
+### Phase 6 — jobs and anonymous mutation
 
 **Goal:** add complex lifecycle behavior only after shared safety foundations exist.
 
 Work:
 
-- Probe each NVDB report family first with bounded, low-cost requests; record MIME, expiry, and whether that family is synchronous or exposes start/poll/download.
+- Probe each NVDB report family with bounded, low-cost requests; record MIME, expiry, and whether that family is synchronous or exposes start/poll/download.
 - Implement direct artifacts for synchronous families and job/status/wait/download commands only for families proven asynchronous.
-- Capture Status WebSocket path/schema and implement explicit `watch` with reconnect events.
-- Re-test Stedfesting position, route, sync attach, and async lifecycle. Implement only after health gate passes; otherwise keep service visible as degraded with repair/status information.
-- Manually classify Fiks operations from live docs/spec and anonymous contract tests.
+- Classify Fiks operations from the pinned spec using the 8.3 rules.
 - Implement approved anonymous issue reads, dry-run/create, and attachments.
 
 Acceptance:
 
-- One bounded fast report and, where the API proves an async path, one bounded representative async report complete through the real lifecycle. Costly/large reports require separate manual approval.
-- Job interruption returns resumable ID and does not cancel remotely.
-- WebSocket tests cover reconnect, malformed frames, signals, and event tags.
-- Stedfesting support status matches live evidence.
-- Fiks dry-run makes zero network calls; detached stdin without `--yes` fails promptly.
-- Exact Fiks mutation is not auto-retried and returns issue identity/recovery details.
-- No production mutation runs in automated live CI.
+- **COMPLETE** — one bounded report completes through the real start/poll/download lifecycle.
+- **COMPLETE** — job interruption returns a resumable ID and does not cancel remotely; SIGINT/SIGTERM exit `130`/`143`.
+- **COMPLETE** — Fiks dry-run makes zero network calls; detached stdin without `--yes` fails promptly.
+- **COMPLETE** — Fiks mutation is not auto-retried and returns issue identity and recovery details.
+- **COMPLETE** — no production mutation runs in automated live CI.
 
 ### Phase 7 — generated operation access, documentation, and 1.0 hardening
 
@@ -1033,21 +1017,41 @@ Acceptance:
 
 Work:
 
-- Generate `api operation list/describe/call` from reviewed manifest and overlays.
-- Add process fixtures for every operation mapping.
+- Expand `api operation call` to every operation the 8.3 rules classify `generated-operation`, replacing the current three.
+- Add one process fixture per generated operation, driven from the reviewed metadata rather than hand-written per operation.
 - Generate README command reference and examples from registry; parse or run every example.
-- Add shell completion only after grammar freezes.
-- Run dependency/license/security audit, supported Node matrix, clean npm install, and package provenance/release workflow.
-- Re-attest hosts, anonymous access, rate-limit behavior, service health, and spec digests immediately before release.
+- Run dependency/license/security audit, supported Node matrix, and clean npm install.
 
 Acceptance:
 
-- `coverage.json` has no unapproved gap.
-- No `requires-access`, restricted, admin, or paid operation appears in service help, schema, or generated registry.
-- Every supported service has a current live smoke attestation.
+- `coverage.json` has no unclassified unit and the 8.3 binding assertions pass.
+- No `excluded-permanent` operation appears in service help, schema, or the generated registry.
+- Every generated operation has a process fixture.
 - Installed CLI works from an unrelated directory with only shipped help/docs.
-- Clean-context agent evaluations can discover and complete representative bounded tasks without source access.
 - npm package contains all runtime assets and no research captures or test-only endpoint overrides.
+
+Removed from acceptance: clean-context agent evaluations. The criterion — "can discover and complete representative bounded tasks" — has no defined task list or pass threshold, so it cannot gate a release. Section 10.1 keeps it as optional diagnostic work.
+
+### Phase 8 — bind the coverage gate to the CLI
+
+**Goal:** make the coverage number a guarantee about the shipped product rather than a parallel bookkeeping artifact. This closes the defect in Section 0.2 and is a prerequisite for trusting Phase 7's negative claims.
+
+Work:
+
+- Extend `scripts/check-coverage.mjs` with the binding assertions in 8.3 and the local-only command allowlist.
+- Regenerate the overlays under the 8.3 deterministic rules. This reclassifies the eleven mislabeled NVDB operations to `curated-command`, corrects the two wrong `nvdb object list` attributions, and converts every `blocked-by-health-gate` and gated exclusion to `excluded-permanent`.
+- Replace one-per-operation free-text command strings with exact registry paths, splitting the six compound values.
+- Drop `promotion_gate` from the overlay schema and from `specs/overlays/*.json`.
+- Promote the 4.3 reads: add the new NVDB Status and Reports commands, `fiks issue list --detailed`, and reclassify `nvdb catalog property get`'s operation.
+- Delete the Stedfesting and OGC Tiles/DGGS manifest entries, their overlays, and their units, replacing them with 4.2 exclusion records.
+
+Acceptance:
+
+- Every registry command issuing an upstream request is claimed by exactly one `curated-command` unit whose `command` equals its registry path.
+- Every `curated-command` unit names a command that exists.
+- No unit carries `promotion_gate`, and no unit carries `blocked-by-health-gate`.
+- The suite fails if a command is added without a claiming unit, proven by a deliberate regression test.
+- No `excluded-permanent` operation is reachable from help, schema, or `api operation call`.
 
 ## 10. Testing strategy
 
@@ -1057,10 +1061,10 @@ Acceptance:
 2. **Command tests:** invoke `main` with injected runtime and fixture adapters.
 3. **Process tests:** spawn the real shebang executable with detached stdin and separately captured stdout/stderr.
 4. **Contract fixtures:** pinned representative upstream successes/errors for each operation and media family.
-5. **Local integration tests:** real HTTP/WebSocket fixture server for transport, streaming, redirects, timeouts, retries, and signals.
+5. **Local integration tests:** real HTTP fixture server for transport, streaming, redirects, timeouts, retries, and signals.
 6. **Package tests:** pack, install, and run outside source tree.
 7. **Anonymous live smoke tests:** scheduled/manual, minimal, non-destructive, and never required for ordinary offline development.
-8. **Clean-context agent evaluations:** use only installed help and distributed docs; record success, retries, turns, output volume, latency, and unsafe attempts.
+8. **Clean-context agent evaluations (optional):** use only installed help and distributed docs; record success, retries, turns, output volume, latency, and unsafe attempts. Diagnostic only — not a release gate, because no pass threshold is defined.
 
 ### 10.2 Required process matrix
 
@@ -1094,7 +1098,7 @@ Run its bundled tests before relying on it, then use it to check exit codes, str
 - Queries are bounded; explicit all-pages output is tagged and bounded-memory.
 - Native files pass semantic validation with independent parsers/consumers where practical.
 - Sensitive request bodies/identifiers and unexpected upstream header values never leak.
-- Jobs and watches have bounded waits and documented signal behavior.
+- Jobs have bounded waits and documented signal behavior.
 - Generated tree is clean and every in-scope operation is classified/tested.
 - Installed executable works under Node.js 20 outside the repository.
 
@@ -1119,13 +1123,12 @@ Run its bundled tests before relying on it, then use it to check exit codes, str
 | Stale catalog URLs and metadata | Live official spec plus representative request wins; keep host in reviewed overlay |
 | Missing security declaration mistaken for public access | Require product intent, eligibility evidence, manual operation class, and anonymous contract test |
 | Routing access/quota contradiction | Use only `/open/`; handle 401/403/429; promise no quota; re-attest before release |
-| Stedfesting currently calls obsolete internal path | Keep degraded; block supported release until all representative flows pass |
 | OGC collections/formats/CRS drift | Discover capabilities/links at runtime; no exhaustive collection enums |
 | Large XML/GML/reports/images | Raw streaming, backpressure, output-file requirement, checksums, bounded optional parsing |
 | Fiks anonymous creation duplicates after timeout | No automatic retry; dry-run/confirmation; report unknown outcome and recovery identity |
 | GraphQL HTTP 200 partial failure | Inspect `errors`; explicit partial schema and exit `9` |
 | Unknown rate/page/file limits | Conservative local ceilings; server-directed retry; never document “unlimited” |
-| Generated surface accidentally exposes admin operations | Access overlays plus coverage/public-registry negative tests |
+| Generated surface accidentally exposes admin operations | Rule 1 of 8.3 excludes `/admin/` and `/stats/` by path, and the 8.3 binding assertions fail CI if such an operation becomes reachable |
 | Sensitive request/header leakage through redirects, debug, or errors | Canonical-origin allowlisting, no authorization-header input, centralized redaction, seeded-sensitive-value tests |
 | Spec redistribution uncertainty | Verify license; otherwise retain URL/digest/generated metadata rather than unapproved raw copies |
 | Node.js 20 dependency incompatibility | Pin compatible majors; CI minimum-version job; do not upgrade Commander/GraphQL majors blindly |
@@ -1134,7 +1137,6 @@ Run its bundled tests before relying on it, then use it to check exit codes, str
 Open upstream questions that do not block foundation work:
 
 - Canonical NVDB Export host and range/resume behavior.
-- Complete Status WebSocket path and event schema.
 - Per-family Reports sync/async behavior, expiration, limits, and MIME names.
 - Trafikkdata maximum windows/pages/query complexity.
 - Routing long-term anonymous policy and current quota.
@@ -1142,22 +1144,23 @@ Open upstream questions that do not block foundation work:
 
 Any unresolved question that changes access, privacy, effects, or compatibility blocks that product slice—not the shared foundation or already verified services.
 
-## 13. First implementation milestone
+## 13. Execution order for the remaining work
 
-Start with Phases 0–2 only. First reviewable release candidate should provide:
+Phases 0–6 are implemented. The remaining work in 0.4 runs in this order, and every step is offline, deterministic, and free of approval points.
 
-- strict nested CLI foundation;
-- stable JSON/error/config contracts;
-- service/schema/doctor discovery;
-- shared HTTP/retry/redaction/artifact primitives;
-- Catalog reads;
-- Parking reads;
-- NVDB Datakatalog/Områder with mandatory `X-Client`;
-- NVDB Status REST reads;
-- complete offline process tests and npm tarball test for those commands;
-- initial operation manifest and coverage report for every later product.
+1. **Phase 8 first.** Everything else depends on a coverage gate that measures the shipped product. Expanding the generated registry before the gate is bound would add operations under the same unverified classification that produced the 0.2 defect.
+2. **Phase 8 sub-order:** binding assertions and the local-only allowlist → regenerate overlays under the 8.3 rules → split compound command strings → drop `promotion_gate` from schema and data → delete Stedfesting and Tiles/DGGS records → promote the 4.3 reads and implement their commands.
+3. **Phase 7 next:** expand `api operation call` to the full `generated-operation` set, then add one metadata-driven process fixture per generated operation.
+4. **Phase 3/4 leftovers last**, in any order: NVDB route POST fixture, fresh-read agreement fixture, raw GeoJSON byte-preservation fixture.
 
-Do not start broad generated commands, Fiks mutation, WebSocket watch, or report jobs before this foundation passes its release gates.
+Each step ends in an imperative commit with green `npm run validate`. A step that cannot pass its own acceptance is reported, not worked around.
+
+Constraints that hold throughout:
+
+- No new runtime dependency without a registry-verified pin and a Node 20 compatibility check.
+- No command may be added without a claiming coverage unit; after Phase 8 this fails CI automatically.
+- No credential path, authorization header, or account-scoped operation enters the tree under any circumstances.
+- Live network attestation is not available to the implementation and is not required by any step above.
 
 ## 14. Research sources
 
@@ -1181,4 +1184,3 @@ Key official contracts to pin during Phase 0:
 - [NVDB Export](https://nvdb-eksport-x.atlas.vegvesen.no/)
 - [NVDB Reports](https://nvdbrapportapi.atlas.vegvesen.no/swagger-ui/)
 - [NVDB Status](https://nvdbstatus-api.atlas.vegvesen.no/)
-- [NVDB Stedfesting](https://nvdbstedfesting.atlas.vegvesen.no/)
