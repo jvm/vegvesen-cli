@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jvm/vegvesen-cli/schemas/error.schema.json",
+  "type": "object",
+  "required": ["schema_version", "error"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "error": {
+      "type": "object",
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {"type": "string"}, "message": {"type": "string"}, "retryable": {"type": "boolean"},
+        "field": {"type": "string"}, "identifier": {"type": "string"}, "service": {"type": "string"},
+        "http_status": {"type": "integer"}, "request_id": {"type": "string"}, "retry_after_seconds": {"type": "number", "minimum": 0},
+        "outcome_unknown": {"type": "boolean"}, "hint": {"type": "string"}
+      }
+    }
+  }
+}

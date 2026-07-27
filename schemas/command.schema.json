@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jvm/vegvesen-cli/schemas/command.schema.json",
+  "type": "object",
+  "required": ["path", "description", "class", "service"],
+  "properties": {
+    "path": {"type": "string"}, "description": {"type": "string"},
+    "class": {"enum": ["query", "config", "artifact"]}, "service": {"type": "string"},
+    "arguments": {"type": "array"}, "options": {"type": "array"}
+  }
+}
