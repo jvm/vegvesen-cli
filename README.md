@@ -20,6 +20,7 @@ vegvesen --help
 ```sh
 vegvesen version --json
 vegvesen service list --format json --no-input
+vegvesen doctor --live --timeout 5s --json
 
 vegvesen catalog package search \
   --query trafikk \
@@ -36,7 +37,7 @@ vegvesen parking sign-plan get 45538 \
   --no-input
 ```
 
-Normal list queries default to `--limit 100`. Use `--all --format ndjson` for explicit complete traversal. Machine formats never prompt. stdout contains result data only; diagnostics and machine errors use stderr.
+Normal list queries default to `--limit 100`. Use `--all --format ndjson` for explicit complete traversal. `--cursor` and `--page-size` are accepted only by adapters with upstream paging; full-response endpoints provide local `--limit` plus an exact `--all` retrieval path. Machine formats never prompt. stdout contains result data only; diagnostics and machine errors use stderr.
 
 Native artifacts require `--output PATH|-`, refuse existing paths unless `--overwrite` is explicit, stream through a same-directory temporary file, and return size plus SHA-256 receipt.
 

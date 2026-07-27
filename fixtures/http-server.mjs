@@ -27,11 +27,16 @@ const server = createServer((request, response) => {
     response.end(JSON.stringify([{ nummer: 3 }, { nummer: 11 }, { nummer: 15 }]));
   } else if (url.pathname === '/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringstilbyder/aktive') {
     response.end(JSON.stringify([{ organisasjonsnummer: '123456789' }]));
-  } else if (url.pathname.endsWith('/parkeringsomraade/skiltplan/42')) {
+  } else if (/\/parkeringsomraade\/skiltplan\/\d+$/.test(url.pathname)) {
     response.setHeader('content-type', 'application/pdf');
     response.end(Buffer.from('%PDF-1.7 fixture'));
   } else if (url.pathname === '/api/v1/feilmeldinger/ulost') {
     response.end(JSON.stringify([{ id: 7, status: 'AKTIV' }]));
+  } else if (url.pathname === '/api/v1/systemer') {
+    response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
+  } else if (url.pathname === '/ws/docs/openapi') {
+    response.setHeader('content-type', 'text/yaml');
+    response.end('openapi: 3.0.3\ninfo:\n  title: fixture\n');
   } else {
     response.statusCode = 404;
     response.end('{}');

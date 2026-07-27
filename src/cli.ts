@@ -19,6 +19,7 @@ import {
 import type { Runtime } from './runtime.js';
 import { addServiceCommands } from './service-cli.js';
 import { validateOutputDestination } from './core/artifact-writer.js';
+import { parseDuration } from './core/http.js';
 
 export interface CommonOptions {
   format: OutputFormat;
@@ -89,7 +90,12 @@ export async function parseCli(argv: string[], runtime: Runtime): Promise<CliExe
   const setResult = (factory: () => CommandResult | Promise<CommandResult>, command: Command): Promise<void> => runAction(factory, command).then((value) => { commandResult = value; });
 
   program.command('version').description('Show CLI, Node, schema, and manifest versions.').action((_options, command: Command) => setResult(() => versionResult(), command));
-  program.command('doctor').description('Check local readiness and service health gates.').action((_options, command: Command) => setResult(() => doctorResult(runtime), command));
+  program.command('doctor').description('Check local readiness and service health gates.')
+    .option('--live', 'Probe implemented anonymous service endpoints')
+    .action((local: { live?: boolean }, command: Command) => {
+      const options = globals(command);
+      return setResult(() => doctorResult(runtime, { live: local.live, timeout: options.timeout, retries: options.retries, configProfile: options.configProfile }), command);
+    });
 
   const service = program.command('service').description('Discover service support and health.');
   service.command('list').description('List services.').action((_options, command: Command) => setResult(() => serviceList(), command));
@@ -187,6 +193,7 @@ function defaultOptions(): CommonOptions {
 function validateCommon(options: Partial<CommonOptions>): void {
   if ((options.schemaVersion ?? '1') !== '1') throw usageError(`Unsupported schema version: ${options.schemaVersion}`, 'Use --schema-version 1', 'schema-version');
   if (options.json && options.format !== undefined && options.format !== 'auto' && options.format !== 'json') throw usageError('--json conflicts with non-JSON --format', 'Remove --json or use --format json', 'format');
+  if (options.timeout !== undefined) parseDuration(options.timeout);
   for (const [field, value] of [['limit', options.limit], ['page-size', options.pageSize], ['retries', options.retries]] as const) {
     if (value !== undefined && (!/^\d+$/.test(value) || Number(value) < (field === 'retries' ? 0 : 1))) throw usageError(`--${field} must be ${field === 'retries' ? 'a non-negative' : 'a positive'} integer`, `Pass --${field} ${field === 'retries' ? '0' : '1'} or greater`, field);
   }

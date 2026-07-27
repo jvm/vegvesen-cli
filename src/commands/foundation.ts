@@ -3,6 +3,7 @@ import { CliError, EXIT } from '../contracts/error.js';
 import type { CommandResult } from '../contracts/output.js';
 import { configPath, effectiveSettings, readConfig, setConfigValue, unsetConfigValue } from '../core/config-store.js';
 import { manifest, manifestDigest, packageMetadata, serviceSource } from '../core/metadata.js';
+import { request } from '../core/http.js';
 import { commandRegistry } from '../registry.js';
 import type { Runtime } from '../runtime.js';
 
@@ -63,20 +64,70 @@ export function configUnset(runtime: Runtime, key: string, profile?: string): Co
   return result('config unset', 'local', { changed: true, key, profile: profile ?? null, path: configPath(runtime) });
 }
 
-export function doctorResult(runtime: Runtime): CommandResult {
+export interface DoctorOptions {
+  live?: boolean | undefined;
+  timeout?: string | undefined;
+  retries?: string | undefined;
+  configProfile?: string | undefined;
+}
+
+export async function doctorResult(runtime: Runtime, options: DoctorOptions = {}): Promise<CommandResult> {
   let configCheck: Record<string, unknown>;
+  let configured: ReturnType<typeof effectiveSettings> | undefined;
   try {
     readConfig(runtime);
+    configured = effectiveSettings(runtime, options.configProfile);
     configCheck = { name: 'config', status: 'ok', path: configPath(runtime), hint: null };
   } catch (error) {
     configCheck = { name: 'config', status: 'failed', path: configPath(runtime), hint: error instanceof CliError ? error.details.hint : 'Repair config file' };
   }
+  const liveChecks = options.live && configured ? new Map((await probeAnonymousServices(runtime, {
+    timeout: options.timeout ?? configured.values.timeout,
+    retries: options.retries ?? (configured.values.retries === undefined ? undefined : String(configured.values.retries)),
+    xClient: configured.values.x_client ?? `vegvesen-cli/${packageMetadata.version}`,
+  })).map((check) => [check.name, check])) : new Map<string, Record<string, unknown>>();
   const checks = [
     configCheck,
     { name: 'node', status: Number(process.versions.node.split('.')[0]) >= 20 ? 'ok' : 'failed', version: process.versions.node, hint: 'Install Node.js 20 or newer' },
-    ...manifest.services.map((service) => ({ name: service.id, status: service.health === 'stable' ? 'not_checked' : service.health, access: service.access_tier, hint: service.health === 'stable' ? 'Use service commands to verify anonymous reachability' : service.evidence })),
+    ...manifest.services.map((service) => liveChecks.get(service.id) ?? ({ name: service.id, status: service.health === 'stable' ? 'not_checked' : service.health, access: service.access_tier, hint: service.health === 'stable' ? "Pass --live to verify anonymous reachability" : service.evidence })),
   ];
-  return result('doctor', 'local', checks, { ready: checks.every((check) => check.status !== 'failed') });
+  return result('doctor', 'local', checks, { ready: checks.every((check) => !['failed', 'down', 'registration_required'].includes(String(check.status))), live: options.live === true });
+}
+
+async function probeAnonymousServices(runtime: Runtime, options: { timeout?: string | undefined; retries?: string | undefined; xClient: string }): Promise<Array<Record<string, unknown>>> {
+  const probes = [
+    { name: 'catalog', origin: 'https://dataut.vegvesen.no', path: 'api/3/action/status_show' },
+    { name: 'nvdb-catalog', origin: 'https://nvdbapiles.atlas.vegvesen.no', path: 'datakatalog/api/v1/versjon', headers: { 'X-Client': options.xClient } },
+    { name: 'nvdb-areas', origin: 'https://nvdbapiles.atlas.vegvesen.no', path: 'omrader/api/v4/fylker', headers: { 'X-Client': options.xClient } },
+    { name: 'parking', origin: 'https://parkreg-open.atlas.vegvesen.no', path: 'ws/docs/openapi', accept: 'application/yaml, text/yaml' },
+    { name: 'nvdb-status', origin: 'https://nvdbstatus-api.atlas.vegvesen.no', path: 'api/v1/systemer' },
+  ];
+  return Promise.all(probes.map(async (probe) => {
+    try {
+      const response = await request(runtime, {
+        service: probe.name,
+        canonicalOrigin: probe.origin,
+        path: probe.path,
+        headers: probe.headers,
+        accept: probe.accept,
+        timeout: options.timeout,
+        retries: options.retries === undefined ? undefined : Number(options.retries),
+        safeToRetry: true,
+      });
+      await response.response.body?.cancel();
+      return { name: probe.name, status: 'ok', access: 'public-anonymous', http_status: response.status, hint: null };
+    } catch (error) {
+      const details = error instanceof CliError ? error.details : undefined;
+      return {
+        name: probe.name,
+        status: details?.code === 'ACCESS_NOT_AVAILABLE_IN_V1' ? 'registration_required' : 'down',
+        access: 'public-anonymous',
+        code: details?.code ?? 'UNKNOWN_PROBE_FAILURE',
+        retryable: details?.retryable ?? false,
+        hint: details?.hint ?? 'Retry doctor --live with --verbose',
+      };
+    }
+  }));
 }
 
 function result(command: string, service: string, data: unknown, meta?: Record<string, unknown>): CommandResult {

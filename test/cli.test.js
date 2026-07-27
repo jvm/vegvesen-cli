@@ -79,6 +79,24 @@ test('machine mode has clean JSON and detached stdin cannot hang', () => {
   assert.doesNotMatch(result.stdout, /\x1b\[/);
 });
 
+test('doctor optionally probes anonymous service reachability', () => {
+  const local = run(['doctor', '--json']);
+  assert.equal(local.status, 0, local.stderr);
+  assert.equal(JSON.parse(local.stdout).data.find((check) => check.name === 'catalog').status, 'not_checked');
+
+  const live = run(['doctor', '--live', '--timeout', '1s', '--retries', '0', '--json']);
+  assert.equal(live.status, 0, live.stderr);
+  const payload = JSON.parse(live.stdout);
+  for (const service of ['catalog', 'nvdb-catalog', 'nvdb-areas', 'parking', 'nvdb-status']) {
+    assert.equal(payload.data.find((check) => check.name === service).status, 'ok');
+  }
+  assert.equal(payload.meta.live, true);
+
+  const down = run(['doctor', '--live', '--timeout', '50ms', '--retries', '0', '--json'], { env: { VEGVESEN_CATALOG_BASE_URL: 'http://127.0.0.1:1' } });
+  assert.equal(down.status, 0, down.stderr);
+  assert.equal(JSON.parse(down.stdout).data.find((check) => check.name === 'catalog').status, 'down');
+});
+
 test('catalog search is bounded and reports cursor', () => {
   const result = run(['catalog', 'package', 'search', '--page-size', '1', '--limit', '2', '--json', '--no-input']);
   assert.equal(result.status, 0, result.stderr);
@@ -186,6 +204,7 @@ test('invalid combinations fail with no stdout', () => {
     ['service', 'list', '--all', '--limit', '2', '--format', 'ndjson'],
     ['service', 'list', '--schema-version', '2', '--json'],
     ['service', 'list', '--limit', '1', '--limit', '2', '--json'],
+    ['doctor', '--live', '--timeout', 'forever', '--json'],
     ['parking', 'provider', 'get', '123', '--json'],
     ['parking', 'sign-plan', 'get', '42', '--output', '-', '--json'],
     ['nvdb', 'area', 'county', 'list', '--cursor', '2', '--json'],
