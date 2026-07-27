@@ -1,0 +1,103 @@
+name: Security
+
+on:
+  workflow_call:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "37 4 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Production dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm run audit
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install verified betterleaks
+        run: |
+          curl -sSfL \
+            https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_linux_x64.tar.gz \
+            -o /tmp/betterleaks.tar.gz
+          echo 'b883e8c61a3a14c90ff46a08c203cf88fe340ed88251d4c049db5530ec0ac54b  /tmp/betterleaks.tar.gz' | sha256sum --check
+          tar -xzf /tmp/betterleaks.tar.gz -C /tmp betterleaks
+          sudo install -m 0755 /tmp/betterleaks /usr/local/bin/betterleaks
+      - name: Scan working tree
+        run: betterleaks dir . --no-banner --redact --exit-code=2 --report-path betterleaks.sarif --report-format sarif
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@99df26d4f13ea111d4ec1a7dddef6063f76b97e9 # v4.37.0
+        with:
+          sarif_file: betterleaks.sarif
+
+  semgrep:
+    name: Semgrep SAST
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - run: python3 -m pip install --user semgrep==1.171.0
+      - run: semgrep scan --config p/default --error --sarif-output semgrep.sarif
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@99df26d4f13ea111d4ec1a7dddef6063f76b97e9 # v4.37.0
+        with:
+          sarif_file: semgrep.sarif
+
+  workflow-lint:
+    name: Workflow lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: raven-actions/actionlint@3d39aea434753780c3b3d4a1a31c854b4dbf49d7 # v2.2.0
+      - name: Install verified zizmor
+        run: |
+          curl -sSfL \
+            https://github.com/zizmorcore/zizmor/releases/download/v1.28.0/zizmor-x86_64-unknown-linux-gnu.tar.gz \
+            -o /tmp/zizmor.tar.gz
+          echo 'e87b67160194884e375a46a12c57ccc904f762b53845f254fab7f17d98809c09  /tmp/zizmor.tar.gz' | sha256sum --check
+          tar -xzf /tmp/zizmor.tar.gz -C /usr/local/bin zizmor
+          chmod +x /usr/local/bin/zizmor
+      - run: zizmor --persona auditor --min-severity high --min-confidence medium .github/workflows/
