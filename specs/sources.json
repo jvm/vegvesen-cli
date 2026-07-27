@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-07-27T00:00:00Z",
+  "sources": [
+    {"service":"nvdb-catalog","url":"https://nvdbapiles.atlas.vegvesen.no/api-docs/datakatalog","sha256":"a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124","redistribution":"reference-only"},
+    {"service":"nvdb-areas","url":"https://nvdbapiles.atlas.vegvesen.no/api-docs/omrader","sha256":"9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c","redistribution":"reference-only"},
+    {"service":"parking","url":"https://parkreg-open.atlas.vegvesen.no/ws/docs/openapi","sha256":"d7514fe825f853407a4fe5378a2fc633c6ad1dc29599ae3b079118a3d4989eb4","redistribution":"reference-only"},
+    {"service":"nvdb-status","url":"https://nvdbstatus-api.atlas.vegvesen.no/api-docs","sha256":"1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a","redistribution":"reference-only"}
+  ]
+}

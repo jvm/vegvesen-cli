@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {"service":"catalog","unit":"ckan:package_search","command":"catalog package search","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:package_show","command":"catalog package get","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:resource_show","command":"catalog resource get","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:group_list","command":"catalog group list","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:group_show","command":"catalog group get","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:organization_list","command":"catalog organization list","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:organization_show","command":"catalog organization get","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:tag_list","command":"catalog tag list","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:tag_show","command":"catalog tag get","disposition":"curated-command"},
+    {"service":"catalog","unit":"ckan:status_show","command":"catalog status get","disposition":"curated-command"},
+
+    {"service":"nvdb-catalog","unit":"GET /api/v1/versjon","command":"nvdb catalog version","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/vegobjekttyper","command":"nvdb catalog type list","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/vegobjekttyper/{vegobjekttypeid}","command":"nvdb catalog type get","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/vegobjekttyper/historisk/{versjon}","command":"nvdb catalog type history","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/egenskapstyper/{egenskapstypeid}","command":"nvdb catalog property get","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/egenskapstypekategorier","command":"nvdb catalog property categories","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/vegobjekttyper/{vegobjekttypeid}/produktspesifikasjon","command":"nvdb catalog product-spec get","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/kategorier","command":"nvdb catalog category list","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/enheter","command":"nvdb catalog unit list","disposition":"curated-command"},
+    {"service":"nvdb-catalog","unit":"GET /api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}","disposition":"excluded-with-reviewed-reason","reason":"Deferred exact object-property relationship mapping to generated-operation phase"},
+
+    {"service":"nvdb-areas","unit":"GET /api/v4/fylker","command":"nvdb area county list","disposition":"curated-command"},
+    {"service":"nvdb-areas","unit":"GET /api/v4/kommuner","command":"nvdb area municipality list","disposition":"curated-command"},
+    {"service":"nvdb-areas","unit":"GET /api/v4/vegforvaltere","command":"nvdb area road-authority list","disposition":"curated-command"},
+    {"service":"nvdb-areas","unit":"GET /api/v4/riksvegruter","command":"nvdb area national-route list","disposition":"curated-command"},
+    {"service":"nvdb-areas","unit":"GET /api/v4/kontraktsomrader","command":"nvdb area contract list","disposition":"curated-command"},
+    {"service":"nvdb-areas","unit":"GET /api/v4/adresser","command":"nvdb area address list","disposition":"curated-command"},
+
+    {"service":"parking","unit":"GET /parkeringstilbyder","command":"parking provider list","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringstilbyder/{organisasjonsnummer}","command":"parking provider get","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringstilbyder/aktive","command":"parking provider active","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringsomraade","command":"parking area list","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringsomraade/{id}","command":"parking area get","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringsomraade/{id}/versjon/{versjon}","command":"parking area version","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringsomraade/skiltplan/{skiltplanId}","command":"parking sign-plan get","disposition":"curated-command"},
+    {"service":"parking","unit":"GET /parkeringsomraade/vurdering/{vurderingId}","command":"parking assessment get","disposition":"curated-command"},
+
+    {"service":"nvdb-status","unit":"GET /api/v1/systemer","command":"nvdb status current; nvdb status dependency list","disposition":"curated-command"},
+    {"service":"nvdb-status","unit":"GET /api/v1/feilmeldinger","command":"nvdb status message list --state all","disposition":"curated-command"},
+    {"service":"nvdb-status","unit":"GET /api/v1/feilmeldinger/{id}","command":"nvdb status message get","disposition":"curated-command"},
+    {"service":"nvdb-status","unit":"GET /api/v1/feilmeldinger/aktiv|avsluttet|planlagt|ulost","command":"nvdb status message list --state STATE","disposition":"curated-command"},
+    {"service":"nvdb-status","unit":"GET /api/v1/systemer/{id}; /status; filtered/latest/range message reads; statistics reads","disposition":"excluded-with-reviewed-reason","reason":"Deferred to reviewed generated-operation registry; curated v1 milestone covers common status workflows"},
+    {"service":"nvdb-status","unit":"PUT/POST/DELETE administrative operations","disposition":"excluded-with-reviewed-reason","reason":"Administrative authenticated mutations are outside anonymous-only v1"}
+  ]
+}

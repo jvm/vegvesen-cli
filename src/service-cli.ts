@@ -2,7 +2,7 @@ import { Command, Option } from 'commander';
 import type { CommonOptions } from './cli.js';
 import type { CommandResult } from './contracts/output.js';
 import { usageError } from './contracts/error.js';
-import { catalogAction, catalogSearch, type QueryOptions } from './commands/catalog.js';
+import { catalogAction, catalogList, catalogSearch, type QueryOptions } from './commands/catalog.js';
 import { parkingArtifact, parkingBase, parkingOrigin, type ArtifactOptions } from './commands/parking.js';
 import { restJson } from './commands/rest.js';
 import { effectiveSettings } from './core/config-store.js';
@@ -43,10 +43,7 @@ function addCatalog(program: Command, runtime: Runtime, setResult: ResultSetter)
 function addCkanListGet(parent: Command, runtime: Runtime, setResult: ResultSetter, noun: string, listAction: string, getAction: string): void {
   const group = parent.command(noun).description(`Read catalog ${noun} metadata.`);
   group.command('list').description(`List catalog ${noun}s.`)
-    .action((_local, command: Command) => {
-      const options = queryOptions(command);
-      return setResult(() => catalogAction(runtime, `catalog ${noun} list`, listAction, { all_fields: true, limit: options.limit ?? 100, offset: options.cursor ?? 0 }, options), command);
-    });
+    .action((_local, command: Command) => setResult(() => catalogList(runtime, `catalog ${noun} list`, listAction, queryOptions(command)), command));
   group.command('get <id>').description(`Get exact catalog ${noun}.`)
     .action((id: string, _local, command: Command) => setResult(() => catalogAction(runtime, `catalog ${noun} get`, getAction, { id }, queryOptions(command)), command));
 }

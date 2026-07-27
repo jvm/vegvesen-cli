@@ -2,6 +2,7 @@ import { appendFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 
 const log = process.env.REQUEST_LOG;
+let retryAttempts = 0;
 const server = createServer((request, response) => {
   if (log) appendFileSync(log, `${JSON.stringify({ url: request.url, headers: request.headers })}\n`);
   const url = new URL(request.url, 'http://fixture');
@@ -11,6 +12,13 @@ const server = createServer((request, response) => {
     const rows = Number(url.searchParams.get('rows') ?? 100);
     const all = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
     response.end(JSON.stringify({ success: true, result: { count: all.length, results: all.slice(start, start + rows) } }));
+  } else if (url.pathname === '/api/3/action/package_show') {
+    const id = url.searchParams.get('id');
+    if (id === 'forbidden') { response.statusCode = 403; response.end('{}'); }
+    else if (id === 'retry' && retryAttempts++ === 0) { response.statusCode = 503; response.end('{}'); }
+    else if (id === 'slow') { setTimeout(() => response.end(JSON.stringify({ success: true, result: { id } })), 200); }
+    else if (id === 'malformed') response.end('{broken');
+    else response.end(JSON.stringify({ success: true, result: { id } }));
   } else if (url.pathname === '/api/3/action/status_show') {
     response.end(JSON.stringify({ success: true, result: { ckan_version: 'fixture' } }));
   } else if (url.pathname === '/datakatalog/api/v1/versjon') {

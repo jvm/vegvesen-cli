@@ -1,4 +1,4 @@
-import { closeSync, existsSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
+import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { allowedConfigKeys, configSchema, defaultConfig, type Config, type Settings } from '../contracts/config.js';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
@@ -40,8 +40,12 @@ export function effectiveSettings(runtime: Runtime, profileName?: string): { val
   ];
   for (const [key, value] of envValues) if (value !== undefined) { (values as Record<string, unknown>)[key] = value; sources[key] = 'environment'; }
   if (runtime.env.VEGVESEN_RETRIES !== undefined) { values.retries = parseInteger(runtime.env.VEGVESEN_RETRIES, 'VEGVESEN_RETRIES'); sources.retries = 'environment'; }
-  const checked = configSchema.shape.defaults.parse(values);
-  return { values: checked, sources };
+  try {
+    const checked = configSchema.shape.defaults.parse(values);
+    return { values: checked, sources };
+  } catch (error) {
+    throw new CliError({ code: 'INVALID_CONFIGURATION', message: 'Effective configuration is invalid', exitCode: EXIT.access, retryable: false, hint: "Run 'vegvesen config show --format json' and fix the reported source" }, { cause: error });
+  }
 }
 
 export function setConfigValue(runtime: Runtime, key: string, rawValue: string, profileName?: string): Config {
@@ -50,7 +54,8 @@ export function setConfigValue(runtime: Runtime, key: string, rawValue: string, 
   const value = parseSetting(key as keyof Settings, rawValue);
   const target = profileName ? (config.profiles[profileName] ??= {}) : config.defaults;
   (target as Record<string, unknown>)[key] = value;
-  configSchema.parse(config);
+  try { configSchema.parse(config); }
+  catch { throw usageError(`Invalid value for config key: ${key}`, `Run 'vegvesen config show --format json' to inspect allowed value shapes`, key); }
   writeConfig(runtime, config);
   return config;
 }
@@ -90,6 +95,8 @@ function writeConfig(runtime: Runtime, config: Config): void {
     closeSync(fd);
     fd = undefined;
     renameSync(temporary, path);
+    const directoryFd = openSync(dirname(path), 'r');
+    try { fsyncSync(directoryFd); } finally { closeSync(directoryFd); }
   } catch (error) {
     if (fd !== undefined) closeSync(fd);
     if (existsSync(temporary)) unlinkSync(temporary);

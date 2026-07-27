@@ -20,6 +20,27 @@ export async function catalogAction(runtime: Runtime, command: string, action: s
   return { command, source: serviceSource('catalog'), data: data.result, raw };
 }
 
+export async function catalogList(runtime: Runtime, command: string, action: string, options: QueryOptions): Promise<CommandResult> {
+  const limit = options.all ? Number.POSITIVE_INFINITY : Number(options.limit ?? 100);
+  const pageSize = Math.min(Number(options.pageSize ?? Math.min(limit, 100)), 1000);
+  let offset = Number(options.cursor ?? 0);
+  const results: unknown[] = [];
+  let exhausted = false;
+  while (results.length < limit) {
+    const requestSize = Number.isFinite(limit) ? Math.min(pageSize, limit - results.length) : pageSize;
+    const { data } = await requestJson<CkanResponse<unknown[]>>(runtime, {
+      service: 'catalog', canonicalOrigin: origin, path: `api/3/action/${action}`,
+      query: { all_fields: true, limit: requestSize, offset }, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true,
+    });
+    if (!data.success) throw new CliError({ code: 'CATALOG_ACTION_FAILED', message: `Catalog action failed: ${action}`, exitCode: EXIT.protocol, retryable: false, service: 'catalog', hint: 'Check catalog service status' });
+    results.push(...data.result);
+    offset += data.result.length;
+    if (data.result.length < requestSize) { exhausted = true; break; }
+  }
+  const hasMore = !exhausted;
+  return { command, source: serviceSource('catalog'), data: results, meta: { count: results.length, has_more: hasMore, next_cursor: hasMore ? String(offset) : null, partial: false } };
+}
+
 export async function catalogSearch(runtime: Runtime, queryText: string | undefined, type: string | undefined, options: QueryOptions): Promise<CommandResult> {
   const limit = options.all ? Number.POSITIVE_INFINITY : Number(options.limit ?? 100);
   const pageSize = Math.min(Number(options.pageSize ?? Math.min(limit, 100)), 1000);

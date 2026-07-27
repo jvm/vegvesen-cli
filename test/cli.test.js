@@ -88,12 +88,32 @@ test('catalog search is bounded and reports cursor', () => {
   assert.equal(payload.meta.next_cursor, '2');
 });
 
+test('HTTP failures have stable branches and safe reads retry', () => {
+  const forbidden = run(['catalog', 'package', 'get', 'forbidden', '--json', '--retries', '0']);
+  assert.equal(forbidden.status, 3);
+  assert.equal(JSON.parse(forbidden.stderr).error.code, 'ACCESS_NOT_AVAILABLE_IN_V1');
+
+  const retried = run(['catalog', 'package', 'get', 'retry', '--json', '--retries', '1']);
+  assert.equal(retried.status, 0, retried.stderr);
+  assert.equal(JSON.parse(retried.stdout).data.id, 'retry');
+
+  const timeout = run(['catalog', 'package', 'get', 'slow', '--json', '--timeout', '10ms', '--retries', '0']);
+  assert.equal(timeout.status, 8);
+  assert.equal(JSON.parse(timeout.stderr).error.code, 'NETWORK_TIMEOUT');
+
+  const malformed = run(['catalog', 'package', 'get', 'malformed', '--json', '--retries', '0']);
+  assert.equal(malformed.status, 7);
+  assert.equal(JSON.parse(malformed.stderr).error.code, 'INVALID_UPSTREAM_JSON');
+});
+
 test('NVDB commands send X-Client and preserve bounded empty schema', () => {
   const result = run(['nvdb', 'catalog', 'version', '--json', '--no-input']);
   assert.equal(result.status, 0, result.stderr);
   assert.equal(JSON.parse(result.stdout).data.versjon, 'fixture');
   const matching = requests().findLast((request) => request.url === '/datakatalog/api/v1/versjon');
   assert.match(matching.headers['x-client'], /^vegvesen-cli\//);
+  assert.equal(matching.headers.authorization, undefined);
+  assert.equal(matching.headers.cookie, undefined);
 
   const areas = run(['nvdb', 'area', 'county', 'list', '--limit', '2', '--json']);
   const payload = JSON.parse(areas.stdout);
@@ -141,6 +161,7 @@ test('invalid combinations fail with no stdout', () => {
     ['service', 'list', '--all', '--format', 'json'],
     ['service', 'list', '--all', '--limit', '2', '--format', 'ndjson'],
     ['service', 'list', '--schema-version', '2', '--json'],
+    ['service', 'list', '--limit', '1', '--limit', '2', '--json'],
     ['parking', 'provider', 'get', '123', '--json'],
     ['parking', 'sign-plan', 'get', '42', '--output', '-', '--json'],
   ]) {

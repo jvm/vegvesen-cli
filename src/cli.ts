@@ -49,6 +49,7 @@ export interface CliExecution {
 }
 
 export async function parseCli(argv: string[], runtime: Runtime): Promise<CliExecution> {
+  validateNoConflictingDuplicates(argv);
   const program = new Command();
   let commandResult: CommandResult | null = null;
   let helpOrVersion = false;
@@ -189,6 +190,24 @@ function validateCommon(options: Partial<CommonOptions>): void {
   const selectedFormat = options.json ? 'json' : options.format;
   if (options.all && !(selectedFormat === 'ndjson' || (selectedFormat === 'raw' && options.field?.length === 1))) throw usageError('--all requires --format ndjson or one --field with --format raw', 'Use --all --format ndjson', 'format');
   if (options.receiptFormat !== undefined && options.receiptFormat !== 'auto' && (!options.output || options.output === '-')) throw usageError('--receipt-format requires --output PATH', 'Pass a file path with --output or remove --receipt-format', 'receipt-format');
+}
+
+function validateNoConflictingDuplicates(argv: string[]): void {
+  const valueOptions = new Map<string, string>([['-o', '--output']]);
+  const names = new Set(['--format', '--schema-version', '--output', '--receipt-format', '--config-profile', '--timeout', '--retries', '--color', '--error-format', '--page-size', '--limit', '--cursor', '--query', '--type', '--include', '--srid', '--state', '--organization-number', '--data-fields']);
+  const seen = new Map<string, string>();
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index]!;
+    const [rawName, inlineValue] = token.startsWith('--') ? token.split(/=(.*)/s, 2) : [token, undefined];
+    const name = valueOptions.get(rawName) ?? rawName;
+    if (!names.has(name)) continue;
+    const value = inlineValue ?? argv[index + 1];
+    if (inlineValue === undefined) index += 1;
+    if (value === undefined) continue;
+    const previous = seen.get(name);
+    if (previous !== undefined && previous !== value) throw usageError(`Conflicting duplicate option: ${name}`, `Pass ${name} exactly once`, name.slice(2));
+    seen.set(name, value);
+  }
 }
 
 function topLevelName(command: Command): string {
