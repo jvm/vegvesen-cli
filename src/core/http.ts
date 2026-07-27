@@ -40,11 +40,11 @@ export async function request(runtime: Runtime, options: HttpOptions): Promise<H
     try {
       const response = await fetchWithRedirects(runtime, url, headers, options, parseDuration(options.timeout ?? '30s'));
       if (transientStatuses.has(response.status) && attempt < retries) {
-        await runtime.sleep(retryDelay(response.headers, attempt, runtime.random));
+        await runtime.sleep(retryDelay(response.headers, attempt, runtime.random, runtime.now));
         attempt += 1;
         continue;
       }
-      if (response.status < 200 || response.status >= 300) throw statusError(response, options.service);
+      if (response.status < 200 || response.status >= 300) throw statusError(response, options.service, runtime.now);
       return response;
     } catch (error) {
       if (error instanceof CliError) throw error;
@@ -103,14 +103,14 @@ async function fetchWithRedirects(runtime: Runtime, initial: URL, headers: Heade
   throw new CliError({ code: 'TOO_MANY_REDIRECTS', message: 'Upstream exceeded five redirects', exitCode: EXIT.protocol, retryable: false, service: options.service, hint: 'Check service health and canonical origin' });
 }
 
-function statusError(response: HttpResponse, service: string): CliError {
+function statusError(response: HttpResponse, service: string, now: () => Date): CliError {
   const requestId = response.headers.get('x-request-id') ?? response.headers.get('traceparent') ?? undefined;
   const common = { service, httpStatus: response.status, ...(requestId ? { requestId } : {}) };
   if (response.status === 401 || response.status === 403) return new CliError({ code: 'ACCESS_NOT_AVAILABLE_IN_V1', message: `Anonymous access unavailable for ${service}`, exitCode: EXIT.access, retryable: false, ...common, hint: 'Check service metadata; version 1 provides no credential workaround' });
   if (response.status === 404) return new CliError({ code: 'RESOURCE_NOT_FOUND', message: 'Upstream resource not found', exitCode: EXIT.notFound, retryable: false, ...common, hint: 'Verify exact identifier with the related list command' });
   if (response.status === 409 || response.status === 412) return new CliError({ code: 'UPSTREAM_CONFLICT', message: 'Upstream refused request due to conflict or precondition', exitCode: EXIT.conflict, retryable: false, ...common, hint: 'Refresh resource state before retrying' });
   if (transientStatuses.has(response.status)) {
-    const retryAfterSeconds = retryAfter(response.headers);
+    const retryAfterSeconds = retryAfter(response.headers, now);
     return new CliError({ code: response.status === 429 ? 'UPSTREAM_RATE_LIMITED' : 'UPSTREAM_UNAVAILABLE', message: response.status === 429 ? 'Upstream rate limit reached' : 'Upstream service temporarily unavailable', exitCode: EXIT.transient, retryable: true, ...common, ...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }), hint: retryAfterSeconds === undefined ? 'Retry with bounded backoff' : `Retry after ${retryAfterSeconds} seconds` });
   }
   return new CliError({ code: 'UPSTREAM_HTTP_ERROR', message: `Upstream returned HTTP ${response.status}`, exitCode: EXIT.protocol, retryable: false, ...common, hint: 'Check service health and request parameters' });
@@ -125,16 +125,16 @@ export function parseDuration(value: string): number {
   return amount * multiplier;
 }
 
-function retryAfter(headers: Headers): number | undefined {
+function retryAfter(headers: Headers, now: () => Date): number | undefined {
   const value = headers.get('retry-after');
   if (!value) return undefined;
   if (/^\d+$/.test(value)) return Number(value);
   const timestamp = Date.parse(value);
-  return Number.isNaN(timestamp) ? undefined : Math.max(0, Math.ceil((timestamp - Date.now()) / 1000));
+  return Number.isNaN(timestamp) ? undefined : Math.max(0, Math.ceil((timestamp - now().getTime()) / 1000));
 }
 
-function retryDelay(headers: Headers, attempt: number, random: () => number): number {
-  const seconds = retryAfter(headers);
+function retryDelay(headers: Headers, attempt: number, random: () => number, now: () => Date): number {
+  const seconds = retryAfter(headers, now);
   return seconds === undefined ? backoff(attempt, random) : Math.min(seconds * 1000, 60000);
 }
 

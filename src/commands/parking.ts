@@ -28,6 +28,6 @@ export async function parkingArtifact(runtime: Runtime, command: string, path: s
     const bytes = await artifactToStdout(upstream.response);
     return { command, source: serviceSource('parking'), data: null, raw: bytes, outputHandled: true, meta: { count: 1, has_more: false, next_cursor: null, partial: false } };
   }
-  const descriptor = await saveArtifact(upstream.response, destination, 'parking', options.overwrite === true);
+  const descriptor = await saveArtifact(runtime, upstream.response, destination, 'parking', options.overwrite === true);
   return { command, source: serviceSource('parking'), data: descriptor, outputHandled: true };
 }

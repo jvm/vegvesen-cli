@@ -1,9 +1,26 @@
+import * as nodeFs from 'node:fs';
 import type { Readable, Writable } from 'node:stream';
+
+export interface RuntimeFileSystem {
+  closeSync: typeof nodeFs.closeSync;
+  createWriteStream: typeof nodeFs.createWriteStream;
+  existsSync: typeof nodeFs.existsSync;
+  fsyncSync: typeof nodeFs.fsyncSync;
+  linkSync: typeof nodeFs.linkSync;
+  mkdirSync: typeof nodeFs.mkdirSync;
+  openSync: typeof nodeFs.openSync;
+  readFileSync: typeof nodeFs.readFileSync;
+  renameSync: typeof nodeFs.renameSync;
+  unlinkSync: typeof nodeFs.unlinkSync;
+  writeFileSync: typeof nodeFs.writeFileSync;
+}
 
 export interface Runtime {
   fetch: typeof globalThis.fetch;
   env: NodeJS.ProcessEnv;
-  stdin: Readable;
+  fs: RuntimeFileSystem;
+  pid: number;
+  stdin: Readable & { isTTY?: boolean };
   stdout: Writable & { isTTY?: boolean };
   stderr: Writable & { isTTY?: boolean };
   cwd: string;
@@ -17,6 +34,8 @@ export function processRuntime(): Runtime {
   return {
     fetch: globalThis.fetch,
     env: process.env,
+    fs: nodeFs,
+    pid: process.pid,
     stdin: process.stdin,
     stdout: process.stdout,
     stderr: process.stderr,

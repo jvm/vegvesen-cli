@@ -27,7 +27,7 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
       return 0;
     }
     const path = validateArtifactDestination(runtime, execution.options.output, execution.options.overwrite === true, execution.options.allowTerminalBinary === true);
-    const descriptor = await saveBytes(output, path, execution.result.source.service, mediaType(execution.options.format), execution.options.overwrite === true);
+    const descriptor = await saveBytes(runtime, output, path, execution.result.source.service, mediaType(execution.options.format), execution.options.overwrite === true);
     if (execution.options.receiptFormat !== 'none') writeReceipt(runtime, execution.result, descriptor, execution.options.receiptFormat);
     return 0;
   } catch (error) {

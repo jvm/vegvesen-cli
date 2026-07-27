@@ -1,4 +1,3 @@
-import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { allowedConfigKeys, configSchema, defaultConfig, type Config, type Settings } from '../contracts/config.js';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
@@ -16,9 +15,9 @@ export function configPath(runtime: Runtime): string {
 
 export function readConfig(runtime: Runtime): Config {
   const path = configPath(runtime);
-  if (!existsSync(path)) return structuredClone(defaultConfig);
+  if (!runtime.fs.existsSync(path)) return structuredClone(defaultConfig);
   try {
-    return configSchema.parse(JSON.parse(readFileSync(path, 'utf8')));
+    return configSchema.parse(JSON.parse(runtime.fs.readFileSync(path, 'utf8')));
   } catch (error) {
     throw new CliError({ code: 'INVALID_CONFIG', message: `Config file is invalid: ${path}`, exitCode: EXIT.access, retryable: false, hint: "Run 'vegvesen config validate' for details" }, { cause: error });
   }
@@ -86,20 +85,20 @@ function parseInteger(value: string, field: string): number {
 
 function writeConfig(runtime: Runtime, config: Config): void {
   const path = configPath(runtime);
-  mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
-  const temporary = `${path}.tmp-${process.pid}-${Date.now()}`;
+  runtime.fs.mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
+  const temporary = `${path}.tmp-${runtime.pid}-${runtime.now().getTime()}`;
   let fd: number | undefined;
   try {
-    fd = openSync(temporary, 'wx', 0o600);
-    writeFileSync(fd, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
-    closeSync(fd);
+    fd = runtime.fs.openSync(temporary, 'wx', 0o600);
+    runtime.fs.writeFileSync(fd, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
+    runtime.fs.closeSync(fd);
     fd = undefined;
-    renameSync(temporary, path);
-    const directoryFd = openSync(dirname(path), 'r');
-    try { fsyncSync(directoryFd); } finally { closeSync(directoryFd); }
+    runtime.fs.renameSync(temporary, path);
+    const directoryFd = runtime.fs.openSync(dirname(path), 'r');
+    try { runtime.fs.fsyncSync(directoryFd); } finally { runtime.fs.closeSync(directoryFd); }
   } catch (error) {
-    if (fd !== undefined) closeSync(fd);
-    if (existsSync(temporary)) unlinkSync(temporary);
+    if (fd !== undefined) runtime.fs.closeSync(fd);
+    if (runtime.fs.existsSync(temporary)) runtime.fs.unlinkSync(temporary);
     throw new CliError({ code: 'CONFIG_IO_FAILED', message: `Could not write config: ${path}`, exitCode: EXIT.io, retryable: false, hint: 'Check directory permissions and available disk space' }, { cause: error });
   }
 }
