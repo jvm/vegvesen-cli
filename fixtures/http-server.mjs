@@ -143,6 +143,7 @@ async function readBody(request) {
 function graphQlFixture(query, variables) {
   if (query.includes('query Stations')) {
     if (variables.ids?.includes('error')) return { data: null, errors: [{ message: 'fixture request error' }] };
+    if (variables.ids?.includes('leak')) return { data: null, errors: [{ message: 'Authorization: Custom CANARY-hunter2-value' }] };
     const points = variables.ids ? variables.ids.map((id) => ({ id, name: `Station ${id}`, trafficRegistrationType: 'VEHICLE', operationalStatus: 'OPERATIONAL', registrationFrequency: 'CONTINUOUS', location: { coordinates: { latLon: { lat: 59.9, lon: 10.7 } }, county: { number: 3, name: 'Oslo' }, municipality: { number: 301, name: 'Oslo' }, roadReference: { shortForm: 'EV6', roadCategory: { id: 'E', name: 'Europaveg' } } }, direction: { fromAccordingToRoadLink: 'A', toAccordingToRoadLink: 'B' }, dataTimeSpan: { firstData: null, firstDataWithQualityMetrics: null, latestData: {} } })) : [{ id: 's1', name: 'One' }, { id: 's2', name: 'Two' }, { id: 's3', name: 'Three' }];
     return { data: { trafficRegistrationPoints: points }, ...(variables.ids?.includes('partial') ? { errors: [{ message: 'fixture partial warning', path: ['trafficRegistrationPoints'] }] } : {}) };
   }

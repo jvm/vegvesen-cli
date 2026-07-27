@@ -44,6 +44,7 @@ jobs:
           test "$TAG" = "v$version" || { echo "Tag $TAG does not match v$version" >&2; exit 1; }
       - run: npm ci
       - run: npm run validate
+      - run: npm run check:spec-drift
       - name: Pack release tarball
         run: npm pack
       - name: Verify package contents

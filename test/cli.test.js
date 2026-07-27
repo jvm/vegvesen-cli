@@ -261,6 +261,11 @@ test('Trafikkdata supports bounded cursors, streams, and partial results', () =>
   assert.equal(failed.status, 7);
   assert.equal(failed.stdout, '');
   assert.equal(JSON.parse(failed.stderr).error.code, 'GRAPHQL_REQUEST_FAILED');
+
+  const leaked = run(['traffic', 'station', 'get', 'leak', '--json', '--verbose']);
+  assert.equal(leaked.status, 7);
+  assert.doesNotMatch(`${leaked.stdout}${leaked.stderr}`, /CANARY-hunter2-value/);
+  assert.match(leaked.stderr, /\[REDACTED\]/);
 });
 
 test('every curated Trafikkdata command maps to a validated persisted query', () => {
