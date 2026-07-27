@@ -317,7 +317,7 @@ function addRouteOptions(command: Command): Command {
     .addOption(new Option('--input-srs <srs>', 'Stop coordinate system').choices(['EPSG:4326', 'EPSG:25833']).default('EPSG:4326'))
     .addOption(new Option('--output-srs <srs>', 'Geometry coordinate system').choices(['EPSG:4326', 'EPSG:25833']).default('EPSG:4326'))
     .addOption(new Option('--language <language>', 'Direction language').choices(['English', 'Norwegian', 'Swedish', 'Deutch', 'Finnish']).default('Norwegian'))
-    .option('--return-field <field>', 'Additional response field; repeatable', collectValues, [])
+    .addOption(new Option('--return-field <field>', 'Additional response field; repeatable').choices(['Geometry', 'SimpleGeometry', 'NvdbReferences', 'GeometryZ']).argParser(collectValues).default([]))
     .option('--start-time <timestamp>', 'Route start time')
     .option('--length <meters>', 'Vehicle length')
     .option('--weight <tonnes>', 'Vehicle weight')
@@ -353,8 +353,8 @@ function addTraffic(program: Command, runtime: Runtime, setResult: ResultSetter)
     .option('--road-category <ids>', 'Comma-separated road categories: E,R,F,K,P')
     .option('--county <numbers>', 'Comma-separated county numbers')
     .option('--operational', 'Only currently operational stations')
-    .option('--traffic-type <type>', 'Traffic registration type')
-    .option('--registration-frequency <frequency>', 'CONTINUOUS or PERIODIC')
+    .addOption(new Option('--traffic-type <type>', 'Traffic registration type').choices(['VEHICLE', 'BICYCLE']))
+    .addOption(new Option('--registration-frequency <frequency>', 'Registration frequency').choices(['CONTINUOUS', 'PERIODIC']))
     .action((local: TrafficStationFilters, command: Command) => setResult(() => trafficStations(runtime, 'traffic station list', { search: stationSearch(local) }, trafficOptions(command)), command));
   station.command('get <station-id>').description('Get an exact station.')
     .action((id: string, _local, command: Command) => setResult(() => trafficStations(runtime, 'traffic station get', { ids: [id] }, trafficOptions(command)), command));
@@ -368,7 +368,7 @@ function addTraffic(program: Command, runtime: Runtime, setResult: ResultSetter)
   aadt.command('get').description('Get AADT for station and year.')
     .requiredOption('--station <id>', 'Traffic station ID')
     .requiredOption('--year <year>', 'Four-digit year')
-    .option('--day-type <type>', 'ALL, WORKING_DAY, or NON_WORKING_DAY')
+    .addOption(new Option('--day-type <type>', 'Day type').choices(['ALL', 'WEEKDAY', 'WEEKEND']))
     .action((local: { station: string; year: string; dayType?: string }, command: Command) => setResult(() => trafficAadt(runtime, local.station, positiveInteger(local.year, 'year'), local.dayType, trafficOptions(command)), command));
 
   const index = traffic.command('index').description('Read station and published area indices.');
@@ -406,9 +406,12 @@ function addTraffic(program: Command, runtime: Runtime, setResult: ResultSetter)
 interface TrafficStationFilters { query?: string; roadCategory?: string; county?: string; operational?: boolean; trafficType?: string; registrationFrequency?: string }
 
 function stationSearch(local: TrafficStationFilters): Record<string, unknown> {
+  const roadCategoryIds = local.roadCategory?.split(',').filter(Boolean);
+  const invalidRoadCategory = roadCategoryIds?.find((value) => !['E', 'R', 'F', 'K', 'P'].includes(value));
+  if (invalidRoadCategory) throw usageError(`Unknown road category: ${invalidRoadCategory}`, 'Use E, R, F, K, or P', 'road-category');
   return {
     query: local.query,
-    roadCategoryIds: local.roadCategory?.split(',').filter(Boolean),
+    roadCategoryIds,
     countyNumbers: local.county?.split(',').filter(Boolean).map((value) => positiveInteger(value, 'county')),
     isOperational: local.operational,
     trafficType: local.trafficType,

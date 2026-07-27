@@ -199,6 +199,8 @@ test('every curated NVDB core command maps to an offline fixture', () => {
     assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
     JSON.parse(result.stdout);
   }
+  const changeRequest = requests().findLast((request) => request.url.startsWith('/vegobjekter/api/v4/vegobjekter/105/endringer'));
+  assert.doesNotMatch(changeRequest.url, /inkluderAntall/);
 });
 
 test('Routing V3 validates and maps all nine profiles', () => {
@@ -326,6 +328,8 @@ test('invalid combinations fail with no stdout', () => {
     ['service', 'list', '--schema-version', '2', '--json'],
     ['service', 'list', '--limit', '1', '--limit', '2', '--json'],
     ['doctor', '--live', '--timeout', 'forever', '--json'],
+    ['route', 'calculate', '--profile', 'best', '--stop', '200,95', '--stop', '10,60', '--json'],
+    ['traffic', 'aadt', 'get', '--station', 's1', '--year', '2025', '--day-type', 'HOLIDAY', '--json'],
     ['parking', 'provider', 'get', '123', '--json'],
     ['parking', 'sign-plan', 'get', '42', '--output', '-', '--json'],
     ['nvdb', 'area', 'county', 'list', '--cursor', '2', '--json'],

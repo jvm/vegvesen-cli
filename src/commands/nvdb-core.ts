@@ -44,7 +44,7 @@ export async function nvdbPaged(runtime: Runtime, command: string, path: string,
   let cursor = options.cursor;
   let total: number | undefined;
   while (items.length < limit) {
-    const page = await fetchPage(runtime, path, { ...query, antall: Math.min(pageSize, limit - items.length), start: cursor, inkluderAntall: true }, options);
+    const page = await fetchPage(runtime, path, { ...query, antall: Math.min(pageSize, limit - items.length), start: cursor, ...(mode === 'objects' ? { inkluderAntall: true } : {}) }, options);
     total ??= page.metadata.antall;
     items.push(...extractItems(page, mode).slice(0, limit - items.length));
     const next = page.metadata.neste?.start;

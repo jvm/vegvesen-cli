@@ -44,7 +44,11 @@ export interface RouteOptions extends QueryOptions {
 export async function calculateRoute(runtime: Runtime, profile: keyof typeof routeProfiles, options: RouteOptions): Promise<CommandResult> {
   const heavyProfiles = new Set<keyof typeof routeProfiles>(['normal-transport', 'special-transport', 'timber-transport', 'modular-vehicle']);
   if (heavyProfiles.has(profile) && !options.loadClass) throw usageError(`--load-class is required for profile ${profile}`, 'Pass a supported class such as --load-class Bk_10_50', 'load-class');
+  if (!heavyProfiles.has(profile) && options.loadClass) throw usageError(`--load-class is not valid for profile ${profile}`, 'Remove --load-class or select a heavy-transport profile', 'load-class');
   if ((profile === 'normal-transport' || profile === 'special-transport') && ['Bk_10_56', 'Bk_10_60'].includes(options.loadClass ?? '')) throw usageError(`Load class ${options.loadClass} is not valid for ${profile}`, 'Use Bk_6_28, Bk_8_32, Bk_T8_40, Bk_T8_50, Bk_10_42, or Bk_10_50', 'load-class');
+  if (profile !== 'bike' && (options.powerEffort !== undefined || options.bikePathUsage !== undefined)) throw usageError('Bike options require profile bike', 'Remove bike options or pass --profile bike', 'profile');
+  if (profile !== 'special-transport' && (options.roadGroup !== undefined || options.includeUnclassifiedRoadGroup !== undefined)) throw usageError('Road-group options require profile special-transport', 'Remove road-group options or pass --profile special-transport', 'profile');
+  if (profile !== 'modular-vehicle' && (options.linkSemitrailer !== undefined || options.trackingRequired !== undefined)) throw usageError('Modular-vehicle options require profile modular-vehicle', 'Remove modular options or pass --profile modular-vehicle', 'profile');
   const query = commonRouteQuery(options);
   if (options.powerEffort !== undefined) query.PowerEffort = numeric(options.powerEffort, 'power-effort');
   if (options.bikePathUsage !== undefined) query.BikePathUsage = numeric(options.bikePathUsage, 'bike-path-usage');
@@ -71,7 +75,7 @@ export async function queryRoadFeatures(runtime: Runtime, body: unknown, withLoa
 
 function commonRouteQuery(options: RouteOptions): Record<string, QueryValue> {
   if (options.stops.length < 2) throw usageError('At least two --stop values are required', 'Pass --stop X,Y twice or more', 'stop');
-  for (const stop of options.stops) validateStop(stop);
+  for (const stop of options.stops) validateStop(stop, options.inputSrs);
   const query: Record<string, QueryValue> = {
     Stops: options.stops.join(';'),
     InputSRS: options.inputSrs.replace(':', '_'),
@@ -96,9 +100,11 @@ async function routeRequest(runtime: Runtime, command: string, path: string, que
   return { command, source: serviceSource('route'), data, raw };
 }
 
-function validateStop(value: string): void {
+function validateStop(value: string, inputSrs: RouteOptions['inputSrs']): void {
   const parts = value.split(',');
   if (parts.length !== 2 || parts.some((part) => !Number.isFinite(Number(part)))) throw usageError(`Invalid stop: ${value}`, 'Use --stop X,Y with numeric coordinates', 'stop');
+  const [x, y] = parts.map(Number);
+  if (inputSrs === 'EPSG:4326' && (x! < -180 || x! > 180 || y! < -90 || y! > 90)) throw usageError(`Stop outside EPSG:4326 bounds: ${value}`, 'Pass longitude,latitude within valid geographic bounds', 'stop');
 }
 
 function numeric(value: string, field: string): number {
