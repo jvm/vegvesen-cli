@@ -96,6 +96,10 @@ npm run test:package
 
 See [`COMMANDS.md`](COMMANDS.md) for the generated command reference and [`docs/design/cli-contract.md`](docs/design/cli-contract.md) for structured output, errors, pagination, artifact, access, and compatibility contracts.
 
+## Security
+
+Report vulnerabilities privately as described in [`SECURITY.md`](SECURITY.md). Do not include personal Fiksvegdata content or other sensitive data in public issues.
+
 ## License
 
 [MIT](LICENSE)

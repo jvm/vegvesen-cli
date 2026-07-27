@@ -77,7 +77,10 @@ function writeReceipt(runtime: Runtime, result: CommandResult, descriptor: unkno
     runtime.stdout.write(`Saved ${item.path ?? 'artifact'} (${item.size_bytes ?? 0} bytes, sha256 ${item.sha256 ?? 'unknown'})\n`);
     return;
   }
-  const { raw: _raw, outputHandled: _outputHandled, nativeStream: _nativeStream, ...receiptBase } = result;
+  const receiptBase = { ...result };
+  delete receiptBase.raw;
+  delete receiptBase.outputHandled;
+  delete receiptBase.nativeStream;
   runtime.stdout.write(renderResult({ ...receiptBase, data: descriptor }, { format: 'json', fields: [], stdoutIsTTY: false }));
 }
 

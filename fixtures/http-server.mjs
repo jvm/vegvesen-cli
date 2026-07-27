@@ -58,6 +58,7 @@ const server = createServer(async (request, response) => {
     else if (id === 'retry' && retryAttempts++ === 0) { response.statusCode = 503; response.end('{}'); }
     else if (id === 'slow') { setTimeout(() => response.end(JSON.stringify({ success: true, result: { id } })), 200); }
     else if (id === 'malformed') response.end('{broken');
+    else if (id === 'redirect-evil') { response.statusCode = 302; response.setHeader('location', 'https://evil.example/collect'); response.end(); }
     else response.end(JSON.stringify({ success: true, result: { id } }));
   } else if (url.pathname === '/api/3/action/status_show') {
     response.end(JSON.stringify({ success: true, result: { ckan_version: 'fixture' } }));
@@ -79,7 +80,7 @@ const server = createServer(async (request, response) => {
     response.end('openapi: 3.0.3\ninfo:\n  title: fixture\n');
   } else if (/^\/(vegvar_1_0|norstoy_1_0|nvdb_2_0|rapportweb_1_0|datex_3_1)\/(wms|wfs)$/.test(url.pathname) && /GetCapabilities|DescribeFeatureType/i.test(url.searchParams.get('request') ?? '')) {
     response.setHeader('content-type', 'application/xml');
-    response.end('<?xml version="1.0"?><Capabilities><Layer><Name>fixture</Name></Layer></Capabilities>');
+    response.end(url.pathname.startsWith('/datex_3_1/') ? '<!DOCTYPE x [<!ENTITY canary "expanded">]><Capabilities>&canary;</Capabilities>' : '<?xml version="1.0"?><Capabilities><Layer><Name>fixture</Name></Layer></Capabilities>');
   } else if (/^\/(vegvar_1_0|norstoy_1_0|nvdb_2_0|rapportweb_1_0|datex_3_1)\/(wms|wfs)$/.test(url.pathname)) {
     response.setHeader('content-type', url.pathname.endsWith('/wms') ? 'image/png' : 'application/geo+json');
     response.end(url.pathname.endsWith('/wms') ? Buffer.from('native-ogc-fixture') : JSON.stringify({ type: 'FeatureCollection', features: [] }));
@@ -103,11 +104,15 @@ const server = createServer(async (request, response) => {
   } else if (url.pathname === '/api/v1/feilmelding/42') {
     response.end(JSON.stringify({ id: 42, status: 'MOTTATT' }));
   } else if (url.pathname === '/api/v1/feilmelding/anonym' && request.method === 'POST') {
-    await readBody(request); response.statusCode = 201; response.end(JSON.stringify({ id: 43 }));
+    const body = await readBody(request);
+    if (body.includes('TimeoutFixture')) setTimeout(() => { if (!response.destroyed) { response.statusCode = 201; response.end(JSON.stringify({ id: 43 })); } }, 100);
+    else { response.statusCode = 201; response.end(JSON.stringify({ id: 43 })); }
   } else if (/^\/api\/v1\/feilmelding\/\d+\/vedlegg$/.test(url.pathname) && request.method === 'POST') {
     await readBody(request); response.end(JSON.stringify({ success: true }));
   } else if (/^\/api\/v1\/feilmelding\/\d+\/vedlegg\/[^/]+$/.test(url.pathname)) {
     response.setHeader('content-type', 'application/octet-stream'); response.end('attachment');
+  } else if (url.pathname === '/rapporter/veglister/889') {
+    response.statusCode = 503; response.end('{}');
   } else if (url.pathname === '/rapporter/rapporttyper') {
     response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
   } else if (url.pathname.startsWith('/rapporter/poll/')) {

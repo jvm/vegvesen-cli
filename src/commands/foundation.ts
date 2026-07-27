@@ -36,7 +36,7 @@ export function commandSchema(path: string[]): CommandResult {
 export function completionResult(shell: string): CommandResult {
   const words = [...new Set(commandRegistry.flatMap((entry) => entry.path.split(' ')))].sort().join(' ');
   const scripts: Record<string, string> = {
-    bash: `_vegvesen_complete() { COMPREPLY=( $(compgen -W '${words}' -- \"\${COMP_WORDS[COMP_CWORD]}\") ); }\ncomplete -F _vegvesen_complete vegvesen\n`,
+    bash: `_vegvesen_complete() { COMPREPLY=( $(compgen -W '${words}' -- "\${COMP_WORDS[COMP_CWORD]}") ); }\ncomplete -F _vegvesen_complete vegvesen\n`,
     zsh: `#compdef vegvesen\n_arguments '*:command:(${words})'\n`,
     fish: `complete -c vegvesen -f -a '${words}'\n`,
   };

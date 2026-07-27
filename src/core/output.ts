@@ -70,8 +70,9 @@ function project(data: unknown, fields: string[]): unknown {
 function getPath(value: unknown, path: string): unknown {
   let current = value;
   for (const part of path.split('.')) {
-    if (current === null || typeof current !== 'object' || !(part in current)) return null;
-    current = (current as Record<string, unknown>)[part];
+    if (['__proto__', 'prototype', 'constructor'].includes(part)) return null;
+    if (current === null || typeof current !== 'object' || !Object.hasOwn(current, part)) return null;
+    current = Reflect.get(current, part);
   }
   return current;
 }

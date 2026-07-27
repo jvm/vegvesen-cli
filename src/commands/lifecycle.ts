@@ -1,4 +1,4 @@
-import { basename } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
 import type { CommandResult, OutputFormat } from '../contracts/output.js';
 import { artifactToStream, assertArtifactResponse, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
@@ -45,12 +45,22 @@ export async function fiksCreate(runtime: Runtime, body: unknown, options: Mutat
 
 export async function fiksAddAttachment(runtime: Runtime, issueId: string, paths: string[], options: MutationOptions): Promise<CommandResult> {
   if (paths.length === 0) throw usageError('At least one --file is required', 'Pass --file PATH', 'file');
-  const plan = { dry_run: options.dryRun === true, method: 'POST', path: `/api/v1/feilmelding/${issueId}/vedlegg`, files: paths.map((path) => basename(path)) };
-  for (const path of paths) if (!runtime.fs.existsSync(path)) throw usageError(`Attachment does not exist: ${path}`, 'Pass an existing local file', 'file');
+  if (paths.length > 10) throw usageError('At most 10 attachments are allowed per request', 'Split files across separately confirmed requests', 'file');
+  const resolvedPaths = paths.map((path) => resolve(runtime.cwd, path));
+  let totalSize = 0;
+  for (const path of resolvedPaths) {
+    if (!runtime.fs.existsSync(path)) throw usageError(`Attachment does not exist: ${path}`, 'Pass an existing local file', 'file');
+    const stat = runtime.fs.statSync(path);
+    if (!stat.isFile()) throw usageError(`Attachment must be a regular file: ${path}`, 'Pass a regular local file', 'file');
+    if (stat.size > 10 * 1024 * 1024) throw usageError(`Attachment exceeds 10 MiB: ${basename(path)}`, 'Reduce the file size', 'file');
+    totalSize += stat.size;
+  }
+  if (totalSize > 25 * 1024 * 1024) throw usageError('Combined attachments exceed 25 MiB', 'Split files across separately confirmed requests', 'file');
+  const plan = { dry_run: options.dryRun === true, method: 'POST', path: `/api/v1/feilmelding/${issueId}/vedlegg`, files: resolvedPaths.map((path) => basename(path)), total_size_bytes: totalSize };
   if (options.dryRun) return { command: 'fiks attachment add', source: serviceSource('fiks'), data: plan };
   if (!options.yes) throw new CliError({ code: 'CONFIRMATION_REQUIRED', message: 'Attachment upload requires --yes', exitCode: EXIT.conflict, retryable: false, field: 'yes', hint: 'Review with --dry-run, then repeat with --yes' });
   const form = new FormData();
-  for (const path of paths) form.append('file', new Blob([runtime.fs.readFileSync(path)]), basename(path));
+  for (const path of resolvedPaths) form.append('file', new Blob([runtime.fs.readFileSync(path)]), basename(path));
   try {
     const result = await requestJson<unknown>(runtime, { service: 'fiks', canonicalOrigin: fiksOrigin, path: `api/v1/feilmelding/${issueId}/vedlegg`, method: 'POST', body: form, timeout: options.timeout, retries: 0, safeToRetry: false });
     return { command: 'fiks attachment add', source: serviceSource('fiks'), data: result.data, raw: result.raw };

@@ -13,9 +13,11 @@
     "dist",
     "schemas",
     "specs",
+    "!specs/graphql/traffic-introspection.json",
     "coverage.json",
     "README.md",
     "COMMANDS.md",
+    "SECURITY.md",
     "LICENSE"
   ],
   "engines": {
@@ -40,7 +42,13 @@
     "test:package": "npm run build && node scripts/package-probe.mjs",
     "prepack": "npm run build && npm test",
     "generate:docs": "npm run build && node scripts/generate-command-reference.mjs",
-    "check:generated": "npm run generate:docs && git diff --exit-code -- COMMANDS.md"
+    "check:generated": "npm run generate:docs && git diff --exit-code -- COMMANDS.md",
+    "lint": "eslint .",
+    "audit": "npm audit --omit=dev --audit-level=high",
+    "validate": "npm run lint && npm run typecheck && npm test && npm run check:coverage && npm run check:generated && npm run check:graphql && npm run check:examples && npm run audit && npm run test:package",
+    "security:secrets": "betterleaks dir . --no-banner --redact --exit-code=2",
+    "security:workflows": "actionlint .github/workflows/*.yml && zizmor --persona auditor --min-severity high --min-confidence medium .github/workflows/",
+    "security:local": "npm run audit && npm run security:secrets && npm run security:workflows"
   },
   "keywords": [
     "cli",
@@ -53,8 +61,16 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "20.19.43",
+    "eslint": "^10.8.0",
+    "eslint-plugin-security": "^4.0.1",
     "graphql": "16.14.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.65.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

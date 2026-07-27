@@ -133,6 +133,10 @@ test('HTTP failures have stable branches and safe reads retry', () => {
   const malformed = run(['catalog', 'package', 'get', 'malformed', '--json', '--retries', '0']);
   assert.equal(malformed.status, 7);
   assert.equal(JSON.parse(malformed.stderr).error.code, 'INVALID_UPSTREAM_JSON');
+
+  const redirect = run(['catalog', 'package', 'get', 'redirect-evil', '--json', '--retries', '0']);
+  assert.equal(redirect.status, 3);
+  assert.equal(JSON.parse(redirect.stderr).error.code, 'CROSS_ORIGIN_REDIRECT_REFUSED');
 });
 
 test('NVDB commands send X-Client and preserve bounded empty schema', () => {
@@ -294,6 +298,9 @@ test('Phase 5 OGC, TN-ITS, and export commands use bounded protocol mappings', (
     assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
     JSON.parse(result.stdout);
   }
+  const unsafeXml = run(['ogc', 'wms', 'capabilities', '--family', 'datex_3_1', '--json', '--no-input']);
+  assert.equal(unsafeXml.status, 7);
+  assert.equal(JSON.parse(unsafeXml.stderr).error.code, 'UNSAFE_UPSTREAM_XML');
   const featureStream = run(['ogc', 'feature', 'item', 'list', 'collection1', '--all', '--format', 'ndjson', '--no-input']);
   assert.equal(featureStream.status, 0, featureStream.stderr);
   assert.match(featureStream.stdout, /\"type\":\"summary\"/);
@@ -324,6 +331,13 @@ test('Phase 6 mutations require dry-run or confirmation and jobs are resumable',
   const created = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--yes', '--json', '--no-input']);
   assert.equal(created.status, 0, created.stderr);
   assert.equal(JSON.parse(created.stdout).data.id, 43);
+  const timeoutBodyPath = join(directory, 'timeout-issue.json');
+  writeFileSync(timeoutBodyPath, JSON.stringify({ emne: 'TimeoutFixture', kategori: 'FEIL_I_KARTDATA', lokasjon: { latitude: 59.9, longitude: 10.7 }, vegsystemreferanse: 'EV6' }));
+  const timeoutBefore = requests().filter((request) => request.url === '/api/v1/feilmelding/anonym').length;
+  const ambiguous = run(['fiks', 'issue', 'create', '--body', `@${timeoutBodyPath}`, '--yes', '--timeout', '1ms', '--retries', '5', '--json', '--no-input']);
+  assert.equal(ambiguous.status, 8);
+  assert.equal(JSON.parse(ambiguous.stderr).error.code, 'MUTATION_OUTCOME_UNKNOWN');
+  assert.ok(requests().filter((request) => request.url === '/api/v1/feilmelding/anonym').length <= timeoutBefore + 1);
   assert.equal(run(['nvdb', 'report', 'family', 'list', '--json', '--no-input']).status, 0);
   const reportBefore = requests().length;
   const reportPreview = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--dry-run', '--json', '--no-input']);
@@ -332,6 +346,10 @@ test('Phase 6 mutations require dry-run or confirmation and jobs are resumable',
   const reportRefused = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--json', '--no-input']);
   assert.equal(reportRefused.status, 5);
   assert.equal(requests().length, reportBefore);
+  const reportCallsBefore = requests().filter((request) => request.url.startsWith('/rapporter/veglister/889')).length;
+  const reportFailed = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--yes', '--retries', '5', '--json', '--no-input']);
+  assert.equal(reportFailed.status, 6);
+  assert.equal(requests().filter((request) => request.url.startsWith('/rapporter/veglister/889')).length, reportCallsBefore + 1);
   const job = run(['nvdb', 'report', 'job', 'get', 'fixture-job', '--json', '--no-input']);
   assert.equal(job.status, 0, job.stderr);
   assert.equal(JSON.parse(job.stdout).meta.normalized_state, 'succeeded');

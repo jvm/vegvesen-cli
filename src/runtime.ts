@@ -11,6 +11,7 @@ export interface RuntimeFileSystem {
   openSync: typeof nodeFs.openSync;
   readFileSync: typeof nodeFs.readFileSync;
   renameSync: typeof nodeFs.renameSync;
+  statSync: typeof nodeFs.statSync;
   unlinkSync: typeof nodeFs.unlinkSync;
   writeFileSync: typeof nodeFs.writeFileSync;
 }

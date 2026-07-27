@@ -2,7 +2,7 @@ import { XMLParser } from 'fast-xml-parser';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
 import type { CommandResult, OutputFormat } from '../contracts/output.js';
 import { artifactToStream, assertArtifactResponse, saveArtifact, validateArtifactDestination } from '../core/artifact-writer.js';
-import { request, requestJson, type QueryValue } from '../core/http.js';
+import { readResponseText, request, requestJson, type QueryValue } from '../core/http.js';
 import { serviceSource } from '../core/metadata.js';
 import type { Runtime } from '../runtime.js';
 import { numberOption, type QueryOptions } from './catalog.js';
@@ -18,9 +18,10 @@ interface NativeOptions extends QueryOptions { output?: string | undefined; over
 export async function ogcXml(runtime: Runtime, command: string, family: string, protocol: 'wms' | 'wfs', query: Record<string, QueryValue>, options: QueryOptions): Promise<CommandResult> {
   familyValue(family);
   const upstream = await request(runtime, { service: 'ogc', canonicalOrigin: ogcOrigin, path: `${family}/${protocol}`, query, accept: 'application/xml,text/xml', timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true });
-  const raw = await upstream.response.text();
+  const raw = await readResponseText(upstream.response, 'ogc', 8 * 1024 * 1024);
   let data: unknown;
-  try { data = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_' }).parse(raw); }
+  if (/<!DOCTYPE/i.test(raw)) throw new CliError({ code: 'UNSAFE_UPSTREAM_XML', message: 'OGC XML contained a forbidden DOCTYPE declaration', exitCode: EXIT.protocol, retryable: false, service: 'ogc', hint: 'Report the upstream XML security violation' });
+  try { data = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_', processEntities: false, maxNestedTags: 64 }).parse(raw); }
   catch (error) { throw new CliError({ code: 'INVALID_UPSTREAM_XML', message: 'OGC returned malformed XML', exitCode: EXIT.protocol, retryable: false, service: 'ogc', hint: 'Check family, operation, and upstream health' }, { cause: error }); }
   return { command, source: serviceSource('ogc'), data, raw };
 }

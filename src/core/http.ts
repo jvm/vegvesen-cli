@@ -69,12 +69,33 @@ export async function requestJson<T>(runtime: Runtime, options: HttpOptions): Pr
   const mediaType = response.headers.get('content-type')?.split(';', 1)[0]?.trim().toLowerCase();
   if (mediaType && mediaType !== 'application/json' && !mediaType.endsWith('+json')) throw new CliError({ code: 'UNEXPECTED_CONTENT_TYPE', message: `Expected JSON but received ${mediaType}`, exitCode: EXIT.protocol, retryable: false, service: options.service, httpStatus: response.status, hint: 'Check service health and retry; use artifact command for native files' });
   try {
-    const raw = await response.response.text();
+    const raw = await readResponseText(response.response, options.service);
     return { data: JSON.parse(raw) as T, response, raw };
   } catch (error) {
     throw new CliError({ code: 'INVALID_UPSTREAM_JSON', message: 'Upstream returned malformed JSON', exitCode: EXIT.protocol, retryable: false, service: options.service, httpStatus: response.status, hint: 'Check service health and retry later' }, { cause: error });
   }
 }
+
+export async function readResponseText(response: Response, service: string, maxBytes = 16 * 1024 * 1024): Promise<string> {
+  const declared = Number(response.headers.get('content-length'));
+  if (Number.isFinite(declared) && declared > maxBytes) throw bodyTooLarge(service, maxBytes);
+  if (!response.body) return '';
+  const reader = response.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > maxBytes) { await reader.cancel(); throw bodyTooLarge(service, maxBytes); }
+      chunks.push(value);
+    }
+  } finally { reader.releaseLock(); }
+  return Buffer.concat(chunks.map((chunk) => Buffer.from(chunk))).toString('utf8');
+}
+
+function bodyTooLarge(service: string, maxBytes: number): CliError { return new CliError({ code: 'UPSTREAM_BODY_TOO_LARGE', message: `Upstream structured response exceeded ${maxBytes} bytes`, exitCode: EXIT.protocol, retryable: false, service, hint: 'Use a bounded query or native streaming artifact command' }); }
 
 function resolveBaseUrl(runtime: Runtime, service: string, canonicalOrigin: string): URL {
   const envName = `VEGVESEN_${service.toUpperCase().replaceAll('-', '_')}_BASE_URL`;
