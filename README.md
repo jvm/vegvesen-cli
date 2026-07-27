@@ -2,7 +2,7 @@
 
 Anonymous Node.js CLI for public Statens vegvesen services. Designed for deterministic use by people, scripts, CI, and coding agents.
 
-Current milestone supports Dataportalen catalog reads, NVDB Datakatalog and Områder, Parking Register reads/attachments, NVDB Status reads, service discovery, schemas, doctor, and non-sensitive config. Other products remain classified in `coverage.json` but unavailable until later implementation phases pass their health and access gates.
+Current milestone supports Dataportalen catalog reads; NVDB Datakatalog, Områder, road objects, road network, positions, and opaque-cursor streams; all nine Routing V3 profiles plus matrix and road-feature reads; Trafikkdata stations, volumes, AADT, indices, quality, coverage, and references; Parking Register reads/attachments; NVDB Status reads; service discovery, schemas, doctor, and non-sensitive config. Other products remain classified in `coverage.json` but unavailable until later implementation phases pass their health and access gates.
 
 ## Requirements
 
@@ -29,6 +29,22 @@ vegvesen catalog package search \
   --no-input
 
 vegvesen nvdb area county list --limit 20 --format json
+vegvesen nvdb object list 105 --municipality 0301 --limit 20 --format json
+
+vegvesen route calculate \
+  --profile best \
+  --stop 10.7522,59.9139 \
+  --stop 10.7550,59.9150 \
+  --input-srs EPSG:4326 \
+  --output-srs EPSG:4326 \
+  --return-field Geometry \
+  --format json
+
+vegvesen traffic aadt get \
+  --station 97411V72313 \
+  --year 2025 \
+  --format json
+
 vegvesen parking provider active --format json
 
 vegvesen parking sign-plan get 45538 \
@@ -62,6 +78,7 @@ npm install
 npm test
 npm run typecheck
 npm run check:coverage
+npm run check:graphql
 npm run check:examples
 npm run test:package
 ```

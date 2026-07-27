@@ -3,21 +3,101 @@
   "reviewed_at": "2026-07-27",
   "owner": "Jose Mocito",
   "units": [
-    {"unit":"ckan:package_search/package_show/resource_show/group_list/group_show/organization_list/organization_show/tag_list/tag_show/status_show","service":"catalog","disposition":"curated-command","reason":"Phase 2 bounded anonymous reads"},
-    {"unit":"openapi:nvdb-datakatalog:get operations","service":"nvdb-catalog","disposition":"curated-command","reason":"Phase 2 anonymous reads"},
-    {"unit":"openapi:nvdb-omrader:get operations","service":"nvdb-areas","disposition":"curated-command","reason":"Phase 2 anonymous reads"},
-    {"unit":"openapi:parking:get operations","service":"parking","disposition":"curated-command","reason":"Phase 2 anonymous reads"},
-    {"unit":"openapi:nvdb-status:public get operations","service":"nvdb-status","disposition":"curated-command","reason":"Phase 2 anonymous reads"},
-    {"unit":"websocket:nvdb-status","service":"nvdb-status","disposition":"excluded-with-reviewed-reason","reason":"Deferred until event schema and reconnect contract are captured"},
-    {"unit":"openapi:nvdb-core","service":"nvdb-core","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 3; access overlays incomplete"},
-    {"unit":"tnits:http-and-four-families","service":"tnits","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 5; retention and artifact fixtures pending"},
-    {"unit":"graphql:traffic-approved-roots","service":"traffic","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 4; introspection and persisted queries pending"},
-    {"unit":"swagger:route-open-twelve-operations","service":"route","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 4; anonymous policy re-attestation pending"},
-    {"unit":"openapi:fiks-anonymous-subset","service":"fiks","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 6; manual operation/effect review required"},
-    {"unit":"ogc:wms-wfs-five-families/features/maps/styles","service":"ogc","disposition":"dynamic-protocol","reason":"Runtime capability and link discovery planned for Phase 5"},
-    {"unit":"ogc:tiles-dggs","service":"ogc-tiles-dggs","disposition":"blocked-by-health-gate","reason":"Tiles returned HTTP 500 and DGGS exposed no collections"},
-    {"unit":"rest:nvdb-export-object-network","service":"nvdb-export","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 5; canonical host and range behavior pending"},
-    {"unit":"openapi:nvdb-reports-families","service":"nvdb-reports","disposition":"excluded-with-reviewed-reason","reason":"Deferred to Phase 6; each family requires bounded sync/async probe"},
-    {"unit":"openapi:nvdb-georeference-sync-async","service":"nvdb-georeference","disposition":"blocked-by-health-gate","reason":"Representative position request currently fails through obsolete upstream path"}
+    {
+      "unit": "ckan:package_search/package_show/resource_show/group_list/group_show/organization_list/organization_show/tag_list/tag_show/status_show",
+      "service": "catalog",
+      "disposition": "curated-command",
+      "reason": "Phase 2 bounded anonymous reads"
+    },
+    {
+      "unit": "openapi:nvdb-datakatalog:get operations",
+      "service": "nvdb-catalog",
+      "disposition": "curated-command",
+      "reason": "Phase 2 anonymous reads"
+    },
+    {
+      "unit": "openapi:nvdb-omrader:get operations",
+      "service": "nvdb-areas",
+      "disposition": "curated-command",
+      "reason": "Phase 2 anonymous reads"
+    },
+    {
+      "unit": "openapi:parking:get operations",
+      "service": "parking",
+      "disposition": "curated-command",
+      "reason": "Phase 2 anonymous reads"
+    },
+    {
+      "unit": "openapi:nvdb-status:public get operations",
+      "service": "nvdb-status",
+      "disposition": "curated-command",
+      "reason": "Phase 2 anonymous reads"
+    },
+    {
+      "unit": "websocket:nvdb-status",
+      "service": "nvdb-status",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Deferred until event schema and reconnect contract are captured"
+    },
+    {
+      "unit": "openapi:nvdb-core",
+      "service": "nvdb-core",
+      "disposition": "curated-command",
+      "reason": "Phase 3 curated NVDB V4 reads, cursors, and streams"
+    },
+    {
+      "unit": "tnits:http-and-four-families",
+      "service": "tnits",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Deferred to Phase 5; retention and artifact fixtures pending"
+    },
+    {
+      "unit": "graphql:traffic-approved-roots",
+      "service": "traffic",
+      "disposition": "curated-command",
+      "reason": "Phase 4 validated persisted GraphQL queries"
+    },
+    {
+      "unit": "swagger:route-open-twelve-operations",
+      "service": "route",
+      "disposition": "curated-command",
+      "reason": "Phase 4 all Routing V3 open operations"
+    },
+    {
+      "unit": "openapi:fiks-anonymous-subset",
+      "service": "fiks",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Deferred to Phase 6; manual operation/effect review required"
+    },
+    {
+      "unit": "ogc:wms-wfs-five-families/features/maps/styles",
+      "service": "ogc",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime capability and link discovery planned for Phase 5"
+    },
+    {
+      "unit": "ogc:tiles-dggs",
+      "service": "ogc-tiles-dggs",
+      "disposition": "blocked-by-health-gate",
+      "reason": "Tiles returned HTTP 500 and DGGS exposed no collections"
+    },
+    {
+      "unit": "rest:nvdb-export-object-network",
+      "service": "nvdb-export",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Deferred to Phase 5; canonical host and range behavior pending"
+    },
+    {
+      "unit": "openapi:nvdb-reports-families",
+      "service": "nvdb-reports",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Deferred to Phase 6; each family requires bounded sync/async probe"
+    },
+    {
+      "unit": "openapi:nvdb-georeference-sync-async",
+      "service": "nvdb-georeference",
+      "disposition": "blocked-by-health-gate",
+      "reason": "Representative position request currently fails through obsolete upstream path"
+    }
   ]
 }

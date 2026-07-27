@@ -26,6 +26,9 @@ const environment = {
   VEGVESEN_NVDB_AREAS_BASE_URL: origin,
   VEGVESEN_PARKING_BASE_URL: origin,
   VEGVESEN_NVDB_STATUS_BASE_URL: origin,
+  VEGVESEN_NVDB_CORE_BASE_URL: origin,
+  VEGVESEN_ROUTE_BASE_URL: origin,
+  VEGVESEN_TRAFFIC_BASE_URL: origin,
 };
 
 try {
