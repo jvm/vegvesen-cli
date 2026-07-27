@@ -464,6 +464,325 @@
       "unit": "OpenAPI /uberiket anonymous read and NDJSON operations",
       "disposition": "excluded-with-reviewed-reason",
       "reason": "Curated Phase 3 uses enriched V4 APIs; uberiket long-tail operations require Phase 7 generated registry and dedicated stream contracts"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wms capabilities",
+      "command": "ogc wms capabilities",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wms map",
+      "command": "ogc wms map",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wms feature-info",
+      "command": "ogc wms feature-info",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wfs capabilities",
+      "command": "ogc wfs capabilities",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wfs describe",
+      "command": "ogc wfs describe",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc wfs feature",
+      "command": "ogc wfs feature",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature landing",
+      "command": "ogc feature landing",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature conformance",
+      "command": "ogc feature conformance",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature api",
+      "command": "ogc feature api",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map landing",
+      "command": "ogc map landing",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map conformance",
+      "command": "ogc map conformance",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map api",
+      "command": "ogc map api",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style landing",
+      "command": "ogc style landing",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style conformance",
+      "command": "ogc style conformance",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style api",
+      "command": "ogc style api",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature collection list",
+      "command": "ogc feature collection list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature item",
+      "command": "ogc feature item",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map collection list",
+      "command": "ogc map collection list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map render",
+      "command": "ogc map render",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style list",
+      "command": "ogc style list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style get",
+      "command": "ogc style get",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc style metadata",
+      "command": "ogc style metadata",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "tnits",
+      "unit": "CLI mapping: tnits type list",
+      "command": "tnits type list",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "tnits",
+      "unit": "CLI mapping: tnits snapshot list",
+      "command": "tnits snapshot list",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "tnits",
+      "unit": "CLI mapping: tnits snapshot download",
+      "command": "tnits snapshot download",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "tnits",
+      "unit": "CLI mapping: tnits update list",
+      "command": "tnits update list",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "tnits",
+      "unit": "CLI mapping: tnits update download",
+      "command": "tnits update download",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-export",
+      "unit": "CLI mapping: nvdb export object",
+      "command": "nvdb export object",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-export",
+      "unit": "CLI mapping: nvdb export network",
+      "command": "nvdb export network",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "fiks",
+      "unit": "CLI mapping: fiks issue list",
+      "command": "fiks issue list",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "fiks",
+      "unit": "CLI mapping: fiks issue get",
+      "command": "fiks issue get",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "fiks",
+      "unit": "CLI mapping: fiks issue create",
+      "command": "fiks issue create",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "fiks",
+      "unit": "CLI mapping: fiks attachment get",
+      "command": "fiks attachment get",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "fiks",
+      "unit": "CLI mapping: fiks attachment add",
+      "command": "fiks attachment add",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-reports",
+      "unit": "CLI mapping: nvdb report family list",
+      "command": "nvdb report family list",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-reports",
+      "unit": "CLI mapping: nvdb report generate",
+      "command": "nvdb report generate",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-reports",
+      "unit": "CLI mapping: nvdb report job get",
+      "command": "nvdb report job get",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-reports",
+      "unit": "CLI mapping: nvdb report job wait",
+      "command": "nvdb report job wait",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-reports",
+      "unit": "CLI mapping: nvdb report artifact download",
+      "command": "nvdb report artifact download",
+      "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "CLI mapping: api service list",
+      "command": "api service list",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated anonymous operation registry"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "CLI mapping: api operation list",
+      "command": "api operation list",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated anonymous operation registry"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "CLI mapping: api operation describe",
+      "command": "api operation describe",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated anonymous operation registry"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "CLI mapping: api operation call",
+      "command": "api operation call",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated anonymous operation registry"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature collection get",
+      "command": "ogc feature collection get",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature queryable list",
+      "command": "ogc feature queryable list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature item list",
+      "command": "ogc feature item list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc feature item get",
+      "command": "ogc feature item get",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map collection get",
+      "command": "ogc map collection get",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
     }
   ]
 }

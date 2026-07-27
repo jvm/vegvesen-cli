@@ -2,7 +2,7 @@
 
 Anonymous Node.js CLI for public Statens vegvesen services. Designed for deterministic use by people, scripts, CI, and coding agents.
 
-Current milestone supports Dataportalen catalog reads; NVDB Datakatalog, Områder, road objects, road network, positions, and opaque-cursor streams; all nine Routing V3 profiles plus matrix and road-feature reads; Trafikkdata stations, volumes, AADT, indices, quality, coverage, and references; Parking Register reads/attachments; NVDB Status reads; service discovery, schemas, doctor, and non-sensitive config. Other products remain classified in `coverage.json` but unavailable until later implementation phases pass their health and access gates.
+Supports Dataportalen; NVDB catalog, areas, road data, exports, reports, status, and streams; all Routing V3 profiles; Trafikkdata; Parking Register; TN-ITS; legacy and modern OGC; the reviewed anonymous Fiksvegdata subset; and constrained generated operation access. Stedfesting and OGC Tiles/DGGS remain health-gated. Status WebSocket remains excluded until its public event contract is verifiable.
 
 ## Requirements
 
@@ -46,6 +46,17 @@ vegvesen traffic aadt get \
   --format json
 
 vegvesen parking provider active --format json
+vegvesen tnits snapshot list SpeedLimit --limit 5 --format json
+vegvesen ogc wms capabilities --family nvdb_2_0 --format json
+vegvesen ogc feature collection list --limit 5 --format json
+vegvesen api operation list nvdb-core --format json
+
+vegvesen nvdb export object 103 \
+  --artifact-format csv \
+  --municipality 5001 \
+  --output objects.csv \
+  --receipt-format json \
+  --no-input
 
 vegvesen parking sign-plan get 45538 \
   --output sign-plan.pdf \
@@ -55,7 +66,7 @@ vegvesen parking sign-plan get 45538 \
 
 Normal list queries default to `--limit 100`. Use `--all --format ndjson` for explicit complete traversal. `--cursor` and `--page-size` are accepted only by adapters with upstream paging; full-response endpoints provide local `--limit` plus an exact `--all` retrieval path. Machine formats never prompt. stdout contains result data only; diagnostics and machine errors use stderr.
 
-Native artifacts require `--output PATH|-`, refuse existing paths unless `--overwrite` is explicit, stream through a same-directory temporary file, and return size plus SHA-256 receipt.
+Native artifacts require `--output PATH|-`, refuse existing paths unless `--overwrite` is explicit, stream through a same-directory temporary file, and return size plus SHA-256 receipt. Fiks mutations require either `--dry-run` or explicit `--yes`; they are never automatically retried.
 
 ## Anonymous-only boundary
 
@@ -83,7 +94,7 @@ npm run check:examples
 npm run test:package
 ```
 
-See [`docs/design/cli-contract.md`](docs/design/cli-contract.md) for structured output, errors, pagination, artifact, access, and compatibility contracts.
+See [`COMMANDS.md`](COMMANDS.md) for the generated command reference and [`docs/design/cli-contract.md`](docs/design/cli-contract.md) for structured output, errors, pagination, artifact, access, and compatibility contracts.
 
 ## License
 

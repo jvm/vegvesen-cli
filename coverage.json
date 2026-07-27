@@ -37,7 +37,7 @@
       "unit": "websocket:nvdb-status",
       "service": "nvdb-status",
       "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred until event schema and reconnect contract are captured"
+      "reason": "WebSocket path and event schema are not published in OpenAPI; remains reviewed exclusion pending verifiable contract"
     },
     {
       "unit": "openapi:nvdb-core",
@@ -48,8 +48,8 @@
     {
       "unit": "tnits:http-and-four-families",
       "service": "tnits",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred to Phase 5; retention and artifact fixtures pending"
+      "disposition": "curated-command",
+      "reason": "Phase 5 snapshots, updates, ordering, and GML artifacts"
     },
     {
       "unit": "graphql:traffic-approved-roots",
@@ -66,8 +66,8 @@
     {
       "unit": "openapi:fiks-anonymous-subset",
       "service": "fiks",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred to Phase 6; manual operation/effect review required"
+      "disposition": "curated-command",
+      "reason": "Phase 6 manually reviewed anonymous issue and attachment subset"
     },
     {
       "unit": "ogc:wms-wfs-five-families/features/maps/styles",
@@ -84,14 +84,14 @@
     {
       "unit": "rest:nvdb-export-object-network",
       "service": "nvdb-export",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred to Phase 5; canonical host and range behavior pending"
+      "disposition": "curated-command",
+      "reason": "Phase 5 verified CSV/SOSI native exports"
     },
     {
       "unit": "openapi:nvdb-reports-families",
       "service": "nvdb-reports",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred to Phase 6; each family requires bounded sync/async probe"
+      "disposition": "curated-command",
+      "reason": "Phase 6 verified family discovery, job polling, and artifacts"
     },
     {
       "unit": "openapi:nvdb-georeference-sync-async",
