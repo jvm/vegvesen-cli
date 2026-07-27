@@ -92,6 +92,27 @@ const server = createServer(async (request, response) => {
     response.end(Buffer.from('%PDF-1.7 fixture'));
   } else if (url.pathname === '/api/v1/feilmeldinger/ulost') {
     response.end(JSON.stringify([{ id: 7, status: 'AKTIV' }]));
+  } else if (/^\/api\/v1\/systemer\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-1)), navn: 'fixture' }));
+  } else if (/^\/api\/v1\/systemer\/\d+\/status$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-2)), status: 'OPPE' }));
+  } else if (url.pathname === '/api/v1/statistikk' || url.pathname === '/api/v1/statistikk/nokkeldata') {
+    response.end(JSON.stringify({ scope: url.pathname.endsWith('nokkeldata') ? 'key-data' : 'full', antall: 1 }));
+  } else if (/^\/api\/v1\/feilmeldinger\/(\d+(\/(aktive|planlagt))?|aktiv|planlagt|avsluttet|siste|mellom)$/.test(url.pathname)) {
+    response.end(JSON.stringify([{ id: 7, scope: url.pathname.replace('/api/v1/feilmeldinger/', ''), from: url.searchParams.get('fra') }]));
+  } else if (url.pathname === '/rapporter/bruksklasser' || url.pathname === '/rapporter/kontraktsomraader' || url.pathname === '/rapporter/omraader' || url.pathname === '/rapporter/kostrarapporttyper' || url.pathname === '/rapporter/driftskontraktrapporttyper') {
+    response.end(JSON.stringify([{ id: 1, kind: url.pathname.split('/').at(-1) }]));
+  } else if (/^\/rapporter\/driftskontraktvegobjekttyper\/(default|tilvalg)\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify([{ id: 105, set: url.pathname.split('/').at(-2) }]));
+  } else if (url.pathname === '/rapporter/egendefinert' || url.pathname === '/rapporter/egendefinert/aggregate' || /^\/rapporter\/egendefinert\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ scope: url.pathname.replace('/rapporter/egendefinert', '') || '/list' }));
+  } else if (url.pathname === '/rapporter/kontraktZip') {
+    response.setHeader('content-type', 'application/zip');
+    response.end(Buffer.from('PK\u0003\u0004 fixture'));
+  } else if (url.pathname === '/api/v1/feilmelding/detaljert') {
+    response.end(JSON.stringify([{ id: 42, detaljert: true }]));
+  } else if (/^\/datakatalog\/api\/v1\/vegobjekttyper\/\d+\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-1)) }));
   } else if (url.pathname === '/api/v1/systemer') {
     response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
   } else if (url.pathname === '/ws/docs/openapi') {

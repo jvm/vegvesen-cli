@@ -508,3 +508,47 @@ test('invalid combinations fail with no stdout', () => {
     JSON.parse(result.stderr);
   }
 });
+
+test('promoted anonymous reads map to their exact upstream operations', () => {
+  const cases = [
+    [['nvdb', 'status', 'system', 'get', '3'], '/api/v1/systemer/3'],
+    [['nvdb', 'status', 'system', 'health', '3'], '/api/v1/systemer/3/status'],
+    [['nvdb', 'status', 'statistics', 'get'], '/api/v1/statistikk'],
+    [['nvdb', 'status', 'statistics', 'get', '--key-data'], '/api/v1/statistikk/nokkeldata'],
+    [['nvdb', 'status', 'message', 'list', '--state', 'latest'], '/api/v1/feilmeldinger/siste'],
+    [['nvdb', 'status', 'message', 'list', '--system', '3'], '/api/v1/feilmeldinger/3'],
+    [['nvdb', 'status', 'message', 'list', '--system', '3', '--state', 'active'], '/api/v1/feilmeldinger/3/aktive'],
+    [['nvdb', 'status', 'message', 'list', '--from', '2026-01-01', '--to', '2026-02-01'], '/api/v1/feilmeldinger/mellom?fra=2026-01-01&til=2026-02-01'],
+    [['nvdb', 'report', 'reference', 'list', 'load-class'], '/rapporter/bruksklasser'],
+    [['nvdb', 'report', 'reference', 'list', 'contract-area'], '/rapporter/kontraktsomraader'],
+    [['nvdb', 'report', 'reference', 'object-type', 'list', '5'], '/rapporter/driftskontraktvegobjekttyper/default/5'],
+    [['nvdb', 'report', 'reference', 'object-type', 'list', '5', '--optional'], '/rapporter/driftskontraktvegobjekttyper/tilvalg/5'],
+    [['nvdb', 'report', 'custom', 'list'], '/rapporter/egendefinert'],
+    [['nvdb', 'report', 'custom', 'get', '9'], '/rapporter/egendefinert/9'],
+    [['nvdb', 'report', 'custom', 'aggregate'], '/rapporter/egendefinert/aggregate'],
+    [['nvdb', 'catalog', 'type', 'property', '105', '1'], '/datakatalog/api/v1/vegobjekttyper/105/1'],
+    [['fiks', 'issue', 'list', '--detailed'], '/api/v1/feilmelding/detaljert'],
+  ];
+  for (const [args, expected] of cases) {
+    const result = run([...args, '--json', '--no-input']);
+    assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
+    JSON.parse(result.stdout);
+    assert.equal(requests().at(-1).url, expected, `${args.join(' ')} hit the wrong upstream path`);
+  }
+
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-archive-'));
+  const archive = run(['nvdb', 'report', 'contract-archive', 'download', '--output', join(directory, 'contracts.zip'), '--receipt-format', 'json', '--no-input']);
+  assert.equal(archive.status, 0, archive.stderr);
+  assert.equal(JSON.parse(archive.stdout).data.media_type, 'application/zip');
+
+  for (const args of [
+    ['nvdb', 'status', 'message', 'list', '--from', '2026-01-01'],
+    ['nvdb', 'status', 'message', 'list', '--from', '2026-01-01', '--to', '2026-02-01', '--system', '3'],
+    ['nvdb', 'status', 'message', 'list', '--system', '3', '--state', 'unresolved'],
+    ['nvdb', 'report', 'reference', 'list', 'nonsense'],
+  ]) {
+    const invalid = run([...args, '--json']);
+    assert.equal(invalid.status, 2, `${args.join(' ')} should be a usage error`);
+    assert.equal(invalid.stdout, '');
+  }
+});

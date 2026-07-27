@@ -68,6 +68,8 @@ function addNvdb(program: Command, runtime: Runtime, setResult: ResultSetter): v
   leaf(type, 'list', 'List object types.', 'nvdb catalog type list', 'nvdb-catalog', 'api/v1/vegobjekttyper');
   exactLeaf(type, 'get <type-id>', 'Get exact object type.', 'nvdb catalog type get', 'nvdb-catalog', (id) => `api/v1/vegobjekttyper/${integer(id, 'type-id')}`);
   exactLeaf(type, 'history <version>', 'Get object types at catalog version.', 'nvdb catalog type history', 'nvdb-catalog', (version) => `api/v1/vegobjekttyper/historisk/${encodeURIComponent(version)}`);
+  type.command('property <type-id> <property-id>').description('Get exact property type within an object type.')
+    .action((typeId: string, propertyId: string, _local, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb catalog type property', 'nvdb-catalog', `api/v1/vegobjekttyper/${integer(typeId, 'type-id')}/${integer(propertyId, 'property-id')}`, {}, command), command));
   const property = catalog.command('property').description('Read NVDB property metadata.');
   exactLeaf(property, 'get <property-id>', 'Get exact property type.', 'nvdb catalog property get', 'nvdb-catalog', (id) => `api/v1/egenskapstyper/${integer(id, 'property-id')}`);
   leaf(property, 'categories', 'List property categories.', 'nvdb catalog property categories', 'nvdb-catalog', 'api/v1/egenskapstypekategorier');
@@ -89,11 +91,32 @@ function addNvdb(program: Command, runtime: Runtime, setResult: ResultSetter): v
   leaf(status, 'current', 'Get current systems and status.', 'nvdb status current', 'nvdb-status', 'api/v1/systemer', statusOrigin);
   const dependency = status.command('dependency').description('Read systems and service dependencies.');
   leaf(dependency, 'list', 'List systems and dependencies.', 'nvdb status dependency list', 'nvdb-status', 'api/v1/systemer', statusOrigin);
+  const system = status.command('system').description('Read exact registered systems.');
+  exactLeaf(system, 'get <system-id>', 'Get exact registered system.', 'nvdb status system get', 'nvdb-status', (id) => `api/v1/systemer/${integer(id, 'system-id')}`, statusOrigin);
+  exactLeaf(system, 'health <system-id>', 'Get exact system operational status.', 'nvdb status system health', 'nvdb-status', (id) => `api/v1/systemer/${integer(id, 'system-id')}/status`, statusOrigin);
+  status.command('statistics').description('Read public status statistics.').command('get').description('Get status statistics.')
+    .option('--key-data', 'Return the summarized key-data statistics')
+    .action((local: { keyData?: boolean }, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb status statistics get', 'nvdb-status', `api/v1/statistikk${local.keyData ? '/nokkeldata' : ''}`, {}, command, statusOrigin), command));
   const message = status.command('message').description('Read incident and maintenance messages.');
   message.command('list').description('List status messages; bounded locally by --limit.')
-    .addOption(new Option('--state <state>', 'Message state').choices(['active', 'planned', 'closed', 'unresolved', 'all']).default('unresolved'))
-    .action((local: { state: string }, command: Command) => {
-      const suffix: Record<string, string> = { active: 'aktiv', planned: 'planlagt', closed: 'avsluttet', unresolved: 'ulost', all: '' };
+    .addOption(new Option('--state <state>', 'Message state').choices(['active', 'planned', 'closed', 'unresolved', 'latest', 'all']).default('unresolved'))
+    .option('--system <system-id>', 'Restrict to one registered system')
+    .option('--from <date>', 'Window start; requires --to')
+    .option('--to <date>', 'Window end; requires --from')
+    .action((local: { state: string; system?: string; from?: string; to?: string }, command: Command) => {
+      const explicitState = command.getOptionValueSource('state') !== 'default';
+      if ((local.from === undefined) !== (local.to === undefined)) throw usageError('--from and --to must be used together', 'Pass both bounds, or neither', local.from === undefined ? 'from' : 'to');
+      if (local.from !== undefined) {
+        if (local.system !== undefined || explicitState) throw usageError('--from/--to cannot combine with --system or --state', 'Query the window alone, or filter by system/state without a window', 'from');
+        return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', 'api/v1/feilmeldinger/mellom', { fra: local.from, til: local.to }, command, statusOrigin), command);
+      }
+      if (local.system !== undefined) {
+        const perSystem: Record<string, string> = { active: '/aktive', planned: '/planlagt', all: '' };
+        const state = explicitState ? local.state : 'all';
+        if (!(state in perSystem)) throw usageError(`--state ${state} is not available per system`, 'Use --state active, planned, or all with --system', 'state');
+        return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', `api/v1/feilmeldinger/${integer(local.system!, 'system')}${perSystem[state]}`, {}, command, statusOrigin), command);
+      }
+      const suffix: Record<string, string> = { active: 'aktiv', planned: 'planlagt', closed: 'avsluttet', unresolved: 'ulost', latest: 'siste', all: '' };
       return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', `api/v1/feilmeldinger${suffix[local.state] ? `/${suffix[local.state]}` : ''}`, {}, command, statusOrigin), command);
     });
   exactLeaf(message, 'get <message-id>', 'Get exact status message.', 'nvdb status message get', 'nvdb-status', (id) => `api/v1/feilmeldinger/${integer(id, 'message-id')}`, statusOrigin);
@@ -540,7 +563,8 @@ function addApi(program: Command, runtime: Runtime, setResult: ResultSetter): vo
 function addLifecycle(program: Command, runtime: Runtime, setResult: ResultSetter): void {
   const fiks = program.command('fiks').description('Read and submit anonymous Fiksvegdata issues.');
   const issue = fiks.command('issue');
-  issue.command('list').action((_local, command: Command) => setResult(() => fiksRead(runtime, 'fiks issue list', 'feilmelding', {}, queryOptions(command)), command));
+  issue.command('list').option('--detailed', 'Return the detailed anonymous issue projection')
+    .action((local: { detailed?: boolean }, command: Command) => setResult(() => fiksRead(runtime, 'fiks issue list', local.detailed ? 'feilmelding/detaljert' : 'feilmelding', {}, queryOptions(command)), command));
   issue.command('get <id>').action((id: string, _local, command: Command) => setResult(() => fiksRead(runtime, 'fiks issue get', `feilmelding/${integer(id, 'id')}`, {}, queryOptions(command)), command));
   issue.command('create').requiredOption('--body <input>', 'JSON body as @PATH or -').option('--dry-run', 'Validate and show redacted request plan').option('--yes', 'Confirm anonymous remote creation').action(async (local: { body: string; dryRun?: boolean; yes?: boolean }, command: Command) => { const body = await readJsonInput(runtime, local.body); return setResult(() => fiksCreate(runtime, body, { ...queryOptions(command), dryRun: local.dryRun, yes: local.yes }), command); });
   const attachment = fiks.command('attachment');
@@ -551,6 +575,34 @@ function addLifecycle(program: Command, runtime: Runtime, setResult: ResultSette
   const report = nvdb.command('report').description('Generate and resume anonymous NVDB reports.');
   report.command('family').command('list').action((_local, command: Command) => setResult(() => reportFamilyList(), command));
   report.command('generate').requiredOption('--family <id>').option('--param <name=value>', 'Report parameter; repeatable', collectValues, []).option('--dry-run', 'Validate and show the report request plan').option('--yes', 'Confirm potentially costly report generation').action((local: { family: string; param: string[]; dryRun?: boolean; yes?: boolean }, command: Command) => setResult(() => reportGenerate(runtime, local.family, keyValues(local.param), { ...queryOptions(command), dryRun: local.dryRun, yes: local.yes }), command));
+  const reference = report.command('reference').description('Read report reference data used to build report parameters.');
+  const referenceTypes: Record<string, string> = {
+    'load-class': 'bruksklasser',
+    'contract-area': 'kontraktsomraader',
+    area: 'omraader',
+    'kostra-type': 'kostrarapporttyper',
+    'contract-type': 'driftskontraktrapporttyper',
+  };
+  reference.command('list <type>').description(`Reference data; one of ${Object.keys(referenceTypes).join(', ')}.`)
+    .action((type: string, _local, command: Command) => {
+      const path = referenceTypes[type];
+      if (!path) throw usageError(`Unknown reference type: ${type}`, `Use ${Object.keys(referenceTypes).join(', ')}`, 'type');
+      return setResult(() => nvdbJson(runtime, 'nvdb report reference list', 'nvdb-reports', `rapporter/${path}`, {}, command, reportsOrigin), command);
+    });
+  reference.command('object-type').description('Read contract report object types.').command('list <report-type-id>')
+    .description('List default or optional object types for a contract report type.')
+    .option('--optional', 'Return the optional object types instead of the defaults')
+    .action((id: string, local: { optional?: boolean }, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb report reference object-type list', 'nvdb-reports', `rapporter/driftskontraktvegobjekttyper/${local.optional ? 'tilvalg' : 'default'}/${integer(id, 'report-type-id')}`, {}, command, reportsOrigin), command));
+  const custom = report.command('custom').description('Read published custom report definitions.');
+  custom.command('list').description('List custom report definitions.')
+    .action((_local, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb report custom list', 'nvdb-reports', 'rapporter/egendefinert', {}, command, reportsOrigin), command));
+  custom.command('get <report-id>').description('Get exact custom report definition.')
+    .action((id: string, _local, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb report custom get', 'nvdb-reports', `rapporter/egendefinert/${integer(id, 'report-id')}`, {}, command, reportsOrigin), command));
+  custom.command('aggregate').description('Get aggregated custom report definitions.')
+    .action((_local, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb report custom aggregate', 'nvdb-reports', 'rapporter/egendefinert/aggregate', {}, command, reportsOrigin), command));
+  report.command('contract-archive').description('Download the contract report archive.').command('download')
+    .description('Download the contract archive as native ZIP bytes.')
+    .action((_local, command: Command) => setResult(() => nativeRead(runtime, 'nvdb report contract-archive download', 'nvdb-reports', reportsOrigin, 'rapporter/kontraktZip', {}, artifactOptions(command)), command));
   const job = report.command('job');
   job.command('get <id>').action((id: string, _local, command: Command) => setResult(() => reportJob(runtime, id, false, queryOptions(command)), command));
   job.command('wait <id>').option('--wait-timeout <duration>', 'Maximum local polling time', '2m').action((id: string, local: { waitTimeout: string }, command: Command) => setResult(() => reportJob(runtime, id, true, { ...queryOptions(command), waitTimeout: local.waitTimeout }), command));

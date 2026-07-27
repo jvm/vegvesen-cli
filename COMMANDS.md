@@ -52,6 +52,7 @@ Generated from the same registry used by `vegvesen schema command`.
 - `vegvesen nvdb catalog type get` — Get exact NVDB object type
 - `vegvesen nvdb catalog type history` — Get object types at catalog version
 - `vegvesen nvdb catalog property get` — Get exact NVDB property type
+- `vegvesen nvdb catalog type property` — Get exact property type within an object type
 - `vegvesen nvdb catalog property categories` — List NVDB property categories
 - `vegvesen nvdb catalog product-spec get` — Get object type product specification
 - `vegvesen nvdb catalog category list` — List NVDB object categories
@@ -65,6 +66,9 @@ Generated from the same registry used by `vegvesen schema command`.
 - `vegvesen nvdb status current` — Get NVDB system status
 - `vegvesen nvdb status dependency list` — List NVDB systems and services
 - `vegvesen nvdb status message list` — List NVDB status messages
+- `vegvesen nvdb status system get` — Get exact registered system
+- `vegvesen nvdb status system health` — Get exact system operational status
+- `vegvesen nvdb status statistics get` — Get public status statistics
 - `vegvesen nvdb status message get` — Get exact NVDB status message
 - `vegvesen nvdb object list` — List NVDB road objects
 - `vegvesen nvdb object get` — Get exact NVDB road object
@@ -88,6 +92,12 @@ Generated from the same registry used by `vegvesen schema command`.
 - `vegvesen nvdb export network` — Export segmented network
 - `vegvesen nvdb report family list` — List report families
 - `vegvesen nvdb report generate` — Generate report
+- `vegvesen nvdb report reference list` — List report reference data
+- `vegvesen nvdb report reference object-type list` — List contract report object types
+- `vegvesen nvdb report custom list` — List custom report definitions
+- `vegvesen nvdb report custom get` — Get exact custom report definition
+- `vegvesen nvdb report custom aggregate` — Get aggregated custom report definitions
+- `vegvesen nvdb report contract-archive download` — Download contract report archive
 - `vegvesen nvdb report job get` — Get report job
 - `vegvesen nvdb report job wait` — Wait for report job
 - `vegvesen nvdb report artifact download` — Download report artifact

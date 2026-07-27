@@ -23,9 +23,9 @@ There is no **BLOCKED** state. A surface that cannot be verified anonymously fro
 
 | Measure | Current evidence |
 |---|---|
-| CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
+| CLI commands | 141 entries generated from `src/registry.ts` into `COMMANDS.md` |
 | Product coverage | 287 exact units (200 contract operations, 87 protocol units) across 13 services, checked by `scripts/check-coverage.mjs` and bound to `src/registry.ts` |
-| Offline tests | 46 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
+| Offline tests | 47 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
 | Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed |
@@ -65,12 +65,11 @@ Everything below is implementable offline, from checked-in evidence, with no app
 
 | # | Work | Phase |
 |---|---|---|
-| 1 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
-| 2 | Per-operation process fixtures for every generated-registry operation | 7 |
-| 3 | Expand the generated registry to the full reviewed anonymous set | 7 |
-| 4 | Fresh-read agreement fixture for representative NVDB reads | 3 |
-| 5 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
-| 6 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
+| 1 | Per-operation process fixtures for every generated-registry operation | 7 |
+| 2 | Expand the generated registry to the full reviewed anonymous set | 7 |
+| 3 | Fresh-read agreement fixture for representative NVDB reads | 3 |
+| 4 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
+| 5 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
 
 ### 0.5 Owner-operated items outside this plan
 
@@ -181,7 +180,7 @@ These are public, no-account reads on hosts already attested anonymous, currentl
 | NVDB Reports | `GET /rapporter/driftskontraktvegobjekttyper/default/{id}`, `/tilvalg/{id}` | `nvdb report reference object-type list {id} [--optional]` |
 | NVDB Reports | `GET /rapporter/egendefinert`, `/egendefinert/{reportid}`, `/egendefinert/aggregate` | `nvdb report custom list\|get\|aggregate` (reads only; the POST stays excluded) |
 | NVDB Reports | `GET /rapporter/kontraktZip` | `nvdb report contract-archive download` (native artifact) |
-| NVDB Datakatalog | `GET /api/v1/vegobjekttyper/{typeId}/{egenskapstypeId}` | Already shipped as `nvdb catalog property get`; reclassify only |
+| NVDB Datakatalog | `GET /api/v1/vegobjekttyper/{typeId}/{egenskapstypeId}` | `nvdb catalog type property TYPE_ID PROPERTY_ID` — the shipped `nvdb catalog property get` reads `egenskapstyper/{id}`, a different operation |
 | Fiksvegdata | `GET /api/v1/feilmelding/detaljert` | `fiks issue list --detailed` |
 
 Promotion rule applied: an operation is promoted only if it is a GET, its host already has an anonymous attestation, its path matches no exclusion rule in 4.2, and it can be exercised by an existing service adapter. Anything failing one of these stays excluded.
@@ -266,7 +265,7 @@ vegvesen catalog tag list|get
 vegvesen catalog status get
 
 vegvesen nvdb catalog version
-vegvesen nvdb catalog type list|get|history
+vegvesen nvdb catalog type list|get|history|property
 vegvesen nvdb catalog property get|categories
 vegvesen nvdb catalog product-spec get
 vegvesen nvdb catalog category list
@@ -1143,10 +1142,9 @@ Any unresolved question that changes access, privacy, effects, or compatibility 
 
 Phases 0–6 are implemented. The remaining work in 0.4 runs in this order, and every step is offline, deterministic, and free of approval points.
 
-1. **Phase 8 first.** Everything else depends on a coverage gate that measures the shipped product. Expanding the generated registry before the gate is bound would add operations under the same unverified classification that produced the 0.2 defect.
-2. **Phase 8 remainder:** promote the 4.3 reads and implement their commands. The binding assertions, overlay regeneration, command-array migration, `promotion_gate` removal, and the deletion of the Stedfesting, Tiles/DGGS, and WebSocket records are done.
-3. **Phase 7 next:** expand `api operation call` to the full `generated-operation` set, then add one metadata-driven process fixture per generated operation.
-4. **Phase 3/4 leftovers last**, in any order: NVDB route POST fixture, fresh-read agreement fixture, raw GeoJSON byte-preservation fixture.
+1. **Phase 8 is complete.** The binding assertions, overlay regeneration, command-array migration, `promotion_gate` removal, deletion of the Stedfesting/Tiles/DGGS/WebSocket records, and the 4.3 promotions all landed.
+2. **Phase 7 next:** expand `api operation call` to the full `generated-operation` set, then add one metadata-driven process fixture per generated operation.
+3. **Phase 3/4 leftovers last**, in any order: NVDB route POST fixture, fresh-read agreement fixture, raw GeoJSON byte-preservation fixture.
 
 Each step ends in an imperative commit with green `npm run validate`. A step that cannot pass its own acceptance is reported, not worked around.
 

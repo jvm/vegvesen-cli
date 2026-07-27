@@ -75,10 +75,12 @@
       "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb catalog type property"
+      ]
     },
     {
       "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/produktspesifikasjon",
