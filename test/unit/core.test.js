@@ -2,16 +2,62 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { PassThrough } from 'node:stream';
+import { PassThrough, Writable } from 'node:stream';
 import { test } from 'node:test';
-import { parseDuration, readResponseText } from '../../dist/core/http.js';
+import { parseDuration, readResponseText, request, requestJson } from '../../dist/core/http.js';
 import { readJsonInput } from '../../dist/core/input.js';
 import { redact } from '../../dist/core/redact.js';
 import { saveBytes } from '../../dist/core/artifact-writer.js';
 import { assertPromptAllowed } from '../../dist/core/prompt.js';
 import { processRuntime } from '../../dist/runtime.js';
 import { envelope } from '../../dist/contracts/output.js';
+import { processSignalError } from '../../dist/contracts/error.js';
 import { renderResult } from '../../dist/core/output.js';
+import { waitForDrain } from '../../dist/main.js';
+
+test('process lifetime abort interrupts sleep, fetch, and retry backoff', async () => {
+  const controller = new globalThis.AbortController();
+  const reason = processSignalError('SIGINT');
+  const runtime = processRuntime(controller.signal);
+  const sleep = runtime.sleep(10000, runtime.signal);
+  controller.abort(reason);
+  await assert.rejects(sleep, (error) => error === reason);
+
+  const fetchController = new globalThis.AbortController();
+  const fetchReason = processSignalError('SIGTERM');
+  const fetchRuntime = { ...processRuntime(fetchController.signal), fetch: (_url, init) => new Promise((_resolve, reject) => init.signal.addEventListener('abort', () => reject(init.signal.reason), { once: true })) };
+  const fetching = request(fetchRuntime, { service: 'fixture', canonicalOrigin: 'https://fixture.test', path: '/', retries: 0 });
+  fetchController.abort(fetchReason);
+  await assert.rejects(fetching, (error) => error === fetchReason);
+
+  const retryController = new globalThis.AbortController();
+  const retryReason = processSignalError('SIGINT');
+  const retryRuntime = { ...processRuntime(retryController.signal), fetch: async () => new Response('{}', { status: 503, headers: { 'content-type': 'application/json' } }), random: () => 0 };
+  const retrying = request(retryRuntime, { service: 'fixture', canonicalOrigin: 'https://fixture.test', path: '/', retries: 2 });
+  setTimeout(() => retryController.abort(retryReason), 10);
+  await assert.rejects(retrying, (error) => error === retryReason);
+});
+
+test('process lifetime abort is preserved while reading a JSON response body', async () => {
+  const controller = new globalThis.AbortController();
+  const reason = processSignalError('SIGINT');
+  const body = new globalThis.ReadableStream({ start(stream) { stream.enqueue(new globalThis.TextEncoder().encode('{"partial":')); controller.signal.addEventListener('abort', () => stream.error(controller.signal.reason), { once: true }); } });
+  const runtime = { ...processRuntime(controller.signal), fetch: async () => new Response(body, { headers: { 'content-type': 'application/json' } }) };
+  const reading = requestJson(runtime, { service: 'fixture', canonicalOrigin: 'https://fixture.test', path: '/', retries: 0 });
+  setTimeout(() => controller.abort(reason), 10);
+  await assert.rejects(reading, (error) => error === reason);
+});
+
+test('process lifetime abort releases a non-draining stdout backpressure wait', async () => {
+  const controller = new globalThis.AbortController();
+  const reason = processSignalError('SIGTERM');
+  const blocked = new Writable({ write() { /* deliberately never signals drain */ } });
+  const waiting = waitForDrain(blocked, controller.signal);
+  controller.abort(reason);
+  await assert.rejects(waiting, (error) => error === reason);
+  assert.equal(blocked.listenerCount('drain'), 0);
+  assert.equal(blocked.listenerCount('error'), 0);
+});
 
 test('duration parser accepts bounded explicit units', () => {
   assert.equal(parseDuration('500ms'), 500);

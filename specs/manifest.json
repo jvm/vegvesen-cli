@@ -12,7 +12,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "catalog"
+      ],
+      "overlays": [
+        "specs/overlays/catalog.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-catalog",
@@ -24,7 +33,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-catalog"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-catalog.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-areas",
@@ -36,7 +54,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-areas"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-areas.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "parking",
@@ -48,7 +75,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "parking"
+      ],
+      "overlays": [
+        "specs/overlays/parking.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-status",
@@ -60,7 +96,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-status"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-status.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-core",
@@ -72,7 +117,22 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-core:monitor",
+        "nvdb-core:uberiket",
+        "nvdb-core:vegnett",
+        "nvdb-core:vegobjekter"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-core--monitor.json",
+        "specs/overlays/nvdb-core--uberiket.json",
+        "specs/overlays/nvdb-core--vegnett.json",
+        "specs/overlays/nvdb-core--vegobjekter.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "tnits",
@@ -84,7 +144,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "tnits"
+      ],
+      "overlays": [
+        "specs/overlays/tnits.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "traffic",
@@ -96,7 +165,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "snapshot-approved",
+      "contracts": [
+        "traffic"
+      ],
+      "overlays": [
+        "specs/overlays/traffic.json"
+      ],
+      "provenance": "Official introspection endpoint pinned by SHA-256; schema metadata snapshot approved by the owner and excluded from the npm tarball",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "route",
@@ -108,7 +186,16 @@
       "health": "stable-policy-caution",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "route"
+      ],
+      "overlays": [
+        "specs/overlays/route.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "fiks",
@@ -120,7 +207,16 @@
       "health": "stable-policy-caution",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "fiks"
+      ],
+      "overlays": [
+        "specs/overlays/fiks.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "ogc",
@@ -132,7 +228,22 @@
       "health": "stable-dynamic",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#official-wmswfs-layer-families",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "ogc",
+        "ogc:legacy",
+        "ogc:maps",
+        "ogc:styles"
+      ],
+      "overlays": [
+        "specs/overlays/ogc.json",
+        "specs/overlays/ogc--legacy.json",
+        "specs/overlays/ogc--maps.json",
+        "specs/overlays/ogc--styles.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#official-wmswfs-layer-families",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "ogc-tiles-dggs",
@@ -144,7 +255,16 @@
       "health": "blocked-by-health-gate",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#current-implementation-cautions",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "ogc-tiles-dggs"
+      ],
+      "overlays": [
+        "specs/overlays/ogc-tiles-dggs.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#current-implementation-cautions",
+      "health_evidence": "docs/research/public-apis.md#current-implementation-cautions"
     },
     {
       "id": "nvdb-export",
@@ -156,7 +276,16 @@
       "health": "stable",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-export"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-export.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-reports",
@@ -168,7 +297,16 @@
       "health": "stable-policy-caution",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-reports"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-reports.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
     },
     {
       "id": "nvdb-georeference",
@@ -180,7 +318,16 @@
       "health": "blocked-by-health-gate",
       "verified_at": "2026-07-26T00:00:00Z",
       "evidence": "docs/research/public-apis.md#current-implementation-cautions",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-georeference"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-georeference.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#current-implementation-cautions",
+      "health_evidence": "docs/research/public-apis.md#current-implementation-cautions"
     }
   ]
 }

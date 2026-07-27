@@ -2,7 +2,7 @@
 
 _Status: implementation in progress_  
 _Research baseline: 26–27 July 2026_  
-_Implementation status last verified: 27 July 2026 at commit `9622490`_  
+_Implementation status last verified: 27 July 2026 in the working tree based on commit `9118bb9`_
 _Target: a production-quality Node.js CLI exposing the full anonymously accessible public API surface operated by Statens vegvesen._
 
 ## 0. Implementation status ledger
@@ -22,11 +22,11 @@ Status meanings:
 | Measure | Current evidence |
 |---|---|
 | CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
-| Product coverage | 16 units and 126 operation records checked by `scripts/check-coverage.mjs` |
-| Offline tests | 28 passing Node tests, including real executable process tests |
+| Product coverage | 307 exact units (206 contract operations and 101 protocol units) plus 125 runtime mapping records checked by `scripts/check-coverage.mjs` |
+| Offline tests | 42 passing Node tests, including real executable, kernel PTY, signal, cancellation, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
-| Package | Packed, installed, and executed outside the checkout on Node 20/22/24 probes; research introspection excluded from tarball |
+| Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed; research introspection excluded from tarball |
 | Live evidence | `docs/attestations/2026-07-27-phases-3-4.md` and `docs/attestations/2026-07-27-phases-5-7.md` |
 | Security | ESLint security rules, Semgrep, CodeQL workflow, Betterleaks, actionlint, zizmor, OpenSSF Scorecard, production audit, input/body limits, XML hardening, seeded redaction tests |
 | Repository policy | Private vulnerability reporting and Dependabot security updates enabled; strict protected `main` checks enabled |
@@ -36,10 +36,10 @@ Status meanings:
 
 | Phase | State | Implemented | Remaining before phase acceptance is complete |
 |---|---|---|---|
-| 0 — scope/specification | **PARTIAL** | Scope/CLI ADRs, anonymous boundary, manifest, source hashes, overlay schema, health gates, coverage files | Derive exhaustive operation units from every upstream contract; add missing generation-quality source metadata/overlays; resolve stale operation exclusions |
-| 1 — foundation | **PARTIAL** | TypeScript/Commander executable, nested help, schemas, config, doctor, output/errors, prompt policy, package probe | Full PTY and mixed-stream matrix; explicit SIGINT/SIGTERM process tests |
+| 0 — scope/specification | **COMPLETE** | Scope/CLI ADRs, anonymous boundary, 21 pinned sources/overlays, 206 derived contract operations, 101 protocol units, health gates, and exact generated coverage | Continue scheduled drift review and owner review when upstream contracts change |
+| 1 — foundation | **COMPLETE** | TypeScript/Commander executable, nested help, schemas, config, doctor, output/errors, prompt policy, package probe, full/mixed PTYs, and cooperative SIGINT/SIGTERM | Continue regression coverage as process behavior evolves |
 | 2 — transport/simple reads | **COMPLETE** | HTTP policy, retries/timeouts, redirect/origin controls, config, artifact writer, Catalog, Parking, NVDB catalog/areas/status REST | Continue regression coverage as adapters evolve |
-| 3 — NVDB core | **PARTIAL** | Objects, versions, changes, statistics, links, segments, nodes, positions, routes, monitor, cursors, streams | `/uberiket`; exhaustive operation derivation; explicit fresh-read agreement tests; remove stale grouped-statistics exclusions |
+| 3 — NVDB core | **PARTIAL** | Objects, versions, changes, statistics, links, segments, nodes, positions, routes, monitor, cursors, streams; exact `/uberiket` exclusions and generated grouped statistics | Explicit fresh-read agreement tests plus remaining cursor/stream negative fixtures |
 | 4 — Routing/Trafikkdata | **PARTIAL** | All 9 profiles, matrix, 2 road-feature reads, validated persisted GraphQL queries, partial-result behavior | Dedicated matrix/road-feature process fixtures; exact raw GeoJSON fixture; re-attest anonymous policy immediately before release |
 | 5 — OGC/TN-ITS/export | **PARTIAL** | Legacy and modern OGC commands, axis handling, next-link traversal, TN-ITS, NVDB CSV/SOSI exports, native streaming | Live independent WFS semantic check; repeated-next-link fixture; interrupted large-stream cleanup test; Tiles/DGGS remain blocked |
 | 6 — lifecycle/mutations | **PARTIAL** | Report generation/job/wait/download, bounded live report lifecycle, Fiks anonymous reads/create/attachments with dry-run/confirmation | Status WebSocket contract; Stedfesting health gate; complete report-family classification; job/watch signal tests |
@@ -49,16 +49,16 @@ Status meanings:
 
 This maps directly to Section 2.
 
-1. **PARTIAL** — every currently declared unit has a disposition, but units are not yet exhaustively generated from all upstream operations and several exclusions are stale.
+1. **COMPLETE** — all 206 pinned contract operations and 101 protocol-specific units have exactly one owner-reviewed disposition; missing/extra units and stale overlay targets fail the offline gate.
 2. **COMPLETE** — service metadata distinguishes stable, caution, dynamic, excluded, experimental, and blocked surfaces.
 3. **COMPLETE for supported commands** — structured output and stdout/stderr separation are implemented and process-tested.
 4. **COMPLETE** — explicit machine modes and detached stdin do not prompt or hang.
 5. **PARTIAL** — bounded defaults and explicit `--all` exist; OGC multi-page/loop fixtures and broader per-command paging proofs remain.
 6. **COMPLETE for implemented artifacts** — streamed atomic writes, overwrite protection, binary-TTY guard, size, and SHA-256 receipts exist.
 7. **PARTIAL** — mutation, report job, retry, anonymous-access, and partial-result contracts exist; Status WebSocket and full signal lifecycle remain.
-8. **PARTIAL** — source drift, GraphQL validation, docs generation, and coverage checks exist; full client/operation regeneration and overlay target validation do not.
+8. **PARTIAL** — source drift, GraphQL validation, docs generation, exact operation/protocol regeneration, and overlay target validation exist; full generated client regeneration does not.
 9. **PARTIAL** — representative offline process and live product tests exist, but not one fixture for every one of the 131 mappings.
-10. **PARTIAL** — local installed-package and Node 20/22/24 probes pass; the new remote matrix has not run and npm publication is not configured.
+10. **PARTIAL** — the installed-package probe passes on the local Node runtime and the Node 20/22/24 remote matrix is configured, but that matrix has not run and npm publication is not configured.
 
 ### 0.4 Acceptance checklist by phase
 
@@ -67,13 +67,13 @@ This maps directly to Section 2.
 - **COMPLETE** — every product named in Section 4 appears in `specs/manifest.json` and `coverage.json`.
 - **COMPLETE** — public status is owner-reviewed rather than inferred solely from missing OpenAPI security.
 - **COMPLETE** — credentials/login are absent and known authenticated/admin operations are excluded.
-- **PARTIAL** — deterministic digest checking covers captured sources, but not every source/product listed in Phase 0.
+- **COMPLETE** — all manifest products/sub-specs have pinned source metadata, deterministic digest or expected-health checking, derived units, and owner-reviewed overlays.
 
 #### Phase 1
 
 - **COMPLETE** — help/version and strict invalid-usage process behavior pass.
 - **COMPLETE** — detached stdin cannot hang and machine stdout/stderr parse cleanly.
-- **PARTIAL** — prompt policy is implemented, but machine mode under real full/mixed PTYs lacks automated coverage.
+- **COMPLETE** — machine mode is automated under real full and mixed kernel PTYs and never prompts or contaminates machine streams.
 - **COMPLETE** — npm tarball installs and executes outside the checkout.
 
 #### Phase 2
@@ -86,7 +86,7 @@ This maps directly to Section 2.
 
 #### Phase 3
 
-- **PARTIAL** — curated V4 operations are mapped; `/uberiket` and exact long-tail coverage remain excluded/deferred.
+- **COMPLETE** — curated V4 operations, generated grouped statistics, and each `/uberiket` long-tail operation have exact owner-reviewed dispositions.
 - **PARTIAL** — opaque cursor/all-page fixtures prove ordered traversal without duplicates; explicit repeated-cursor and server-capped-page negative fixtures remain.
 - **PARTIAL** — large NVDB route bodies select reviewed read-only POST semantics in code, but the POST mapping lacks a dedicated process fixture.
 - **PARTIAL** — NDJSON is tagged and backpressure-aware; a dedicated mid-stream failure process fixture remains.
@@ -112,7 +112,7 @@ This maps directly to Section 2.
 #### Phase 6
 
 - **PARTIAL** — one bounded real report completed through start/poll/download; not every public report family is classified and tested.
-- **PARTIAL** — report IDs are resumable and starts are not retried; explicit SIGINT/SIGTERM wait tests remain.
+- **COMPLETE** — report IDs are resumable, starts are not retried, and explicit SIGINT/SIGTERM wait tests prove exits 130/143 without remote cancellation.
 - **NOT STARTED** — Status WebSocket reconnect, malformed-frame, event-tag, and signal tests await a verifiable public contract.
 - **BLOCKED** — Stedfesting remains gated by the obsolete upstream dependency path.
 - **COMPLETE** — Fiks dry-run and missing confirmation make zero network calls.
@@ -134,14 +134,10 @@ This maps directly to Section 2.
 - **NOT STARTED** — clean-context agent evaluations have not been run.
 - **COMPLETE locally** — package excludes research introspection and test endpoint overrides; first registry publication remains pending.
 
-### 0.5 Known stale records and immediate follow-up
+### 0.5 Immediate follow-up
 
 Before declaring 1.0 complete:
 
-- Update the OGC coverage reason that still says runtime discovery is “planned for Phase 5”; it is implemented.
-- Remove or reclassify grouped NVDB statistics exclusions now covered by `specs/public-operations.json`.
-- Decide and implement/exclude the exact NVDB catalog property relationship, additional Status reads/statistics, and `/uberiket` operations.
-- Derive coverage from pinned contracts instead of treating the manually curated operation file as exhaustive evidence.
 - Run the first protected GitHub PR and verify all required check context names.
 - Configure npm trusted publishing before creating the first release tag.
 

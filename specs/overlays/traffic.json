@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "contract_id": "traffic",
+  "source_digest": "sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "traffic:GraphQL areas",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic reference area list"
+    },
+    {
+      "target_id": "traffic:GraphQL publishedAreaTrafficVolumeIndex",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic index area"
+    },
+    {
+      "target_id": "traffic:GraphQL publishedAreaTrafficVolumeIndices",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic index published"
+    },
+    {
+      "target_id": "traffic:GraphQL roadCategories",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic reference road-category list"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficData.volume.average.daily.byYear",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic aadt get"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficData.volume.byDay",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic volume daily"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficData.volume.byHour",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic volume hourly"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficData.volume.byHour.byLengthRange",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic volume length-class"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficRegistrationPoints exact IDs",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic station get"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficRegistrationPoints search",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic station list"
+    },
+    {
+      "target_id": "traffic:GraphQL TrafficVolume coverage",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic coverage get"
+    },
+    {
+      "target_id": "traffic:GraphQL TrafficVolume quality ratios",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic quality get"
+    },
+    {
+      "target_id": "traffic:GraphQL trafficVolumeIndices",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "traffic index station"
+    }
+  ]
+}

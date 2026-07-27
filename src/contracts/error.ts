@@ -9,6 +9,8 @@ export const EXIT = {
   network: 8,
   partial: 9,
   io: 10,
+  interrupted: 130,
+  terminated: 143,
 } as const;
 
 export type ExitCode = (typeof EXIT)[keyof typeof EXIT];
@@ -26,6 +28,17 @@ export interface ErrorDetails {
   requestId?: string;
   retryAfterSeconds?: number;
   outcomeUnknown?: boolean;
+}
+
+export function processSignalError(signal: 'SIGINT' | 'SIGTERM'): CliError {
+  const interrupted = signal === 'SIGINT';
+  return new CliError({
+    code: interrupted ? 'INTERRUPTED' : 'TERMINATED',
+    message: interrupted ? 'Operation interrupted by SIGINT' : 'Operation terminated by SIGTERM',
+    exitCode: interrupted ? EXIT.interrupted : EXIT.terminated,
+    retryable: true,
+    hint: 'Resume the operation using its documented identifier',
+  });
 }
 
 export class CliError extends Error {

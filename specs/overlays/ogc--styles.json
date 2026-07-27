@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "contract_id": "ogc:styles",
+  "source_digest": "sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "ogc:OGC API styles api",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style api"
+    },
+    {
+      "target_id": "ogc:OGC API styles conformance",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style conformance"
+    },
+    {
+      "target_id": "ogc:OGC API styles get",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style get"
+    },
+    {
+      "target_id": "ogc:OGC API styles landing",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style landing"
+    },
+    {
+      "target_id": "ogc:OGC API styles list",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style list"
+    },
+    {
+      "target_id": "ogc:OGC API styles metadata",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:styles source sha256:f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": "ogc style metadata"
+    }
+  ]
+}

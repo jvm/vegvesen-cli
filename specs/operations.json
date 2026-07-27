@@ -121,7 +121,7 @@
       "service": "nvdb-catalog",
       "unit": "GET /api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}",
       "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred exact object-property relationship mapping to generated-operation phase"
+      "reason": "Excluded from anonymous v1 pending exact semantic mapping and a dedicated offline/live agreement fixture; promote only after both pass"
     },
     {
       "service": "nvdb-areas",
@@ -230,12 +230,6 @@
       "unit": "GET /api/v1/feilmeldinger/aktiv|avsluttet|planlagt|ulost",
       "command": "nvdb status message list --state STATE",
       "disposition": "curated-command"
-    },
-    {
-      "service": "nvdb-status",
-      "unit": "GET /api/v1/systemer/{id}; /status; filtered/latest/range message reads; statistics reads",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Deferred to reviewed generated-operation registry; curated v1 milestone covers common status workflows"
     },
     {
       "service": "nvdb-status",
@@ -449,21 +443,21 @@
     },
     {
       "service": "nvdb-core",
-      "unit": "GET /vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert[/egenskap]",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Specialized grouped statistics deferred to reviewed generated-operation access in Phase 7"
+      "unit": "GET /vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated operation object-statistics-grouped; exact mapping in specs/public-operations.json"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "GET /vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert/egenskap",
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated operation object-statistics-grouped-property; exact mapping in specs/public-operations.json"
     },
     {
       "service": "nvdb-core",
       "unit": "GET /vegnett/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Specialized grouped statistics deferred to reviewed generated-operation access in Phase 7"
-    },
-    {
-      "service": "nvdb-core",
-      "unit": "OpenAPI /uberiket anonymous read and NDJSON operations",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Curated Phase 3 uses enriched V4 APIs; uberiket long-tail operations require Phase 7 generated registry and dedicated stream contracts"
+      "disposition": "generated-operation",
+      "reason": "Reviewed generated operation network-statistics-grouped; exact mapping in specs/public-operations.json"
     },
     {
       "service": "ogc",

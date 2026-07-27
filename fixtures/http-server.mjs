@@ -115,6 +115,8 @@ const server = createServer(async (request, response) => {
     response.statusCode = 503; response.end('{}');
   } else if (url.pathname === '/rapporter/rapporttyper') {
     response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
+  } else if (url.pathname === '/rapporter/poll/fixture-running') {
+    response.end(JSON.stringify({ id: 'fixture-running', status: 'RUNNING' }));
   } else if (url.pathname.startsWith('/rapporter/poll/')) {
     response.end(JSON.stringify({ id: url.pathname.split('/').at(-1), status: 'SUCCESS', rapport: { nedlastLink: 'fixture.xlsx' } }));
   } else if (url.pathname.startsWith('/rapporter/nedlasting/')) {

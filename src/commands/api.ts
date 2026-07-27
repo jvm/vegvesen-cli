@@ -6,7 +6,7 @@ import { serviceSource } from '../core/metadata.js';
 import type { Runtime } from '../runtime.js';
 import { numberOption, type QueryOptions } from './catalog.js';
 
-interface Operation { service: string; id: string; method: 'GET' | 'POST'; origin: string; path: string; path_parameters: string[]; query_parameters: string[]; effect: 'read'; retry: 'safe' }
+interface Operation { target_id: string; service: string; id: string; method: 'GET' | 'POST'; origin: string; path: string; path_parameters: string[]; query_parameters: string[]; required_query_parameters: string[]; effect: 'read'; retry: 'safe' }
 const operations = (JSON.parse(readFileSync(new URL('../../specs/public-operations.json', import.meta.url), 'utf8')) as { operations: Operation[] }).operations;
 
 export function apiServiceList(): CommandResult { return result('api service list', [...new Set(operations.map((item) => item.service))].map((service) => ({ service, operation_count: operations.filter((item) => item.service === service).length }))); }
@@ -23,13 +23,14 @@ export async function apiOperationCall(runtime: Runtime, service: string, id: st
     if (!value) throw usageError(`Missing path parameter: ${name}`, `Pass --param ${name}=VALUE`, 'param');
     path = path.replace(`{${name}}`, encodeURIComponent(value));
   }
+  for (const name of operation.required_query_parameters) if (!parameters[name]) throw usageError(`Missing required query parameter: ${name}`, `Pass --param ${name}=VALUE`, 'param');
   const query = Object.fromEntries(operation.query_parameters.flatMap((name) => parameters[name] === undefined ? [] : [[name, parameters[name]!]]));
   const upstream = await request(runtime, { service: operation.service, canonicalOrigin: operation.origin, path, query, method: operation.method, headers: operation.service.startsWith('nvdb') ? { 'X-Client': 'vegvesen-cli/generated-operation' } : undefined, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: operation.retry === 'safe', accept: 'application/json' });
   const raw = await readResponseText(upstream.response, service);
   let data: unknown;
-  try { data = JSON.parse(raw); } catch (error) { throw new CliError({ code: 'INVALID_UPSTREAM_JSON', message: 'Generated operation returned malformed JSON', exitCode: EXIT.protocol, retryable: false, service, hint: 'Check operation metadata and upstream health' }, { cause: error }); }
+  try { data = JSON.parse(raw); } catch (error) { if (runtime.signal.aborted) throw runtime.signal.reason; throw new CliError({ code: 'INVALID_UPSTREAM_JSON', message: 'Generated operation returned malformed JSON', exitCode: EXIT.protocol, retryable: false, service, hint: 'Check operation metadata and upstream health' }, { cause: error }); }
   return { command: 'api operation call', source: serviceSource(service), data, raw, meta: { operation_id: id } };
 }
 function find(service: string, id: string): Operation { const operation = operations.find((item) => item.service === service && item.id === id); if (!operation) throw usageError(`Unknown generated operation: ${service}/${id}`, 'Use vegvesen api operation list SERVICE', 'operation'); return operation; }
-function publicOperation(operation: Operation): Omit<Operation, 'origin'> { return { service: operation.service, id: operation.id, method: operation.method, path: operation.path, path_parameters: operation.path_parameters, query_parameters: operation.query_parameters, effect: operation.effect, retry: operation.retry }; }
+function publicOperation(operation: Operation): Omit<Operation, 'origin' | 'target_id'> { return { service: operation.service, id: operation.id, method: operation.method, path: operation.path, path_parameters: operation.path_parameters, query_parameters: operation.query_parameters, required_query_parameters: operation.required_query_parameters, effect: operation.effect, retry: operation.retry }; }
 function result(command: string, data: unknown): CommandResult { return { command, source: serviceSource('api'), data }; }

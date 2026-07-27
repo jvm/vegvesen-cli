@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-status",
+  "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avhengigheter",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avmeld/{epost}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/tjenester/{tjenesteId}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb status message list --state all"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{id}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb status message get"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/aktive",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/planlagt",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/aktiv",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb status message list --state STATE"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/avsluttet",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/mellom",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/planlagt",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/siste",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/feilmeldinger/ulost",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/statistikk",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/statistikk/nokkeldata",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/systemer",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb status current; nvdb status dependency list"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/systemer/{id}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:GET /api/v1/systemer/{id}/status",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/feilmeldinger",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/los",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/meldinger",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/systemer",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/systemer/{id}/abonner",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/systemer/{id}/avhengigheter",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/systemer/{id}/slack",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:POST /api/v1/systemer/{id}/tjenester",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/arsak",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/omskriv",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/OppdaterTittel",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/status",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/systemer",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/aktiver",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/deaktiver",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
+      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+    },
+    {
+      "target_id": "nvdb-status:WebSocket event frame",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source",
+      "promotion_gate": "Promote after handshake, event schema, reconnect, malformed-frame, and signal fixtures"
+    },
+    {
+      "target_id": "nvdb-status:WebSocket handshake",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source",
+      "promotion_gate": "Promote after handshake, event schema, reconnect, malformed-frame, and signal fixtures"
+    },
+    {
+      "target_id": "nvdb-status:WebSocket reconnect control",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source",
+      "promotion_gate": "Promote after handshake, event schema, reconnect, malformed-frame, and signal fixtures"
+    },
+    {
+      "target_id": "nvdb-status:WebSocket SIGINT",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source",
+      "promotion_gate": "Promote after handshake, event schema, reconnect, malformed-frame, and signal fixtures"
+    },
+    {
+      "target_id": "nvdb-status:WebSocket SIGTERM",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source",
+      "promotion_gate": "Promote after handshake, event schema, reconnect, malformed-frame, and signal fixtures"
+    }
+  ]
+}

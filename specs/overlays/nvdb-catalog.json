@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-catalog",
+  "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/egenskapstypekategorier",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog property categories"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/egenskapstyper/{egenskapstypeid}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog property get"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/enheter",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog unit list"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/kategorier",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog category list"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog type list"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog type get"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "unverified",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
+      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/produktspesifikasjon",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog product-spec get"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/vegobjekttyper/historisk/{versjon}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog type history"
+    },
+    {
+      "target_id": "nvdb-catalog:GET /api/v1/versjon",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-catalog source sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": "nvdb catalog version"
+    }
+  ]
+}

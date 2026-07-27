@@ -45,7 +45,7 @@ export async function request(runtime: Runtime, options: HttpOptions): Promise<H
     try {
       const response = await fetchWithRedirects(runtime, url, headers, options, parseDuration(options.timeout ?? '30s'));
       if (transientStatuses.has(response.status) && attempt < retries) {
-        await runtime.sleep(retryDelay(response.headers, attempt, runtime.random, runtime.now));
+        await runtime.sleep(retryDelay(response.headers, attempt, runtime.random, runtime.now), runtime.signal);
         attempt += 1;
         continue;
       }
@@ -53,8 +53,9 @@ export async function request(runtime: Runtime, options: HttpOptions): Promise<H
       return response;
     } catch (error) {
       if (error instanceof CliError) throw error;
+      if (runtime.signal.aborted) throw runtime.signal.reason;
       if (attempt < retries && isTransientNetworkError(error)) {
-        await runtime.sleep(backoff(attempt, runtime.random));
+        await runtime.sleep(backoff(attempt, runtime.random), runtime.signal);
         attempt += 1;
         continue;
       }
@@ -72,6 +73,7 @@ export async function requestJson<T>(runtime: Runtime, options: HttpOptions): Pr
     const raw = await readResponseText(response.response, options.service);
     return { data: JSON.parse(raw) as T, response, raw };
   } catch (error) {
+    if (runtime.signal.aborted) throw runtime.signal.reason;
     throw new CliError({ code: 'INVALID_UPSTREAM_JSON', message: 'Upstream returned malformed JSON', exitCode: EXIT.protocol, retryable: false, service: options.service, httpStatus: response.status, hint: 'Check service health and retry later' }, { cause: error });
   }
 }
@@ -114,7 +116,7 @@ async function fetchWithRedirects(runtime: Runtime, initial: URL, headers: Heade
       headers,
       ...(options.body === undefined ? {} : { body: options.body }),
       redirect: 'manual',
-      signal: AbortSignal.timeout(timeoutMs),
+      signal: combineSignals([AbortSignal.timeout(timeoutMs), runtime.signal]),
     });
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get('location');
@@ -170,6 +172,19 @@ function backoff(attempt: number, random: () => number): number {
 
 function isTransientNetworkError(error: unknown): boolean {
   return error instanceof TypeError || (error instanceof DOMException && error.name === 'AbortError');
+}
+
+function combineSignals(signals: AbortSignal[]): AbortSignal {
+  if (typeof AbortSignal.any === 'function') return AbortSignal.any(signals);
+  const controller = new AbortController();
+  const onAbort = (event: Event) => {
+    for (const signal of signals) signal.removeEventListener('abort', onAbort);
+    controller.abort((event.target as AbortSignal).reason);
+  };
+  const aborted = signals.find((signal) => signal.aborted);
+  if (aborted) controller.abort(aborted.reason);
+  else for (const signal of signals) signal.addEventListener('abort', onAbort, { once: true });
+  return controller.signal;
 }
 
 function ensureSlash(url: URL): URL {

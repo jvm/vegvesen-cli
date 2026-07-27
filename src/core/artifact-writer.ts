@@ -26,7 +26,7 @@ export async function saveArtifact(runtime: Runtime, response: Response, path: s
   let size = 0;
   const meter = new Transform({ transform(chunk: Buffer, _encoding, callback) { size += chunk.length; hash.update(chunk); callback(null, chunk); } });
   try {
-    await pipeline(Readable.fromWeb(response.body as import('node:stream/web').ReadableStream), meter, runtime.fs.createWriteStream(temporary, { flags: 'wx', mode: 0o600 }));
+    await pipeline(Readable.fromWeb(response.body as import('node:stream/web').ReadableStream), meter, runtime.fs.createWriteStream(temporary, { flags: 'wx', mode: 0o600 }), { signal: runtime.signal });
     const fd = runtime.fs.openSync(temporary, 'r');
     try { runtime.fs.fsyncSync(fd); } finally { runtime.fs.closeSync(fd); }
     if (overwrite) runtime.fs.renameSync(temporary, path);
@@ -37,6 +37,7 @@ export async function saveArtifact(runtime: Runtime, response: Response, path: s
   } catch (error) {
     if (runtime.fs.existsSync(temporary)) runtime.fs.unlinkSync(temporary);
     if (error instanceof CliError) throw error;
+    if (runtime.signal.aborted) throw runtime.signal.reason;
     throw new CliError({ code: 'ARTIFACT_IO_FAILED', message: `Could not save artifact: ${path}`, exitCode: EXIT.io, retryable: false, field: 'output', hint: 'Check destination permissions, free space, and --overwrite' }, { cause: error });
   }
 }

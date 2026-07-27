@@ -13,7 +13,7 @@ Commands use exact matching. Unknown commands, options, duplicate conflicting op
 
 ## Output
 
-stdout contains result data only. stderr contains errors, diagnostics, warnings, and prompts. `--format auto` chooses human text on TTY and JSON otherwise; explicit `json`, `ndjson`, `table`, `csv`, and `raw` are deterministic.
+stdout contains result data only. stderr contains errors, diagnostics, warnings, and prompts. `--format auto` chooses human text on TTY and JSON otherwise; explicit `json`, `ndjson`, `table`, `csv`, and `raw` are deterministic. The v1 renderer is intentionally unstyled in every color mode: `--color`, `NO_COLOR`, and `TERM=dumb` are compatibility controls and cannot introduce ANSI without dedicated PTY coverage.
 
 JSON success:
 

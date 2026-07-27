@@ -29,9 +29,10 @@ export interface Runtime {
   now: () => Date;
   sleep: (milliseconds: number, signal?: AbortSignal) => Promise<void>;
   random: () => number;
+  signal: AbortSignal;
 }
 
-export function processRuntime(): Runtime {
+export function processRuntime(signal: AbortSignal = new AbortController().signal): Runtime {
   return {
     fetch: globalThis.fetch,
     env: process.env,
@@ -43,15 +44,19 @@ export function processRuntime(): Runtime {
     cwd: process.cwd(),
     platform: process.platform,
     now: () => new Date(),
-    sleep: (milliseconds, signal) => new Promise((resolve, reject) => {
-      const timer = setTimeout(resolve, milliseconds);
-      if (signal !== undefined) {
-        signal.addEventListener('abort', () => {
-          clearTimeout(timer);
-          reject(signal.reason);
-        }, { once: true });
-      }
+    sleep: (milliseconds, sleepSignal) => new Promise((resolve, reject) => {
+      if (sleepSignal?.aborted) { reject(sleepSignal.reason); return; }
+      const onAbort = () => {
+        clearTimeout(timer);
+        reject(sleepSignal?.reason);
+      };
+      const timer = setTimeout(() => {
+        sleepSignal?.removeEventListener('abort', onAbort);
+        resolve();
+      }, milliseconds);
+      sleepSignal?.addEventListener('abort', onAbort, { once: true });
     }),
     random: Math.random,
+    signal,
   };
 }

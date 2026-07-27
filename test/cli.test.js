@@ -71,14 +71,16 @@ test('prints focused help and bare version', () => {
   assert.match(completion.stdout, /complete -F _vegvesen_complete vegvesen/);
 });
 
-test('rejects unknown input before network access', () => {
+test('rejects unknown commands, options, and trailing input before network access', () => {
   const beforeCount = requests().length;
-  const result = run(['wat', '--json']);
-  assert.equal(result.status, 2);
-  assert.equal(result.stdout, '');
-  const error = JSON.parse(result.stderr);
-  assert.equal(error.error.code, 'INVALID_USAGE');
-  assert.match(error.error.hint, /--help/);
+  for (const args of [['wat', '--json'], ['catalog', 'package', 'search', '--unknown', '--json'], ['catalog', 'status', 'get', 'trailing', '--json']]) {
+    const result = run(args);
+    assert.equal(result.status, 2, `${args.join(' ')}: ${result.stderr}`);
+    assert.equal(result.stdout, '');
+    const error = JSON.parse(result.stderr);
+    assert.equal(error.error.code, 'INVALID_USAGE');
+    assert.match(error.error.hint, /--help/);
+  }
   assert.equal(requests().length, beforeCount);
 });
 
@@ -364,10 +366,22 @@ test('Phase 7 generated API exposes reviewed operations only', () => {
   assert.equal(run(['api', 'service', 'list', '--json', '--no-input']).status, 0);
   const list = run(['api', 'operation', 'list', 'nvdb-core', '--json', '--no-input']);
   assert.equal(JSON.parse(list.stdout).data.length, 3);
-  const called = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'typeId=105', '--json', '--no-input']);
+  const called = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'vegobjekttypeid=105', '--param', 'gruppering=kommune', '--json', '--no-input']);
   assert.equal(called.status, 0, called.stderr);
   assert.equal(JSON.parse(called.stdout).meta.operation_id, 'object-statistics-grouped');
+  const mapped = requests().findLast((request) => request.url.startsWith('/api/v4/vegobjekter/105/statistikk/gruppert'));
+  assert.equal(new URL(mapped.url, origin).searchParams.get('gruppering'), 'kommune');
+  const property = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped-property', '--param', 'vegobjekttypeid=105', '--param', 'egenskapstypeId=1', '--json', '--no-input']);
+  assert.equal(property.status, 0, property.stderr);
+  const propertyRequest = requests().findLast((request) => request.url.startsWith('/api/v4/vegobjekter/105/statistikk/gruppert/egenskap'));
+  assert.equal(new URL(propertyRequest.url, origin).searchParams.get('egenskapstypeId'), '1');
+  const network = run(['api', 'operation', 'call', 'nvdb-core', 'network-statistics-grouped', '--param', 'gruppering=kommune', '--json', '--no-input']);
+  assert.equal(network.status, 0, network.stderr);
+  const networkRequest = requests().findLast((request) => request.url.startsWith('/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert'));
+  assert.equal(new URL(networkRequest.url, origin).searchParams.get('gruppering'), 'kommune');
   const before = requests().length;
+  const missingRequired = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'vegobjekttypeid=105', '--json', '--no-input']);
+  assert.equal(missingRequired.status, 2);
   const invalid = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'url=https://evil.example', '--json', '--no-input']);
   assert.equal(invalid.status, 2);
   assert.equal(requests().length, before);

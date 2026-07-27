@@ -1,4 +1,4 @@
-import { once } from 'node:events';
+import type { Writable } from 'node:stream';
 import { CommanderError, InvalidArgumentError } from 'commander';
 import { CliError, EXIT } from './contracts/error.js';
 import type { CommandResult, ErrorFormat, OutputFormat } from './contracts/output.js';
@@ -14,14 +14,14 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
     const execution = await parseCli(argv, runtime);
     if (execution.helpOrVersion || execution.result === null) return 0;
     if (execution.result.nativeStream) {
-      for await (const chunk of execution.result.nativeStream) if (!runtime.stdout.write(chunk)) await once(runtime.stdout, 'drain');
+      for await (const chunk of execution.result.nativeStream) if (!runtime.stdout.write(chunk)) await waitForDrain(runtime.stdout, runtime.signal);
       return execution.result.exitCode ?? 0;
     }
     if (execution.result.stream) {
       const format = execution.options.format === 'raw' ? 'raw' : 'ndjson';
       for await (const record of execution.result.stream) {
         const chunk = renderStreamRecord(record, format, execution.options.field);
-        if (chunk && !runtime.stdout.write(chunk)) await once(runtime.stdout, 'drain');
+        if (chunk && !runtime.stdout.write(chunk)) await waitForDrain(runtime.stdout, runtime.signal);
       }
       return execution.result.exitCode ?? 0;
     }
@@ -45,10 +45,27 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
     return execution.result.exitCode ?? 0;
   } catch (error) {
     if ((error as NodeJS.ErrnoException)?.code === 'EPIPE') return 0;
-    const cliError = normalizeError(error);
+    const cliError = error instanceof CliError ? error : runtime.signal.aborted && runtime.signal.reason instanceof CliError ? runtime.signal.reason : normalizeError(error);
     writeError(runtime.stderr, cliError.details, detected.errorFormat, detected.machine, detected.verbose ? redact((error as Error)?.stack ?? error) : undefined);
     return cliError.details.exitCode;
   }
+}
+
+export function waitForDrain(stream: Writable, signal: AbortSignal): Promise<void> {
+  if (signal.aborted) return Promise.reject(signal.reason);
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      stream.removeListener('drain', onDrain);
+      stream.removeListener('error', onError);
+      signal.removeEventListener('abort', onAbort);
+    };
+    const onDrain = () => { cleanup(); resolve(); };
+    const onError = (error: Error) => { cleanup(); reject(error); };
+    const onAbort = () => { cleanup(); reject(signal.reason); };
+    stream.once('drain', onDrain);
+    stream.once('error', onError);
+    signal.addEventListener('abort', onAbort, { once: true });
+  });
 }
 
 function normalizeError(error: unknown): CliError {

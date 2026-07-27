@@ -3,80 +3,242 @@
   "retrieved_at": "2026-07-27T00:00:00Z",
   "sources": [
     {
-      "service": "nvdb-catalog",
-      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/datakatalog",
-      "sha256": "a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
-      "redistribution": "reference-only"
+      "service": "catalog",
+      "contract_id": "catalog",
+      "kind": "ckan-action",
+      "url": "https://dataut.vegvesen.no/api/3/action/help_show?name=package_search",
+      "sha256": "5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions",
+      "coverage_recipe": "specs/protocol-recipes.json#catalog",
+      "source_scope": "Official CKAN help endpoint pins the Action API mechanism; the exact approved action set is owner-reviewed in the coverage recipe"
+    },
+    {
+      "service": "fiks",
+      "url": "https://fiksvegdata-api.atlas.vegvesen.no/api-docs",
+      "sha256": "375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "fiks",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
       "service": "nvdb-areas",
       "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/omrader",
       "sha256": "9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-areas",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
-      "service": "parking",
-      "url": "https://parkreg-open.atlas.vegvesen.no/ws/docs/openapi",
-      "sha256": "d7514fe825f853407a4fe5378a2fc633c6ad1dc29599ae3b079118a3d4989eb4",
-      "redistribution": "reference-only"
-    },
-    {
-      "service": "nvdb-status",
-      "url": "https://nvdbstatus-api.atlas.vegvesen.no/api-docs",
-      "sha256": "1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "redistribution": "reference-only"
-    },
-    {
-      "service": "nvdb-core",
-      "unit": "vegobjekter",
-      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/vegobjekter",
-      "sha256": "d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32",
-      "redistribution": "reference-only"
-    },
-    {
-      "service": "nvdb-core",
-      "unit": "vegnett",
-      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/vegnett",
-      "sha256": "3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
-      "redistribution": "reference-only"
+      "service": "nvdb-catalog",
+      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/datakatalog",
+      "sha256": "a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-catalog",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
       "service": "nvdb-core",
       "unit": "monitor",
       "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/monitor",
       "sha256": "f8a10f07a4f748c929b658d3f27c631de8c30881552ae40e2281c3499b90481a",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-core:monitor",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "uberiket",
+      "contract_id": "nvdb-core:uberiket",
+      "kind": "openapi",
+      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/uberiket",
+      "sha256": "9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "vegnett",
+      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/vegnett",
+      "sha256": "3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-core:vegnett",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "vegobjekter",
+      "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/vegobjekter",
+      "sha256": "49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-core:vegobjekter",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-export",
+      "contract_id": "nvdb-export",
+      "kind": "service-document",
+      "url": "https://nvdb-eksport-x.atlas.vegvesen.no/",
+      "sha256": "bb57aa56e5b5cd6b9ccdf525b718509f5df0422746232881d97ee869c2bef8d3",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-georeference",
+      "contract_id": "nvdb-georeference",
+      "kind": "openapi",
+      "url": "https://nvdbstedfesting.atlas.vegvesen.no/api-docs",
+      "sha256": "7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-reports",
+      "url": "https://nvdbrapportapi.atlas.vegvesen.no/swagger.json",
+      "sha256": "2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-reports",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "nvdb-status",
+      "url": "https://nvdbstatus-api.atlas.vegvesen.no/api-docs",
+      "sha256": "1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "nvdb-status",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc",
+      "kind": "ogc-dynamic",
+      "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/features/v1/",
+      "sha256": "db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "ogc-tiles-dggs",
+      "contract_id": "ogc-tiles-dggs",
+      "kind": "health-probe",
+      "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/tiles/v1/",
+      "expected_status": 500,
+      "sha256": "8d8d5059e1e01f8f482e3ef4ff7ef0c0c19ce6a7cda9adb7a1c1f16e8a2ee75c",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc:legacy",
+      "kind": "html-links",
+      "url": "https://www.vegvesen.no/fag/teknologi/apne-data/et-utvalg-apne-data/ogc-karttjenester/kartlag/",
+      "sha256": "6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc:maps",
+      "kind": "ogc-dynamic",
+      "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/maps/v1/",
+      "sha256": "08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc:styles",
+      "kind": "ogc-dynamic",
+      "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/styles/v1/",
+      "sha256": "f2c03670db554c6749c7120b717fe3a337f2c525ef87594f98bf1206b0971fac",
+      "redistribution": "reference-only",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "parking",
+      "url": "https://parkreg-open.atlas.vegvesen.no/ws/docs/openapi",
+      "sha256": "417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "parking",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
       "service": "route",
       "url": "https://www.vegvesen.no/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingService/swagger/v1/swagger.json",
       "sha256": "afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
-      "redistribution": "reference-only"
+      "redistribution": "reference-only",
+      "kind": "swagger",
+      "contract_id": "route",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
+    },
+    {
+      "service": "tnits",
+      "url": "https://nvdb-tnits.atlas.vegvesen.no/api-docs",
+      "sha256": "ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "redistribution": "reference-only",
+      "kind": "openapi",
+      "contract_id": "tnits",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Upstream terms not verified for raw redistribution",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
       "service": "traffic",
       "kind": "graphql-introspection",
       "url": "https://trafikkdata-api.atlas.vegvesen.no/",
       "sha256": "9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de",
-      "redistribution": "snapshot-approved"
-    },
-    {
-      "service": "tnits",
-      "url": "https://nvdb-tnits.atlas.vegvesen.no/api-docs",
-      "sha256": "ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
-      "redistribution": "reference-only"
-    },
-    {
-      "service": "fiks",
-      "url": "https://fiksvegdata-api.atlas.vegvesen.no/api-docs",
-      "sha256": "375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
-      "redistribution": "reference-only"
-    },
-    {
-      "service": "nvdb-reports",
-      "url": "https://nvdbrapportapi.atlas.vegvesen.no/swagger.json",
-      "sha256": "2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
-      "redistribution": "reference-only"
+      "redistribution": "snapshot-approved",
+      "contract_id": "traffic",
+      "retrieved_at": "2026-07-27T00:00:00Z",
+      "license": "Owner-approved schema-metadata snapshot decision; upstream copyright retained",
+      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     }
   ]
 }

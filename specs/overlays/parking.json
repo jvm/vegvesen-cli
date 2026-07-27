@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "contract_id": "parking",
+  "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "parking:GET /parkeringsomraade",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking area list"
+    },
+    {
+      "target_id": "parking:GET /parkeringsomraade/{id}",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking area get"
+    },
+    {
+      "target_id": "parking:GET /parkeringsomraade/{id}/versjon/{versjon}",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking area version"
+    },
+    {
+      "target_id": "parking:GET /parkeringsomraade/skiltplan/{skiltplanId}",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking sign-plan get"
+    },
+    {
+      "target_id": "parking:GET /parkeringsomraade/vurdering/{vurderingId}",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking assessment get"
+    },
+    {
+      "target_id": "parking:GET /parkeringstilbyder",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking provider list"
+    },
+    {
+      "target_id": "parking:GET /parkeringstilbyder/{organisasjonsnummer}",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking provider get"
+    },
+    {
+      "target_id": "parking:GET /parkeringstilbyder/aktive",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
+      "command": "parking provider active"
+    }
+  ]
+}

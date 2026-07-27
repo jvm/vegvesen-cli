@@ -104,12 +104,19 @@ export async function reportGenerate(runtime: Runtime, familyId: string, paramet
 
 export async function reportJob(runtime: Runtime, id: string, wait: boolean, options: QueryOptions & { waitTimeout?: string }): Promise<CommandResult> {
   const deadline = runtime.now().getTime() + parseDuration(options.waitTimeout ?? '2m');
-  while (true) {
-    const result = await requestJson<any>(runtime, { service: 'nvdb-reports', canonicalOrigin: reportsOrigin, path: `rapporter/poll/${encodeURIComponent(id)}`, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true });
-    const status = String(result.data?.status ?? 'UNKNOWN').toUpperCase();
-    if (!wait || ['SUCCESS', 'FAILED', 'UNKNOWN', 'EXPIRED'].includes(status)) return { command: wait ? 'nvdb report job wait' : 'nvdb report job get', source: serviceSource('nvdb-reports'), data: result.data, raw: result.raw, meta: { normalized_state: normalizeJob(status) } };
-    if (runtime.now().getTime() >= deadline) throw new CliError({ code: 'JOB_WAIT_TIMEOUT', message: `Report job ${id} did not finish before timeout`, exitCode: EXIT.network, retryable: true, service: 'nvdb-reports', hint: `Resume with vegvesen nvdb report job wait ${id}` });
-    await runtime.sleep(1000);
+  try {
+    while (true) {
+      const result = await requestJson<any>(runtime, { service: 'nvdb-reports', canonicalOrigin: reportsOrigin, path: `rapporter/poll/${encodeURIComponent(id)}`, timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true });
+      const status = String(result.data?.status ?? 'UNKNOWN').toUpperCase();
+      if (!wait || ['SUCCESS', 'FAILED', 'UNKNOWN', 'EXPIRED'].includes(status)) return { command: wait ? 'nvdb report job wait' : 'nvdb report job get', source: serviceSource('nvdb-reports'), data: result.data, raw: result.raw, meta: { normalized_state: normalizeJob(status) } };
+      if (runtime.now().getTime() >= deadline) throw new CliError({ code: 'JOB_WAIT_TIMEOUT', message: `Report job ${id} did not finish before timeout`, exitCode: EXIT.network, retryable: true, service: 'nvdb-reports', hint: `Resume with vegvesen nvdb report job wait ${id}` });
+      await runtime.sleep(1000, runtime.signal);
+    }
+  } catch (error) {
+    if (error instanceof CliError && [EXIT.interrupted, EXIT.terminated].includes(error.details.exitCode as 130 | 143)) {
+      throw new CliError({ ...error.details, identifier: id, service: 'nvdb-reports', hint: `Resume with vegvesen nvdb report job wait ${id} --json --no-input` }, { cause: error });
+    }
+    throw error;
   }
 }
 
