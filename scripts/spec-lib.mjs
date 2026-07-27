@@ -67,8 +67,6 @@ export function generateProtocolUnits(recipes, sources, queriesDirectory = new U
   for (const action of recipes.catalog.actions) add('catalog', recipes.catalog.contract_id, 'ckan-action', `CKAN ${action}`);
   for (const recipe of recipes.artifacts) for (const unit of recipe.units) add(recipe.service, recipe.contract_id, 'artifact-lifecycle', unit);
   for (const recipe of recipes.jobs) for (const unit of recipe.units) add(recipe.service, recipe.contract_id, 'job-lifecycle', unit);
-  for (const recipe of recipes.websockets) for (const unit of recipe.units) add(recipe.service, recipe.contract_id, 'websocket', unit);
-  for (const recipe of recipes.health_gates) for (const unit of recipe.units) add(recipe.service, recipe.contract_id, 'health-gate', unit);
   for (const family of recipes.legacy_ogc.families) {
     for (const operation of recipes.legacy_ogc.wms_operations) add(recipes.legacy_ogc.service, recipes.legacy_ogc.contract_id, 'ogc-operation', `${family} WMS ${operation}`);
     for (const operation of recipes.legacy_ogc.wfs_operations) add(recipes.legacy_ogc.service, recipes.legacy_ogc.contract_id, 'ogc-operation', `${family} WFS ${operation}`);
@@ -136,12 +134,9 @@ function validateProtocolRecipeShape(recipes) {
   exactSet('OGC Features links', ogc.get('features'), ['landing', 'conformance', 'api', 'collections', 'collection', 'queryables', 'items', 'item']);
   exactSet('OGC Maps links', ogc.get('maps'), ['landing', 'conformance', 'api', 'collections', 'collection', 'styles', 'render']);
   exactSet('OGC Styles links', ogc.get('styles'), ['landing', 'conformance', 'api', 'list', 'get', 'metadata']);
-  const lifecycle = new Map([...recipes.artifacts, ...recipes.jobs, ...recipes.websockets, ...recipes.health_gates].map((recipe) => [recipe.service, recipe.units]));
+  const lifecycle = new Map([...recipes.artifacts, ...recipes.jobs].map((recipe) => [recipe.service, recipe.units]));
   exactSet('NVDB Export artifacts', lifecycle.get('nvdb-export'), ['network CSV/SOSI artifact', 'object CSV/SOSI artifact']);
-  exactSet('Stedfesting job lifecycle', lifecycle.get('nvdb-georeference'), ['job start', 'job status', 'job wait', 'job result', 'job expiry/failure', 'job SIGINT', 'job SIGTERM']);
   exactSet('Reports job lifecycle', lifecycle.get('nvdb-reports'), ['job start', 'job status', 'job wait', 'job download', 'job expiry/failure', 'job SIGINT', 'job SIGTERM']);
-  exactSet('Status WebSocket lifecycle', lifecycle.get('nvdb-status'), ['WebSocket handshake', 'WebSocket event frame', 'WebSocket reconnect control', 'WebSocket SIGINT', 'WebSocket SIGTERM']);
-  exactSet('OGC blocked health gates', lifecycle.get('ogc-tiles-dggs'), ['Tiles discovery/retrieval', 'DGGS discovery/retrieval']);
   exactSet('GraphQL semantic units', recipes.graphql.units.map((unit) => unit.name), ['areas', 'publishedAreaTrafficVolumeIndex', 'publishedAreaTrafficVolumeIndices', 'roadCategories', 'trafficData.volume.average.daily.byYear', 'trafficData.volume.byDay', 'trafficData.volume.byHour', 'trafficData.volume.byHour.byLengthRange', 'trafficRegistrationPoints exact IDs', 'trafficRegistrationPoints search', 'TrafficVolume coverage', 'TrafficVolume quality ratios', 'trafficVolumeIndices']);
   exactSet('persisted GraphQL query mappings', recipes.graphql.units.map((unit) => unit.query), ['aadt.graphql', 'indices.graphql', 'published-index.graphql', 'published-indices.graphql', 'reference.graphql', 'stations.graphql', 'volume-day.graphql', 'volume.graphql']);
 }

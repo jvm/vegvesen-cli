@@ -4,55 +4,194 @@
   "owner": "Jose Mocito",
   "catalog": {
     "contract_id": "catalog",
-    "actions": ["package_search", "package_show", "resource_show", "group_list", "group_show", "organization_list", "organization_show", "tag_list", "tag_show", "status_show"]
+    "actions": [
+      "package_search",
+      "package_show",
+      "resource_show",
+      "group_list",
+      "group_show",
+      "organization_list",
+      "organization_show",
+      "tag_list",
+      "tag_show",
+      "status_show"
+    ]
   },
   "artifacts": [
-    {"service": "nvdb-export", "contract_id": "nvdb-export", "units": ["network CSV/SOSI artifact", "object CSV/SOSI artifact"]}
+    {
+      "service": "nvdb-export",
+      "contract_id": "nvdb-export",
+      "units": [
+        "network CSV/SOSI artifact",
+        "object CSV/SOSI artifact"
+      ]
+    }
   ],
   "jobs": [
-    {"service": "nvdb-georeference", "contract_id": "nvdb-georeference", "units": ["job start", "job status", "job wait", "job result", "job expiry/failure", "job SIGINT", "job SIGTERM"]},
-    {"service": "nvdb-reports", "contract_id": "nvdb-reports", "units": ["job start", "job status", "job wait", "job download", "job expiry/failure", "job SIGINT", "job SIGTERM"]}
-  ],
-  "websockets": [
-    {"service": "nvdb-status", "contract_id": "nvdb-status", "units": ["WebSocket handshake", "WebSocket event frame", "WebSocket reconnect control", "WebSocket SIGINT", "WebSocket SIGTERM"]}
-  ],
-  "health_gates": [
-    {"service": "ogc-tiles-dggs", "contract_id": "ogc-tiles-dggs", "units": ["Tiles discovery/retrieval", "DGGS discovery/retrieval"]}
+    {
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "units": [
+        "job start",
+        "job status",
+        "job wait",
+        "job download",
+        "job expiry/failure",
+        "job SIGINT",
+        "job SIGTERM"
+      ]
+    }
   ],
   "legacy_ogc": {
     "service": "ogc",
     "contract_id": "ogc:legacy",
-    "families": ["vegvar_1_0", "norstoy_1_0", "nvdb_2_0", "rapportweb_1_0", "datex_3_1"],
-    "wms_operations": ["GetCapabilities", "GetMap", "GetFeatureInfo"],
-    "wfs_operations": ["GetCapabilities", "DescribeFeatureType", "GetFeature"]
+    "families": [
+      "vegvar_1_0",
+      "norstoy_1_0",
+      "nvdb_2_0",
+      "rapportweb_1_0",
+      "datex_3_1"
+    ],
+    "wms_operations": [
+      "GetCapabilities",
+      "GetMap",
+      "GetFeatureInfo"
+    ],
+    "wfs_operations": [
+      "GetCapabilities",
+      "DescribeFeatureType",
+      "GetFeature"
+    ]
   },
   "ogc_apis": [
-    {"service": "ogc", "contract_id": "ogc", "name": "features", "links": ["landing", "conformance", "api", "collections", "collection", "queryables", "items", "item"]},
-    {"service": "ogc", "contract_id": "ogc:maps", "name": "maps", "links": ["landing", "conformance", "api", "collections", "collection", "styles", "render"]},
-    {"service": "ogc", "contract_id": "ogc:styles", "name": "styles", "links": ["landing", "conformance", "api", "list", "get", "metadata"]}
+    {
+      "service": "ogc",
+      "contract_id": "ogc",
+      "name": "features",
+      "links": [
+        "landing",
+        "conformance",
+        "api",
+        "collections",
+        "collection",
+        "queryables",
+        "items",
+        "item"
+      ]
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc:maps",
+      "name": "maps",
+      "links": [
+        "landing",
+        "conformance",
+        "api",
+        "collections",
+        "collection",
+        "styles",
+        "render"
+      ]
+    },
+    {
+      "service": "ogc",
+      "contract_id": "ogc:styles",
+      "name": "styles",
+      "links": [
+        "landing",
+        "conformance",
+        "api",
+        "list",
+        "get",
+        "metadata"
+      ]
+    }
   ],
   "tnits": {
     "service": "tnits",
     "contract_id": "tnits",
-    "families": ["RestrictionForVehicles", "RoadFeature", "RoadName", "SpeedLimit"]
+    "families": [
+      "RestrictionForVehicles",
+      "RoadFeature",
+      "RoadName",
+      "SpeedLimit"
+    ]
   },
   "graphql": {
     "service": "traffic",
     "contract_id": "traffic",
     "units": [
-      {"name": "areas", "query": "reference.graphql", "field_path": "areas"},
-      {"name": "publishedAreaTrafficVolumeIndex", "query": "published-index.graphql", "field_path": "publishedAreaTrafficVolumeIndex"},
-      {"name": "publishedAreaTrafficVolumeIndices", "query": "published-indices.graphql", "field_path": "publishedAreaTrafficVolumeIndices"},
-      {"name": "roadCategories", "query": "reference.graphql", "field_path": "roadCategories"},
-      {"name": "trafficData.volume.average.daily.byYear", "query": "aadt.graphql", "field_path": "trafficData.volume.average.daily.byYear"},
-      {"name": "trafficData.volume.byDay", "query": "volume-day.graphql", "field_path": "trafficData.volume.byDay"},
-      {"name": "trafficData.volume.byHour", "query": "volume.graphql", "field_path": "trafficData.volume.byHour"},
-      {"name": "trafficData.volume.byHour.byLengthRange", "query": "volume.graphql", "field_path": "trafficData.volume.byHour.edges.node.byLengthRange"},
-      {"name": "trafficRegistrationPoints exact IDs", "query": "stations.graphql", "field_path": "trafficRegistrationPoints", "required_variables": ["ids"]},
-      {"name": "trafficRegistrationPoints search", "query": "stations.graphql", "field_path": "trafficRegistrationPoints", "required_variables": ["search"]},
-      {"name": "TrafficVolume coverage", "query": "volume.graphql", "field_path": "trafficData.volume.byHour.edges.node.total.coverage"},
-      {"name": "TrafficVolume quality ratios", "query": "volume.graphql", "field_path": "trafficData.volume.byHour.edges.node.total.volumeNumbers.validSpeed"},
-      {"name": "trafficVolumeIndices", "query": "indices.graphql", "field_path": "trafficVolumeIndices"}
+      {
+        "name": "areas",
+        "query": "reference.graphql",
+        "field_path": "areas"
+      },
+      {
+        "name": "publishedAreaTrafficVolumeIndex",
+        "query": "published-index.graphql",
+        "field_path": "publishedAreaTrafficVolumeIndex"
+      },
+      {
+        "name": "publishedAreaTrafficVolumeIndices",
+        "query": "published-indices.graphql",
+        "field_path": "publishedAreaTrafficVolumeIndices"
+      },
+      {
+        "name": "roadCategories",
+        "query": "reference.graphql",
+        "field_path": "roadCategories"
+      },
+      {
+        "name": "trafficData.volume.average.daily.byYear",
+        "query": "aadt.graphql",
+        "field_path": "trafficData.volume.average.daily.byYear"
+      },
+      {
+        "name": "trafficData.volume.byDay",
+        "query": "volume-day.graphql",
+        "field_path": "trafficData.volume.byDay"
+      },
+      {
+        "name": "trafficData.volume.byHour",
+        "query": "volume.graphql",
+        "field_path": "trafficData.volume.byHour"
+      },
+      {
+        "name": "trafficData.volume.byHour.byLengthRange",
+        "query": "volume.graphql",
+        "field_path": "trafficData.volume.byHour.edges.node.byLengthRange"
+      },
+      {
+        "name": "trafficRegistrationPoints exact IDs",
+        "query": "stations.graphql",
+        "field_path": "trafficRegistrationPoints",
+        "required_variables": [
+          "ids"
+        ]
+      },
+      {
+        "name": "trafficRegistrationPoints search",
+        "query": "stations.graphql",
+        "field_path": "trafficRegistrationPoints",
+        "required_variables": [
+          "search"
+        ]
+      },
+      {
+        "name": "TrafficVolume coverage",
+        "query": "volume.graphql",
+        "field_path": "trafficData.volume.byHour.edges.node.total.coverage"
+      },
+      {
+        "name": "TrafficVolume quality ratios",
+        "query": "volume.graphql",
+        "field_path": "trafficData.volume.byHour.edges.node.total.volumeNumbers.validSpeed"
+      },
+      {
+        "name": "trafficVolumeIndices",
+        "query": "indices.graphql",
+        "field_path": "trafficVolumeIndices"
+      }
     ]
   }
 }

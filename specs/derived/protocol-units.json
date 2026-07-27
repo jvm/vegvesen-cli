@@ -86,55 +86,6 @@
       "kind": "artifact-lifecycle"
     },
     {
-      "id": "nvdb-georeference:job expiry/failure",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job result",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job SIGINT",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job SIGTERM",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job start",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job status",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-georeference:job wait",
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "source_digest": "sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "kind": "job-lifecycle"
-    },
-    {
       "id": "nvdb-reports:job download",
       "service": "nvdb-reports",
       "contract_id": "nvdb-reports",
@@ -182,55 +133,6 @@
       "contract_id": "nvdb-reports",
       "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
       "kind": "job-lifecycle"
-    },
-    {
-      "id": "nvdb-status:WebSocket event frame",
-      "service": "nvdb-status",
-      "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "kind": "websocket"
-    },
-    {
-      "id": "nvdb-status:WebSocket handshake",
-      "service": "nvdb-status",
-      "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "kind": "websocket"
-    },
-    {
-      "id": "nvdb-status:WebSocket reconnect control",
-      "service": "nvdb-status",
-      "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "kind": "websocket"
-    },
-    {
-      "id": "nvdb-status:WebSocket SIGINT",
-      "service": "nvdb-status",
-      "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "kind": "websocket"
-    },
-    {
-      "id": "nvdb-status:WebSocket SIGTERM",
-      "service": "nvdb-status",
-      "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-      "kind": "websocket"
-    },
-    {
-      "id": "ogc-tiles-dggs:DGGS discovery/retrieval",
-      "service": "ogc-tiles-dggs",
-      "contract_id": "ogc-tiles-dggs",
-      "source_digest": "sha256:8d8d5059e1e01f8f482e3ef4ff7ef0c0c19ce6a7cda9adb7a1c1f16e8a2ee75c",
-      "kind": "health-gate"
-    },
-    {
-      "id": "ogc-tiles-dggs:Tiles discovery/retrieval",
-      "service": "ogc-tiles-dggs",
-      "contract_id": "ogc-tiles-dggs",
-      "source_digest": "sha256:8d8d5059e1e01f8f482e3ef4ff7ef0c0c19ce6a7cda9adb7a1c1f16e8a2ee75c",
-      "kind": "health-gate"
     },
     {
       "id": "ogc:datex_3_1 WFS DescribeFeatureType",

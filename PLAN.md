@@ -24,7 +24,7 @@ There is no **BLOCKED** state. A surface that cannot be verified anonymously fro
 | Measure | Current evidence |
 |---|---|
 | CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
-| Product coverage | 307 exact units checked by `scripts/check-coverage.mjs` and bound to `src/registry.ts`: 116 curated-command, 3 generated-operation, 51 dynamic-protocol, 137 excluded-permanent |
+| Product coverage | 287 exact units (200 contract operations, 87 protocol units) across 13 services, checked by `scripts/check-coverage.mjs` and bound to `src/registry.ts` |
 | Offline tests | 46 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
@@ -65,14 +65,12 @@ Everything below is implementable offline, from checked-in evidence, with no app
 
 | # | Work | Phase |
 |---|---|---|
-| 1 | Delete the Stedfesting and OGC Tiles/DGGS manifest, overlay, and unit records | 8 |
-| 2 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
-| 3 | Remove remaining excluded surfaces from the command tree and dependency pins | 8 |
-| 4 | Per-operation process fixtures for every generated-registry operation | 7 |
-| 5 | Expand the generated registry to the full reviewed anonymous set | 7 |
-| 6 | Fresh-read agreement fixture for representative NVDB reads | 3 |
-| 7 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
-| 8 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
+| 1 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
+| 2 | Per-operation process fixtures for every generated-registry operation | 7 |
+| 3 | Expand the generated registry to the full reviewed anonymous set | 7 |
+| 4 | Fresh-read agreement fixture for representative NVDB reads | 3 |
+| 5 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
+| 6 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
 
 ### 0.5 Owner-operated items outside this plan
 
@@ -1041,7 +1039,6 @@ Work:
 - Replace one-per-operation free-text command strings with exact registry paths, splitting the six compound values.
 - Drop `promotion_gate` from the overlay schema and from `specs/overlays/*.json`.
 - Promote the 4.3 reads: add the new NVDB Status and Reports commands, `fiks issue list --detailed`, and reclassify `nvdb catalog property get`'s operation.
-- Delete the Stedfesting and OGC Tiles/DGGS manifest entries, their overlays, and their units, replacing them with 4.2 exclusion records.
 
 Acceptance:
 
@@ -1147,7 +1144,7 @@ Any unresolved question that changes access, privacy, effects, or compatibility 
 Phases 0–6 are implemented. The remaining work in 0.4 runs in this order, and every step is offline, deterministic, and free of approval points.
 
 1. **Phase 8 first.** Everything else depends on a coverage gate that measures the shipped product. Expanding the generated registry before the gate is bound would add operations under the same unverified classification that produced the 0.2 defect.
-2. **Phase 8 sub-order:** the binding assertions, the overlay regeneration, the command-array migration, and the `promotion_gate` removal must land as one commit — the assertions fail by design until the overlays are corrected, so splitting them would leave `npm run validate` red. Then, separately: delete the Stedfesting and Tiles/DGGS records, then promote the 4.3 reads and implement their commands.
+2. **Phase 8 remainder:** promote the 4.3 reads and implement their commands. The binding assertions, overlay regeneration, command-array migration, `promotion_gate` removal, and the deletion of the Stedfesting, Tiles/DGGS, and WebSocket records are done.
 3. **Phase 7 next:** expand `api operation call` to the full `generated-operation` set, then add one metadata-driven process fixture per generated operation.
 4. **Phase 3/4 leftovers last**, in any order: NVDB route POST fixture, fresh-read agreement fixture, raw GeoJSON byte-preservation fixture.
 

@@ -108,17 +108,6 @@
       "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
     {
-      "service": "nvdb-georeference",
-      "contract_id": "nvdb-georeference",
-      "kind": "openapi",
-      "url": "https://nvdbstedfesting.atlas.vegvesen.no/api-docs",
-      "sha256": "7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7",
-      "redistribution": "reference-only",
-      "retrieved_at": "2026-07-27T00:00:00Z",
-      "license": "Upstream terms not verified for raw redistribution",
-      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
-    },
-    {
       "service": "nvdb-reports",
       "url": "https://nvdbrapportapi.atlas.vegvesen.no/swagger.json",
       "sha256": "2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
@@ -146,18 +135,6 @@
       "kind": "ogc-dynamic",
       "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/features/v1/",
       "sha256": "db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea",
-      "redistribution": "reference-only",
-      "retrieved_at": "2026-07-27T00:00:00Z",
-      "license": "Upstream terms not verified for raw redistribution",
-      "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
-    },
-    {
-      "service": "ogc-tiles-dggs",
-      "contract_id": "ogc-tiles-dggs",
-      "kind": "health-probe",
-      "url": "https://ogckart-sn1.atlas.vegvesen.no/ogc/tiles/v1/",
-      "expected_status": 500,
-      "sha256": "8d8d5059e1e01f8f482e3ef4ff7ef0c0c19ce6a7cda9adb7a1c1f16e8a2ee75c",
       "redistribution": "reference-only",
       "retrieved_at": "2026-07-27T00:00:00Z",
       "license": "Upstream terms not verified for raw redistribution",

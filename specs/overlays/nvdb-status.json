@@ -373,51 +373,6 @@
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
-    },
-    {
-      "target_id": "nvdb-status:WebSocket event frame",
-      "effect": "protocol",
-      "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source"
-    },
-    {
-      "target_id": "nvdb-status:WebSocket handshake",
-      "effect": "protocol",
-      "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source"
-    },
-    {
-      "target_id": "nvdb-status:WebSocket reconnect control",
-      "effect": "protocol",
-      "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source"
-    },
-    {
-      "target_id": "nvdb-status:WebSocket SIGINT",
-      "effect": "protocol",
-      "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source"
-    },
-    {
-      "target_id": "nvdb-status:WebSocket SIGTERM",
-      "effect": "protocol",
-      "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Public WebSocket path and event contract are not verifiable from the pinned source"
     }
   ]
 }
