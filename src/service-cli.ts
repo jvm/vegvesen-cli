@@ -108,7 +108,12 @@ function addNvdbCore(nvdb: Command, runtime: Runtime, setResult: ResultSetter): 
   objectList.action((typeId: string, local: NvdbFilterOptions, command: Command) => setResult(() => nvdbPaged(runtime, 'nvdb object list', `vegobjekter/api/v4/vegobjekter/${integer(typeId, 'type-id')}`, nvdbFilterQuery(local), nvdbOptions(command)), command));
   object.command('get <object-id>').description('Get an object by globally unique ID.')
     .option('--type-id <id>', 'Optional exact object type ID')
-    .action((objectId: string, local: { typeId?: string }, command: Command) => setResult(() => nvdbRead(runtime, 'nvdb object get', local.typeId ? `vegobjekter/api/v4/vegobjekter/${integer(local.typeId, 'type-id')}/${integer(objectId, 'object-id')}` : 'vegobjekter/api/v4/vegobjekt', local.typeId ? {} : { id: integer(objectId, 'object-id') }, queryOptions(command)), command));
+    .option('--object-version <version>', 'Exact object version; requires --type-id')
+    .action((objectId: string, local: { typeId?: string; objectVersion?: string }, command: Command) => {
+      if (local.objectVersion && !local.typeId) throw usageError('--object-version requires --type-id', 'Pass both --type-id TYPE and --object-version VERSION', 'object-version');
+      const suffix = local.typeId ? `${integer(local.typeId, 'type-id')}/${integer(objectId, 'object-id')}${local.objectVersion ? `/${integer(local.objectVersion, 'object-version')}` : ''}` : undefined;
+      return setResult(() => nvdbRead(runtime, 'nvdb object get', suffix ? `vegobjekter/api/v4/vegobjekter/${suffix}` : 'vegobjekter/api/v4/vegobjekt', suffix ? {} : { id: integer(objectId, 'object-id') }, queryOptions(command)), command);
+    });
   object.command('versions <type-id> <object-id>').description('List every version of an exact object.')
     .action((typeId: string, objectId: string, _local, command: Command) => setResult(() => nvdbRead(runtime, 'nvdb object versions', `vegobjekter/api/v4/vegobjekter/${integer(typeId, 'type-id')}/${integer(objectId, 'object-id')}/versjoner`, {}, queryOptions(command)), command));
   const changes = object.command('changes [type-id]').description('List object changes from the last 30 days.')

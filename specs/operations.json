@@ -446,6 +446,24 @@
       "unit": "GraphQL areas",
       "command": "traffic reference area list",
       "disposition": "curated-command"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "GET /vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert[/egenskap]",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Specialized grouped statistics deferred to reviewed generated-operation access in Phase 7"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "GET /vegnett/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Specialized grouped statistics deferred to reviewed generated-operation access in Phase 7"
+    },
+    {
+      "service": "nvdb-core",
+      "unit": "OpenAPI /uberiket anonymous read and NDJSON operations",
+      "disposition": "excluded-with-reviewed-reason",
+      "reason": "Curated Phase 3 uses enriched V4 APIs; uberiket long-tail operations require Phase 7 generated registry and dedicated stream contracts"
     }
   ]
 }

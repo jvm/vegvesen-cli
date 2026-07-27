@@ -178,6 +178,7 @@ test('NVDB core preserves opaque cursors and streams all pages', () => {
 test('every curated NVDB core command maps to an offline fixture', () => {
   const commands = [
     ['nvdb', 'object', 'get', '101'],
+    ['nvdb', 'object', 'get', '101', '--type-id', '105', '--object-version', '2'],
     ['nvdb', 'object', 'versions', '105', '101'],
     ['nvdb', 'object', 'changes', '105', '--limit', '1'],
     ['nvdb', 'object', 'statistics', '105'],

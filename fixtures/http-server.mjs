@@ -21,7 +21,7 @@ const server = createServer(async (request, response) => {
     const objects = all.slice(offset, offset + size);
     const next = offset + objects.length < all.length ? { start: 'opaque-2', href: `${url.origin}${url.pathname}?start=opaque-2` } : null;
     response.end(JSON.stringify({ objekter: objects, metadata: { antall: all.length, returnert: objects.length, sidestørrelse: size, neste: next } }));
-  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekt' || /^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/\d+$/.test(url.pathname)) {
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekt' || /^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/\d+(?:\/\d+)?$/.test(url.pathname)) {
     response.end(JSON.stringify({ id: Number(url.searchParams.get('id') ?? url.pathname.split('/').at(-1)), type: 105 }));
   } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/\d+\/versjoner$/.test(url.pathname)) {
     response.end(JSON.stringify([{ id: 101, versjon: 1 }, { id: 101, versjon: 2 }]));
