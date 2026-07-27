@@ -88,7 +88,7 @@ This maps directly to Section 2.
 
 - **COMPLETE** — curated V4 operations, generated grouped statistics, and each `/uberiket` long-tail operation have exact owner-reviewed dispositions.
 - **COMPLETE** — opaque cursor/all-page fixtures prove ordered traversal without duplicates, and explicit repeated-cursor and server-capped-page negative fixtures fail with exit `7` bounded and exit `9` streaming.
-- **COMPLETE** — large NVDB route bodies select reviewed read-only POST semantics in code, and the road-feature POST mapping has a dedicated retry fixture.
+- **PARTIAL** — `nvdb network route calculate --body` issues `POST /api/v4/beta/vegnett/rute`, but that operation is still classified `access: unverified` and excluded in `specs/overlays/nvdb-core--vegnett.json`, and no process fixture exercises the POST path. The Phase 4 road-feature POST fixture covers a different service and does not satisfy this.
 - **COMPLETE** — NDJSON is tagged and backpressure-aware, and a mid-stream failure fixture proves an `complete:false` summary, a structured stderr error, and exit `9`.
 - **PARTIAL** — no explicit fresh-read agreement fixture exists for every applicable operation result.
 
