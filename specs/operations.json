@@ -783,6 +783,13 @@
       "command": "ogc map collection get",
       "disposition": "dynamic-protocol",
       "reason": "Runtime-discovered OGC protocol mapping"
+    },
+    {
+      "service": "ogc",
+      "unit": "CLI mapping: ogc map style list",
+      "command": "ogc map style list",
+      "disposition": "dynamic-protocol",
+      "reason": "Runtime-discovered OGC protocol mapping"
     }
   ]
 }

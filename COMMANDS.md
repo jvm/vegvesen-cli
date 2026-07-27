@@ -149,6 +149,7 @@ Generated from the same registry used by `vegvesen schema command`.
 - `vegvesen ogc feature item get` — Get exact feature item
 - `vegvesen ogc map collection list` — List map collections
 - `vegvesen ogc map collection get` — Get map collection
+- `vegvesen ogc map style list` — List map styles
 - `vegvesen ogc map render` — Render modern OGC map
 - `vegvesen ogc style list` — List styles
 - `vegvesen ogc style get` — Get style

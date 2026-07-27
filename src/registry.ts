@@ -105,6 +105,7 @@ export const commandRegistry: CommandDefinition[] = [
   { path: 'ogc feature item get', description: 'Get exact feature item', class: 'query', service: 'ogc' },
   { path: 'ogc map collection list', description: 'List map collections', class: 'query', service: 'ogc' },
   { path: 'ogc map collection get', description: 'Get map collection', class: 'query', service: 'ogc' },
+  { path: 'ogc map style list', description: 'List map styles', class: 'query', service: 'ogc' },
   { path: 'ogc map render', description: 'Render modern OGC map', class: 'artifact', service: 'ogc' },
   { path: 'ogc style list', description: 'List styles', class: 'query', service: 'ogc' },
   { path: 'ogc style get', description: 'Get style', class: 'query', service: 'ogc' },
