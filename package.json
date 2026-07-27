@@ -33,6 +33,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test",
     "check:coverage": "node scripts/check-coverage.mjs",
+    "check:graphql": "node scripts/check-graphql.mjs",
     "check:spec-drift": "node scripts/check-spec-drift.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "test:package": "npm run build && node scripts/package-probe.mjs",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@types/node": "20.19.43",
+    "graphql": "16.14.2",
     "typescript": "5.9.3"
   }
 }

@@ -41,6 +41,7 @@ export interface CommonOptions {
   limit?: string;
   cursor?: string;
   all?: boolean;
+  allowPartial?: boolean;
   field: string[];
 }
 
@@ -156,6 +157,7 @@ function addCommonOptions(program: Command): void {
     .option('--limit <count>', 'Total result limit')
     .option('--cursor <value>', 'Opaque resume cursor')
     .option('--all', 'Traverse all pages; requires NDJSON or one-field raw')
+    .option('--allow-partial', 'Return success for documented partial GraphQL data')
     .option('--field <path>', 'Project output field; repeatable', collect, []);
 }
 
@@ -198,6 +200,7 @@ function validateCommon(options: Partial<CommonOptions>): void {
     if (value !== undefined && (!/^\d+$/.test(value) || Number(value) < (field === 'retries' ? 0 : 1))) throw usageError(`--${field} must be ${field === 'retries' ? 'a non-negative' : 'a positive'} integer`, `Pass --${field} ${field === 'retries' ? '0' : '1'} or greater`, field);
   }
   if (options.all && options.limit !== undefined) throw usageError('--all and --limit are mutually exclusive', 'Remove --limit or replace --all with a finite --limit', 'all');
+  if (options.all && options.output !== undefined && options.output !== '-') throw usageError('--all streaming output does not support --output PATH', 'Use --output - and shell redirection, or omit --output and redirect stdout', 'output');
   const selectedFormat = options.json ? 'json' : options.format;
   if (options.all && !(selectedFormat === 'ndjson' || (selectedFormat === 'raw' && options.field?.length === 1))) throw usageError('--all requires --format ndjson or one --field with --format raw', 'Use --all --format ndjson', 'format');
   if (options.receiptFormat !== undefined && options.receiptFormat !== 'auto' && (!options.output || options.output === '-')) throw usageError('--receipt-format requires --output PATH', 'Pass a file path with --output or remove --receipt-format', 'receipt-format');

@@ -89,7 +89,7 @@ export async function doctorResult(runtime: Runtime, options: DoctorOptions = {}
   const checks = [
     configCheck,
     { name: 'node', status: Number(process.versions.node.split('.')[0]) >= 20 ? 'ok' : 'failed', version: process.versions.node, hint: 'Install Node.js 20 or newer' },
-    ...manifest.services.map((service) => liveChecks.get(service.id) ?? ({ name: service.id, status: service.health === 'stable' ? 'not_checked' : service.health, access: service.access_tier, hint: service.health === 'stable' ? "Pass --live to verify anonymous reachability" : service.evidence })),
+    ...manifest.services.map((service) => liveChecks.get(service.id) ?? ({ name: service.id, status: service.health.startsWith('stable') ? 'not_checked' : service.health, access: service.access_tier, hint: service.health.startsWith('stable') ? "Pass --live to verify anonymous reachability" : service.evidence })),
   ];
   return result('doctor', 'local', checks, { ready: checks.every((check) => !['failed', 'down', 'registration_required'].includes(String(check.status))), live: options.live === true });
 }
@@ -101,6 +101,9 @@ async function probeAnonymousServices(runtime: Runtime, options: { timeout?: str
     { name: 'nvdb-areas', origin: 'https://nvdbapiles.atlas.vegvesen.no', path: 'omrader/api/v4/fylker', headers: { 'X-Client': options.xClient } },
     { name: 'parking', origin: 'https://parkreg-open.atlas.vegvesen.no', path: 'ws/docs/openapi', accept: 'application/yaml, text/yaml' },
     { name: 'nvdb-status', origin: 'https://nvdbstatus-api.atlas.vegvesen.no', path: 'api/v1/systemer' },
+    { name: 'nvdb-core', origin: 'https://nvdbapiles.atlas.vegvesen.no', path: 'vegobjekter/api/v4/vegobjekter/105/statistikk', headers: { 'X-Client': options.xClient } },
+    { name: 'route', origin: 'https://www.vegvesen.no', path: 'ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingService/swagger/v1/swagger.json' },
+    { name: 'traffic', origin: 'https://trafikkdata-api.atlas.vegvesen.no', path: '', method: 'POST' as const, body: JSON.stringify({ query: 'query { __typename }' }), headers: { 'Content-Type': 'application/json' } },
   ];
   return Promise.all(probes.map(async (probe) => {
     try {
@@ -108,6 +111,8 @@ async function probeAnonymousServices(runtime: Runtime, options: { timeout?: str
         service: probe.name,
         canonicalOrigin: probe.origin,
         path: probe.path,
+        method: probe.method,
+        body: probe.body,
         headers: probe.headers,
         accept: probe.accept,
         timeout: options.timeout,

@@ -16,6 +16,10 @@ export interface ResultMeta {
   [key: string]: unknown;
 }
 
+export type StreamRecord =
+  | { type: 'item'; data: unknown }
+  | { type: 'summary'; meta: Record<string, unknown> };
+
 export interface CommandResult<T = unknown> {
   command: string;
   source: SourceDescriptor;
@@ -23,6 +27,8 @@ export interface CommandResult<T = unknown> {
   meta?: Partial<ResultMeta>;
   raw?: string | Uint8Array;
   outputHandled?: boolean;
+  stream?: AsyncIterable<StreamRecord>;
+  exitCode?: number;
 }
 
 export interface OutputEnvelope<T = unknown> {

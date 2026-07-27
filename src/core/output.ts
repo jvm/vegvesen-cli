@@ -1,5 +1,5 @@
 import type { Writable } from 'node:stream';
-import { envelope, type CommandResult, type ErrorFormat, type OutputFormat } from '../contracts/output.js';
+import { envelope, type CommandResult, type ErrorFormat, type OutputFormat, type StreamRecord } from '../contracts/output.js';
 import type { ErrorDetails } from '../contracts/error.js';
 
 export interface RenderOptions {
@@ -24,6 +24,12 @@ export function renderResult(result: CommandResult, options: RenderOptions): Uin
   }
   if (format === 'csv') return renderCsv(projected);
   return renderTable(projected);
+}
+
+export function renderStreamRecord(record: StreamRecord, format: 'ndjson' | 'raw', fields: string[]): string {
+  if (format === 'ndjson') return `${JSON.stringify(record)}\n`;
+  if (record.type === 'summary') return '';
+  return renderRaw(project(record.data, fields));
 }
 
 export function writeError(stream: Writable, details: ErrorDetails, format: ErrorFormat, machineMode: boolean, verboseCause?: unknown): void {

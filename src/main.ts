@@ -1,9 +1,10 @@
+import { once } from 'node:events';
 import { CommanderError, InvalidArgumentError } from 'commander';
 import { CliError, EXIT } from './contracts/error.js';
 import type { CommandResult, ErrorFormat, OutputFormat } from './contracts/output.js';
 import { commanderUsageError, parseCli } from './cli.js';
 import { redact } from './core/redact.js';
-import { renderResult, writeError } from './core/output.js';
+import { renderResult, renderStreamRecord, writeError } from './core/output.js';
 import { saveBytes, validateArtifactDestination } from './core/artifact-writer.js';
 import { processRuntime, type Runtime } from './runtime.js';
 
@@ -12,6 +13,14 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
   try {
     const execution = await parseCli(argv, runtime);
     if (execution.helpOrVersion || execution.result === null) return 0;
+    if (execution.result.stream) {
+      const format = execution.options.format === 'raw' ? 'raw' : 'ndjson';
+      for await (const record of execution.result.stream) {
+        const chunk = renderStreamRecord(record, format, execution.options.field);
+        if (chunk && !runtime.stdout.write(chunk)) await once(runtime.stdout, 'drain');
+      }
+      return execution.result.exitCode ?? 0;
+    }
     const output = renderResult(execution.result, {
       format: execution.options.format,
       fields: execution.options.field,
@@ -20,17 +29,18 @@ export async function main(argv: string[], runtime: Runtime = processRuntime()):
     if (execution.result.outputHandled) {
       if (execution.options.output === '-') runtime.stdout.write(execution.result.raw ?? output);
       else if (execution.options.receiptFormat !== 'none') writeReceipt(runtime, execution.result, execution.result.data, execution.options.receiptFormat);
-      return 0;
+      return execution.result.exitCode ?? 0;
     }
     if (!execution.options.output || execution.options.output === '-') {
       runtime.stdout.write(output);
-      return 0;
+      return execution.result.exitCode ?? 0;
     }
     const path = validateArtifactDestination(runtime, execution.options.output, execution.options.overwrite === true, execution.options.allowTerminalBinary === true);
     const descriptor = await saveBytes(runtime, output, path, execution.result.source.service, mediaType(execution.options.format), execution.options.overwrite === true);
     if (execution.options.receiptFormat !== 'none') writeReceipt(runtime, execution.result, descriptor, execution.options.receiptFormat);
-    return 0;
+    return execution.result.exitCode ?? 0;
   } catch (error) {
+    if ((error as NodeJS.ErrnoException)?.code === 'EPIPE') return 0;
     const cliError = normalizeError(error);
     writeError(runtime.stderr, cliError.details, detected.errorFormat, detected.machine, detected.verbose ? redact((error as Error)?.stack ?? error) : undefined);
     return cliError.details.exitCode;

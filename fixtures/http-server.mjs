@@ -3,11 +3,49 @@ import { createServer } from 'node:http';
 
 const log = process.env.REQUEST_LOG;
 let retryAttempts = 0;
-const server = createServer((request, response) => {
+const server = createServer(async (request, response) => {
   if (log) appendFileSync(log, `${JSON.stringify({ url: request.url, headers: request.headers })}\n`);
   const url = new URL(request.url, 'http://fixture');
   response.setHeader('content-type', 'application/json');
-  if (url.pathname === '/api/3/action/package_search') {
+  if (request.method === 'POST' && url.pathname === '/') {
+    const body = JSON.parse(await readBody(request));
+    response.end(JSON.stringify(graphQlFixture(body.query, body.variables ?? {})));
+  } else if (url.pathname.toLowerCase().startsWith('/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingservice/')) {
+    response.end(JSON.stringify({ routes: [{ type: 'FeatureCollection', features: [], profile: url.pathname.split('/').at(-1), stops: url.searchParams.get('Stops') }], externalApiStatus: null }));
+  } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/statistikk$/.test(url.pathname)) {
+    response.end(JSON.stringify({ antall: 3 }));
+  } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+$/.test(url.pathname)) {
+    const all = [{ id: 101 }, { id: 102 }, { id: 103 }];
+    const offset = url.searchParams.get('start') === 'opaque-2' ? 2 : 0;
+    const size = Number(url.searchParams.get('antall') ?? 2);
+    const objects = all.slice(offset, offset + size);
+    const next = offset + objects.length < all.length ? { start: 'opaque-2', href: `${url.origin}${url.pathname}?start=opaque-2` } : null;
+    response.end(JSON.stringify({ objekter: objects, metadata: { antall: all.length, returnert: objects.length, sidestørrelse: size, neste: next } }));
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekt' || /^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: Number(url.searchParams.get('id') ?? url.pathname.split('/').at(-1)), type: 105 }));
+  } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/\d+\/versjoner$/.test(url.pathname)) {
+    response.end(JSON.stringify([{ id: 101, versjon: 1 }, { id: 101, versjon: 2 }]));
+  } else if (/^\/vegobjekter\/api\/v4\/vegobjekter(?:\/\d+)?\/endringer$/.test(url.pathname)) {
+    response.end(JSON.stringify({ vegobjektVersjonerOpprettet: [{ id: 101 }], metadata: { returnert: 1, sidestørrelse: 100, neste: null } }));
+  } else if (url.pathname === '/vegobjekter/api/v4/vegobjekter/statistikk') {
+    response.end(JSON.stringify([{ typeId: 105, antall: 3 }]));
+  } else if (url.pathname === '/vegnett/api/v4/posisjon') {
+    response.end(JSON.stringify([{ avstand: 2.5, kommune: 301, veglenkesekvens: { kortform: '0.5@123' } }]));
+  } else if (url.pathname === '/vegnett/api/v4/veglenkesekvenser' || url.pathname === '/vegnett/api/v4/veglenkesekvenser/segmentert' || url.pathname === '/vegnett/api/v4/noder') {
+    response.end(JSON.stringify({ objekter: [{ id: 201 }], metadata: { antall: 1, returnert: 1, sidestørrelse: 100, neste: null } }));
+  } else if (/^\/vegnett\/api\/v4\/(veglenkesekvenser(?:\/segmentert)?|noder)\/\d+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-1)) }));
+  } else if (url.pathname === '/vegnett/api/v4/veglenkesekvenser/endringer') {
+    response.end(JSON.stringify({ veglenkesekvenserSegmentert: [{ id: 201 }], veglenkesekvenserFjernet: [], metadata: { returnert: 1, sidestørrelse: 100, neste: null } }));
+  } else if (url.pathname === '/vegnett/api/v4/veglenkesekvenser/segmentert/statistikk') {
+    response.end(JSON.stringify({ antall: 1 }));
+  } else if (url.pathname === '/vegnett/api/v4/veg' || url.pathname === '/vegnett/api/v4/veg/batch') {
+    response.end(JSON.stringify([{ veglenkesekvens: { kortform: '0.5@123' } }]));
+  } else if (url.pathname === '/vegnett/api/v4/beta/vegnett/rute') {
+    response.end(JSON.stringify({ veglenker: [201], lengde: 100 }));
+  } else if (/^\/monitor\/api\/v1\/endringssett\/[^/]+\/status$/.test(url.pathname)) {
+    response.end(JSON.stringify({ status: 'FERDIG' }));
+  } else if (url.pathname === '/api/3/action/package_search') {
     const start = Number(url.searchParams.get('start') ?? 0);
     const rows = Number(url.searchParams.get('rows') ?? 100);
     const all = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
@@ -49,3 +87,31 @@ server.listen(0, '127.0.0.1', () => {
 });
 
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));
+
+async function readBody(request) {
+  const chunks = [];
+  for await (const chunk of request) chunks.push(chunk);
+  return Buffer.concat(chunks).toString('utf8');
+}
+
+function graphQlFixture(query, variables) {
+  if (query.includes('query Stations')) {
+    if (variables.ids?.includes('error')) return { data: null, errors: [{ message: 'fixture request error' }] };
+    const points = variables.ids ? variables.ids.map((id) => ({ id, name: `Station ${id}`, trafficRegistrationType: 'VEHICLE', operationalStatus: 'OPERATIONAL', registrationFrequency: 'CONTINUOUS', location: { coordinates: { latLon: { lat: 59.9, lon: 10.7 } }, county: { number: 3, name: 'Oslo' }, municipality: { number: 301, name: 'Oslo' }, roadReference: { shortForm: 'EV6', roadCategory: { id: 'E', name: 'Europaveg' } } }, direction: { fromAccordingToRoadLink: 'A', toAccordingToRoadLink: 'B' }, dataTimeSpan: { firstData: null, firstDataWithQualityMetrics: null, latestData: {} } })) : [{ id: 's1', name: 'One' }, { id: 's2', name: 'Two' }, { id: 's3', name: 'Three' }];
+    return { data: { trafficRegistrationPoints: points }, ...(variables.ids?.includes('partial') ? { errors: [{ message: 'fixture partial warning', path: ['trafficRegistrationPoints'] }] } : {}) };
+  }
+  if (query.includes('query Volume')) {
+    const all = [0, 1, 2].map((index) => ({ cursor: `c${index + 1}`, node: { from: `2025-01-01T0${index}:00:00+01:00`, to: `2025-01-01T0${index + 1}:00:00+01:00`, total: { volumeNumbers: { volume: index + 10, validSpeed: null, validLength: null }, coverage: { percentage: 100, unit: 'HOUR', included: { percentage: 100, numerator: 1, denominator: 1 }, uncertain: { percentage: 0, numerator: 0, denominator: 1 }, unavailable: { percentage: 0, numerator: 0, denominator: 1 } } }, byLengthRange: [] } }));
+    const offset = variables.after ? Number(String(variables.after).slice(1)) : 0;
+    const edges = all.slice(offset, offset + Number(variables.first ?? 100));
+    const hasNextPage = offset + edges.length < all.length;
+    const field = query.includes('byDay(') ? 'byDay' : 'byHour';
+    return { data: { trafficData: { trafficRegistrationPoint: { id: variables.id, name: 'Fixture' }, volume: { [field]: { edges, pageInfo: { endCursor: edges.at(-1)?.cursor ?? null, hasNextPage } } } } } };
+  }
+  if (query.includes('query Aadt')) return { data: { trafficData: { volume: { average: { daily: { byYear: [{ year: 2025, total: { volume: { average: 123 }, coverage: { percentage: 100 } }, byLengthRange: [] }] } } } } } };
+  if (query.includes('query References')) return { data: { roadCategories: [{ id: 'E', name: 'Europaveg' }], areas: { countryParts: [], counties: [], municipalities: [] } } };
+  if (query.includes('query StationIndices')) return { data: { trafficVolumeIndices: [] } };
+  if (query.includes('query PublishedIndices')) return { data: { publishedAreaTrafficVolumeIndices: [{ id: 1, name: 'Fixture', months: [{ year: 2025, month: 1 }] }] } };
+  if (query.includes('query PublishedIndex')) return { data: { publishedAreaTrafficVolumeIndex: [{ id: variables.id, name: 'Fixture' }] } };
+  return { data: { __typename: 'Query' } };
+}

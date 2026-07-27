@@ -1,11 +1,13 @@
 import { CliError, EXIT } from '../contracts/error.js';
 import type { Runtime } from '../runtime.js';
 
+export type QueryValue = string | number | boolean | readonly (string | number | boolean)[] | undefined;
+
 export interface HttpOptions {
   service: string;
   canonicalOrigin: string;
   path: string;
-  query?: Record<string, string | number | boolean | undefined> | undefined;
+  query?: Record<string, QueryValue> | undefined;
   headers?: Record<string, string> | undefined;
   method?: 'GET' | 'HEAD' | 'POST' | undefined;
   body?: string | undefined;
@@ -28,7 +30,10 @@ const forbiddenHeaders = /^(authorization|proxy-authorization|cookie|set-cookie|
 export async function request(runtime: Runtime, options: HttpOptions): Promise<HttpResponse> {
   const baseUrl = resolveBaseUrl(runtime, options.service, options.canonicalOrigin);
   const url = new URL(options.path.replace(/^\//, ''), ensureSlash(baseUrl));
-  for (const [key, value] of Object.entries(options.query ?? {})) if (value !== undefined) url.searchParams.append(key, String(value));
+  for (const [key, value] of Object.entries(options.query ?? {})) {
+    if (Array.isArray(value)) for (const item of value) url.searchParams.append(key, String(item));
+    else if (value !== undefined) url.searchParams.append(key, String(value));
+  }
   const headers = new Headers(options.headers);
   headers.set('Accept', options.accept ?? 'application/json');
   headers.set('User-Agent', 'vegvesen-cli');

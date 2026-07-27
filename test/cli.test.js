@@ -44,6 +44,9 @@ function run(args, extra = {}) {
       VEGVESEN_NVDB_AREAS_BASE_URL: origin,
       VEGVESEN_PARKING_BASE_URL: origin,
       VEGVESEN_NVDB_STATUS_BASE_URL: origin,
+      VEGVESEN_NVDB_CORE_BASE_URL: origin,
+      VEGVESEN_ROUTE_BASE_URL: origin,
+      VEGVESEN_TRAFFIC_BASE_URL: origin,
       ...extra.env,
     },
     cwd: extra.cwd,
@@ -87,7 +90,7 @@ test('doctor optionally probes anonymous service reachability', () => {
   const live = run(['doctor', '--live', '--timeout', '1s', '--retries', '0', '--json']);
   assert.equal(live.status, 0, live.stderr);
   const payload = JSON.parse(live.stdout);
-  for (const service of ['catalog', 'nvdb-catalog', 'nvdb-areas', 'parking', 'nvdb-status']) {
+  for (const service of ['catalog', 'nvdb-catalog', 'nvdb-areas', 'parking', 'nvdb-status', 'nvdb-core', 'route', 'traffic']) {
     assert.equal(payload.data.find((check) => check.name === service).status, 'ok');
   }
   assert.equal(payload.meta.live, true);
@@ -147,6 +150,124 @@ test('parking and status reads use current paths', () => {
   const status = run(['nvdb', 'status', 'message', 'list', '--state', 'unresolved', '--json']);
   assert.equal(status.status, 0, status.stderr);
   assert.equal(JSON.parse(status.stdout).data[0].id, 7);
+});
+
+test('NVDB core preserves opaque cursors and streams all pages', () => {
+  const bounded = run(['nvdb', 'object', 'list', '105', '--page-size', '2', '--limit', '3', '--json']);
+  assert.equal(bounded.status, 0, bounded.stderr);
+  const payload = JSON.parse(bounded.stdout);
+  assert.deepEqual(payload.data.map((item) => item.id), [101, 102, 103]);
+  assert.equal(payload.meta.has_more, false);
+  assert.equal(payload.meta.total, 3);
+
+  const stream = run(['nvdb', 'object', 'list', '105', '--page-size', '2', '--all', '--format', 'ndjson']);
+  assert.equal(stream.status, 0, stream.stderr);
+  const records = stream.stdout.trim().split('\n').map(JSON.parse);
+  assert.deepEqual(records.filter((record) => record.type === 'item').map((record) => record.data.id), [101, 102, 103]);
+  assert.equal(records.at(-1).meta.complete, true);
+
+  const raw = run(['nvdb', 'object', 'list', '105', '--page-size', '2', '--all', '--field', 'id', '--format', 'raw']);
+  assert.equal(raw.status, 0, raw.stderr);
+  assert.equal(raw.stdout, '101\n102\n103\n');
+
+  const position = run(['nvdb', 'network', 'position', 'locate', '--lat', '59.9', '--lon', '10.7', '--json']);
+  assert.equal(position.status, 0, position.stderr);
+  assert.equal(JSON.parse(position.stdout).data[0].kommune, 301);
+});
+
+test('every curated NVDB core command maps to an offline fixture', () => {
+  const commands = [
+    ['nvdb', 'object', 'get', '101'],
+    ['nvdb', 'object', 'versions', '105', '101'],
+    ['nvdb', 'object', 'changes', '105', '--limit', '1'],
+    ['nvdb', 'object', 'statistics', '105'],
+    ['nvdb', 'network', 'link', 'list', '--limit', '1'],
+    ['nvdb', 'network', 'link', 'get', '201'],
+    ['nvdb', 'network', 'link', 'changes', '--limit', '1'],
+    ['nvdb', 'network', 'segment', 'list', '--limit', '1'],
+    ['nvdb', 'network', 'segment', 'get', '201'],
+    ['nvdb', 'network', 'segment', 'statistics'],
+    ['nvdb', 'network', 'node', 'list', '--limit', '1'],
+    ['nvdb', 'network', 'node', 'get', '201'],
+    ['nvdb', 'network', 'road-position', 'locate', '--road-reference', 'EV6'],
+    ['nvdb', 'network', 'road-position', 'batch', '--road-references', 'EV6,RV4'],
+    ['nvdb', 'network', 'route', 'calculate', '--start', '0.1@1', '--end', '0.9@1'],
+    ['nvdb', 'monitor', 'change-set', 'get', 'fixture-id'],
+  ];
+  for (const args of commands) {
+    const result = run([...args, '--json', '--no-input']);
+    assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
+    JSON.parse(result.stdout);
+  }
+});
+
+test('Routing V3 validates and maps all nine profiles', () => {
+  const profiles = ['best', 'tourist', 'bike', 'normal-transport', 'special-transport', 'timber-transport', 'modular-vehicle', 'bk-12-100', 'bk-12-65'];
+  for (const profile of profiles) {
+    const heavy = ['normal-transport', 'special-transport', 'timber-transport', 'modular-vehicle'].includes(profile) ? ['--load-class', 'Bk_10_50'] : [];
+    const result = run(['route', 'calculate', '--profile', profile, ...heavy, '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json', '--no-input']);
+    assert.equal(result.status, 0, `${profile}: ${result.stderr}`);
+    assert.equal(JSON.parse(result.stdout).data.routes.length, 1);
+  }
+  const beforeCount = requests().length;
+  const invalid = run(['route', 'calculate', '--profile', 'spaceship', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json']);
+  assert.equal(invalid.status, 2);
+  const missingLoadClass = run(['route', 'calculate', '--profile', 'normal-transport', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json']);
+  assert.equal(missingLoadClass.status, 2);
+  assert.equal(requests().length, beforeCount);
+});
+
+test('Trafikkdata supports bounded cursors, streams, and partial results', () => {
+  const stations = run(['traffic', 'station', 'list', '--limit', '2', '--json']);
+  assert.equal(stations.status, 0, stations.stderr);
+  assert.equal(JSON.parse(stations.stdout).data.length, 2);
+  assert.equal(JSON.parse(stations.stdout).meta.has_more, true);
+
+  const bounded = run(['traffic', 'volume', 'hourly', '--station', 's1', '--from', '2025-01-01T00:00:00+01:00', '--to', '2025-01-01T03:00:00+01:00', '--page-size', '2', '--limit', '3', '--json']);
+  assert.equal(bounded.status, 0, bounded.stderr);
+  assert.equal(JSON.parse(bounded.stdout).data.length, 3);
+  assert.equal(JSON.parse(bounded.stdout).meta.has_more, false);
+
+  const stream = run(['traffic', 'volume', 'hourly', '--station', 's1', '--from', '2025-01-01T00:00:00+01:00', '--to', '2025-01-01T03:00:00+01:00', '--page-size', '2', '--all', '--format', 'ndjson']);
+  assert.equal(stream.status, 0, stream.stderr);
+  const records = stream.stdout.trim().split('\n').map(JSON.parse);
+  assert.equal(records.filter((record) => record.type === 'item').length, 3);
+  assert.equal(records.at(-1).meta.complete, true);
+
+  const partial = run(['traffic', 'station', 'get', 'partial', '--json']);
+  assert.equal(partial.status, 9);
+  assert.equal(partial.stderr, '');
+  assert.equal(JSON.parse(partial.stdout).meta.partial, true);
+  assert.equal(JSON.parse(partial.stdout).data.errors[0].message, 'fixture partial warning');
+  const allowed = run(['traffic', 'station', 'get', 'partial', '--allow-partial', '--json']);
+  assert.equal(allowed.status, 0, allowed.stderr);
+
+  const failed = run(['traffic', 'station', 'get', 'error', '--json']);
+  assert.equal(failed.status, 7);
+  assert.equal(failed.stdout, '');
+  assert.equal(JSON.parse(failed.stderr).error.code, 'GRAPHQL_REQUEST_FAILED');
+});
+
+test('every curated Trafikkdata command maps to a validated persisted query', () => {
+  const period = ['--station', 's1', '--from', '2025-01-01T00:00:00+01:00', '--to', '2025-01-01T03:00:00+01:00', '--limit', '1'];
+  const commands = [
+    ['traffic', 'station', 'get', 's1'],
+    ['traffic', 'volume', 'daily', ...period],
+    ['traffic', 'volume', 'length-class', ...period],
+    ['traffic', 'aadt', 'get', '--station', 's1', '--year', '2025'],
+    ['traffic', 'index', 'station', '--station', 's1', '--year', '2025'],
+    ['traffic', 'index', 'area', '--id', '1', '--year', '2025'],
+    ['traffic', 'index', 'published'],
+    ['traffic', 'quality', 'get', ...period],
+    ['traffic', 'coverage', 'get', ...period],
+    ['traffic', 'reference', 'road-category', 'list'],
+    ['traffic', 'reference', 'area', 'list'],
+  ];
+  for (const args of commands) {
+    const result = run([...args, '--json', '--no-input']);
+    assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
+    JSON.parse(result.stdout);
+  }
 });
 
 test('existing normalized output fails before network access', () => {

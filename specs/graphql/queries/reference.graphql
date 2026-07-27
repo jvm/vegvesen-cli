@@ -1,0 +1,8 @@
+query References {
+  roadCategories { id name }
+  areas {
+    countryParts { id name }
+    counties { number name geographicNumber countryPart { id name } }
+    municipalities { number name county { number name } }
+  }
+}
