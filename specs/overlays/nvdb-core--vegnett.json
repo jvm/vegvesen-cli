@@ -12,7 +12,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network route calculate"
+      "command": [
+        "nvdb network route calculate"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/noder",
@@ -21,7 +23,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network node list"
+      "command": [
+        "nvdb network node list"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/noder/{id}",
@@ -30,7 +34,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network node get"
+      "command": [
+        "nvdb network node get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/posisjon",
@@ -39,7 +45,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network position locate"
+      "command": [
+        "nvdb network position locate"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veg",
@@ -48,7 +56,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb object list"
+      "command": [
+        "nvdb network road-position locate"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veg/batch",
@@ -57,7 +67,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network road-position batch"
+      "command": [
+        "nvdb network road-position batch"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser",
@@ -66,17 +78,20 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network link list"
+      "command": [
+        "nvdb network link list"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/{veglenkesekvensId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb network link get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/endringer",
@@ -85,7 +100,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network link changes"
+      "command": [
+        "nvdb network link changes"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert",
@@ -94,17 +111,20 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network segment list"
+      "command": [
+        "nvdb network segment list"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/{veglenkesekvensId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb network segment get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk",
@@ -113,7 +133,9 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb network segment statistics"
+      "command": [
+        "nvdb network segment statistics"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
@@ -122,17 +144,20 @@
       "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
       "access": "public-anonymous",
       "disposition": "generated-operation",
-      "command": "api operation call"
+      "command": [
+        "api operation call"
+      ]
     },
     {
       "target_id": "nvdb-core:vegnett:POST /api/v4/beta/vegnett/rute",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb network route calculate"
+      ]
     }
   ]
 }

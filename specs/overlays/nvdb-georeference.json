@@ -10,143 +10,117 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:GET /api/v1/rute",
       "effect": "query",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:GET /api/v1/stedfest/resultat/{jobbId}",
       "effect": "query",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:GET /api/v1/stedfest/status/{jobbId}",
       "effect": "query",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job expiry/failure",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job result",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job SIGINT",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job SIGTERM",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job start",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job status",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:job wait",
       "effect": "job",
       "retry": "safe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:POST /api/v1/stedfest",
       "effect": "mutation",
       "retry": "unsafe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     },
     {
       "target_id": "nvdb-georeference:POST /api/v1/stedfest/async",
       "effect": "mutation",
       "retry": "unsafe",
       "evidence": "nvdb-georeference source sha256:7b5950d8d34e9cec67f608ef1b8c9848675e1fc8935946e4222ab8d0096e7fc7; owner classification 2026-07-27",
-      "access": "upstream-degraded",
-      "disposition": "blocked-by-health-gate",
-      "reason": "Representative calls fail through an obsolete upstream dependency path",
-      "promotion_gate": "Promote only after anonymous position, route, synchronous attach, and full asynchronous lifecycle probes pass",
-      "health_gate": "Representative calls fail through an obsolete upstream dependency path"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Representative calls fail through an obsolete upstream dependency path"
     }
   ]
 }

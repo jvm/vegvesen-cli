@@ -12,67 +12,75 @@
       "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "nvdb object list"
+      "command": [
+        "nvdb object get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object list"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/{versjon}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object get"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/versjoner",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object versions"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/endringer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object changes"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object statistics"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
@@ -81,7 +89,9 @@
       "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
       "access": "public-anonymous",
       "disposition": "generated-operation",
-      "command": "api operation call"
+      "command": [
+        "api operation call"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
@@ -90,27 +100,31 @@
       "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
       "access": "public-anonymous",
       "disposition": "generated-operation",
-      "command": "api operation call"
+      "command": [
+        "api operation call"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/endringer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object changes"
+      ]
     },
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object statistics"
+      ]
     }
   ]
 }

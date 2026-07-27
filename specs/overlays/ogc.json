@@ -12,7 +12,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature api"
+      "command": [
+        "ogc feature api"
+      ]
     },
     {
       "target_id": "ogc:OGC API features collection",
@@ -21,7 +23,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature collection get"
+      "command": [
+        "ogc feature collection get"
+      ]
     },
     {
       "target_id": "ogc:OGC API features collections",
@@ -30,7 +34,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature collection list"
+      "command": [
+        "ogc feature collection list"
+      ]
     },
     {
       "target_id": "ogc:OGC API features conformance",
@@ -39,7 +45,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature conformance"
+      "command": [
+        "ogc feature conformance"
+      ]
     },
     {
       "target_id": "ogc:OGC API features item",
@@ -48,7 +56,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature item get"
+      "command": [
+        "ogc feature item get"
+      ]
     },
     {
       "target_id": "ogc:OGC API features items",
@@ -57,7 +67,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature item list"
+      "command": [
+        "ogc feature item list"
+      ]
     },
     {
       "target_id": "ogc:OGC API features landing",
@@ -66,7 +78,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature landing"
+      "command": [
+        "ogc feature landing"
+      ]
     },
     {
       "target_id": "ogc:OGC API features queryables",
@@ -75,7 +89,9 @@
       "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc feature queryable list"
+      "command": [
+        "ogc feature queryable list"
+      ]
     }
   ]
 }

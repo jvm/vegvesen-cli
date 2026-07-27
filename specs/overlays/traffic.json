@@ -12,7 +12,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic reference area list"
+      "command": [
+        "traffic reference area list"
+      ]
     },
     {
       "target_id": "traffic:GraphQL publishedAreaTrafficVolumeIndex",
@@ -21,7 +23,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic index area"
+      "command": [
+        "traffic index area"
+      ]
     },
     {
       "target_id": "traffic:GraphQL publishedAreaTrafficVolumeIndices",
@@ -30,7 +34,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic index published"
+      "command": [
+        "traffic index published"
+      ]
     },
     {
       "target_id": "traffic:GraphQL roadCategories",
@@ -39,7 +45,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic reference road-category list"
+      "command": [
+        "traffic reference road-category list"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficData.volume.average.daily.byYear",
@@ -48,7 +56,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic aadt get"
+      "command": [
+        "traffic aadt get"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficData.volume.byDay",
@@ -57,7 +67,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic volume daily"
+      "command": [
+        "traffic volume daily"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficData.volume.byHour",
@@ -66,7 +78,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic volume hourly"
+      "command": [
+        "traffic volume hourly"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficData.volume.byHour.byLengthRange",
@@ -75,7 +89,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic volume length-class"
+      "command": [
+        "traffic volume length-class"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficRegistrationPoints exact IDs",
@@ -84,7 +100,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic station get"
+      "command": [
+        "traffic station get"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficRegistrationPoints search",
@@ -93,7 +111,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic station list"
+      "command": [
+        "traffic station list"
+      ]
     },
     {
       "target_id": "traffic:GraphQL TrafficVolume coverage",
@@ -102,7 +122,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic coverage get"
+      "command": [
+        "traffic coverage get"
+      ]
     },
     {
       "target_id": "traffic:GraphQL TrafficVolume quality ratios",
@@ -111,7 +133,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic quality get"
+      "command": [
+        "traffic quality get"
+      ]
     },
     {
       "target_id": "traffic:GraphQL trafficVolumeIndices",
@@ -120,7 +144,9 @@
       "evidence": "traffic source sha256:9d912165f91b2da6e462dd2c12fafeec10e6dc17e2c783163dc72c18133835de; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "traffic index station"
+      "command": [
+        "traffic index station"
+      ]
     }
   ]
 }

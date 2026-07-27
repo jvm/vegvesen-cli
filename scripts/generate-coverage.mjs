@@ -27,7 +27,6 @@ const units = expected.map((target) => {
     reason: policy.reason ?? `${policy.disposition} approved by ${policy.owner} on ${policy.reviewed_at}`,
     evidence: policy.evidence,
     ...(policy.command ? { command: policy.command } : {}),
-    ...(policy.promotion_gate ? { promotion_gate: policy.promotion_gate } : {}),
   };
 }).sort((a, b) => a.unit.localeCompare(b.unit));
 const output = { schema_version: 1, reviewed_at: '2026-07-27', owner: 'Jose Mocito', units };

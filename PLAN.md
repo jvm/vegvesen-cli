@@ -24,8 +24,8 @@ There is no **BLOCKED** state. A surface that cannot be verified anonymously fro
 | Measure | Current evidence |
 |---|---|
 | CLI commands | 131 entries generated from `src/registry.ts` into `COMMANDS.md` |
-| Product coverage | 307 exact units checked by `scripts/check-coverage.mjs`, of which 11 are known-misclassified — see 0.2 |
-| Offline tests | 45 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
+| Product coverage | 307 exact units checked by `scripts/check-coverage.mjs` and bound to `src/registry.ts`: 116 curated-command, 3 generated-operation, 51 dynamic-protocol, 137 excluded-permanent |
+| Offline tests | 46 passing Node tests, including real executable, kernel PTY, signal, cancellation, paging-loop, mid-stream failure, and supply-chain process tests |
 | Executed documentation | 19 README examples run against fixture services |
 | GraphQL | 8 persisted Trafikkdata queries validated against checked-in introspection |
 | Package | Packed, installed, and executed outside the checkout on the local Node runtime; Node 20/22/24 remote matrix configured but not yet observed |
@@ -33,30 +33,29 @@ There is no **BLOCKED** state. A surface that cannot be verified anonymously fro
 | Security | ESLint security rules, Semgrep, CodeQL, Betterleaks, actionlint, zizmor, Scorecard, production audit, input/body limits, XML hardening, seeded redaction tests |
 | Release | OIDC/provenance workflow implemented; npm trusted publishing not configured and the package is not published |
 
-### 0.2 Known defect: the coverage gate is not bound to the CLI
+### 0.2 Coverage gate binding — closed
 
-`coverage.json` dispositions come from hand-authored overlays keyed on `target_id` (`scripts/generate-coverage.mjs`). Nothing verifies them against the operations the CLI actually calls, so the gate that is supposed to keep access-required surface out of the product currently measures a parallel bookkeeping artifact.
+The gate is now bound to the shipped CLI. `scripts/check-coverage.mjs` calls `assertRegistryBinding`, which fails if a registry command has no claiming coverage unit, if a unit names a command absent from `src/registry.ts`, if an excluded operation is reachable through a command, or if a command value is free text rather than an exact path. `test/spec-supply-chain.test.js` proves each of those five failure modes fires.
 
-Demonstrated consequences:
+What the binding corrected:
 
-- Eleven operations that ship as tested commands are recorded `access: unverified` and `excluded-with-reviewed-reason`, including `GET /api/v4/vegobjekter/{vegobjekttypeId}`, which backs `nvdb object list` and is directly attested as anonymous in `docs/attestations/2026-07-27-phases-3-4.md`.
-- Two units attribute the command `nvdb object list` to operations it does not call (`GET /api/v4/vegobjekt`, `GET /api/v4/veg`), while the operation it does call is marked excluded.
-- Twelve admin paths and mutations sit in the promotion queue under a gate reading "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture" — a bar an admin endpoint satisfies merely by answering anonymously.
-
-Until Phase 8 closes this, treat the 307-unit figure as arithmetic over unverified data. No claim in 0.3 or 0.4 that depends on operation classification is trustworthy.
+- Eleven operations that ship as tested commands were recorded `access: unverified` and excluded, including `GET /api/v4/vegobjekter/{vegobjekttypeId}` backing `nvdb object list`. All are now `curated-command` citing the anonymous attestation.
+- Two units attributed `nvdb object list` to operations it does not call; they now name `nvdb object get` and `nvdb network road-position locate`.
+- `specs/operations.json` was a third parallel inventory with its own identifier namespace and zero overlap with `coverage.json`. It is deleted; the derived units are the single source of truth, and the runtime manifest digest now covers `coverage.json`.
+- `promotion_gate`, `health_gate`, `blocked-by-health-gate`, and the `unverified`/`experimental`/`upstream-degraded` access tiers are removed from the schema and the data.
 
 ### 0.3 Definition-of-done checklist
 
 This maps directly to Section 2.
 
-1. **PARTIAL** — every in-scope coverage unit carries exactly one disposition, but 0.2 shows the dispositions themselves are unreliable. Closing Phase 8 completes this.
+1. **COMPLETE** — every in-scope coverage unit carries exactly one disposition, and the dispositions are bound to the shipped registry (0.2).
 2. **COMPLETE** — service metadata distinguishes stable, caution, dynamic, and excluded surfaces.
 3. **COMPLETE for supported commands** — structured output and stdout/stderr separation are implemented and process-tested.
 4. **COMPLETE** — explicit machine modes and detached stdin do not prompt or hang.
 5. **COMPLETE** — bounded defaults, explicit `--all`, and NVDB/OGC loop plus server-capped-page fixtures exist.
 6. **COMPLETE** — streamed atomic writes, overwrite protection, binary-TTY guard, size, SHA-256 receipts, and interrupted-download cleanup exist.
 7. **COMPLETE** — mutation, report job, retry, anonymous-access, partial-result, and signal contracts exist and are process-tested.
-8. **PARTIAL** — source drift, GraphQL validation, docs generation, unit regeneration, and overlay target validation exist; the registry-to-coverage binding does not.
+8. **COMPLETE** — source drift, GraphQL validation, docs generation, unit regeneration, overlay target validation, and the registry-to-coverage binding all exist.
 9. **PARTIAL** — every command adapter and protocol unit has offline process coverage; per-operation fixtures for the generated registry remain.
 10. **PARTIAL** — the installed-package probe passes locally and the Node 20/22/24 matrix is configured, but that matrix has not run and npm publication is not configured.
 
@@ -66,15 +65,14 @@ Everything below is implementable offline, from checked-in evidence, with no app
 
 | # | Work | Phase |
 |---|---|---|
-| 1 | Bind coverage to the registry; reclassify the 11 mislabeled operations; correct the 2 wrong attributions | 8 |
-| 2 | Replace free-text promotion gates with the deterministic rules in 8.3 | 8 |
-| 3 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
-| 4 | Remove excluded surfaces from the command tree, contracts, and dependency pins | 8 |
-| 5 | Per-operation process fixtures for every generated-registry operation | 7 |
-| 6 | Expand the generated registry to the full reviewed anonymous set | 7 |
-| 7 | Fresh-read agreement fixture for representative NVDB reads | 3 |
-| 8 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
-| 9 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
+| 1 | Delete the Stedfesting and OGC Tiles/DGGS manifest, overlay, and unit records | 8 |
+| 2 | Promote the reviewed anonymous reads in 4.3 to curated commands | 8 |
+| 3 | Remove remaining excluded surfaces from the command tree and dependency pins | 8 |
+| 4 | Per-operation process fixtures for every generated-registry operation | 7 |
+| 5 | Expand the generated registry to the full reviewed anonymous set | 7 |
+| 6 | Fresh-read agreement fixture for representative NVDB reads | 3 |
+| 7 | Raw GeoJSON byte-preservation fixture for `route calculate` | 4 |
+| 8 | NVDB `POST /api/v4/beta/vegnett/rute` process fixture | 3 |
 
 ### 0.5 Owner-operated items outside this plan
 
@@ -847,7 +845,7 @@ The gate is meaningless unless it measures the shipped product. `check-coverage`
 - every `curated-command` unit's `command` value exists in `src/registry.ts`;
 - every registry command that performs an upstream request is claimed by at least one `curated-command` unit;
 - local-only commands (`version`, `completion`, `doctor`, `service *`, `schema *`, `config *`, `api service list`, `api operation list`, `api operation describe`) are declared in an explicit allowlist rather than passing by absence;
-- a unit's `command` field is a single exact registry path, never a free-text or semicolon-joined string.
+- a unit's `command` field is an array of exact registry paths, never a free-text or semicolon-joined string. One operation legitimately backs several commands (`GET /rapporter/poll/{id}` serves both `nvdb report job get` and `nvdb report job wait`), so the array is the correct shape; the constraint is that each element is an exact path with no flags or separators.
 
 Fail CI when:
 
@@ -1149,7 +1147,7 @@ Any unresolved question that changes access, privacy, effects, or compatibility 
 Phases 0–6 are implemented. The remaining work in 0.4 runs in this order, and every step is offline, deterministic, and free of approval points.
 
 1. **Phase 8 first.** Everything else depends on a coverage gate that measures the shipped product. Expanding the generated registry before the gate is bound would add operations under the same unverified classification that produced the 0.2 defect.
-2. **Phase 8 sub-order:** binding assertions and the local-only allowlist → regenerate overlays under the 8.3 rules → split compound command strings → drop `promotion_gate` from schema and data → delete Stedfesting and Tiles/DGGS records → promote the 4.3 reads and implement their commands.
+2. **Phase 8 sub-order:** the binding assertions, the overlay regeneration, the command-array migration, and the `promotion_gate` removal must land as one commit — the assertions fail by design until the overlays are corrected, so splitting them would leave `npm run validate` red. Then, separately: delete the Stedfesting and Tiles/DGGS records, then promote the 4.3 reads and implement their commands.
 3. **Phase 7 next:** expand `api operation call` to the full `generated-operation` set, then add one metadata-driven process fixture per generated operation.
 4. **Phase 3/4 leftovers last**, in any order: NVDB route POST fixture, fresh-read agreement fixture, raw GeoJSON byte-preservation fixture.
 

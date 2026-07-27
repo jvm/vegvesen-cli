@@ -11,9 +11,8 @@
       "retry": "unsafe",
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "tnits:family RestrictionForVehicles",
@@ -22,7 +21,11 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits type list; tnits snapshot list; tnits update list"
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
     },
     {
       "target_id": "tnits:family RoadFeature",
@@ -31,7 +34,11 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits type list; tnits snapshot list; tnits update list"
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
     },
     {
       "target_id": "tnits:family RoadName",
@@ -40,7 +47,11 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits type list; tnits snapshot list; tnits update list"
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
     },
     {
       "target_id": "tnits:family SpeedLimit",
@@ -49,7 +60,11 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits type list; tnits snapshot list; tnits update list"
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
     },
     {
       "target_id": "tnits:GET /api/v1/admin/files",
@@ -57,9 +72,8 @@
       "retry": "safe",
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "tnits:GET /api/v1/download",
@@ -68,7 +82,10 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits snapshot download; tnits update download"
+      "command": [
+        "tnits snapshot download",
+        "tnits update download"
+      ]
     },
     {
       "target_id": "tnits:GET /api/v1/tnits/{type}/snapshots",
@@ -77,7 +94,9 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits snapshot list"
+      "command": [
+        "tnits snapshot list"
+      ]
     },
     {
       "target_id": "tnits:GET /api/v1/tnits/{type}/snapshots/latest",
@@ -86,7 +105,9 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits snapshot list"
+      "command": [
+        "tnits snapshot list"
+      ]
     },
     {
       "target_id": "tnits:GET /api/v1/tnits/{type}/updates",
@@ -95,7 +116,9 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits update list"
+      "command": [
+        "tnits update list"
+      ]
     },
     {
       "target_id": "tnits:GET /api/v1/tnits/types",
@@ -104,7 +127,9 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "tnits type list"
+      "command": [
+        "tnits type list"
+      ]
     },
     {
       "target_id": "tnits:POST /api/v1/admin/flags",
@@ -112,9 +137,8 @@
       "retry": "unsafe",
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     }
   ]
 }

@@ -1,23 +1,29 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { coverageSchema, manifestSchema, overlaySchema, sourcesSchema } from './spec-schema.mjs';
-import { generateProtocolUnits, validatePublicOperations } from './spec-lib.mjs';
+import { assertRegistryBinding, generateProtocolUnits, validatePublicOperations } from './spec-lib.mjs';
 
 const root = new URL('../', import.meta.url);
 const manifest = manifestSchema.parse(json('specs/manifest.json'));
 const sources = sourcesSchema.parse(json('specs/sources.json'));
 const coverage = coverageSchema.parse(json('coverage.json'));
-const operations = json('specs/operations.json');
 const openapi = json('specs/derived/openapi-operations.json').operations;
 const recipes = json('specs/protocol-recipes.json');
 const protocol = generateProtocolUnits(recipes, sources.sources);
 assert.deepEqual(json('specs/derived/protocol-units.json').units, protocol, 'Derived protocol inventory differs from reviewed recipes/persisted queries');
 const publicOperations = json('specs/public-operations.json').operations;
 const { commandRegistry } = await import('../dist/registry.js');
-const dispositions = new Set(['curated-command', 'generated-operation', 'dynamic-protocol', 'excluded-with-reviewed-reason', 'blocked-by-health-gate']);
+const dispositions = new Set(['curated-command', 'generated-operation', 'dynamic-protocol', 'excluded-permanent']);
 const publicDispositions = new Set(['curated-command', 'generated-operation', 'dynamic-protocol']);
 const services = new Set(manifest.services.map((service) => service.id));
 const registryPaths = new Set(commandRegistry.map((command) => command.path));
+
+// Commands that answer from checked-in metadata or local state and issue no upstream request.
+// Declared explicitly so a genuinely unmapped command cannot pass the binding check by absence.
+const localOnlyCommands = new Set([
+  ...commandRegistry.filter((command) => command.service === 'local').map((command) => command.path),
+  'api service list', 'api operation list', 'api operation describe',
+]);
 
 assert.equal(manifest.schema_version, 1);
 assert.equal(sources.schema_version, 1);
@@ -59,10 +65,14 @@ for (const file of overlayFiles) {
     assert(policy.evidence, `Missing evidence: ${policy.target_id}`);
     if (publicDispositions.has(policy.disposition)) {
       assert.equal(policy.access, 'public-anonymous', `Non-public access entered supported surface: ${policy.target_id}`);
-      assert(policy.command, `Supported target lacks command: ${policy.target_id}`);
-      for (const command of policy.command.split(';').map((value) => value.trim().split(' --')[0])) assert(registryPaths.has(command), `Overlay references unknown command: ${policy.target_id} -> ${command}`);
+      assert(Array.isArray(policy.command) && policy.command.length > 0, `Supported target lacks command: ${policy.target_id}`);
+      for (const command of policy.command) {
+        assert(registryPaths.has(command), `Overlay references unknown command: ${policy.target_id} -> ${command}`);
+        assert(!/[;]| --/.test(command), `Command must be an exact registry path, not free text: ${policy.target_id} -> ${command}`);
+      }
     } else {
-      assert(policy.reason && policy.promotion_gate, `Exclusion lacks rationale/promotion gate: ${policy.target_id}`);
+      assert(policy.reason, `Exclusion lacks rationale: ${policy.target_id}`);
+      assert(!policy.command, `Excluded target must not name a command: ${policy.target_id}`);
     }
     overlays.set(policy.target_id, policy);
   }
@@ -82,14 +92,7 @@ for (const unit of coverage.units) {
 }
 assert.equal(coverageUnits.size, expected.size, `Coverage completeness mismatch: ${coverageUnits.size}/${expected.size}`);
 
-for (const operation of operations.operations) {
-  assert(services.has(operation.service), `Unknown operation service: ${operation.service}`);
-  assert(dispositions.has(operation.disposition), `Invalid operation disposition: ${operation.unit}`);
-  if (operation.disposition === 'curated-command') assert(operation.command, `Curated operation lacks command: ${operation.unit}`);
-  else assert(operation.reason, `Non-curated operation lacks reason: ${operation.unit}`);
-}
-const mappedCommands = new Set(operations.operations.flatMap((operation) => (operation.command ?? '').split(';').map((command) => command.trim().split(' --')[0]).filter(Boolean)));
-for (const command of commandRegistry.filter((entry) => entry.service !== 'local')) assert(mappedCommands.has(command.path), `Command lacks exact runtime mapping: ${command.path}`);
+assertRegistryBinding(coverage.units, commandRegistry, localOnlyCommands, assert);
 console.log(`Coverage classified: ${coverage.units.length} exact units (${openapi.length} contract operations, ${protocol.length} protocol units) across ${services.size} services`);
 
 function json(path) { return JSON.parse(readFileSync(new URL(path, root))); }

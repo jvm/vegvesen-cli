@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
+import { assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
 import { overlaySchema, sourcesSchema } from '../scripts/spec-schema.mjs';
 
 const fixture = JSON.stringify({
@@ -70,4 +70,30 @@ test('checked-in coverage regenerates offline and exact gate passes', () => {
   }
   const packedSources = JSON.parse(readFileSync(new URL('../specs/sources.json', import.meta.url)));
   assert.ok(packedSources.sources.every((source) => source.redistribution === 'reference-only' || source.redistribution === 'snapshot-approved'));
+});
+
+test('coverage binding fails when the CLI and the gate disagree', () => {
+  const registry = [
+    { path: 'thing list', service: 'thing' },
+    { path: 'thing get', service: 'thing' },
+    { path: 'version', service: 'local' },
+  ];
+  const local = new Set(['version']);
+  const ok = [
+    { unit: 'thing:GET /things', disposition: 'curated-command', command: ['thing list'] },
+    { unit: 'thing:GET /things/{id}', disposition: 'curated-command', command: ['thing get'] },
+    { unit: 'thing:DELETE /things/{id}', disposition: 'excluded-permanent' },
+  ];
+  assert.doesNotThrow(() => assertRegistryBinding(ok, registry, local, assert));
+
+  // A shipped command with no claiming unit is the defect this gate exists to catch.
+  assert.throws(() => assertRegistryBinding(ok.slice(1), registry, local, assert), /unclaimed by any coverage unit: thing list/);
+  // A unit naming a command that does not exist.
+  assert.throws(() => assertRegistryBinding([...ok, { unit: 'x', disposition: 'curated-command', command: ['thing ghost'] }], registry, local, assert), /absent from the registry: thing ghost/);
+  // Free-text and compound command strings.
+  assert.throws(() => assertRegistryBinding([{ unit: 'x', disposition: 'curated-command', command: ['thing list --all'] }, ...ok.slice(1)], registry, local, assert), /not free text/);
+  // An excluded operation must not be reachable through a command.
+  assert.throws(() => assertRegistryBinding([...ok.slice(0, 2), { unit: 'y', disposition: 'excluded-permanent', command: ['thing get'] }], registry, local, assert), /must not name a command/);
+  // A local-only command must not claim upstream surface.
+  assert.throws(() => assertRegistryBinding([...ok, { unit: 'z', disposition: 'curated-command', command: ['version'] }], registry, local, assert), /Local-only command must not claim/);
 });

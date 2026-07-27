@@ -11,9 +11,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder",
@@ -21,9 +20,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder/siste",
@@ -31,9 +29,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser",
@@ -41,9 +38,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/siste",
@@ -51,9 +47,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/stream",
@@ -61,9 +56,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett",
@@ -71,9 +65,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett/siste",
@@ -81,9 +74,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter",
@@ -91,9 +83,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}",
@@ -101,9 +92,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/siste",
@@ -111,9 +101,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/stream",
@@ -121,9 +110,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/siste",
@@ -131,9 +119,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder",
@@ -141,9 +128,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder/{nodeId}",
@@ -151,9 +137,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenker/stream",
@@ -161,9 +146,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser",
@@ -171,9 +155,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}",
@@ -181,9 +164,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}/historisk",
@@ -191,9 +173,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/stream",
@@ -201,9 +182,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter",
@@ -211,9 +191,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}",
@@ -221,9 +200,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}",
@@ -231,9 +209,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/{versjon}",
@@ -241,9 +218,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/historisk",
@@ -251,9 +227,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/id/{vegobjektId}",
@@ -261,9 +236,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     },
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/stream",
@@ -271,9 +245,8 @@
       "retry": "safe",
       "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
       "access": "public-anonymous",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface",
-      "promotion_gate": "Promote after a dedicated mapping, bounded paging/stream fixture, and anonymous live smoke"
+      "disposition": "excluded-permanent",
+      "reason": "Anonymous long-tail /uberiket operation is deliberately outside the reviewed v1 command surface"
     }
   ]
 }

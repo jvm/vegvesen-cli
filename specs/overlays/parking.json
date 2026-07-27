@@ -12,7 +12,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking area list"
+      "command": [
+        "parking area list"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringsomraade/{id}",
@@ -21,7 +23,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking area get"
+      "command": [
+        "parking area get"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringsomraade/{id}/versjon/{versjon}",
@@ -30,7 +34,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking area version"
+      "command": [
+        "parking area version"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringsomraade/skiltplan/{skiltplanId}",
@@ -39,7 +45,9 @@
       "effect": "artifact",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking sign-plan get"
+      "command": [
+        "parking sign-plan get"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringsomraade/vurdering/{vurderingId}",
@@ -48,7 +56,9 @@
       "effect": "artifact",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking assessment get"
+      "command": [
+        "parking assessment get"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringstilbyder",
@@ -57,7 +67,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking provider list"
+      "command": [
+        "parking provider list"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringstilbyder/{organisasjonsnummer}",
@@ -66,7 +78,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking provider get"
+      "command": [
+        "parking provider get"
+      ]
     },
     {
       "target_id": "parking:GET /parkeringstilbyder/aktive",
@@ -75,7 +89,9 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "parking source sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f; owner classification 2026-07-27",
-      "command": "parking provider active"
+      "command": [
+        "parking provider active"
+      ]
     }
   ]
 }

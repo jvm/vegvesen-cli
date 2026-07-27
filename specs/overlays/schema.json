@@ -2,37 +2,149 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/jvm/vegvesen-cli/specs/overlays/schema.json",
   "type": "object",
-  "required": ["schema_version", "contract_id", "source_digest", "reviewed_at", "owner", "operations"],
+  "required": [
+    "schema_version",
+    "contract_id",
+    "source_digest",
+    "reviewed_at",
+    "owner",
+    "operations"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_version": {"const": 1},
-    "contract_id": {"type": "string", "minLength": 1},
-    "source_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
-    "reviewed_at": {"type": "string", "format": "date"},
-    "owner": {"type": "string", "minLength": 1},
+    "schema_version": {
+      "const": 1
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
     "operations": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["target_id", "access", "disposition", "effect", "retry", "evidence"],
+        "required": [
+          "target_id",
+          "access",
+          "disposition",
+          "effect",
+          "retry",
+          "evidence"
+        ],
         "additionalProperties": false,
         "properties": {
-          "target_id": {"type": "string", "minLength": 1},
-          "access": {"enum": ["public-anonymous", "requires-access", "restricted", "admin", "paid", "experimental", "upstream-degraded", "unverified"]},
-          "disposition": {"enum": ["curated-command", "generated-operation", "dynamic-protocol", "excluded-with-reviewed-reason", "blocked-by-health-gate"]},
-          "effect": {"enum": ["query", "artifact", "mutation", "job", "stream", "protocol"]},
-          "retry": {"enum": ["safe", "unsafe", "conditional"]},
-          "evidence": {"type": "string", "minLength": 1},
-          "command": {"type": "string", "minLength": 1},
-          "reason": {"type": "string", "minLength": 1},
-          "promotion_gate": {"type": "string", "minLength": 1},
-          "health_gate": {"type": "string", "minLength": 1},
-          "pagination": {"type": ["string", "null"]},
-          "sensitive_fields": {"type": "array", "items": {"type": "string"}}
+          "target_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access": {
+            "enum": [
+              "public-anonymous",
+              "requires-access",
+              "restricted",
+              "admin",
+              "paid"
+            ]
+          },
+          "disposition": {
+            "enum": [
+              "curated-command",
+              "generated-operation",
+              "dynamic-protocol",
+              "excluded-permanent"
+            ]
+          },
+          "effect": {
+            "enum": [
+              "query",
+              "artifact",
+              "mutation",
+              "job",
+              "stream",
+              "protocol"
+            ]
+          },
+          "retry": {
+            "enum": [
+              "safe",
+              "unsafe",
+              "conditional"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "command": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pagination": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sensitive_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         },
         "allOf": [
-          {"if": {"properties": {"disposition": {"enum": ["excluded-with-reviewed-reason", "blocked-by-health-gate"]}}}, "then": {"required": ["reason", "promotion_gate"]}},
-          {"if": {"properties": {"disposition": {"enum": ["curated-command", "generated-operation", "dynamic-protocol"]}}}, "then": {"required": ["command"]}}
+          {
+            "if": {
+              "properties": {
+                "disposition": {
+                  "const": "excluded-permanent"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "reason"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "disposition": {
+                  "enum": [
+                    "curated-command",
+                    "generated-operation",
+                    "dynamic-protocol"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "command"
+              ]
+            }
+          }
         ]
       }
     }

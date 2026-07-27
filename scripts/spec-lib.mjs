@@ -175,3 +175,34 @@ function sortJson(value) {
   if (value !== null && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((key) => [key, sortJson(value[key])]));
   return value;
 }
+
+// Binds the coverage gate to the shipped CLI. Without this the gate measures a parallel
+// bookkeeping artifact: shipped commands can sit recorded as excluded from the runtime surface
+// while genuinely unmapped commands pass by absence.
+export function assertRegistryBinding(units, commandRegistry, localOnlyCommands, assert) {
+  const supported = new Set(['curated-command', 'generated-operation', 'dynamic-protocol']);
+  const registryPaths = new Set(commandRegistry.map((command) => command.path));
+  const claimed = new Map();
+  for (const unit of units) {
+    if (!supported.has(unit.disposition)) {
+      assert(!unit.command, `Excluded target must not name a command: ${unit.unit}`);
+      continue;
+    }
+    assert(Array.isArray(unit.command) && unit.command.length > 0, `Supported target lacks command: ${unit.unit}`);
+    for (const command of unit.command) {
+      assert(!/[;]| --/.test(command), `Command must be an exact registry path, not free text: ${unit.unit} -> ${command}`);
+      assert(registryPaths.has(command), `Coverage claims a command absent from the registry: ${command}`);
+      if (!claimed.has(command)) claimed.set(command, []);
+      claimed.get(command).push(unit.unit);
+    }
+  }
+  for (const command of commandRegistry) {
+    if (localOnlyCommands.has(command.path)) {
+      assert(!claimed.has(command.path), `Local-only command must not claim an upstream operation: ${command.path}`);
+      continue;
+    }
+    assert(claimed.has(command.path), `Registry command is unclaimed by any coverage unit: ${command.path}`);
+  }
+  for (const path of localOnlyCommands) assert(registryPaths.has(path), `Local-only allowlist names a command absent from the registry: ${path}`);
+  return claimed;
+}

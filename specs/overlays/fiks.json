@@ -11,9 +11,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/kategorier",
@@ -21,9 +20,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/omrader",
@@ -31,9 +29,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}",
@@ -41,9 +38,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde",
@@ -51,9 +47,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde/{abonnent}",
@@ -61,9 +56,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
@@ -71,9 +65,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/vedlegg",
@@ -81,9 +74,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig",
@@ -91,9 +83,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig/{brukernavn}",
@@ -101,9 +92,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig/sok",
@@ -111,9 +101,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/feilmelding",
@@ -122,7 +111,9 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "fiks issue list"
+      "command": [
+        "fiks issue list"
+      ]
     },
     {
       "target_id": "fiks:GET /api/v1/feilmelding/{id}",
@@ -131,7 +122,9 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "fiks issue get"
+      "command": [
+        "fiks issue get"
+      ]
     },
     {
       "target_id": "fiks:GET /api/v1/feilmelding/{id}/vedlegg/{filnavn}",
@@ -140,17 +133,18 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "fiks attachment get"
+      "command": [
+        "fiks attachment get"
+      ]
     },
     {
       "target_id": "fiks:GET /api/v1/feilmelding/detaljert",
       "effect": "query",
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/meg/abonnenter",
@@ -158,9 +152,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/meg/ansvarlig",
@@ -168,9 +161,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:GET /api/v1/meg/feilmeldinger",
@@ -178,9 +170,8 @@
       "retry": "safe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:PATCH /api/v1/feilmelding/{id}/ansvarlig",
@@ -188,9 +179,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig",
@@ -198,9 +188,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/kategorier",
@@ -208,9 +197,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/omrader",
@@ -218,19 +206,17 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding",
       "effect": "mutation",
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
-      "access": "unverified",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence",
-      "promotion_gate": "Promote only after exact anonymous probe, effect/retry review, command mapping, and offline process fixture"
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/abonner",
@@ -238,9 +224,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/avvist",
@@ -248,9 +233,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/dov",
@@ -258,9 +242,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/kommentar",
@@ -268,9 +251,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/lukk",
@@ -278,9 +260,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/rapporter/karverket",
@@ -288,9 +269,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/start",
@@ -298,9 +278,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/svv",
@@ -308,9 +287,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/vedlegg",
@@ -319,7 +297,9 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "fiks attachment add"
+      "command": [
+        "fiks attachment add"
+      ]
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/vts",
@@ -327,9 +307,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/anonym",
@@ -338,7 +317,9 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "fiks issue create"
+      "command": [
+        "fiks issue create"
+      ]
     },
     {
       "target_id": "fiks:PUT /api/v1/feilmelding/{id}",
@@ -346,9 +327,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     },
     {
       "target_id": "fiks:PUT /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
@@ -356,9 +336,8 @@
       "retry": "unsafe",
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
-      "disposition": "excluded-with-reviewed-reason",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1",
-      "promotion_gate": "Requires a separately approved authenticated scope and anonymous/access contract evidence"
+      "disposition": "excluded-permanent",
+      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
     }
   ]
 }

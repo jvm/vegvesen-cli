@@ -12,7 +12,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs describe"
+      "command": [
+        "ogc wfs describe"
+      ]
     },
     {
       "target_id": "ogc:datex_3_1 WFS GetCapabilities",
@@ -21,7 +23,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs capabilities"
+      "command": [
+        "ogc wfs capabilities"
+      ]
     },
     {
       "target_id": "ogc:datex_3_1 WFS GetFeature",
@@ -30,7 +34,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs feature"
+      "command": [
+        "ogc wfs feature"
+      ]
     },
     {
       "target_id": "ogc:datex_3_1 WMS GetCapabilities",
@@ -39,7 +45,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms capabilities"
+      "command": [
+        "ogc wms capabilities"
+      ]
     },
     {
       "target_id": "ogc:datex_3_1 WMS GetFeatureInfo",
@@ -48,7 +56,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms feature-info"
+      "command": [
+        "ogc wms feature-info"
+      ]
     },
     {
       "target_id": "ogc:datex_3_1 WMS GetMap",
@@ -57,7 +67,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms map"
+      "command": [
+        "ogc wms map"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WFS DescribeFeatureType",
@@ -66,7 +78,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs describe"
+      "command": [
+        "ogc wfs describe"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WFS GetCapabilities",
@@ -75,7 +89,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs capabilities"
+      "command": [
+        "ogc wfs capabilities"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WFS GetFeature",
@@ -84,7 +100,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs feature"
+      "command": [
+        "ogc wfs feature"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WMS GetCapabilities",
@@ -93,7 +111,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms capabilities"
+      "command": [
+        "ogc wms capabilities"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WMS GetFeatureInfo",
@@ -102,7 +122,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms feature-info"
+      "command": [
+        "ogc wms feature-info"
+      ]
     },
     {
       "target_id": "ogc:norstoy_1_0 WMS GetMap",
@@ -111,7 +133,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms map"
+      "command": [
+        "ogc wms map"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WFS DescribeFeatureType",
@@ -120,7 +144,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs describe"
+      "command": [
+        "ogc wfs describe"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WFS GetCapabilities",
@@ -129,7 +155,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs capabilities"
+      "command": [
+        "ogc wfs capabilities"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WFS GetFeature",
@@ -138,7 +166,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs feature"
+      "command": [
+        "ogc wfs feature"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WMS GetCapabilities",
@@ -147,7 +177,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms capabilities"
+      "command": [
+        "ogc wms capabilities"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WMS GetFeatureInfo",
@@ -156,7 +188,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms feature-info"
+      "command": [
+        "ogc wms feature-info"
+      ]
     },
     {
       "target_id": "ogc:nvdb_2_0 WMS GetMap",
@@ -165,7 +199,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms map"
+      "command": [
+        "ogc wms map"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WFS DescribeFeatureType",
@@ -174,7 +210,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs describe"
+      "command": [
+        "ogc wfs describe"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WFS GetCapabilities",
@@ -183,7 +221,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs capabilities"
+      "command": [
+        "ogc wfs capabilities"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WFS GetFeature",
@@ -192,7 +232,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs feature"
+      "command": [
+        "ogc wfs feature"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WMS GetCapabilities",
@@ -201,7 +243,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms capabilities"
+      "command": [
+        "ogc wms capabilities"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WMS GetFeatureInfo",
@@ -210,7 +254,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms feature-info"
+      "command": [
+        "ogc wms feature-info"
+      ]
     },
     {
       "target_id": "ogc:rapportweb_1_0 WMS GetMap",
@@ -219,7 +265,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms map"
+      "command": [
+        "ogc wms map"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WFS DescribeFeatureType",
@@ -228,7 +276,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs describe"
+      "command": [
+        "ogc wfs describe"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WFS GetCapabilities",
@@ -237,7 +287,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs capabilities"
+      "command": [
+        "ogc wfs capabilities"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WFS GetFeature",
@@ -246,7 +298,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wfs feature"
+      "command": [
+        "ogc wfs feature"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WMS GetCapabilities",
@@ -255,7 +309,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms capabilities"
+      "command": [
+        "ogc wms capabilities"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WMS GetFeatureInfo",
@@ -264,7 +320,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms feature-info"
+      "command": [
+        "ogc wms feature-info"
+      ]
     },
     {
       "target_id": "ogc:vegvar_1_0 WMS GetMap",
@@ -273,7 +331,9 @@
       "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "dynamic-protocol",
-      "command": "ogc wms map"
+      "command": [
+        "ogc wms map"
+      ]
     }
   ]
 }

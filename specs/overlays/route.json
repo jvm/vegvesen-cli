@@ -12,7 +12,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route matrix"
+      "command": [
+        "route matrix"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/best",
@@ -21,7 +23,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bike",
@@ -30,7 +34,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasse12100",
@@ -39,7 +45,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasse1265",
@@ -48,7 +56,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasseModulvognTog",
@@ -57,7 +67,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasseNormalTransport",
@@ -66,7 +78,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasseSpesialTransport",
@@ -75,7 +89,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/bruksklasseTommerTransport",
@@ -84,7 +100,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:GET /api/Route/tourist",
@@ -93,7 +111,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route calculate"
+      "command": [
+        "route calculate"
+      ]
     },
     {
       "target_id": "route:POST /api/RoadFeature/roadFeatures",
@@ -102,7 +122,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route road-feature query"
+      "command": [
+        "route road-feature query"
+      ]
     },
     {
       "target_id": "route:POST /api/RoadFeature/roadFeaturesWithBruksklasse",
@@ -111,7 +133,9 @@
       "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
       "access": "public-anonymous",
       "disposition": "curated-command",
-      "command": "route road-feature query"
+      "command": [
+        "route road-feature query"
+      ]
     }
   ]
 }
