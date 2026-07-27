@@ -5,6 +5,7 @@ import { effectiveSettings } from './core/config-store.js';
 import { packageMetadata } from './core/metadata.js';
 import {
   commandSchema,
+  completionResult,
   configPathResult,
   configSet,
   configShow,
@@ -76,7 +77,7 @@ export async function parseCli(argv: string[], runtime: Runtime): Promise<CliExe
   addCommonOptions(program);
   program.hook('preAction', (_root, actionCommand) => {
     const parsed = program.opts() as Partial<CommonOptions>;
-    if (['catalog', 'nvdb', 'parking'].includes(topLevelName(actionCommand))) {
+    if (['catalog', 'nvdb', 'parking', 'route', 'traffic', 'ogc', 'tnits', 'fiks', 'api'].includes(topLevelName(actionCommand))) {
       const configured = effectiveSettings(runtime, parsed.configProfile).values;
       if (parsed.json) program.setOptionValueWithSource('format', 'json', 'implied');
       else if (program.getOptionValueSource('format') === 'default' && configured.format) program.setOptionValueWithSource('format', configured.format, 'config');
@@ -91,6 +92,7 @@ export async function parseCli(argv: string[], runtime: Runtime): Promise<CliExe
   const setResult = (factory: () => CommandResult | Promise<CommandResult>, command: Command): Promise<void> => runAction(factory, command).then((value) => { commandResult = value; });
 
   program.command('version').description('Show CLI, Node, schema, and manifest versions.').action((_options, command: Command) => setResult(() => versionResult(), command));
+  program.command('completion <shell>').description('Generate bash, zsh, or fish completion script.').action((shell: string, _options, command: Command) => setResult(() => completionResult(shell), command));
   program.command('doctor').description('Check local readiness and service health gates.')
     .option('--live', 'Probe implemented anonymous service endpoints')
     .action((local: { live?: boolean }, command: Command) => {

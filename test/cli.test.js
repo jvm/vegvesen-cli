@@ -47,6 +47,11 @@ function run(args, extra = {}) {
       VEGVESEN_NVDB_CORE_BASE_URL: origin,
       VEGVESEN_ROUTE_BASE_URL: origin,
       VEGVESEN_TRAFFIC_BASE_URL: origin,
+      VEGVESEN_OGC_BASE_URL: origin,
+      VEGVESEN_TNITS_BASE_URL: origin,
+      VEGVESEN_NVDB_EXPORT_BASE_URL: origin,
+      VEGVESEN_FIKS_BASE_URL: origin,
+      VEGVESEN_NVDB_REPORTS_BASE_URL: origin,
       ...extra.env,
     },
     cwd: extra.cwd,
@@ -61,6 +66,9 @@ test('prints focused help and bare version', () => {
   assert.match(help.stdout, /catalog/);
   assert.equal(help.stderr, '');
   assert.equal(run(['--version']).stdout, '0.1.0\n');
+  const completion = run(['completion', 'bash', '--format', 'raw', '--no-input']);
+  assert.equal(completion.status, 0, completion.stderr);
+  assert.match(completion.stdout, /complete -F _vegvesen_complete vegvesen/);
 });
 
 test('rejects unknown input before network access', () => {
@@ -271,6 +279,75 @@ test('every curated Trafikkdata command maps to a validated persisted query', ()
     assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
     JSON.parse(result.stdout);
   }
+});
+
+test('Phase 5 OGC, TN-ITS, and export commands use bounded protocol mappings', () => {
+  for (const args of [
+    ['ogc', 'wms', 'capabilities', '--family', 'nvdb_2_0'],
+    ['ogc', 'feature', 'collection', 'list'],
+    ['ogc', 'feature', 'item', 'list', 'collection1', '--limit', '1'],
+    ['tnits', 'type', 'list'],
+    ['tnits', 'snapshot', 'list', 'SpeedLimit'],
+    ['tnits', 'update', 'list', 'RoadName', '--from', '2026-01-01'],
+  ]) {
+    const result = run([...args, '--json', '--no-input']);
+    assert.equal(result.status, 0, `${args.join(' ')}: ${result.stderr}`);
+    JSON.parse(result.stdout);
+  }
+  const featureStream = run(['ogc', 'feature', 'item', 'list', 'collection1', '--all', '--format', 'ndjson', '--no-input']);
+  assert.equal(featureStream.status, 0, featureStream.stderr);
+  assert.match(featureStream.stdout, /\"type\":\"summary\"/);
+  const streamed = run(['tnits', 'snapshot', 'download', '/api/v1/download?path=fixture.gml', '--output', '-', '--format', 'raw', '--no-input']);
+  assert.equal(streamed.status, 0, streamed.stderr);
+  assert.equal(streamed.stdout, '<gml>fixture</gml>');
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-phase5-'));
+  const featurePath = join(directory, 'features.geojson');
+  const featureArtifact = run(['ogc', 'wfs', 'feature', '--family', 'nvdb_2_0', '--type-name', 'fixture', '--output', featurePath, '--receipt-format', 'json', '--no-input']);
+  assert.equal(featureArtifact.status, 0, featureArtifact.stderr);
+  assert.equal(JSON.parse(readFileSync(featurePath, 'utf8')).type, 'FeatureCollection');
+  const exported = run(['nvdb', 'export', 'object', '105', '--artifact-format', 'csv', '--municipality', '0301', '--output', join(directory, 'objects.csv'), '--receipt-format', 'json', '--no-input']);
+  assert.equal(exported.status, 0, exported.stderr);
+  assert.match(readFileSync(join(directory, 'objects.csv'), 'utf8'), /fixture/);
+});
+
+test('Phase 6 mutations require dry-run or confirmation and jobs are resumable', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-fiks-'));
+  const bodyPath = join(directory, 'issue.json');
+  writeFileSync(bodyPath, JSON.stringify({ emne: 'Fixture', kategori: 'FEIL_I_KARTDATA', lokasjon: { latitude: 59.9, longitude: 10.7 }, vegsystemreferanse: 'EV6' }));
+  const before = requests().length;
+  const preview = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--dry-run', '--json', '--no-input']);
+  assert.equal(preview.status, 0, preview.stderr);
+  assert.equal(requests().length, before);
+  const refused = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--json', '--no-input']);
+  assert.equal(refused.status, 5);
+  assert.equal(requests().length, before);
+  const created = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--yes', '--json', '--no-input']);
+  assert.equal(created.status, 0, created.stderr);
+  assert.equal(JSON.parse(created.stdout).data.id, 43);
+  assert.equal(run(['nvdb', 'report', 'family', 'list', '--json', '--no-input']).status, 0);
+  const reportBefore = requests().length;
+  const reportPreview = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--dry-run', '--json', '--no-input']);
+  assert.equal(reportPreview.status, 0, reportPreview.stderr);
+  assert.equal(requests().length, reportBefore);
+  const reportRefused = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--json', '--no-input']);
+  assert.equal(reportRefused.status, 5);
+  assert.equal(requests().length, reportBefore);
+  const job = run(['nvdb', 'report', 'job', 'get', 'fixture-job', '--json', '--no-input']);
+  assert.equal(job.status, 0, job.stderr);
+  assert.equal(JSON.parse(job.stdout).meta.normalized_state, 'succeeded');
+});
+
+test('Phase 7 generated API exposes reviewed operations only', () => {
+  assert.equal(run(['api', 'service', 'list', '--json', '--no-input']).status, 0);
+  const list = run(['api', 'operation', 'list', 'nvdb-core', '--json', '--no-input']);
+  assert.equal(JSON.parse(list.stdout).data.length, 3);
+  const called = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'typeId=105', '--json', '--no-input']);
+  assert.equal(called.status, 0, called.stderr);
+  assert.equal(JSON.parse(called.stdout).meta.operation_id, 'object-statistics-grouped');
+  const before = requests().length;
+  const invalid = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'url=https://evil.example', '--json', '--no-input']);
+  assert.equal(invalid.status, 2);
+  assert.equal(requests().length, before);
 });
 
 test('existing normalized output fails before network access', () => {

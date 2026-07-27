@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "operations": [
+    {
+      "service": "nvdb-core",
+      "id": "object-statistics-grouped",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert",
+      "path_parameters": ["typeId"],
+      "query_parameters": ["egenskap", "fylke", "kommune", "vegsystemreferanse"],
+      "effect": "read",
+      "retry": "safe"
+    },
+    {
+      "service": "nvdb-core",
+      "id": "object-statistics-grouped-property",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "vegobjekter/api/v4/vegobjekter/{typeId}/statistikk/gruppert/egenskap",
+      "path_parameters": ["typeId"],
+      "query_parameters": ["egenskap", "fylke", "kommune", "vegsystemreferanse"],
+      "effect": "read",
+      "retry": "safe"
+    },
+    {
+      "service": "nvdb-core",
+      "id": "network-statistics-grouped",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "vegnett/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "path_parameters": [],
+      "query_parameters": ["fylke", "kommune", "vegsystemreferanse", "typeveg"],
+      "effect": "read",
+      "retry": "safe"
+    }
+  ]
+}

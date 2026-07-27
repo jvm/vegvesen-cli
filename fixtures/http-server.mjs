@@ -4,10 +4,12 @@ import { createServer } from 'node:http';
 const log = process.env.REQUEST_LOG;
 let retryAttempts = 0;
 const server = createServer(async (request, response) => {
-  if (log) appendFileSync(log, `${JSON.stringify({ url: request.url, headers: request.headers })}\n`);
+  if (log) appendFileSync(log, `${JSON.stringify({ method: request.method, url: request.url, headers: request.headers })}\n`);
   const url = new URL(request.url, 'http://fixture');
   response.setHeader('content-type', 'application/json');
-  if (request.method === 'POST' && url.pathname === '/') {
+  if (request.method === 'GET' && url.pathname === '/') {
+    response.setHeader('content-type', 'text/html'); response.end('<html>fixture</html>');
+  } else if (request.method === 'POST' && url.pathname === '/') {
     const body = JSON.parse(await readBody(request));
     response.end(JSON.stringify(graphQlFixture(body.query, body.variables ?? {})));
   } else if (url.pathname.toLowerCase().startsWith('/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingservice/')) {
@@ -75,6 +77,45 @@ const server = createServer(async (request, response) => {
   } else if (url.pathname === '/ws/docs/openapi') {
     response.setHeader('content-type', 'text/yaml');
     response.end('openapi: 3.0.3\ninfo:\n  title: fixture\n');
+  } else if (/^\/(vegvar_1_0|norstoy_1_0|nvdb_2_0|rapportweb_1_0|datex_3_1)\/(wms|wfs)$/.test(url.pathname) && /GetCapabilities|DescribeFeatureType/i.test(url.searchParams.get('request') ?? '')) {
+    response.setHeader('content-type', 'application/xml');
+    response.end('<?xml version="1.0"?><Capabilities><Layer><Name>fixture</Name></Layer></Capabilities>');
+  } else if (/^\/(vegvar_1_0|norstoy_1_0|nvdb_2_0|rapportweb_1_0|datex_3_1)\/(wms|wfs)$/.test(url.pathname)) {
+    response.setHeader('content-type', url.pathname.endsWith('/wms') ? 'image/png' : 'application/geo+json');
+    response.end(url.pathname.endsWith('/wms') ? Buffer.from('native-ogc-fixture') : JSON.stringify({ type: 'FeatureCollection', features: [] }));
+  } else if (/^\/ogc\/(features|maps|styles)\/v1\//.test(url.pathname)) {
+    response.end(JSON.stringify(url.pathname.includes('/items') ? { type: 'FeatureCollection', features: [{ id: 'f1' }], links: [] } : url.pathname.includes('/styles') ? { styles: [{ id: 'style1' }] } : { collections: [{ id: 'collection1' }], links: [] }));
+  } else if (url.pathname === '/api-docs' || url.pathname === '/swagger.json') {
+    response.end(JSON.stringify({ openapi: '3.0.0', paths: {} }));
+  } else if (url.pathname === '/api/v1/tnits/types') {
+    response.end(JSON.stringify(['SpeedLimit', 'RoadName', 'RoadNumber', 'MaximumHeight']));
+  } else if (/^\/api\/v1\/tnits\/[^/]+\/(snapshots|updates)$/.test(url.pathname)) {
+    const key = url.pathname.endsWith('updates') ? 'updates' : 'snapshots';
+    response.end(JSON.stringify({ [key]: [{ href: '/api/v1/download?path=fixture.gml', timestamp: '2026-07-27T00:00:00Z', size: 12 }] }));
+  } else if (url.pathname === '/api/v1/download') {
+    response.setHeader('content-type', 'application/gml+xml');
+    response.end('<gml>fixture</gml>');
+  } else if (/^\/(vegobjekter\/\d+\.(csv|sosi)|vegnett\/veglenkesekvenser\/segmentert\.csv)$/.test(url.pathname)) {
+    response.setHeader('content-type', 'text/csv');
+    response.end('id,name\n1,fixture\n');
+  } else if (url.pathname === '/api/v1/feilmelding' && request.method === 'GET') {
+    response.end(JSON.stringify([{ id: 42 }]));
+  } else if (url.pathname === '/api/v1/feilmelding/42') {
+    response.end(JSON.stringify({ id: 42, status: 'MOTTATT' }));
+  } else if (url.pathname === '/api/v1/feilmelding/anonym' && request.method === 'POST') {
+    await readBody(request); response.statusCode = 201; response.end(JSON.stringify({ id: 43 }));
+  } else if (/^\/api\/v1\/feilmelding\/\d+\/vedlegg$/.test(url.pathname) && request.method === 'POST') {
+    await readBody(request); response.end(JSON.stringify({ success: true }));
+  } else if (/^\/api\/v1\/feilmelding\/\d+\/vedlegg\/[^/]+$/.test(url.pathname)) {
+    response.setHeader('content-type', 'application/octet-stream'); response.end('attachment');
+  } else if (url.pathname === '/rapporter/rapporttyper') {
+    response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
+  } else if (url.pathname.startsWith('/rapporter/poll/')) {
+    response.end(JSON.stringify({ id: url.pathname.split('/').at(-1), status: 'SUCCESS', rapport: { nedlastLink: 'fixture.xlsx' } }));
+  } else if (url.pathname.startsWith('/rapporter/nedlasting/')) {
+    response.setHeader('content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'); response.end('xlsx-fixture');
+  } else if (/\/statistikk\/gruppert/.test(url.pathname)) {
+    response.end(JSON.stringify([{ group: 'fixture', count: 1 }]));
   } else {
     response.statusCode = 404;
     response.end('{}');

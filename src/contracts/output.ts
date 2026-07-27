@@ -28,6 +28,7 @@ export interface CommandResult<T = unknown> {
   raw?: string | Uint8Array;
   outputHandled?: boolean;
   stream?: AsyncIterable<StreamRecord>;
+  nativeStream?: AsyncIterable<Uint8Array>;
   exitCode?: number;
 }
 

@@ -8,6 +8,9 @@ import { restJson } from './commands/rest.js';
 import { nvdbPaged, nvdbRead, type NvdbOptions } from './commands/nvdb-core.js';
 import { calculateMatrix, calculateRoute, queryRoadFeatures, routeProfiles, type RouteOptions } from './commands/route.js';
 import { trafficAadt, trafficAreaIndex, trafficPublishedIndices, trafficReference, trafficStationIndices, trafficStations, trafficVolume, type TrafficOptions } from './commands/traffic.js';
+import { nvdbExport, ogcApiJson, ogcArtifact, ogcFamilies, ogcFeatureItems, ogcXml, tnitsDownload, tnitsJson, tnitsTypes } from './commands/geospatial.js';
+import { fiksAddAttachment, fiksCreate, fiksOrigin, fiksRead, nativeRead, reportFamilyList, reportGenerate, reportJob, reportsOrigin } from './commands/lifecycle.js';
+import { apiOperationCall, apiOperationDescribe, apiOperationList, apiServiceList } from './commands/api.js';
 import { readJsonInput } from './core/input.js';
 import { effectiveSettings } from './core/config-store.js';
 import { packageMetadata } from './core/metadata.js';
@@ -24,6 +27,9 @@ export function addServiceCommands(program: Command, runtime: Runtime, setResult
   addRoute(program, runtime, setResult);
   addTraffic(program, runtime, setResult);
   addParking(program, runtime, setResult);
+  addGeospatial(program, runtime, setResult);
+  addLifecycle(program, runtime, setResult);
+  addApi(program, runtime, setResult);
 }
 
 function addCatalog(program: Command, runtime: Runtime, setResult: ResultSetter): void {
@@ -464,6 +470,96 @@ function addParking(program: Command, runtime: Runtime, setResult: ResultSetter)
   assessment.command('get <assessment-id>').description('Download exact assessment; --output is required.')
     .action((id: string, _local, command: Command) => setResult(() => parkingArtifact(runtime, 'parking assessment get', `parkeringsomraade/vurdering/${integer(id, 'assessment-id')}`, artifactOptions(command)), command));
 }
+
+function addGeospatial(program: Command, runtime: Runtime, setResult: ResultSetter): void {
+  const familyOption = () => new Option('--family <family>', 'Official OGC family').choices([...ogcFamilies]).makeOptionMandatory();
+  const ogc = program.command('ogc').description('Discover and read anonymous OGC services.');
+  const wms = ogc.command('wms').description('Read legacy WMS services.');
+  wms.command('capabilities').addOption(familyOption()).action((local: { family: string }, command: Command) => setResult(() => ogcXml(runtime, 'ogc wms capabilities', local.family, 'wms', { service: 'WMS', request: 'GetCapabilities' }, queryOptions(command)), command));
+  wms.command('map').description('Render a native WMS map image; --output is required.').addOption(familyOption())
+    .requiredOption('--layer <name>', 'Exact runtime-discovered layer').requiredOption('--bbox <bounds>', 'MINX,MINY,MAXX,MAXY').requiredOption('--crs <crs>', 'Exact CRS').requiredOption('--width <pixels>', 'Image width').requiredOption('--height <pixels>', 'Image height').option('--media-type <type>', 'Image media type', 'image/png').addOption(new Option('--protocol-version <version>', 'WMS protocol version').choices(['1.1.1', '1.3.0']).default('1.3.0'))
+    .action((local: any, command: Command) => setResult(() => ogcArtifact(runtime, 'ogc wms map', local.family, 'wms', '', { service: 'WMS', request: 'GetMap', version: local.protocolVersion, layers: local.layer, styles: '', bbox: wmsBbox(local.bbox, local.crs, local.protocolVersion), ...(local.protocolVersion === '1.3.0' ? { crs: local.crs } : { srs: local.crs }), width: positiveInteger(local.width, 'width'), height: positiveInteger(local.height, 'height'), format: local.mediaType, transparent: true }, local.mediaType, artifactOptions(command)), command));
+  wms.command('feature-info').description('Retrieve native WMS feature information.').addOption(familyOption()).requiredOption('--layer <name>').requiredOption('--bbox <bounds>').requiredOption('--crs <crs>').requiredOption('--width <pixels>').requiredOption('--height <pixels>').requiredOption('--i <pixel>').requiredOption('--j <pixel>').option('--media-type <type>', 'Feature-info media type', 'application/json')
+    .action((local: any, command: Command) => setResult(() => ogcArtifact(runtime, 'ogc wms feature-info', local.family, 'wms', '', { service: 'WMS', request: 'GetFeatureInfo', version: '1.3.0', layers: local.layer, query_layers: local.layer, styles: '', bbox: wmsBbox(local.bbox, local.crs, '1.3.0'), crs: local.crs, width: positiveInteger(local.width, 'width'), height: positiveInteger(local.height, 'height'), i: positiveInteger(local.i, 'i'), j: positiveInteger(local.j, 'j'), info_format: local.mediaType }, local.mediaType, artifactOptions(command)), command));
+
+  const wfs = ogc.command('wfs').description('Read legacy WFS services.');
+  wfs.command('capabilities').addOption(familyOption()).action((local: any, command: Command) => setResult(() => ogcXml(runtime, 'ogc wfs capabilities', local.family, 'wfs', { service: 'WFS', request: 'GetCapabilities' }, queryOptions(command)), command));
+  wfs.command('describe').addOption(familyOption()).requiredOption('--type-name <name>').action((local: any, command: Command) => setResult(() => ogcXml(runtime, 'ogc wfs describe', local.family, 'wfs', { service: 'WFS', request: 'DescribeFeatureType', version: '2.0.0', typeNames: local.typeName }, queryOptions(command)), command));
+  wfs.command('feature').description('Download a bounded native WFS feature response.').addOption(familyOption()).requiredOption('--type-name <name>').option('--bbox <bounds>').option('--media-type <type>', 'Native response type', 'application/geo+json')
+    .action((local: any, command: Command) => setResult(() => ogcArtifact(runtime, 'ogc wfs feature', local.family, 'wfs', '', { service: 'WFS', request: 'GetFeature', version: '2.0.0', typeNames: local.typeName, count: Number(queryOptions(command).limit ?? 100), bbox: local.bbox ? bbox(local.bbox) : undefined, outputFormat: local.mediaType }, local.mediaType, artifactOptions(command)), command));
+
+  for (const [noun, kind] of [['feature', 'feature'], ['map', 'map'], ['style', 'style']] as const) {
+    const group = ogc.command(noun).description(`Read modern OGC API ${noun} resources.`);
+    group.command('landing').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, `ogc ${noun} landing`, kind, '', {}, queryOptions(command)), command));
+    group.command('conformance').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, `ogc ${noun} conformance`, kind, 'conformance', {}, queryOptions(command)), command));
+    group.command('api').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, `ogc ${noun} api`, kind, 'api', {}, queryOptions(command)), command));
+  }
+  const feature = ogc.commands.find((item) => item.name() === 'feature')!;
+  const featureCollection = feature.command('collection').description('List or get dynamic feature collections.');
+  featureCollection.command('list').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc feature collection list', 'feature', 'collections', {}, queryOptions(command)), command));
+  featureCollection.command('get <collection-id>').action((id: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc feature collection get', 'feature', `collections/${encodeURIComponent(id)}`, {}, queryOptions(command)), command));
+  feature.command('queryable').command('list <collection-id>').action((id: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc feature queryable list', 'feature', `collections/${encodeURIComponent(id)}/queryables`, {}, queryOptions(command)), command));
+  const featureItem = feature.command('item').description('List or get exact collection items.');
+  featureItem.command('list <collection-id>').action((id: string, _local, command: Command) => setResult(() => ogcFeatureItems(runtime, id, queryOptions(command)), command));
+  featureItem.command('get <collection-id> <item-id>').action((id: string, itemId: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc feature item get', 'feature', `collections/${encodeURIComponent(id)}/items/${encodeURIComponent(itemId)}`, {}, queryOptions(command)), command));
+  const map = ogc.commands.find((item) => item.name() === 'map')!;
+  const mapCollection = map.command('collection');
+  mapCollection.command('list').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc map collection list', 'map', 'collections', {}, queryOptions(command)), command));
+  mapCollection.command('get <collection-id>').action((id: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc map collection get', 'map', `collections/${encodeURIComponent(id)}`, {}, queryOptions(command)), command));
+  map.command('render <collection-id>').requiredOption('--bbox <bounds>').option('--crs <crs>', 'Output CRS', 'EPSG:25833').option('--width <pixels>', 'Width', '1200').option('--height <pixels>', 'Height', '800').option('--media-type <type>', 'Image media type', 'image/png').action((id: string, local: any, command: Command) => setResult(() => ogcArtifact(runtime, 'ogc map render', '', 'modern', `ogc/maps/v1/collections/${encodeURIComponent(id)}/map`, { bbox: bbox(local.bbox), crs: local.crs, width: positiveInteger(local.width, 'width'), height: positiveInteger(local.height, 'height'), f: local.mediaType }, local.mediaType, artifactOptions(command)), command));
+  const style = ogc.commands.find((item) => item.name() === 'style')!;
+  style.command('list').action((_local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc style list', 'style', 'styles', {}, queryOptions(command)), command));
+  style.command('get <style-id>').action((id: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc style get', 'style', `styles/${encodeURIComponent(id)}`, {}, queryOptions(command)), command));
+  style.command('metadata <style-id>').action((id: string, _local, command: Command) => setResult(() => ogcApiJson(runtime, 'ogc style metadata', 'style', `styles/${encodeURIComponent(id)}/metadata`, {}, queryOptions(command)), command));
+
+  const tnits = program.command('tnits').description('Read TN-ITS snapshots and ordered updates.');
+  tnits.command('type').command('list').action((_local, command: Command) => setResult(() => tnitsJson(runtime, 'tnits type list', 'tnits/types', queryOptions(command)), command));
+  const snapshot = tnits.command('snapshot');
+  snapshot.command('list <type>').action((type: string, _local, command: Command) => { tnitsType(type); return setResult(() => tnitsJson(runtime, 'tnits snapshot list', `tnits/${type}/snapshots`, queryOptions(command)), command); });
+  snapshot.command('download <href>').action((href: string, _local, command: Command) => setResult(() => tnitsDownload(runtime, 'tnits snapshot download', href, artifactOptions(command)), command));
+  const update = tnits.command('update');
+  update.command('list <type>').option('--from <timestamp>', 'ISO timestamp; upstream retains 180 days').action((type: string, local: { from?: string }, command: Command) => { tnitsType(type); if (local.from && Number.isNaN(Date.parse(local.from))) throw usageError('Invalid --from timestamp', 'Use ISO 8601 date or timestamp', 'from'); return setResult(() => tnitsJson(runtime, 'tnits update list', `tnits/${type}/updates`, queryOptions(command), { from: local.from }), command); });
+  update.command('download <href>').action((href: string, _local, command: Command) => setResult(() => tnitsDownload(runtime, 'tnits update download', href, artifactOptions(command)), command));
+
+  const nvdb = program.commands.find((item) => item.name() === 'nvdb')!;
+  const exportGroup = nvdb.command('export').description('Stream native NVDB CSV/SOSI exports.');
+  exportGroup.command('object <type-id>').addOption(new Option('--artifact-format <format>').choices(['csv', 'sosi']).default('csv')).option('--municipality <id>').option('--include <fields>', 'NVDB inkluder value').option('--sosi-bounds <bbox>', 'Required SOSI bounds where no municipality filter').option('--srid <code>', 'SOSI bounds/output SRID', '25833').action((typeId: string, local: any, command: Command) => { integer(typeId, 'type-id'); if (local.artifactFormat === 'sosi' && !local.municipality && !local.sosiBounds) throw usageError('SOSI export requires --municipality or --sosi-bounds', 'Add a bounded municipality or SOSI rectangle', 'sosi-bounds'); return setResult(() => nvdbExport(runtime, 'nvdb export object', `vegobjekter/${typeId}.${local.artifactFormat}`, { kommune: local.municipality, inkluder: local.include, sosiutsnitt: local.sosiBounds ? bbox(local.sosiBounds) : undefined, srid: local.artifactFormat === 'sosi' ? integer(local.srid, 'srid') : undefined }, artifactOptions(command)), command); });
+  exportGroup.command('network').option('--municipality <id>').option('--road-type <type>').action((local: any, command: Command) => setResult(() => nvdbExport(runtime, 'nvdb export network', 'vegnett/veglenkesekvenser/segmentert.csv', { kommune: local.municipality, typeveg: local.roadType }, artifactOptions(command)), command));
+}
+
+function addApi(program: Command, runtime: Runtime, setResult: ResultSetter): void {
+  const api = program.command('api').description('Call reviewed generated anonymous operations; never an arbitrary URL proxy.');
+  api.command('service').command('list').action((_local, command: Command) => setResult(() => apiServiceList(), command));
+  const operation = api.command('operation');
+  operation.command('list <service>').action((service: string, _local, command: Command) => setResult(() => apiOperationList(service), command));
+  operation.command('describe <service> <operation-id>').action((service: string, id: string, _local, command: Command) => setResult(() => apiOperationDescribe(service, id), command));
+  operation.command('call <service> <operation-id>').option('--param <name=value>', 'Reviewed parameter; repeatable', collectValues, []).action((service: string, id: string, local: { param: string[] }, command: Command) => setResult(() => apiOperationCall(runtime, service, id, keyValues(local.param), queryOptions(command)), command));
+}
+
+function addLifecycle(program: Command, runtime: Runtime, setResult: ResultSetter): void {
+  const fiks = program.command('fiks').description('Read and submit anonymous Fiksvegdata issues.');
+  const issue = fiks.command('issue');
+  issue.command('list').action((_local, command: Command) => setResult(() => fiksRead(runtime, 'fiks issue list', 'feilmelding', {}, queryOptions(command)), command));
+  issue.command('get <id>').action((id: string, _local, command: Command) => setResult(() => fiksRead(runtime, 'fiks issue get', `feilmelding/${integer(id, 'id')}`, {}, queryOptions(command)), command));
+  issue.command('create').requiredOption('--body <input>', 'JSON body as @PATH or -').option('--dry-run', 'Validate and show redacted request plan').option('--yes', 'Confirm anonymous remote creation').action(async (local: { body: string; dryRun?: boolean; yes?: boolean }, command: Command) => { const body = await readJsonInput(runtime, local.body); return setResult(() => fiksCreate(runtime, body, { ...queryOptions(command), dryRun: local.dryRun, yes: local.yes }), command); });
+  const attachment = fiks.command('attachment');
+  attachment.command('get <issue-id> <filename>').action((id: string, filename: string, _local, command: Command) => setResult(() => nativeRead(runtime, 'fiks attachment get', 'fiks', fiksOrigin, `api/v1/feilmelding/${integer(id, 'issue-id')}/vedlegg/${encodeURIComponent(filename)}`, {}, artifactOptions(command)), command));
+  attachment.command('add <issue-id>').option('--file <path>', 'Attachment path; repeatable', collectValues, []).option('--dry-run').option('--yes').action((id: string, local: { file: string[]; dryRun?: boolean; yes?: boolean }, command: Command) => setResult(() => fiksAddAttachment(runtime, integer(id, 'issue-id'), local.file, { ...queryOptions(command), dryRun: local.dryRun, yes: local.yes }), command));
+
+  const nvdb = program.commands.find((item) => item.name() === 'nvdb')!;
+  const report = nvdb.command('report').description('Generate and resume anonymous NVDB reports.');
+  report.command('family').command('list').action((_local, command: Command) => setResult(() => reportFamilyList(), command));
+  report.command('generate').requiredOption('--family <id>').option('--param <name=value>', 'Report parameter; repeatable', collectValues, []).option('--dry-run', 'Validate and show the report request plan').option('--yes', 'Confirm potentially costly report generation').action((local: { family: string; param: string[]; dryRun?: boolean; yes?: boolean }, command: Command) => setResult(() => reportGenerate(runtime, local.family, keyValues(local.param), { ...queryOptions(command), dryRun: local.dryRun, yes: local.yes }), command));
+  const job = report.command('job');
+  job.command('get <id>').action((id: string, _local, command: Command) => setResult(() => reportJob(runtime, id, false, queryOptions(command)), command));
+  job.command('wait <id>').option('--wait-timeout <duration>', 'Maximum local polling time', '2m').action((id: string, local: { waitTimeout: string }, command: Command) => setResult(() => reportJob(runtime, id, true, { ...queryOptions(command), waitTimeout: local.waitTimeout }), command));
+  report.command('artifact').command('download <filename>').requiredOption('--file-type <type>', 'Required upstream file type, such as XLSX').action((filename: string, local: { fileType?: string }, command: Command) => setResult(() => nativeRead(runtime, 'nvdb report artifact download', 'nvdb-reports', reportsOrigin, `rapporter/nedlasting/${encodeURIComponent(filename)}`, { filtype: local.fileType }, artifactOptions(command)), command));
+}
+
+function keyValues(values: string[]): Record<string, string> { const output: Record<string, string> = {}; for (const value of values) { const index = value.indexOf('='); if (index < 1) throw usageError(`Invalid parameter: ${value}`, 'Use --param NAME=VALUE', 'param'); const key = value.slice(0, index); if (output[key] !== undefined) throw usageError(`Duplicate parameter: ${key}`, 'Pass each parameter once', 'param'); output[key] = value.slice(index + 1); } return output; }
+function wmsBbox(value: string, crs: string, version: string): string { const normalized = bbox(value).split(',').map(Number); return version === '1.3.0' && crs.toUpperCase() === 'EPSG:4326' ? [normalized[1], normalized[0], normalized[3], normalized[2]].join(',') : normalized.join(','); }
+function bbox(value: string): string { const values = value.split(',').map(Number); if (values.length !== 4 || values.some((item) => !Number.isFinite(item)) || values[0]! >= values[2]! || values[1]! >= values[3]!) throw usageError(`Invalid bbox: ${value}`, 'Use MINX,MINY,MAXX,MAXY with increasing bounds', 'bbox'); return values.join(','); }
+function tnitsType(value: string): void { if (!tnitsTypes.includes(value as any)) throw usageError(`Unknown TN-ITS type: ${value}`, `Use ${tnitsTypes.join(', ')}`, 'type'); }
 
 function nvdbJson(runtime: Runtime, commandPath: string, service: string, path: string, query: Record<string, string | number | boolean | undefined>, command: Command, origin = nvdbOrigin): Promise<CommandResult> {
   const servicePrefix: Record<string, string> = { 'nvdb-catalog': 'datakatalog/', 'nvdb-areas': 'omrader/' };

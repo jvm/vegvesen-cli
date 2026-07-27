@@ -16,4 +16,7 @@ const version = execFileSync(executable, ['--version'], { cwd: tmpdir(), encodin
 assert.equal(version, '0.1.0\n');
 const structured = JSON.parse(execFileSync(executable, ['version', '--json'], { cwd: tmpdir(), encoding: 'utf8' }));
 assert.equal(structured.schema_version, 1);
+const generated = JSON.parse(execFileSync(executable, ['api', 'service', 'list', '--json', '--no-input'], { cwd: tmpdir(), encoding: 'utf8' }));
+assert.equal(generated.data[0].service, 'nvdb-core');
+assert.match(execFileSync(executable, ['completion', 'bash', '--format', 'raw', '--no-input'], { cwd: tmpdir(), encoding: 'utf8' }), /complete -F/);
 console.log(`Installed package works outside checkout: ${tarballName}`);

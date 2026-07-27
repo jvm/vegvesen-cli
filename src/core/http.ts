@@ -9,8 +9,8 @@ export interface HttpOptions {
   path: string;
   query?: Record<string, QueryValue> | undefined;
   headers?: Record<string, string> | undefined;
-  method?: 'GET' | 'HEAD' | 'POST' | undefined;
-  body?: string | undefined;
+  method?: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | undefined;
+  body?: BodyInit | undefined;
   timeout?: string | undefined;
   retries?: number | undefined;
   safeToRetry?: boolean | undefined;

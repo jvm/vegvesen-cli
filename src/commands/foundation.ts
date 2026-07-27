@@ -33,6 +33,18 @@ export function commandSchema(path: string[]): CommandResult {
   return result('schema command', 'local', commands);
 }
 
+export function completionResult(shell: string): CommandResult {
+  const words = [...new Set(commandRegistry.flatMap((entry) => entry.path.split(' ')))].sort().join(' ');
+  const scripts: Record<string, string> = {
+    bash: `_vegvesen_complete() { COMPREPLY=( $(compgen -W '${words}' -- \"\${COMP_WORDS[COMP_CWORD]}\") ); }\ncomplete -F _vegvesen_complete vegvesen\n`,
+    zsh: `#compdef vegvesen\n_arguments '*:command:(${words})'\n`,
+    fish: `complete -c vegvesen -f -a '${words}'\n`,
+  };
+  const script = scripts[shell];
+  if (!script) throw new CliError({ code: 'INVALID_SHELL', message: `Unsupported shell: ${shell}`, exitCode: EXIT.usage, retryable: false, field: 'shell', hint: 'Use bash, zsh, or fish' });
+  return { command: 'completion', source: serviceSource('local'), data: { shell, script }, raw: script };
+}
+
 export function outputSchema(path: string[]): CommandResult {
   if (path.length > 0) commandSchema(path);
   const schema = JSON.parse(readFileSync(new URL('../../schemas/output.schema.json', import.meta.url), 'utf8')) as unknown;
@@ -104,6 +116,11 @@ async function probeAnonymousServices(runtime: Runtime, options: { timeout?: str
     { name: 'nvdb-core', origin: 'https://nvdbapiles.atlas.vegvesen.no', path: 'vegobjekter/api/v4/vegobjekter/105/statistikk', headers: { 'X-Client': options.xClient } },
     { name: 'route', origin: 'https://www.vegvesen.no', path: 'ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingService/swagger/v1/swagger.json' },
     { name: 'traffic', origin: 'https://trafikkdata-api.atlas.vegvesen.no', path: '', method: 'POST' as const, body: JSON.stringify({ query: 'query { __typename }' }), headers: { 'Content-Type': 'application/json' } },
+    { name: 'tnits', origin: 'https://nvdb-tnits.atlas.vegvesen.no', path: 'api/v1/tnits/types' },
+    { name: 'ogc', origin: 'https://ogckart-sn1.atlas.vegvesen.no', path: 'ogc/features/v1/', accept: 'application/json' },
+    { name: 'nvdb-export', origin: 'https://nvdb-eksport-x.atlas.vegvesen.no', path: '', accept: 'text/html' },
+    { name: 'nvdb-reports', origin: 'https://nvdbrapportapi.atlas.vegvesen.no', path: 'swagger.json' },
+    { name: 'fiks', origin: 'https://fiksvegdata-api.atlas.vegvesen.no', path: 'api-docs' },
   ];
   return Promise.all(probes.map(async (probe) => {
     try {

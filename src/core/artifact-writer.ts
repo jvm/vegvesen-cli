@@ -19,10 +19,10 @@ export function validateArtifactDestination(runtime: Runtime, destination: strin
   return validateOutputDestination(runtime, destination, overwrite)!;
 }
 
-export async function saveArtifact(runtime: Runtime, response: Response, path: string, source: string, overwrite: boolean): Promise<ArtifactDescriptor> {
+export async function saveArtifact(runtime: Runtime, response: Response, path: string, source: string, overwrite: boolean, allowJson = false): Promise<ArtifactDescriptor> {
   if (!response.body) throw new CliError({ code: 'EMPTY_ARTIFACT_BODY', message: 'Upstream artifact response has no body', exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check upstream service health' });
   const mediaType = response.headers.get('content-type')?.split(';', 1)[0]?.trim().toLowerCase() ?? 'application/octet-stream';
-  if (mediaType === 'application/json' || mediaType.endsWith('+json')) throw new CliError({ code: 'UNEXPECTED_ARTIFACT_RESPONSE', message: `Expected native artifact but received ${mediaType}`, exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check request identifier and upstream service health' });
+  if (!allowJson && (mediaType === 'application/json' || mediaType.endsWith('+json'))) throw new CliError({ code: 'UNEXPECTED_ARTIFACT_RESPONSE', message: `Expected native artifact but received ${mediaType}`, exitCode: EXIT.protocol, retryable: false, service: source, hint: 'Check request identifier and upstream service health' });
   const temporary = `${path}.tmp-${runtime.pid}-${runtime.now().getTime()}`;
   const hash = createHash('sha256');
   let size = 0;
@@ -63,7 +63,9 @@ export async function saveBytes(runtime: Runtime, body: string | Uint8Array, pat
   }
 }
 
-export async function artifactToStdout(response: Response): Promise<Uint8Array> {
-  if (!response.body) return new Uint8Array();
-  return new Uint8Array(await response.arrayBuffer());
+export async function* artifactToStream(response: Response): AsyncGenerator<Uint8Array> {
+  if (!response.body) return;
+  const reader = response.body.getReader();
+  try { while (true) { const { done, value } = await reader.read(); if (done) return; yield value; } }
+  finally { reader.releaseLock(); }
 }
