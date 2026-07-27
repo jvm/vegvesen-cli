@@ -18,6 +18,7 @@ import {
 } from './commands/foundation.js';
 import type { Runtime } from './runtime.js';
 import { addServiceCommands } from './service-cli.js';
+import { validateOutputDestination } from './core/artifact-writer.js';
 
 export interface CommonOptions {
   format: OutputFormat;
@@ -72,14 +73,17 @@ export async function parseCli(argv: string[], runtime: Runtime): Promise<CliExe
     });
   addCommonOptions(program);
   program.hook('preAction', (_root, actionCommand) => {
-    if (!['catalog', 'nvdb', 'parking'].includes(topLevelName(actionCommand))) return;
     const parsed = program.opts() as Partial<CommonOptions>;
-    const configured = effectiveSettings(runtime, parsed.configProfile).values;
-    if (parsed.json) program.setOptionValueWithSource('format', 'json', 'implied');
-    else if (program.getOptionValueSource('format') === 'default' && configured.format) program.setOptionValueWithSource('format', configured.format, 'config');
-    if (parsed.timeout === undefined && configured.timeout) program.setOptionValueWithSource('timeout', configured.timeout, 'config');
-    if (parsed.retries === undefined && configured.retries !== undefined) program.setOptionValueWithSource('retries', String(configured.retries), 'config');
-    validateCommon(program.opts() as Partial<CommonOptions>);
+    if (['catalog', 'nvdb', 'parking'].includes(topLevelName(actionCommand))) {
+      const configured = effectiveSettings(runtime, parsed.configProfile).values;
+      if (parsed.json) program.setOptionValueWithSource('format', 'json', 'implied');
+      else if (program.getOptionValueSource('format') === 'default' && configured.format) program.setOptionValueWithSource('format', configured.format, 'config');
+      if (parsed.timeout === undefined && configured.timeout) program.setOptionValueWithSource('timeout', configured.timeout, 'config');
+      if (parsed.retries === undefined && configured.retries !== undefined) program.setOptionValueWithSource('retries', String(configured.retries), 'config');
+    }
+    const effective = program.opts() as Partial<CommonOptions>;
+    validateCommon(effective);
+    validateOutputDestination(runtime, effective.output, effective.overwrite === true);
   });
 
   const setResult = (factory: () => CommandResult | Promise<CommandResult>, command: Command): Promise<void> => runAction(factory, command).then((value) => { commandResult = value; });

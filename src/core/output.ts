@@ -73,7 +73,9 @@ function getPath(value: unknown, path: string): unknown {
 function renderNdjson(result: CommandResult): string {
   const items = Array.isArray(result.data) ? result.data : [result.data];
   const lines = items.map((data) => JSON.stringify({ type: 'item', data }));
-  lines.push(JSON.stringify({ type: 'summary', meta: { count: items.length, complete: true, has_more: result.meta?.has_more ?? false, next_cursor: result.meta?.next_cursor ?? null } }));
+  const hasMore = result.meta?.has_more ?? false;
+  const partial = result.meta?.partial ?? false;
+  lines.push(JSON.stringify({ type: 'summary', meta: { count: items.length, complete: !hasMore && !partial, has_more: hasMore, next_cursor: result.meta?.next_cursor ?? null } }));
   return `${lines.join('\n')}\n`;
 }
 

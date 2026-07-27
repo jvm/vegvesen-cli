@@ -131,6 +131,17 @@ test('parking and status reads use current paths', () => {
   assert.equal(JSON.parse(status.stdout).data[0].id, 7);
 });
 
+test('existing normalized output fails before network access', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-output-'));
+  writeFileSync(join(directory, 'result.json'), 'existing');
+  const beforeCount = requests().length;
+  const result = run(['catalog', 'package', 'search', '--output', 'result.json', '--json'], { cwd: directory });
+  assert.equal(result.status, 5);
+  assert.equal(JSON.parse(result.stderr).error.code, 'OUTPUT_EXISTS');
+  assert.equal(requests().length, beforeCount);
+  assert.equal(readFileSync(join(directory, 'result.json'), 'utf8'), 'existing');
+});
+
 test('native artifact writes atomically and emits JSON receipt', () => {
   const directory = mkdtempSync(join(tmpdir(), 'vegvesen-artifact-'));
   const result = run(['parking', 'sign-plan', 'get', '42', '--output', 'plan.pdf', '--receipt-format', 'json', '--no-input'], { cwd: directory });
@@ -156,6 +167,19 @@ test('config is atomic, allowlisted, and inspectable', () => {
   assert.equal(JSON.parse(forbidden.stderr).error.code, 'INVALID_USAGE');
 });
 
+test('NDJSON summary marks locally truncated results incomplete', () => {
+  const limited = run(['nvdb', 'area', 'county', 'list', '--limit', '2', '--format', 'ndjson']);
+  assert.equal(limited.status, 0, limited.stderr);
+  const records = limited.stdout.trim().split('\n').map(JSON.parse);
+  assert.equal(records.at(-1).type, 'summary');
+  assert.equal(records.at(-1).meta.complete, false);
+  assert.equal(records.at(-1).meta.has_more, true);
+
+  const complete = run(['nvdb', 'area', 'county', 'list', '--all', '--format', 'ndjson']);
+  assert.equal(complete.status, 0, complete.stderr);
+  assert.equal(complete.stdout.trim().split('\n').map(JSON.parse).at(-1).meta.complete, true);
+});
+
 test('invalid combinations fail with no stdout', () => {
   for (const args of [
     ['service', 'list', '--all', '--format', 'json'],
@@ -164,6 +188,8 @@ test('invalid combinations fail with no stdout', () => {
     ['service', 'list', '--limit', '1', '--limit', '2', '--json'],
     ['parking', 'provider', 'get', '123', '--json'],
     ['parking', 'sign-plan', 'get', '42', '--output', '-', '--json'],
+    ['nvdb', 'area', 'county', 'list', '--cursor', '2', '--json'],
+    ['nvdb', 'area', 'county', 'list', '--page-size', '2', '--json'],
   ]) {
     const result = run(args);
     assert.equal(result.status, 2, `${args.join(' ')}\n${result.stderr}`);

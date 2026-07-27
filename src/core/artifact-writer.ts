@@ -7,15 +7,17 @@ import type { ArtifactDescriptor } from '../contracts/artifact.js';
 import { CliError, EXIT, usageError } from '../contracts/error.js';
 import type { Runtime } from '../runtime.js';
 
-export function validateArtifactDestination(runtime: Runtime, destination: string | undefined, overwrite: boolean, allowTerminalBinary: boolean): string {
-  if (!destination) throw usageError('--output is required for native artifacts', 'Pass --output PATH, or --output - for stdout', 'output');
-  if (destination === '-') {
-    if (runtime.stdout.isTTY && !allowTerminalBinary) throw usageError('Refusing native binary output to terminal', 'Pass --output PATH or explicitly use --allow-terminal-binary', 'output');
-    return destination;
-  }
+export function validateOutputDestination(runtime: Runtime, destination: string | undefined, overwrite: boolean): string | undefined {
+  if (destination === undefined || destination === '-') return destination;
   const absolute = resolve(runtime.cwd, destination);
   if (existsSync(absolute) && !overwrite) throw new CliError({ code: 'OUTPUT_EXISTS', message: `Output file already exists: ${absolute}`, exitCode: EXIT.conflict, retryable: false, field: 'output', hint: 'Choose another path or pass --overwrite' });
   return absolute;
+}
+
+export function validateArtifactDestination(runtime: Runtime, destination: string | undefined, overwrite: boolean, allowTerminalBinary: boolean): string {
+  if (!destination) throw usageError('--output is required for native artifacts', 'Pass --output PATH, or --output - for stdout', 'output');
+  if (destination === '-' && runtime.stdout.isTTY && !allowTerminalBinary) throw usageError('Refusing native binary output to terminal', 'Pass --output PATH or explicitly use --allow-terminal-binary', 'output');
+  return validateOutputDestination(runtime, destination, overwrite)!;
 }
 
 export async function saveArtifact(response: Response, path: string, source: string, overwrite: boolean): Promise<ArtifactDescriptor> {

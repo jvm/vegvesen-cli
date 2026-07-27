@@ -1,3 +1,4 @@
+import { usageError } from '../contracts/error.js';
 import type { CommandResult } from '../contracts/output.js';
 import { requestJson, type HttpOptions } from '../core/http.js';
 import { serviceSource } from '../core/metadata.js';
@@ -5,6 +6,8 @@ import type { Runtime } from '../runtime.js';
 import { numberOption, type QueryOptions } from './catalog.js';
 
 export async function restJson(runtime: Runtime, command: string, service: string, canonicalOrigin: string, path: string, query: Record<string, string | number | boolean | undefined>, options: QueryOptions, headers?: Record<string, string>): Promise<CommandResult> {
+  if (options.cursor !== undefined) throw usageError(`--cursor is not supported by ${command}`, 'Remove --cursor; use --all --format ndjson for the complete response', 'cursor');
+  if (options.pageSize !== undefined) throw usageError(`--page-size is not supported by ${command}`, 'Remove --page-size; use --limit to bound local output', 'page-size');
   const requestOptions: HttpOptions = {
     service, canonicalOrigin, path, query, headers,
     timeout: options.timeout, retries: numberOption(options.retries), safeToRetry: true,
@@ -16,7 +19,7 @@ export async function restJson(runtime: Runtime, command: string, service: strin
     source: serviceSource(service),
     data: limited.data,
     raw,
-    meta: { count: limited.count, has_more: limited.hasMore, next_cursor: null, partial: false, ...(limited.hasMore ? { full_retrieval: `vegvesen ${command} --all --format ndjson` } : {}) },
+    meta: { count: limited.count, has_more: limited.hasMore, next_cursor: null, partial: false, resume_supported: false, ...(limited.hasMore ? { truncation: 'local_limit', full_retrieval: `vegvesen ${command} --all --format ndjson` } : {}) },
   };
 }
 
