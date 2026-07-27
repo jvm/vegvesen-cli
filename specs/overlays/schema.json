@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jvm/vegvesen-cli/specs/overlays/schema.json",
+  "type": "object",
+  "required": ["service", "reviewed_at", "owner", "operations"],
+  "additionalProperties": false,
+  "properties": {
+    "service": {"type": "string"},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "owner": {"type": "string"},
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["unit", "access", "effect", "retry", "evidence"],
+        "additionalProperties": false,
+        "properties": {
+          "unit": {"type": "string"},
+          "access": {"enum": ["public-anonymous", "requires-access", "restricted", "admin", "paid", "experimental", "upstream-degraded"]},
+          "effect": {"enum": ["query", "artifact", "mutation", "job", "stream"]},
+          "retry": {"enum": ["safe", "unsafe", "conditional"]},
+          "evidence": {"type": "string"},
+          "command": {"type": "string"}
+        }
+      }
+    }
+  }
+}
