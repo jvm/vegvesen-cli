@@ -74,18 +74,23 @@ Two facts to carry into any release decision:
 
 #### Done
 
-- **First protected pull request** — [#1](https://github.com/jvm/vegvesen-cli/pull/1). All nine required check contexts fire on `pull_request` and pass: `Node.js 20`, `Node.js 22`, `Node.js 24`, `Dependency audit`, `Production dependency audit`, `Secret scan`, `Semgrep SAST`, `Workflow lint`, `Analyze TypeScript/JavaScript`. The names in branch protection match the workflow job names exactly. The Node matrix also confirmed the 4 kernel-PTY tests and `npm run test:package`, neither of which can run in the development sandbox.
-- **Live anonymous attestation** — `docs/attestations/2026-07-28-phase-8.md`. 20 commands verified against production, which found three defects in the 4.3 promotions that metadata alone could not surface. CodeQL additionally found a high-severity file system race in shipped input handling, now fixed.
+- **First protected pull request** — [#1](https://github.com/jvm/vegvesen-cli/pull/1), merged to `main` on 28 July 2026 as a squash commit. All nine required check contexts fire on `pull_request` and pass: `Node.js 20`, `Node.js 22`, `Node.js 24`, `Dependency audit`, `Production dependency audit`, `Secret scan`, `Semgrep SAST`, `Workflow lint`, `Analyze TypeScript/JavaScript`. The names in branch protection match the workflow job names exactly. The Node matrix also confirmed the 4 kernel-PTY tests and `npm run test:package`, neither of which can run in the development sandbox.
+- **Live anonymous attestation** — `docs/attestations/2026-07-28-phase-8.md`. 20 commands verified against production, which found three defects in the 4.3 promotions that metadata alone could not surface.
+- **Branch protection made satisfiable.** `required_approving_review_count` is `0` and `require_last_push_approval` is `false`; a single-owner repository cannot satisfy either. All nine status checks, `enforce_admins`, `required_linear_history`, and `required_conversation_resolution` remain enabled, so verification is unchanged — only the unsatisfiable human-approval step was removed.
 
-#### Blocked: `main` is unreachable
+#### Known open CodeQL alerts
 
-Branch protection on `main` sets `required_approving_review_count: 1` with `enforce_admins: true`, and `jvm` is the sole collaborator on a user-owned repository. GitHub does not permit approving your own pull request, and admin enforcement removes the bypass, so no commit can reach `main` and `release.yml` — which asserts the release tag points at `origin/main` — can never run.
+Two medium alerts remain open against non-shipped files. Neither is in `package.json` `files`, so neither reaches users:
 
-Resolve by one of: adding a second collaborator to approve; setting `required_approving_review_count` to `0` while keeping the status checks; or disabling `enforce_admins` so the owner can merge their own reviewed work. This is a repository-settings decision, not a code change.
+- `fixtures/http-server.mjs` — the test fixture server writes request metadata to a log path taken from an environment variable. Test harness only.
+- `scripts/fetch-specs.mjs` — the dev-only spec fetcher passes a URL read from `specs/sources.json` to `fetch`. The URL is now validated against an https and `vegvesen.no` allowlist before use, but CodeQL's dataflow does not recognise that check as a sanitiser.
+
+Both are candidates for dismissal as "used in tests" and "false positive" respectively. Until dismissed they do not block a release, only conversation resolution on a pull request that touches those files.
 
 #### Remaining owner action
 
-- **Configure npm trusted publishing.** The package name `vegvesen-cli` is unregistered, so the first publish claims it. On npmjs.com, add a trusted publisher for the package pointing at repository `jvm/vegvesen-cli` and workflow `release.yml`. The workflow is already correct for this: it holds `id-token: write`, sets `registry-url`, publishes directly rather than from a reusable workflow, and needs no `NODE_AUTH_TOKEN`. Then create the first `v0.1.0` tag on `main`.
+- **Configure npm trusted publishing.** The package name `vegvesen-cli` is unregistered, so the first publish claims it. On npmjs.com, add a trusted publisher for the package pointing at repository `jvm/vegvesen-cli` and workflow `release.yml`. The workflow is already correct for this: it holds `id-token: write`, sets `registry-url`, publishes directly rather than from a reusable workflow, and needs no `NODE_AUTH_TOKEN`.
+- **Tag the release.** `release.yml` requires the tag to match `v<package version>` and to point at current `origin/main`. Both hold: version is `0.1.0` and `main` is the merge commit. Create `v0.1.0` on `main` after trusted publishing is configured.
 
 ## 1. Decision record
 
