@@ -127,3 +127,13 @@ test('shadowed routes are excluded rather than reached by omitting a header', ()
     assert.ok(!unit.command, `shadowed route must not be reachable from a command: ${target}`);
   }
 });
+
+test('pinned source URLs stay on canonical https vegvesen origins', () => {
+  const sources = sourcesSchema.parse(JSON.parse(readFileSync(new URL('../specs/sources.json', import.meta.url), 'utf8'))).sources;
+  for (const source of sources) {
+    const url = new URL(source.url);
+    assert.equal(url.protocol, 'https:', `${source.contract_id} must use https`);
+    assert.equal(url.username, '', `${source.contract_id} must not carry credentials`);
+    assert.ok(url.hostname === 'vegvesen.no' || url.hostname.endsWith('.vegvesen.no'), `${source.contract_id} host ${url.hostname} is outside vegvesen.no`);
+  }
+});

@@ -7,8 +7,21 @@ const sources = JSON.parse(readFileSync(new URL('../specs/sources.json', import.
 const operations = [];
 let changed = false;
 
+// Sources come from a checked-in file, so a tampered entry could otherwise redirect these
+// fetches anywhere. Apply the same canonical-origin rule the runtime uses (PLAN 6.8).
+function assertCanonicalSourceUrl(source) {
+  let url;
+  try { url = new URL(source.url); }
+  catch { throw new Error(`${source.contract_id}: source URL is not a valid URL`); }
+  if (url.protocol !== 'https:') throw new Error(`${source.contract_id}: source URL must use https, got ${url.protocol}`);
+  if (url.username || url.password) throw new Error(`${source.contract_id}: source URL must not carry credentials`);
+  if (url.hostname !== 'vegvesen.no' && !url.hostname.endsWith('.vegvesen.no')) throw new Error(`${source.contract_id}: source host ${url.hostname} is outside vegvesen.no`);
+  return url;
+}
+
 for (const source of sources) {
-  const response = await fetch(source.url, {
+  const url = assertCanonicalSourceUrl(source);
+  const response = await fetch(url, {
     method: source.kind === 'graphql-introspection' ? 'POST' : 'GET',
     headers: source.kind === 'graphql-introspection' ? { 'content-type': 'application/json' } : { accept: source.kind === 'ogc-dynamic' ? 'application/json' : 'application/json, application/yaml, text/yaml, text/html, */*' },
     ...(source.kind === 'graphql-introspection' ? { body: JSON.stringify({ query: getIntrospectionQuery({ descriptions: true, schemaDescription: true, directiveIsRepeatable: true, specifiedByUrl: true, inputValueDeprecation: true }) }) } : {}),
