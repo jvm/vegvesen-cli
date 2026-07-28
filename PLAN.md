@@ -70,13 +70,22 @@ Two facts to carry into any release decision:
 - The 4 kernel-PTY tests have not been observed passing in the implementation environment, which has no free pty devices. They are unchanged since they last passed and the remote Node matrix will exercise them.
 - `npm run test:package` likewise cannot run here; the sandbox blocks npm cache writes. The tarball contents assertion is therefore unverified in this environment.
 
-### 0.5 Owner-operated items outside this plan
+### 0.5 Release readiness
 
-These require credentials or privileges the implementation cannot hold. They are not blockers for anything in 0.4, and no item in 0.4 depends on them.
+#### Done
 
-- Configure npm trusted publishing, then create the first release tag.
-- Open the first protected pull request and confirm the required check context names.
-- Run the live anonymous re-attestation immediately before release. Offline gates are the release gate; live attestation records evidence, it does not unblock work.
+- **First protected pull request** — [#1](https://github.com/jvm/vegvesen-cli/pull/1). All nine required check contexts fire on `pull_request` and pass: `Node.js 20`, `Node.js 22`, `Node.js 24`, `Dependency audit`, `Production dependency audit`, `Secret scan`, `Semgrep SAST`, `Workflow lint`, `Analyze TypeScript/JavaScript`. The names in branch protection match the workflow job names exactly. The Node matrix also confirmed the 4 kernel-PTY tests and `npm run test:package`, neither of which can run in the development sandbox.
+- **Live anonymous attestation** — `docs/attestations/2026-07-28-phase-8.md`. 20 commands verified against production, which found three defects in the 4.3 promotions that metadata alone could not surface. CodeQL additionally found a high-severity file system race in shipped input handling, now fixed.
+
+#### Blocked: `main` is unreachable
+
+Branch protection on `main` sets `required_approving_review_count: 1` with `enforce_admins: true`, and `jvm` is the sole collaborator on a user-owned repository. GitHub does not permit approving your own pull request, and admin enforcement removes the bypass, so no commit can reach `main` and `release.yml` — which asserts the release tag points at `origin/main` — can never run.
+
+Resolve by one of: adding a second collaborator to approve; setting `required_approving_review_count` to `0` while keeping the status checks; or disabling `enforce_admins` so the owner can merge their own reviewed work. This is a repository-settings decision, not a code change.
+
+#### Remaining owner action
+
+- **Configure npm trusted publishing.** The package name `vegvesen-cli` is unregistered, so the first publish claims it. On npmjs.com, add a trusted publisher for the package pointing at repository `jvm/vegvesen-cli` and workflow `release.yml`. The workflow is already correct for this: it holds `id-token: write`, sets `registry-url`, publishes directly rather than from a reusable workflow, and needs no `NODE_AUTH_TOKEN`. Then create the first `v0.1.0` tag on `main`.
 
 ## 1. Decision record
 
