@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { assertExclusionRules, assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
+import { SHADOWED_ROUTES, assertExclusionRules, assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
 import { overlaySchema, sourcesSchema } from '../scripts/spec-schema.mjs';
 
 const fixture = JSON.stringify({
@@ -116,4 +116,14 @@ test('every permanent exclusion matches a PLAN 8.3 rule', () => {
     () => assertExclusionRules([excluded('svc:GET /api/v1/public/read')], assert),
     /excluded by accident rather than by policy: svc:GET \/api\/v1\/public\/read/,
   );
+});
+
+test('shadowed routes are excluded rather than reached by omitting a header', () => {
+  const coverage = JSON.parse(readFileSync(new URL('../coverage.json', import.meta.url), 'utf8'));
+  for (const target of SHADOWED_ROUTES) {
+    const unit = coverage.units.find((candidate) => candidate.unit === target);
+    assert.ok(unit, `shadowed route is absent from coverage: ${target}`);
+    assert.equal(unit.disposition, 'excluded-permanent', `shadowed route must stay excluded: ${target}`);
+    assert.ok(!unit.command, `shadowed route must not be reachable from a command: ${target}`);
+  }
 });

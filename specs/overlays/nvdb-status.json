@@ -85,12 +85,10 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; live probe 2026-07-28: 200 without Accept, 404 with Accept: application/json",
       "access": "public-anonymous",
-      "disposition": "curated-command",
-      "command": [
-        "nvdb status message list"
-      ]
+      "disposition": "excluded-permanent",
+      "reason": "Shadowed by GET /api/v1/feilmeldinger/{id}, which wins upstream content negotiation and answers 404 for a system id; reachable only by omitting a correct Accept header"
     },
     {
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/aktive",

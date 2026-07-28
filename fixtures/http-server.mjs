@@ -97,13 +97,13 @@ const server = createServer(async (request, response) => {
     response.end(Buffer.from('%PDF-1.7 fixture'));
   } else if (url.pathname === '/api/v1/feilmeldinger/ulost') {
     response.end(JSON.stringify([{ id: 7, status: 'AKTIV' }]));
-  } else if (/^\/api\/v1\/systemer\/\d+$/.test(url.pathname)) {
-    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-1)), navn: 'fixture' }));
-  } else if (/^\/api\/v1\/systemer\/\d+\/status$/.test(url.pathname)) {
-    response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-2)), status: 'OPPE' }));
+  } else if (/^\/api\/v1\/systemer\/[\w-]+$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: url.pathname.split('/').at(-1), navn: 'fixture' }));
+  } else if (/^\/api\/v1\/systemer\/[\w-]+\/status$/.test(url.pathname)) {
+    response.end(JSON.stringify({ id: url.pathname.split('/').at(-2), status: 'OPPE' }));
   } else if (url.pathname === '/api/v1/statistikk' || url.pathname === '/api/v1/statistikk/nokkeldata') {
     response.end(JSON.stringify({ scope: url.pathname.endsWith('nokkeldata') ? 'key-data' : 'full', antall: 1 }));
-  } else if (/^\/api\/v1\/feilmeldinger\/(\d+(\/(aktive|planlagt))?|aktiv|planlagt|avsluttet|siste|mellom)$/.test(url.pathname)) {
+  } else if (/^\/api\/v1\/feilmeldinger\/([\w-]+\/(aktive|planlagt)|aktiv|planlagt|avsluttet|siste|mellom)$/.test(url.pathname)) {
     response.end(JSON.stringify([{ id: 7, scope: url.pathname.replace('/api/v1/feilmeldinger/', ''), from: url.searchParams.get('fra') }]));
   } else if (url.pathname === '/rapporter/bruksklasser' || url.pathname === '/rapporter/kontraktsomraader' || url.pathname === '/rapporter/omraader' || url.pathname === '/rapporter/kostrarapporttyper' || url.pathname === '/rapporter/driftskontraktrapporttyper') {
     response.end(JSON.stringify([{ id: 1, kind: url.pathname.split('/').at(-1) }]));

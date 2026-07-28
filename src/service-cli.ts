@@ -92,11 +92,12 @@ function addNvdb(program: Command, runtime: Runtime, setResult: ResultSetter): v
   const dependency = status.command('dependency').description('Read systems and service dependencies.');
   leaf(dependency, 'list', 'List systems and dependencies.', 'nvdb status dependency list', 'nvdb-status', 'api/v1/systemer', statusOrigin);
   const system = status.command('system').description('Read exact registered systems.');
-  exactLeaf(system, 'get <system-id>', 'Get exact registered system.', 'nvdb status system get', 'nvdb-status', (id) => `api/v1/systemer/${integer(id, 'system-id')}`, statusOrigin);
-  exactLeaf(system, 'health <system-id>', 'Get exact system operational status.', 'nvdb status system health', 'nvdb-status', (id) => `api/v1/systemer/${integer(id, 'system-id')}/status`, statusOrigin);
-  status.command('statistics').description('Read public status statistics.').command('get').description('Get status statistics.')
+  exactLeaf(system, 'get <system-id>', 'Get exact registered system.', 'nvdb status system get', 'nvdb-status', (id) => `api/v1/systemer/${opaqueId(id, 'system-id')}`, statusOrigin);
+  exactLeaf(system, 'health <system-id>', 'Get exact system operational status.', 'nvdb status system health', 'nvdb-status', (id) => `api/v1/systemer/${opaqueId(id, 'system-id')}/status`, statusOrigin);
+  status.command('statistics').description('Read public status statistics.').command('get').description('Get status statistics over a bounded window.')
+    .requiredOption('--days <count>', 'Window in days; required upstream')
     .option('--key-data', 'Return the summarized key-data statistics')
-    .action((local: { keyData?: boolean }, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb status statistics get', 'nvdb-status', `api/v1/statistikk${local.keyData ? '/nokkeldata' : ''}`, {}, command, statusOrigin), command));
+    .action((local: { days: string; keyData?: boolean }, command: Command) => setResult(() => nvdbJson(runtime, 'nvdb status statistics get', 'nvdb-status', `api/v1/statistikk${local.keyData ? '/nokkeldata' : ''}`, { dager: integer(local.days, 'days') }, command, statusOrigin), command));
   const message = status.command('message').description('Read incident and maintenance messages.');
   message.command('list').description('List status messages; bounded locally by --limit.')
     .addOption(new Option('--state <state>', 'Message state').choices(['active', 'planned', 'closed', 'unresolved', 'latest', 'all']).default('unresolved'))
@@ -111,10 +112,12 @@ function addNvdb(program: Command, runtime: Runtime, setResult: ResultSetter): v
         return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', 'api/v1/feilmeldinger/mellom', { fra: local.from, til: local.to }, command, statusOrigin), command);
       }
       if (local.system !== undefined) {
-        const perSystem: Record<string, string> = { active: '/aktive', planned: '/planlagt', all: '' };
-        const state = explicitState ? local.state : 'all';
-        if (!(state in perSystem)) throw usageError(`--state ${state} is not available per system`, 'Use --state active, planned, or all with --system', 'state');
-        return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', `api/v1/feilmeldinger/${integer(local.system!, 'system')}${perSystem[state]}`, {}, command, statusOrigin), command);
+        // Only the per-state sub-paths are reachable. Bare /feilmeldinger/{systemId} shares its
+        // path template with message-by-id upstream, which wins content negotiation and answers
+        // 404 for a system id; see PLAN 4.2 shadowed-route exclusion.
+        const perSystem: Record<string, string> = { active: '/aktive', planned: '/planlagt' };
+        if (!explicitState || !(local.state in perSystem)) throw usageError('--system requires --state active or planned', 'Pass --system ID --state active, or query all systems without --system', 'state');
+        return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', `api/v1/feilmeldinger/${opaqueId(local.system!, 'system')}${perSystem[local.state]}`, {}, command, statusOrigin), command);
       }
       const suffix: Record<string, string> = { active: 'aktiv', planned: 'planlagt', closed: 'avsluttet', unresolved: 'ulost', latest: 'siste', all: '' };
       return setResult(() => nvdbJson(runtime, 'nvdb status message list', 'nvdb-status', `api/v1/feilmeldinger${suffix[local.state] ? `/${suffix[local.state]}` : ''}`, {}, command, statusOrigin), command);
@@ -639,6 +642,11 @@ function queryOptions(command: Command): QueryOptions {
 function artifactOptions(command: Command): ArtifactOptions {
   const options = common(command);
   return { ...queryOptions(command), output: options.output, overwrite: options.overwrite, allowTerminalBinary: options.allowTerminalBinary, format: options.format };
+}
+
+function opaqueId(value: string, field: string): string {
+  if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,63}$/.test(value)) throw usageError(`${field} must be an upstream identifier`, `Pass an exact ${field} as returned by a list command`, field);
+  return value;
 }
 
 function integer(value: string, field: string): string {

@@ -512,13 +512,13 @@ test('invalid combinations fail with no stdout', () => {
 
 test('promoted anonymous reads map to their exact upstream operations', () => {
   const cases = [
-    [['nvdb', 'status', 'system', 'get', '3'], '/api/v1/systemer/3'],
-    [['nvdb', 'status', 'system', 'health', '3'], '/api/v1/systemer/3/status'],
-    [['nvdb', 'status', 'statistics', 'get'], '/api/v1/statistikk'],
-    [['nvdb', 'status', 'statistics', 'get', '--key-data'], '/api/v1/statistikk/nokkeldata'],
+    [['nvdb', 'status', 'system', 'get', '6460-abc'], '/api/v1/systemer/6460-abc'],
+    [['nvdb', 'status', 'system', 'health', '6460-abc'], '/api/v1/systemer/6460-abc/status'],
     [['nvdb', 'status', 'message', 'list', '--state', 'latest'], '/api/v1/feilmeldinger/siste'],
-    [['nvdb', 'status', 'message', 'list', '--system', '3'], '/api/v1/feilmeldinger/3'],
     [['nvdb', 'status', 'message', 'list', '--system', '3', '--state', 'active'], '/api/v1/feilmeldinger/3/aktive'],
+    [['nvdb', 'status', 'message', 'list', '--system', '3', '--state', 'planned'], '/api/v1/feilmeldinger/3/planlagt'],
+    [['nvdb', 'status', 'statistics', 'get', '--days', '7'], '/api/v1/statistikk?dager=7'],
+    [['nvdb', 'status', 'statistics', 'get', '--days', '7', '--key-data'], '/api/v1/statistikk/nokkeldata?dager=7'],
     [['nvdb', 'status', 'message', 'list', '--from', '2026-01-01', '--to', '2026-02-01'], '/api/v1/feilmeldinger/mellom?fra=2026-01-01&til=2026-02-01'],
     [['nvdb', 'report', 'reference', 'list', 'load-class'], '/rapporter/bruksklasser'],
     [['nvdb', 'report', 'reference', 'list', 'contract-area'], '/rapporter/kontraktsomraader'],
@@ -546,6 +546,9 @@ test('promoted anonymous reads map to their exact upstream operations', () => {
     ['nvdb', 'status', 'message', 'list', '--from', '2026-01-01'],
     ['nvdb', 'status', 'message', 'list', '--from', '2026-01-01', '--to', '2026-02-01', '--system', '3'],
     ['nvdb', 'status', 'message', 'list', '--system', '3', '--state', 'unresolved'],
+    ['nvdb', 'status', 'message', 'list', '--system', '3'],
+    ['nvdb', 'status', 'statistics', 'get'],
+    ['nvdb', 'status', 'system', 'get', 'not/an/id'],
     ['nvdb', 'report', 'reference', 'list', 'nonsense'],
   ]) {
     const invalid = run([...args, '--json']);

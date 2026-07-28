@@ -213,7 +213,14 @@ export const EXCLUSION_RULES = [
   // PLAN 4.2 names the NVDB /uberiket long-tail as a whole: unenriched duplicates of shipped V4 reads.
   { id: 'named-long-tail', matches: (unit) => /^nvdb-core:uberiket:/.test(unit.unit) },
   { id: 'protocol-unit', matches: (unit) => method(unit) === null },
+  // Path template collides with another operation that wins upstream routing, so the operation
+  // is not reachable without depending on undocumented content negotiation. Evidence required.
+  { id: 'shadowed-route', matches: (unit) => SHADOWED_ROUTES.has(unit.unit) },
 ];
+
+export const SHADOWED_ROUTES = new Set([
+  'nvdb-status:GET /api/v1/feilmeldinger/{systemId}',
+]);
 
 function method(unit) {
   const match = /:([A-Z]+) \//.exec(unit.unit);
