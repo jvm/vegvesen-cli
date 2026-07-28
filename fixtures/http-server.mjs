@@ -19,7 +19,10 @@ const server = createServer(async (request, response) => {
     else if (roadFeatureAttempts++ === 0) { response.statusCode = 503; response.end('{}'); }
     else response.end(JSON.stringify({ roadFeatures: [{ id: 'rf1' }] }));
   } else if (url.pathname.toLowerCase().startsWith('/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingservice/')) {
-    response.end(JSON.stringify({ routes: [{ type: 'FeatureCollection', features: [], profile: url.pathname.split('/').at(-1), stops: url.searchParams.get('Stops') }], externalApiStatus: null }));
+    // Deliberately non-canonical spacing: a re-serialized body would not match these bytes,
+    // so a byte-equality assertion proves --format raw preserves the upstream body verbatim.
+    response.setHeader('content-type', 'application/geo+json');
+    response.end(`{  "routes" : [ {"type":"FeatureCollection",  "features":[], "profile":"${url.pathname.split('/').at(-1)}", "stops":${JSON.stringify(url.searchParams.get('Stops'))}} ],\n  "externalApiStatus" : null }`);
   } else if (/^\/vegobjekter\/api\/v4\/vegobjekter\/\d+\/statistikk$/.test(url.pathname)) {
     response.end(JSON.stringify({ antall: 3 }));
   } else if (url.pathname === '/vegobjekter/api/v4/vegobjekter/901') {
@@ -63,7 +66,9 @@ const server = createServer(async (request, response) => {
   } else if (url.pathname === '/vegnett/api/v4/veg' || url.pathname === '/vegnett/api/v4/veg/batch') {
     response.end(JSON.stringify([{ veglenkesekvens: { kortform: '0.5@123' } }]));
   } else if (url.pathname === '/vegnett/api/v4/beta/vegnett/rute') {
-    response.end(JSON.stringify({ veglenker: [201], lengde: 100 }));
+    const body = request.method === 'POST' ? await readBody(request) : '';
+    if (body.includes('transient')) { response.statusCode = 503; response.end('{}'); }
+    else response.end(JSON.stringify({ veglenker: [201], lengde: 100, method: request.method, received: body ? Object.keys(JSON.parse(body)).sort() : null }));
   } else if (/^\/monitor\/api\/v1\/endringssett\/[^/]+\/status$/.test(url.pathname)) {
     response.end(JSON.stringify({ status: 'FERDIG' }));
   } else if (url.pathname === '/api/3/action/package_search') {

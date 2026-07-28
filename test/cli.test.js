@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -551,4 +552,99 @@ test('promoted anonymous reads map to their exact upstream operations', () => {
     assert.equal(invalid.status, 2, `${args.join(' ')} should be a usage error`);
     assert.equal(invalid.stdout, '');
   }
+});
+
+test('every reviewed generated operation has a process fixture', () => {
+  const registry = JSON.parse(readFileSync(new URL('../specs/public-operations.json', import.meta.url), 'utf8')).operations;
+  // Exercise arguments per reviewed operation id. A new generated operation without an entry
+  // here fails the completeness assertion below rather than shipping unexercised.
+  const exercises = {
+    'object-statistics-grouped': ['--param', 'vegobjekttypeid=105', '--param', 'gruppering=kommune'],
+    'object-statistics-grouped-property': ['--param', 'vegobjekttypeid=105', '--param', 'egenskapstypeId=1'],
+    'network-statistics-grouped': ['--param', 'gruppering=kommune'],
+  };
+  assert.deepEqual(Object.keys(exercises).sort(), registry.map((operation) => operation.id).sort(), 'every reviewed generated operation needs an exercise');
+
+  for (const operation of registry) {
+    const result = run(['api', 'operation', 'call', operation.service, operation.id, ...exercises[operation.id], '--json', '--no-input']);
+    assert.equal(result.status, 0, `${operation.id}: ${result.stderr}`);
+    assert.equal(JSON.parse(result.stdout).meta.operation_id, operation.id);
+    const issued = requests().at(-1);
+    assert.equal(issued.method, operation.method);
+    for (const required of operation.required_query_parameters) {
+      assert.ok(new URL(issued.url, origin).searchParams.has(required), `${operation.id} omitted required ${required}`);
+    }
+    const described = run(['api', 'operation', 'describe', operation.service, operation.id, '--json', '--no-input']);
+    assert.equal(described.status, 0, described.stderr);
+    assert.equal(JSON.parse(described.stdout).data.id, operation.id);
+  }
+});
+
+test('a fresh exact read agrees with the listed result', () => {
+  const listed = run(['nvdb', 'object', 'list', '105', '--page-size', '2', '--limit', '1', '--json']);
+  assert.equal(listed.status, 0, listed.stderr);
+  const first = JSON.parse(listed.stdout).data[0];
+  const fresh = run(['nvdb', 'object', 'get', String(first.id), '--json']);
+  assert.equal(fresh.status, 0, fresh.stderr);
+  assert.equal(JSON.parse(fresh.stdout).data.id, first.id, 'exact read disagrees with the listed identity');
+
+  const links = run(['nvdb', 'network', 'link', 'list', '--limit', '1', '--json']);
+  assert.equal(links.status, 0, links.stderr);
+  const link = JSON.parse(links.stdout).data[0];
+  const freshLink = run(['nvdb', 'network', 'link', 'get', String(link.id), '--json']);
+  assert.equal(freshLink.status, 0, freshLink.stderr);
+  assert.equal(JSON.parse(freshLink.stdout).data.id, link.id);
+});
+
+test('raw route output preserves the exact upstream GeoJSON bytes', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-raw-'));
+  const path = join(directory, 'route.geojson');
+  const saved = run(['route', 'calculate', '--profile', 'best', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--output', path, '--format', 'raw', '--receipt-format', 'json', '--no-input']);
+  assert.equal(saved.status, 0, saved.stderr);
+
+  const bytes = readFileSync(path);
+  const receipt = JSON.parse(saved.stdout);
+  assert.equal(receipt.data.size_bytes, bytes.length);
+  assert.equal(receipt.data.sha256, createHash('sha256').update(bytes).digest('hex'));
+
+  const text = bytes.toString('utf8');
+  // The fixture emits non-canonical spacing; re-serialization would normalize it away.
+  assert.match(text, /^\{ {2}"routes" : \[ \{/, 'upstream byte layout was not preserved');
+  assert.notEqual(text, `${JSON.stringify(JSON.parse(text))}\n`);
+  assert.equal(JSON.parse(text).routes[0].profile, 'best');
+
+  const streamed = run(['route', 'calculate', '--profile', 'best', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--output', '-', '--format', 'raw', '--no-input']);
+  assert.equal(streamed.status, 0, streamed.stderr);
+  assert.equal(streamed.stdout, text, 'stdout and file destinations disagree on raw bytes');
+});
+
+test('NVDB route accepts a read-only POST body and retries it', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-nvdb-route-'));
+  const bodyPath = join(directory, 'route.json');
+  writeFileSync(bodyPath, JSON.stringify({ start: '0.1@1', slutt: '0.9@1', srid: 4326 }));
+  const posted = run(['nvdb', 'network', 'route', 'calculate', '--body', `@${bodyPath}`, '--json', '--no-input']);
+  assert.equal(posted.status, 0, posted.stderr);
+  const payload = JSON.parse(posted.stdout).data;
+  assert.equal(payload.method, 'POST');
+  assert.deepEqual(payload.received, ['slutt', 'srid', 'start'], 'request body was not forwarded intact');
+  const issued = requests().at(-1);
+  assert.equal(issued.method, 'POST');
+  assert.match(issued.headers['content-type'], /application\/json/);
+  assert.match(issued.headers['x-client'], /^vegvesen-cli\//);
+
+  // Classified read-only, so a transient failure is retried rather than surfaced.
+  const transientPath = join(directory, 'transient.json');
+  writeFileSync(transientPath, JSON.stringify({ start: 'transient', slutt: '0.9@1' }));
+  const before = requests().filter((request) => request.url === '/vegnett/api/v4/beta/vegnett/rute').length;
+  const retried = run(['nvdb', 'network', 'route', 'calculate', '--body', `@${transientPath}`, '--retries', '2', '--json', '--no-input']);
+  assert.equal(retried.status, 6);
+  assert.equal(JSON.parse(retried.stderr).error.code, 'UPSTREAM_UNAVAILABLE');
+  const attempts = requests().filter((request) => request.url === '/vegnett/api/v4/beta/vegnett/rute').length - before;
+  assert.equal(attempts, 3, 'read-only POST should retry the configured number of times');
+
+  // --body and --start/--end are mutually exclusive and rejected before any request.
+  const conflictBefore = requests().length;
+  const conflict = run(['nvdb', 'network', 'route', 'calculate', '--body', `@${bodyPath}`, '--start', '0.1@1', '--json']);
+  assert.equal(conflict.status, 2);
+  assert.equal(requests().length, conflictBefore);
 });
