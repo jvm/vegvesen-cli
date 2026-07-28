@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-core:vegobjekter",
+  "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekt",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object get"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object list"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object get"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/{versjon}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object get"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/versjoner",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object versions"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/endringer",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object changes"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object statistics"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
+      "access": "public-anonymous",
+      "disposition": "generated-operation",
+      "command": [
+        "api operation call"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
+      "access": "public-anonymous",
+      "disposition": "generated-operation",
+      "command": [
+        "api operation call"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/endringer",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object changes"
+      ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/statistikk",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb object statistics"
+      ]
+    }
+  ]
+}

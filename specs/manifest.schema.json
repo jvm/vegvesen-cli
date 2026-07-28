@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "services"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "generated_at": {"type": "string"},
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "origin", "spec_url", "kind", "access_tier", "health", "verified_at", "evidence", "redistribution", "contracts", "overlays", "provenance", "anonymous_evidence", "health_evidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "origin": {"type": "string"},
+          "spec_url": {"type": "string"},
+          "kind": {"type": "string"},
+          "access_tier": {"type": "string"},
+          "health": {"type": "string"},
+          "verified_at": {"type": "string"},
+          "evidence": {"type": "string"},
+          "redistribution": {"enum": ["reference-only", "snapshot-approved"]},
+          "contracts": {"type": "array", "items": {"type": "string"}},
+          "overlays": {"type": "array", "items": {"type": "string"}},
+          "provenance": {"type": "string", "minLength": 1},
+          "anonymous_evidence": {"type": "string", "minLength": 1},
+          "health_evidence": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

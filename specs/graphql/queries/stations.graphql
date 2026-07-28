@@ -1,0 +1,13 @@
+query Stations($ids: [String!], $search: TrafficRegistrationPointSearchQuery) {
+  trafficRegistrationPoints(trafficRegistrationPointIds: $ids, searchQuery: $search) {
+    id name trafficRegistrationType operationalStatus registrationFrequency
+    location {
+      coordinates { latLon { lat lon } }
+      county { number name }
+      municipality { number name }
+      roadReference { shortForm roadCategory { id name } }
+    }
+    direction { fromAccordingToRoadLink toAccordingToRoadLink }
+    dataTimeSpan { firstData firstDataWithQualityMetrics latestData { volumeByHour volumeByDay volumeAverageDailyByMonth volumeAverageDailyBySeason volumeAverageDailyByYear } }
+  }
+}

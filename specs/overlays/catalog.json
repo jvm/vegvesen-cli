@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "contract_id": "catalog",
+  "source_digest": "sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "catalog:CKAN group_list",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog group list"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN group_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog group get"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN organization_list",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog organization list"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN organization_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog organization get"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN package_search",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog package search"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN package_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog package get"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN resource_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog resource get"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN status_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog status get"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN tag_list",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog tag list"
+      ]
+    },
+    {
+      "target_id": "catalog:CKAN tag_show",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "catalog source sha256:5b62e9d6a8eb0448328ce42ee377e387294f0e605be4bd671b3333bfe0cd2d66; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "catalog tag get"
+      ]
+    }
+  ]
+}

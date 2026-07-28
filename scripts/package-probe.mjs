@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+const root = new URL('..', import.meta.url);
+const packDirectory = mkdtempSync(join(tmpdir(), 'vegvesen-pack-'));
+const installDirectory = mkdtempSync(join(tmpdir(), 'vegvesen-install-'));
+const tarballName = execFileSync('npm', ['pack', '--ignore-scripts', '--pack-destination', packDirectory], { cwd: root, encoding: 'utf8' }).trim().split('\n').at(-1);
+const tarball = join(packDirectory, tarballName);
+const packedFiles = execFileSync('tar', ['-tf', tarball], { encoding: 'utf8' }).trim().split('\n');
+for (const required of ['package/SECURITY.md', 'package/specs/public-operations.json', 'package/specs/graphql/queries/stations.graphql']) assert(packedFiles.includes(required), `Missing packed runtime asset: ${required}`);
+for (const forbidden of ['traffic-introspection.json', '/test/', '/fixtures/', 'PLAN.md', 'docs/research']) assert(!packedFiles.some((path) => path.includes(forbidden)), `Forbidden package content: ${forbidden}`);
+execFileSync('npm', ['init', '-y'], { cwd: installDirectory, stdio: 'ignore' });
+execFileSync('npm', ['install', tarball], { cwd: installDirectory, stdio: 'ignore' });
+const executable = join(installDirectory, 'node_modules', '.bin', 'vegvesen');
+const version = execFileSync(executable, ['--version'], { cwd: tmpdir(), encoding: 'utf8' });
+assert.equal(version, '0.1.0\n');
+const structured = JSON.parse(execFileSync(executable, ['version', '--json'], { cwd: tmpdir(), encoding: 'utf8' }));
+assert.equal(structured.schema_version, 1);
+const generated = JSON.parse(execFileSync(executable, ['api', 'service', 'list', '--json', '--no-input'], { cwd: tmpdir(), encoding: 'utf8' }));
+assert.equal(generated.data[0].service, 'nvdb-core');
+assert.match(execFileSync(executable, ['completion', 'bash', '--format', 'raw', '--no-input'], { cwd: tmpdir(), encoding: 'utf8' }), /complete -F/);
+console.log(`Installed package works outside checkout: ${tarballName}`);

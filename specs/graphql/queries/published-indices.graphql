@@ -1,0 +1,1 @@
+query PublishedIndices { publishedAreaTrafficVolumeIndices { id name months { year month } } }

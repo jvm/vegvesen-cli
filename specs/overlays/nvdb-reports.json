@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-reports",
+  "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-reports:GET /admin/database/metrics",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "admin",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:GET /admin/filerepository/count",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "admin",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:GET /admin/jobrepository/count",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "admin",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/bruksklasser",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/driftskontrakt",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/driftskontraktrapporttyper",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/driftskontraktvegobjekttyper/default/{rapporttypeId}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference object-type list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/driftskontraktvegobjekttyper/tilvalg/{rapporttypeId}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference object-type list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/egendefinert",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report custom list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/egendefinert/{reportid}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report custom get"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/egendefinert/aggregate",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report custom aggregate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/ekspertrapport",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/geopackage",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/kontraktsomraader",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/kontraktZip",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report contract-archive download"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/kostra/{rapporttype}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/kostrarapporttyper",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/nedlasting/{filnavn}",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report artifact download"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/omraader",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report reference list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/poll/{id}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job get",
+        "nvdb report job wait"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/rapporttyper",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report family list"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /rapporter/veglister/{bruksklasse}",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:GET /stats/jobs",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "admin",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:job download",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report artifact download"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job expiry/failure",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job wait"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job SIGINT",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job wait"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job SIGTERM",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job wait"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job start",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report generate"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job status",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job get"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:job wait",
+      "effect": "job",
+      "retry": "safe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb report job wait"
+      ]
+    },
+    {
+      "target_id": "nvdb-reports:POST /admin/filerepository/purge",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:POST /admin/jobrepository/purge",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "nvdb-reports:POST /rapporter/egendefinert",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-reports:POST /rapporter/omraader/oppdater",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    }
+  ]
+}

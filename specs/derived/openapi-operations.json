@@ -1,0 +1,4601 @@
+{
+  "schema_version": 1,
+  "operations": [
+    {
+      "id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/ansvarlig/{brukernavn}",
+      "operation_id": "removeAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/kategorier",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/ansvarlig/{brukernavn}/kategorier",
+      "operation_id": "removeCategoryResponsibilitiesFromAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/xml"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/omrader",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/ansvarlig/{brukernavn}/omrader",
+      "operation_id": "removeAreaResponsibilitiesFromAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/xml"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/feilmelding/{id}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/feilmelding/{id}",
+      "operation_id": "deleteIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/feilmelding/{id}/avmelde",
+      "operation_id": "unsubscribeFromIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde/{abonnent}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/feilmelding/{id}/avmelde/{abonnent}",
+      "operation_id": "unsubscribeFromIssueURL",
+      "path_parameters": [
+        "abonnent",
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/feilmelding/{id}/kommentar/{kommentarId}",
+      "operation_id": "removeCommentFromIssue",
+      "path_parameters": [
+        "id",
+        "kommentarId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:DELETE /api/v1/feilmelding/{id}/vedlegg",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "DELETE",
+      "path": "/api/v1/feilmelding/{id}/vedlegg",
+      "operation_id": "deleteAttachmentByFilename",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/ansvarlig",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/ansvarlig",
+      "operation_id": "getAllAssignees",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/ansvarlig/{brukernavn}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/ansvarlig/{brukernavn}",
+      "operation_id": "findAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/ansvarlig/sok",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/ansvarlig/sok",
+      "operation_id": "searchForAssignees",
+      "path_parameters": [],
+      "query_parameters": [
+        "sokeord"
+      ],
+      "required_query_parameters": [
+        "sokeord"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/feilmelding",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/feilmelding",
+      "operation_id": "getAllIssues",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/feilmelding/{id}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/feilmelding/{id}",
+      "operation_id": "findIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/feilmelding/{id}/vedlegg/{filnavn}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/feilmelding/{id}/vedlegg/{filnavn}",
+      "operation_id": "getAttachmentByFilename",
+      "path_parameters": [
+        "filnavn",
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "multipart/form-data"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/feilmelding/detaljert",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/feilmelding/detaljert",
+      "operation_id": "getAllIssuesDetailed",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/meg/abonnenter",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/meg/abonnenter",
+      "operation_id": "getMySubscriptions",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/meg/ansvarlig",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/meg/ansvarlig",
+      "operation_id": "getMyAssignedIssues",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:GET /api/v1/meg/feilmeldinger",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "GET",
+      "path": "/api/v1/meg/feilmeldinger",
+      "operation_id": "getMyIssues",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:PATCH /api/v1/feilmelding/{id}/ansvarlig",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "PATCH",
+      "path": "/api/v1/feilmelding/{id}/ansvarlig",
+      "operation_id": "changeIssueAssignee",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/ansvarlig",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/ansvarlig",
+      "operation_id": "addNewAssignee",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/xml"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/kategorier",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/ansvarlig/{brukernavn}/kategorier",
+      "operation_id": "addCategoryResponsibilitiesToAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/xml"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/omrader",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/ansvarlig/{brukernavn}/omrader",
+      "operation_id": "addAreaResponsibilitiesToAssignee",
+      "path_parameters": [
+        "brukernavn"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/xml"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding",
+      "operation_id": "submitIssue",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/abonner",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/abonner",
+      "operation_id": "subscribeToIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/avvist",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/avvist",
+      "operation_id": "rejectIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/dov",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/dov",
+      "operation_id": "sentToDOVIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/kommentar",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/kommentar",
+      "operation_id": "addCommentToIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/lukk",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/lukk",
+      "operation_id": "closeIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/rapporter/karverket",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/rapporter/karverket",
+      "operation_id": "reportIssueToMapAuthority",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/start",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/start",
+      "operation_id": "startWorkOnIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/svv",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/svv",
+      "operation_id": "sentToSVVIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/vedlegg",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/vedlegg",
+      "operation_id": "attachFileToIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [
+        "file"
+      ],
+      "required_query_parameters": [
+        "file"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/{id}/vts",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/{id}/vts",
+      "operation_id": "sentToVTSIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:POST /api/v1/feilmelding/anonym",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "POST",
+      "path": "/api/v1/feilmelding/anonym",
+      "operation_id": "submitFacelessIssue",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:PUT /api/v1/feilmelding/{id}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "PUT",
+      "path": "/api/v1/feilmelding/{id}",
+      "operation_id": "updateIssue",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "fiks:PUT /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
+      "service": "fiks",
+      "contract_id": "fiks",
+      "source_digest": "sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b",
+      "method": "PUT",
+      "path": "/api/v1/feilmelding/{id}/kommentar/{kommentarId}",
+      "operation_id": "editCommentOnIssue",
+      "path_parameters": [
+        "id",
+        "kommentarId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/adresser",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/adresser",
+      "operation_id": "getAdresser",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/fylker",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/fylker",
+      "operation_id": "getFylker",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder",
+        "srid"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/kommuner",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/kommuner",
+      "operation_id": "getKommuner",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder",
+        "srid"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/kontraktsomrader",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/kontraktsomrader",
+      "operation_id": "getKontraktsomrader",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/riksvegruter",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/riksvegruter",
+      "operation_id": "getRiksvegruter",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-areas:GET /api/v4/vegforvaltere",
+      "service": "nvdb-areas",
+      "contract_id": "nvdb-areas",
+      "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+      "method": "GET",
+      "path": "/api/v4/vegforvaltere",
+      "operation_id": "getVegforvaltere",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/egenskapstypekategorier",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/egenskapstypekategorier",
+      "operation_id": "getEgenskapstypeKategorier",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/egenskapstyper/{egenskapstypeid}",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/egenskapstyper/{egenskapstypeid}",
+      "operation_id": "getEgenskapstype",
+      "path_parameters": [
+        "egenskapstypeid"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/enheter",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/enheter",
+      "operation_id": "getEnheter",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/kategorier",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/kategorier",
+      "operation_id": "getKategorier",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/vegobjekttyper",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/vegobjekttyper",
+      "operation_id": "getVegobjekttyper",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder",
+        "kategori"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/vegobjekttyper/{vegobjekttypeid}",
+      "operation_id": "getVegobjekttype",
+      "path_parameters": [
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/vegobjekttyper/{vegobjekttypeid}/{egenskapstypeid}",
+      "operation_id": "getEgenskapstypeForVegobjekttype",
+      "path_parameters": [
+        "egenskapstypeid",
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/vegobjekttyper/{vegobjekttypeid}/produktspesifikasjon",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/vegobjekttyper/{vegobjekttypeid}/produktspesifikasjon",
+      "operation_id": "getProduktspesifikasjon",
+      "path_parameters": [
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/vegobjekttyper/historisk/{versjon}",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/vegobjekttyper/historisk/{versjon}",
+      "operation_id": "getVegobjekttyperHistorisk",
+      "path_parameters": [
+        "versjon"
+      ],
+      "query_parameters": [
+        "inkluder",
+        "kategori"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-catalog:GET /api/v1/versjon",
+      "service": "nvdb-catalog",
+      "contract_id": "nvdb-catalog",
+      "source_digest": "sha256:a5424d715150e8ff4d65472cb2d084e4c326680ac68c09312cbc7b1927538124",
+      "method": "GET",
+      "path": "/api/v1/versjon",
+      "operation_id": "getVersjon",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-core:monitor:GET /api/v1/endringssett/{id}/status",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:monitor",
+      "source_digest": "sha256:f8a10f07a4f748c929b658d3f27c631de8c30881552ae40e2281c3499b90481a",
+      "method": "GET",
+      "path": "/api/v1/endringssett/{id}/status",
+      "operation_id": "getEndringssettStatus",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/endringssett/{endringssettId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/endringssett/{endringssettId}",
+      "operation_id": "hentHendelserForEndringssett",
+      "path_parameters": [
+        "endringssettId"
+      ],
+      "query_parameters": [
+        "antall",
+        "start"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/noder",
+      "operation_id": "hentNodeHendelser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "hendelsetype",
+        "nodeId",
+        "sluttDato",
+        "start",
+        "startDato"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder/siste",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/noder/siste",
+      "operation_id": "hentSisteNodeHendelse",
+      "path_parameters": [],
+      "query_parameters": [
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/veglenkesekvenser",
+      "operation_id": "hentVeglenkesekvensHendelser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "hendelsetype",
+        "sluttDato",
+        "start",
+        "startDato",
+        "veglenkesekvensId"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/siste",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/veglenkesekvenser/siste",
+      "operation_id": "hentSisteVeglenkesekvensHendelse",
+      "path_parameters": [],
+      "query_parameters": [
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/stream",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/veglenkesekvenser/stream",
+      "operation_id": "streamVeglenkesekvensHendelser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "start",
+        "startDato"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json",
+        "application/x-ndjson"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegnett",
+      "operation_id": "hentVegnettHendelser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "hendelsetype",
+        "nettelementId",
+        "sluttDato",
+        "start",
+        "startDato"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett/siste",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegnett/siste",
+      "operation_id": "hentSisteVegnettHendelse",
+      "path_parameters": [],
+      "query_parameters": [
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegobjekter",
+      "operation_id": "hentVegobjektHendelserForTyper",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "hendelsetype",
+        "sluttDato",
+        "start",
+        "startDato",
+        "typeIder",
+        "vegobjektId"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegobjekter/{typeId}",
+      "operation_id": "hentVegobjektHendelser",
+      "path_parameters": [
+        "typeId"
+      ],
+      "query_parameters": [
+        "antall",
+        "hendelsetype",
+        "sluttDato",
+        "start",
+        "startDato",
+        "vegobjektId"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/siste",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegobjekter/{typeId}/siste",
+      "operation_id": "hentSisteVegobjektHendelseId",
+      "path_parameters": [
+        "typeId"
+      ],
+      "query_parameters": [
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/stream",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegobjekter/{typeId}/stream",
+      "operation_id": "streamVegobjekthendelser",
+      "path_parameters": [
+        "typeId"
+      ],
+      "query_parameters": [
+        "antall",
+        "start",
+        "startDato"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json",
+        "application/x-ndjson"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/siste",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/hendelser/vegobjekter/siste",
+      "operation_id": "hentSisteVegobjektHendelseId_1",
+      "path_parameters": [],
+      "query_parameters": [
+        "tidspunkt",
+        "typeIder"
+      ],
+      "required_query_parameters": [
+        "typeIder"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/noder",
+      "operation_id": "hentNoder",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "polygon",
+        "start",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder/{nodeId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/noder/{nodeId}",
+      "operation_id": "hentNode",
+      "path_parameters": [
+        "nodeId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenker/stream",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/veglenker/stream",
+      "operation_id": "streamVeglenker",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "start"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json",
+        "application/x-ndjson"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/veglenkesekvenser",
+      "operation_id": "hentVeglenkesekvenser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "inkluder",
+        "polygon",
+        "start",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}",
+      "operation_id": "hentVeglenkesekvens",
+      "path_parameters": [
+        "veglenkesekvensId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}/historisk",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}/historisk",
+      "operation_id": "hentVeglenkesekvensHistorisk",
+      "path_parameters": [
+        "veglenkesekvensId"
+      ],
+      "query_parameters": [
+        "dato"
+      ],
+      "required_query_parameters": [
+        "dato"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/stream",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegnett/veglenkesekvenser/stream",
+      "operation_id": "streamVeglenkesekvenser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "polygon",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json",
+        "application/x-ndjson"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter",
+      "operation_id": "hentVegobjekterMultiType",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "dato",
+        "ider",
+        "inkluder",
+        "klipp_veglenker",
+        "polygon",
+        "start",
+        "stedfesting",
+        "typeIder",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/{typeId}",
+      "operation_id": "hentVegobjekter",
+      "path_parameters": [
+        "typeId"
+      ],
+      "query_parameters": [
+        "antall",
+        "dato",
+        "ider",
+        "inkluder",
+        "klipp_veglenker",
+        "polygon",
+        "start",
+        "stedfesting",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/{typeId}/{vegobjektId}",
+      "operation_id": "hentVegobjektMedType",
+      "path_parameters": [
+        "typeId",
+        "vegobjektId"
+      ],
+      "query_parameters": [
+        "dato",
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/{versjon}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/{typeId}/{vegobjektId}/{versjon}",
+      "operation_id": "hentVegobjektVersjon",
+      "path_parameters": [
+        "typeId",
+        "vegobjektId",
+        "versjon"
+      ],
+      "query_parameters": [
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/historisk",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/{typeId}/{vegobjektId}/historisk",
+      "operation_id": "hentVegobjektHistorisk",
+      "path_parameters": [
+        "typeId",
+        "vegobjektId"
+      ],
+      "query_parameters": [
+        "dato"
+      ],
+      "required_query_parameters": [
+        "dato"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/id/{vegobjektId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/id/{vegobjektId}",
+      "operation_id": "hentVegobjekt",
+      "path_parameters": [
+        "vegobjektId"
+      ],
+      "query_parameters": [
+        "dato",
+        "inkluder"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/stream",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:uberiket",
+      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "method": "GET",
+      "path": "/api/v1/vegobjekter/stream",
+      "operation_id": "hentVegobjekterMultiTypeStream",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "dato",
+        "ider",
+        "inkluder",
+        "klipp_veglenker",
+        "polygon",
+        "stedfesting",
+        "typeIder",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json",
+        "application/x-ndjson"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/beta/vegnett/rute",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/beta/vegnett/rute",
+      "operation_id": "getRute",
+      "path_parameters": [],
+      "query_parameters": [
+        "behold_trafikantgruppe",
+        "detaljerte_lenker",
+        "geometri",
+        "konnekteringslenker",
+        "kortform",
+        "linje_geometri",
+        "maks_avstand",
+        "omkrets",
+        "slutt",
+        "srid",
+        "start",
+        "tidspunkt",
+        "trafikantgruppe",
+        "typeveg",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/noder",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/noder",
+      "operation_id": "getNoder",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "fylke",
+        "ider",
+        "inkluderAntall",
+        "kartutsnitt",
+        "kommune",
+        "kontraktsomrade",
+        "polygon",
+        "srid",
+        "start",
+        "superid",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/noder/{id}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/noder/{id}",
+      "operation_id": "getNode",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [
+        "srid"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/posisjon",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/posisjon",
+      "operation_id": "findPosisjon",
+      "path_parameters": [],
+      "query_parameters": [
+        "detaljerte_lenker",
+        "konnekteringslenker",
+        "lat",
+        "lon",
+        "maks_antall",
+        "maks_avstand",
+        "nord",
+        "ost",
+        "srid",
+        "tidspunkt",
+        "trafikantgruppe",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veg",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veg",
+      "operation_id": "findPosisjonForVeg",
+      "path_parameters": [],
+      "query_parameters": [
+        "kommune",
+        "srid",
+        "tidspunkt",
+        "veglenkesekvens",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veg/batch",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veg/batch",
+      "operation_id": "findPosisjonerForVeg",
+      "path_parameters": [],
+      "query_parameters": [
+        "kommune",
+        "srid",
+        "veglenkesekvenser",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser",
+      "operation_id": "getVeglenkesekvenser",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "fylke",
+        "ider",
+        "inkluderAntall",
+        "kommune",
+        "kontraktsomrade",
+        "polygon",
+        "riksvegrute",
+        "srid",
+        "start",
+        "superid",
+        "topologiniva",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/{veglenkesekvensId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/{veglenkesekvensId}",
+      "operation_id": "getVeglenkesekvens",
+      "path_parameters": [
+        "veglenkesekvensId"
+      ],
+      "query_parameters": [
+        "srid"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/endringer",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/endringer",
+      "operation_id": "getVeglenkesekvensEndringer",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "fylke",
+        "ider",
+        "kommune",
+        "slutt",
+        "start"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/segmentert",
+      "operation_id": "getVeglenkesegmenter",
+      "path_parameters": [],
+      "query_parameters": [
+        "adskiltelop",
+        "antall",
+        "arm",
+        "detaljniva",
+        "fylke",
+        "geometritoleranse",
+        "historisk",
+        "ider",
+        "inkluderAntall",
+        "kartutsnitt",
+        "kommune",
+        "kontraktsomrade",
+        "kryssystem",
+        "polygon",
+        "riksvegrute",
+        "sideanlegg",
+        "srid",
+        "start",
+        "superid",
+        "tidspunkt",
+        "trafikantgruppe",
+        "typeveg",
+        "vegforvalter",
+        "veglenkesekvens",
+        "veglenketype",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/{veglenkesekvensId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/segmentert/{veglenkesekvensId}",
+      "operation_id": "getSegmentertVeglenkesekvens",
+      "path_parameters": [
+        "veglenkesekvensId"
+      ],
+      "query_parameters": [
+        "historisk",
+        "srid",
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/segmentert/statistikk",
+      "operation_id": "getVeglenkesegmenterStatistikk",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "GET",
+      "path": "/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "operation_id": "getVeglenkesegmenterStatistikkGruppert",
+      "path_parameters": [],
+      "query_parameters": [
+        "gruppering",
+        "kartutsnitt",
+        "srid"
+      ],
+      "required_query_parameters": [
+        "gruppering"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegnett:POST /api/v4/beta/vegnett/rute",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegnett",
+      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "method": "POST",
+      "path": "/api/v4/beta/vegnett/rute",
+      "operation_id": "postRute",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/json",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekt",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekt",
+      "operation_id": "getVegobjektById",
+      "path_parameters": [],
+      "query_parameters": [
+        "dybde",
+        "geometritoleranse",
+        "id",
+        "inkluder",
+        "inkluder_egenskaper",
+        "inkludergeometri",
+        "srid",
+        "tidspunkt"
+      ],
+      "required_query_parameters": [
+        "id"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeId}",
+      "operation_id": "getVegobjekterByType",
+      "path_parameters": [
+        "vegobjekttypeId"
+      ],
+      "query_parameters": [
+        "adskiltelop",
+        "alle_versjoner",
+        "antall",
+        "detaljniva",
+        "egenskap",
+        "endret_etter",
+        "fylke",
+        "geometritoleranse",
+        "ider",
+        "inkluder",
+        "inkluderAntall",
+        "inkluder_egenskaper",
+        "inkludergeometri",
+        "kartutsnitt",
+        "kommune",
+        "kontraktsomrade",
+        "kryssystem",
+        "overlapp",
+        "polygon",
+        "riksvegrute",
+        "segmentering",
+        "sideanlegg",
+        "srid",
+        "start",
+        "tidspunkt",
+        "trafikantgruppe",
+        "typeveg",
+        "vegforvalter",
+        "veglenkesekvens",
+        "veglenketype",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}",
+      "operation_id": "getVegobjektByTypeAndId",
+      "path_parameters": [
+        "vegobjektId",
+        "vegobjekttypeId"
+      ],
+      "query_parameters": [
+        "dybde",
+        "geometritoleranse",
+        "inkluder",
+        "inkluder_egenskaper",
+        "inkludergeometri",
+        "srid",
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/{versjon}",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/{versjon}",
+      "operation_id": "getVegobjektByTypeIdAndVersjon",
+      "path_parameters": [
+        "vegobjektId",
+        "vegobjekttypeId",
+        "versjon"
+      ],
+      "query_parameters": [
+        "dybde",
+        "geometritoleranse",
+        "inkluder",
+        "inkluder_egenskaper",
+        "inkludergeometri",
+        "srid",
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/versjoner",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/versjoner",
+      "operation_id": "getVegobjektVersjoner",
+      "path_parameters": [
+        "vegobjektId",
+        "vegobjekttypeId"
+      ],
+      "query_parameters": [
+        "dybde",
+        "geometritoleranse",
+        "inkluder",
+        "inkluder_egenskaper",
+        "inkludergeometri",
+        "srid",
+        "tidspunkt"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/endringer",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeId}/endringer",
+      "operation_id": "getVegobjektEndringerForType",
+      "path_parameters": [
+        "vegobjekttypeId"
+      ],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "slutt",
+        "start"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
+      "operation_id": "getVegobjekterStatistikk",
+      "path_parameters": [
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [
+        "adskiltelop",
+        "detaljniva",
+        "egenskap",
+        "endret_etter",
+        "fylke",
+        "inkluder",
+        "kartutsnitt",
+        "kommune",
+        "kontraktsomrade",
+        "kryssystem",
+        "overlapp",
+        "polygon",
+        "riksvegrute",
+        "segmentering",
+        "sideanlegg",
+        "srid",
+        "tidspunkt",
+        "trafikantgruppe",
+        "typeveg",
+        "vegforvalter",
+        "veglenkesekvens",
+        "veglenketype",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "operation_id": "getVegobjekterStatistikkGruppert",
+      "path_parameters": [
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [
+        "gruppering",
+        "inkluder",
+        "kartutsnitt",
+        "polygon",
+        "srid",
+        "tidspunkt",
+        "veglenkesekvens"
+      ],
+      "required_query_parameters": [
+        "gruppering"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "operation_id": "getVegobjekterStatistikkGruppertEgenskap",
+      "path_parameters": [
+        "vegobjekttypeid"
+      ],
+      "query_parameters": [
+        "egenskapstypeId",
+        "inkluder",
+        "kartutsnitt",
+        "polygon",
+        "srid",
+        "tidspunkt",
+        "veglenkesekvens"
+      ],
+      "required_query_parameters": [
+        "egenskapstypeId"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/endringer",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/endringer",
+      "operation_id": "getVegobjektEndringerForTyper",
+      "path_parameters": [],
+      "query_parameters": [
+        "antall",
+        "ider",
+        "slutt",
+        "start",
+        "typeIder"
+      ],
+      "required_query_parameters": [
+        "typeIder"
+      ],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/statistikk",
+      "service": "nvdb-core",
+      "contract_id": "nvdb-core:vegobjekter",
+      "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
+      "method": "GET",
+      "path": "/api/v4/vegobjekter/statistikk",
+      "operation_id": "getVegobjekterStatistikkMedTyper",
+      "path_parameters": [],
+      "query_parameters": [
+        "inkluder",
+        "kontraktsomrade",
+        "tidspunkt",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /admin/database/metrics",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/admin/database/metrics",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /admin/filerepository/count",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/admin/filerepository/count",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "expired"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /admin/jobrepository/count",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/admin/jobrepository/count",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "expired"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/bruksklasser",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/bruksklasser",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/driftskontrakt",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/driftskontrakt",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "dato",
+        "fylke",
+        "kommune",
+        "kontraktsomradeId",
+        "projekt",
+        "rapporttype",
+        "spraak",
+        "vegobjekttyper",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [
+        "rapporttype"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/driftskontraktrapporttyper",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/driftskontraktrapporttyper",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/driftskontraktvegobjekttyper/default/{rapporttypeId}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/driftskontraktvegobjekttyper/default/{rapporttypeId}",
+      "operation_id": null,
+      "path_parameters": [
+        "rapporttypeId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/driftskontraktvegobjekttyper/tilvalg/{rapporttypeId}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/driftskontraktvegobjekttyper/tilvalg/{rapporttypeId}",
+      "operation_id": null,
+      "path_parameters": [
+        "rapporttypeId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/egendefinert",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/egendefinert",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/egendefinert/{reportid}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/egendefinert/{reportid}",
+      "operation_id": null,
+      "path_parameters": [
+        "reportid"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/egendefinert/aggregate",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/egendefinert/aggregate",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/ekspertrapport",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/ekspertrapport",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "dato",
+        "egenskap",
+        "fylke",
+        "gate",
+        "kommune",
+        "kontraktsomradeId",
+        "projekt",
+        "rapporttype",
+        "riksvegrute",
+        "sammenligningsdato",
+        "spraak",
+        "veglenkesekvens",
+        "vegobjekttyper",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [
+        "rapporttype"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/geopackage",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/geopackage",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "dato",
+        "fylke",
+        "kommune",
+        "kontraktsomradeId",
+        "spraak",
+        "vegobjekttyper",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/kontraktsomraader",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/kontraktsomraader",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/kontraktZip",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/kontraktZip",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "dato",
+        "fylke",
+        "kommune",
+        "kontraktsomradeId",
+        "spraak",
+        "vegobjekttyper",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/kostra/{rapporttype}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/kostra/{rapporttype}",
+      "operation_id": null,
+      "path_parameters": [
+        "rapporttype"
+      ],
+      "query_parameters": [
+        "dato",
+        "fylke",
+        "kommune",
+        "vegsystemreferanser"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/kostrarapporttyper",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/kostrarapporttyper",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/nedlasting/{filnavn}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/nedlasting/{filnavn}",
+      "operation_id": null,
+      "path_parameters": [
+        "filnavn"
+      ],
+      "query_parameters": [
+        "filtype"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json",
+        "application/pdf",
+        "application/vnd.ms-excel",
+        "text/plain"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/omraader",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/omraader",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/poll/{id}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/poll/{id}",
+      "operation_id": null,
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/rapporttyper",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/rapporttyper",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /rapporter/veglister/{bruksklasse}",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/rapporter/veglister/{bruksklasse}",
+      "operation_id": null,
+      "path_parameters": [
+        "bruksklasse"
+      ],
+      "query_parameters": [
+        "dato",
+        "fylke",
+        "kommune",
+        "publisering",
+        "spraak",
+        "vegsystemreferanse"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:GET /stats/jobs",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "GET",
+      "path": "/stats/jobs",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "text/plain"
+      ]
+    },
+    {
+      "id": "nvdb-reports:POST /admin/filerepository/purge",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "POST",
+      "path": "/admin/filerepository/purge",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "commit"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:POST /admin/jobrepository/purge",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "POST",
+      "path": "/admin/jobrepository/purge",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "commit"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:POST /rapporter/egendefinert",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "POST",
+      "path": "/rapporter/egendefinert",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-reports:POST /rapporter/omraader/oppdater",
+      "service": "nvdb-reports",
+      "contract_id": "nvdb-reports",
+      "source_digest": "sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e",
+      "method": "POST",
+      "path": "/rapporter/omraader/oppdater",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/feilmeldinger/{id}",
+      "operation_id": "fjernFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
+      "operation_id": "fjernMeldingFraFeilmelding",
+      "path_parameters": [
+        "id",
+        "meldingsId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/systemer/{id}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/systemer/{id}",
+      "operation_id": "fjernSystem",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/systemer/{id}/avhengigheter",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/systemer/{id}/avhengigheter",
+      "operation_id": "fjernAvhengighet",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/systemer/{id}/avmeld/{epost}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/systemer/{id}/avmeld/{epost}",
+      "operation_id": "avmeldFraSystem",
+      "path_parameters": [
+        "epost",
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:DELETE /api/v1/systemer/{id}/tjenester/{tjenesteId}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "DELETE",
+      "path": "/api/v1/systemer/{id}/tjenester/{tjenesteId}",
+      "operation_id": "fjernTjeneste",
+      "path_parameters": [
+        "id",
+        "tjenesteId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger",
+      "operation_id": "hentAlleFeilmeldinger",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/{id}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/{id}",
+      "operation_id": "hentFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/{systemId}",
+      "operation_id": "hentAlleFeilmeldingerForEtSystem",
+      "path_parameters": [
+        "systemId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/aktive",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/{systemId}/aktive",
+      "operation_id": "hentAktiveFeilmeldingerForEtSystem",
+      "path_parameters": [
+        "systemId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/planlagt",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/{systemId}/planlagt",
+      "operation_id": "hentPlanlagteFeilmeldingerForEtSystem",
+      "path_parameters": [
+        "systemId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/aktiv",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/aktiv",
+      "operation_id": "hentAktiveFeilmeldinger",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/avsluttet",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/avsluttet",
+      "operation_id": "hentAvsluttetFeilmeldinger",
+      "path_parameters": [],
+      "query_parameters": [
+        "fra",
+        "til"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/mellom",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/mellom",
+      "operation_id": "hentFeilmeldingerMellom",
+      "path_parameters": [],
+      "query_parameters": [
+        "fra",
+        "til"
+      ],
+      "required_query_parameters": [
+        "fra",
+        "til"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/planlagt",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/planlagt",
+      "operation_id": "hentAllePlanlagteFeilmeldinger",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/siste",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/siste",
+      "operation_id": "hentSisteFeilmelding",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/feilmeldinger/ulost",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/feilmeldinger/ulost",
+      "operation_id": "hentAktivOgPlanlagteFeilmeldinger",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/statistikk",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/statistikk",
+      "operation_id": "hentStatistikk",
+      "path_parameters": [],
+      "query_parameters": [
+        "dager"
+      ],
+      "required_query_parameters": [
+        "dager"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/statistikk/nokkeldata",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/statistikk/nokkeldata",
+      "operation_id": "hentNokkeldata",
+      "path_parameters": [],
+      "query_parameters": [
+        "dager"
+      ],
+      "required_query_parameters": [
+        "dager"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/systemer",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/systemer",
+      "operation_id": "hentAlleSystemer",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/systemer/{id}",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/systemer/{id}",
+      "operation_id": "hentSystem",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:GET /api/v1/systemer/{id}/status",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "GET",
+      "path": "/api/v1/systemer/{id}/status",
+      "operation_id": "hentSystemstatus",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/feilmeldinger",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/feilmeldinger",
+      "operation_id": "sendInnFeilmelding",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
+      "operation_id": "tilbakemeldingPlanlagtHendelsePasserIkke",
+      "path_parameters": [
+        "hendelseId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/los",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/feilmeldinger/{id}/los",
+      "operation_id": "losFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/meldinger",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/feilmeldinger/{id}/meldinger",
+      "operation_id": "leggTilMeldingPaFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/systemer",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/systemer",
+      "operation_id": "opprettSystem",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/systemer/{id}/abonner",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/systemer/{id}/abonner",
+      "operation_id": "abonnerPaSystem",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/systemer/{id}/avhengigheter",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/systemer/{id}/avhengigheter",
+      "operation_id": "leggTilAvhengighet",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/systemer/{id}/slack",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/systemer/{id}/slack",
+      "operation_id": "registrerSlackWebhook",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:POST /api/v1/systemer/{id}/tjenester",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "POST",
+      "path": "/api/v1/systemer/{id}/tjenester",
+      "operation_id": "leggTilTjeneste",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/arsak",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/arsak",
+      "operation_id": "endreArsakPaFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
+      "operation_id": "endreMeldingIFeilmelding",
+      "path_parameters": [
+        "id",
+        "meldingsId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/omskriv",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/omskriv",
+      "operation_id": "endreInnholdIFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/OppdaterTittel",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/OppdaterTittel",
+      "operation_id": "endreTittelPaFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/status",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/status",
+      "operation_id": "endreStatusPaFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/systemer",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/feilmeldinger/{id}/systemer",
+      "operation_id": "endrePavirkedeSystemerForFeilmelding",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/aktiver",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/systemer/{id}/slack/aktiver",
+      "operation_id": "aktiverSlackVarsling",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/deaktiver",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/systemer/{id}/slack/deaktiver",
+      "operation_id": "deaktiverSlackVarsling",
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "nvdb-status:PUT /api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "method": "PUT",
+      "path": "/api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
+      "operation_id": "endreTjenesteDestinasjon",
+      "path_parameters": [
+        "systemId",
+        "tjenesteId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringsomraade",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringsomraade",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [
+        "datafelter",
+        "orgnr"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringsomraade/{id}",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringsomraade/{id}",
+      "operation_id": null,
+      "path_parameters": [
+        "id"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringsomraade/{id}/versjon/{versjon}",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringsomraade/{id}/versjon/{versjon}",
+      "operation_id": null,
+      "path_parameters": [
+        "id",
+        "versjon"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringsomraade/skiltplan/{skiltplanId}",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringsomraade/skiltplan/{skiltplanId}",
+      "operation_id": null,
+      "path_parameters": [
+        "skiltplanId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/pdf"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringsomraade/vurdering/{vurderingId}",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringsomraade/vurdering/{vurderingId}",
+      "operation_id": null,
+      "path_parameters": [
+        "vurderingId"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/pdf"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringstilbyder",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringstilbyder",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringstilbyder/{organisasjonsnummer}",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringstilbyder/{organisasjonsnummer}",
+      "operation_id": null,
+      "path_parameters": [
+        "organisasjonsnummer"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "parking:GET /parkeringstilbyder/aktive",
+      "service": "parking",
+      "contract_id": "parking",
+      "source_digest": "sha256:417a5f7658d55bc0b4dcedef2296901e6b49ae26ee33ee3edfff8be0d7726a7f",
+      "method": "GET",
+      "path": "/parkeringstilbyder/aktive",
+      "operation_id": null,
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "route:GET /api/Matrix",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Matrix",
+      "operation_id": "Matrix_GetMatrix",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/best",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/best",
+      "operation_id": "Route_Best",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bike",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bike",
+      "operation_id": "Route_Bike",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "BikePathUsage",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "PowerEffort",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasse12100",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasse12100",
+      "operation_id": "Route_Bruksklasse12100",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasse1265",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasse1265",
+      "operation_id": "Route_Bruksklasse1265",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasseModulvognTog",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasseModulvognTog",
+      "operation_id": "Route_BruksklasseModulvognTog",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "Bruksklasse",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "IsLinkSemitrailer",
+        "Lang",
+        "Length",
+        "MedSporingskrav",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Bruksklasse",
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasseNormalTransport",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasseNormalTransport",
+      "operation_id": "Route_BruksklasseNormalTransport",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "Bruksklasse",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Bruksklasse",
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasseSpesialTransport",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasseSpesialTransport",
+      "operation_id": "Route_BruksklasseSpesialTransport",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "Bruksklasse",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "IncludeVeggruppeIkke",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Veggruppe",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Bruksklasse",
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/bruksklasseTommerTransport",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/bruksklasseTommerTransport",
+      "operation_id": "Route_BruksklasseTommerTransport",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "Bruksklasse",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Bruksklasse",
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:GET /api/Route/tourist",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "GET",
+      "path": "/api/Route/tourist",
+      "operation_id": "Route_Tourist",
+      "path_parameters": [],
+      "query_parameters": [
+        "AllowTravelInZeroEmissionZone",
+        "AvoidFeatureInstanceIds",
+        "AvoidRoadFeatureTypes",
+        "AvoidSituationIds",
+        "AvoidTrafficMessageTypes",
+        "Barriers",
+        "EncapsulateStreetNames",
+        "Height",
+        "IncludeObstructedRoutes",
+        "InputSRS",
+        "Lang",
+        "Length",
+        "OutputSRS",
+        "ReturnFields",
+        "StartTime",
+        "Stops",
+        "StreetNameHints",
+        "Weight"
+      ],
+      "required_query_parameters": [
+        "Stops"
+      ],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:POST /api/RoadFeature/roadFeatures",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "POST",
+      "path": "/api/RoadFeature/roadFeatures",
+      "operation_id": "RoadFeature_GetRoadFeatures",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "route:POST /api/RoadFeature/roadFeaturesWithBruksklasse",
+      "service": "route",
+      "contract_id": "route",
+      "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
+      "method": "POST",
+      "path": "/api/RoadFeature/roadFeaturesWithBruksklasse",
+      "operation_id": "RoadFeature_GetRoadFeaturesWithBruksklasse",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": []
+    },
+    {
+      "id": "tnits:DELETE /api/v1/admin/files",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "DELETE",
+      "path": "/api/v1/admin/files",
+      "operation_id": "deletePath",
+      "path_parameters": [],
+      "query_parameters": [
+        "path",
+        "recursive"
+      ],
+      "required_query_parameters": [
+        "path"
+      ],
+      "declared_security": [
+        {
+          "oauth2": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/admin/files",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/admin/files",
+      "operation_id": "listPath",
+      "path_parameters": [],
+      "query_parameters": [
+        "path",
+        "recursive"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "oauth2": []
+        }
+      ],
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/download",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/download",
+      "operation_id": "download",
+      "path_parameters": [],
+      "query_parameters": [
+        "path"
+      ],
+      "required_query_parameters": [
+        "path"
+      ],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/tnits/{type}/snapshots",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/tnits/{type}/snapshots",
+      "operation_id": "getSnapshots",
+      "path_parameters": [
+        "type"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/tnits/{type}/snapshots/latest",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/tnits/{type}/snapshots/latest",
+      "operation_id": "getLatestSnapshot",
+      "path_parameters": [
+        "type"
+      ],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/tnits/{type}/updates",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/tnits/{type}/updates",
+      "operation_id": "getUpdatesFrom",
+      "path_parameters": [
+        "type"
+      ],
+      "query_parameters": [
+        "from"
+      ],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:GET /api/v1/tnits/types",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "GET",
+      "path": "/api/v1/tnits/types",
+      "operation_id": "getExportedFeatureTypeCodes",
+      "path_parameters": [],
+      "query_parameters": [],
+      "required_query_parameters": [],
+      "declared_security": null,
+      "media_types": [
+        "*/*",
+        "application/problem+json"
+      ]
+    },
+    {
+      "id": "tnits:POST /api/v1/admin/flags",
+      "service": "tnits",
+      "contract_id": "tnits",
+      "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+      "method": "POST",
+      "path": "/api/v1/admin/flags",
+      "operation_id": "setFlags",
+      "path_parameters": [],
+      "query_parameters": [
+        "resetDb",
+        "resetFeatureTypeIds",
+        "resetRoadnet"
+      ],
+      "required_query_parameters": [],
+      "declared_security": [
+        {
+          "oauth2": []
+        }
+      ],
+      "media_types": [
+        "application/problem+json"
+      ]
+    }
+  ]
+}

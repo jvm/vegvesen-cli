@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "contract_id": "tnits",
+  "source_digest": "sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "tnits:DELETE /api/v1/admin/files",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "tnits:family RestrictionForVehicles",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
+    },
+    {
+      "target_id": "tnits:family RoadFeature",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
+    },
+    {
+      "target_id": "tnits:family RoadName",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
+    },
+    {
+      "target_id": "tnits:family SpeedLimit",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits type list",
+        "tnits snapshot list",
+        "tnits update list"
+      ]
+    },
+    {
+      "target_id": "tnits:GET /api/v1/admin/files",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "admin",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    },
+    {
+      "target_id": "tnits:GET /api/v1/download",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits snapshot download",
+        "tnits update download"
+      ]
+    },
+    {
+      "target_id": "tnits:GET /api/v1/tnits/{type}/snapshots",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits snapshot list"
+      ]
+    },
+    {
+      "target_id": "tnits:GET /api/v1/tnits/{type}/snapshots/latest",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits snapshot list"
+      ]
+    },
+    {
+      "target_id": "tnits:GET /api/v1/tnits/{type}/updates",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits update list"
+      ]
+    },
+    {
+      "target_id": "tnits:GET /api/v1/tnits/types",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "tnits type list"
+      ]
+    },
+    {
+      "target_id": "tnits:POST /api/v1/admin/flags",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
+    }
+  ]
+}

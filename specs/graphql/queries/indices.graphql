@@ -1,0 +1,11 @@
+query StationIndices($ids: [String!]!, $year: Year!, $month: Month) {
+  trafficVolumeIndices(trafficRegistrationPointIds: $ids, year: $year, month: $month) {
+    trafficRegistrationPoint { id name }
+    roadCategory { id name }
+    calculationMonth { year month }
+    baseMonth { year month }
+    volumeIndicesMonth { dayType isExcluded totalTrafficVolumeIndex { indexNumber { lengthRange { representation } index { indexNumber percentageChange calculationVolume baseVolume } } indexCoverage { hours { percentage numerator denominator } } } }
+    volumeIndicesLast12Months { dayType isExcluded totalTrafficVolumeIndex { indexNumber { lengthRange { representation } index { indexNumber percentageChange calculationVolume baseVolume } } indexCoverage { hours { percentage numerator denominator } } } }
+    volumeIndicesYearToDate { dayType isExcluded totalTrafficVolumeIndex { indexNumber { lengthRange { representation } index { indexNumber percentageChange calculationVolume baseVolume } } indexCoverage { hours { percentage numerator denominator } } } }
+  }
+}

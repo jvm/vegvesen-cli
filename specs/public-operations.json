@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "operations": [
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "service": "nvdb-core",
+      "id": "object-statistics-grouped",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "path_parameters": ["vegobjekttypeid"],
+      "query_parameters": ["gruppering", "inkluder", "kartutsnitt", "polygon", "srid", "tidspunkt", "veglenkesekvens"],
+      "required_query_parameters": ["gruppering"],
+      "effect": "read",
+      "retry": "safe"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "service": "nvdb-core",
+      "id": "object-statistics-grouped-property",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "/api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "path_parameters": ["vegobjekttypeid"],
+      "query_parameters": ["egenskapstypeId", "inkluder", "kartutsnitt", "polygon", "srid", "tidspunkt", "veglenkesekvens"],
+      "required_query_parameters": ["egenskapstypeId"],
+      "effect": "read",
+      "retry": "safe"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "service": "nvdb-core",
+      "id": "network-statistics-grouped",
+      "method": "GET",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "path": "/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
+      "path_parameters": [],
+      "query_parameters": ["gruppering", "kartutsnitt", "srid"],
+      "required_query_parameters": ["gruppering"],
+      "effect": "read",
+      "retry": "safe"
+    }
+  ]
+}

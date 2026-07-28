@@ -1,0 +1,6 @@
+query Aadt($id: String!, $dayType: DayType) {
+  trafficData(trafficRegistrationPointId: $id) {
+    trafficRegistrationPoint { id name }
+    volume { average { daily { byYear(dayType: $dayType) { year from to dayType calculationMethod { methodName } total { volume { average } coverage { percentage } } byLengthRange { lengthRange { lowerBound upperBound representation } total { volume { average } coverage { percentage } } } } } } }
+  }
+}

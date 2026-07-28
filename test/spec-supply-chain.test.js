@@ -1,0 +1,139 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { test } from 'node:test';
+import { SHADOWED_ROUTES, assertExclusionRules, assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
+import { overlaySchema, sourcesSchema } from '../scripts/spec-schema.mjs';
+
+const fixture = JSON.stringify({
+  openapi: '3.1.0',
+  security: [{ bearerAuth: [] }],
+  paths: {
+    '/items/{id}/': {
+      get: { operationId: 'getItem', responses: { 200: { content: { 'application/json': {} } } } },
+      post: { operationId: 'readOnlyPost', security: [], requestBody: { content: { 'application/json': {} } }, responses: { 200: { content: { 'application/geo+json': {} } } } },
+    },
+  },
+});
+
+test('contract extraction is deterministic and preserves security/media evidence', () => {
+  const source = { contract_id: 'fixture', service: 'fixture', kind: 'openapi' };
+  const first = canonicalizeSource(fixture, 'openapi');
+  const second = canonicalizeSource(`${fixture}\r\n`, 'openapi');
+  assert.equal(first.sha256, second.sha256);
+  const operations = extractOperations(source, first.parsed, first.sha256);
+  assert.deepEqual(operations.map((operation) => operation.id), ['fixture:GET /items/{id}', 'fixture:POST /items/{id}']);
+  assert.deepEqual(operations[0].declared_security, [{ bearerAuth: [] }]);
+  assert.deepEqual(operations[1].declared_security, []);
+  assert.deepEqual(operations[1].media_types, ['application/geo+json', 'application/json']);
+  assert.deepEqual(operations[0].path_parameters, []);
+  assert.deepEqual(operations[0].required_query_parameters, []);
+  assert.equal(canonicalizeSource('<a href="/b?nonce=1"><a href="/a">', 'html-links').sha256, canonicalizeSource('<a href="/a"><a href="/b?nonce=2">', 'html-links').sha256);
+});
+
+test('overlay schema rejects incomplete policy and target validation rejects drift', () => {
+  assert.throws(() => overlaySchema.parse({ schema_version: 1, contract_id: 'fixture', source_digest: `sha256:${'0'.repeat(64)}`, reviewed_at: '2026-07-27', owner: 'owner', operations: [{ target_id: 'a' }] }));
+  const expected = [{ id: 'a' }, { id: 'b' }];
+  assert.doesNotThrow(() => validateOverlayTargets(expected, [{ target_id: 'a' }, { target_id: 'b' }]));
+  assert.throws(() => validateOverlayTargets(expected, [{ target_id: 'a' }]), /unclassified/);
+  assert.throws(() => validateOverlayTargets(expected, [{ target_id: 'a' }, { target_id: 'a' }]), /Duplicate/);
+  assert.throws(() => validateOverlayTargets(expected, [{ target_id: 'a' }, { target_id: 'gone' }]), /disappeared/);
+});
+
+test('reviewed protocol recipes deterministically generate the checked-in inventory', () => {
+  const recipes = JSON.parse(readFileSync(new URL('../specs/protocol-recipes.json', import.meta.url)));
+  const sources = JSON.parse(readFileSync(new URL('../specs/sources.json', import.meta.url)));
+  const recorded = JSON.parse(readFileSync(new URL('../specs/derived/protocol-units.json', import.meta.url)));
+  assert.deepEqual(generateProtocolUnits(recipes, sources.sources), recorded.units);
+  const omitted = globalThis.structuredClone(recipes);
+  omitted.catalog.actions.pop();
+  assert.throws(() => generateProtocolUnits(omitted, sources.sources), /CKAN actions recipe is incomplete/);
+  const invalidSources = globalThis.structuredClone(sources);
+  delete invalidSources.sources[0].license;
+  assert.throws(() => sourcesSchema.parse(invalidSources));
+});
+
+test('generated runtime allowlist rejects protected injection and metadata mismatch', () => {
+  const target = { id: 'fixture:GET /items', service: 'fixture', method: 'GET', path: '/items', path_parameters: [], query_parameters: ['group'], required_query_parameters: ['group'] };
+  const operation = { target_id: target.id, service: 'fixture', id: 'items', method: 'GET', origin: 'https://fixture.test', path: '/items', path_parameters: [], query_parameters: ['group'], required_query_parameters: ['group'], effect: 'read', retry: 'safe' };
+  const origins = new Map([['fixture', 'https://fixture.test']]);
+  assert.doesNotThrow(() => validatePublicOperations([operation], [target], new Map([[target.id, { target_id: target.id, access: 'public-anonymous', disposition: 'generated-operation' }]]), origins));
+  assert.throws(() => validatePublicOperations([operation], [target], new Map([[target.id, { target_id: target.id, access: 'admin', disposition: 'generated-operation' }]]), origins), /lacks public-anonymous/);
+  assert.throws(() => validatePublicOperations([{ ...operation, query_parameters: [] }], [target], new Map([[target.id, { target_id: target.id, access: 'public-anonymous', disposition: 'generated-operation' }]]), origins), /query_parameters mismatch/);
+});
+
+test('checked-in coverage regenerates offline and exact gate passes', () => {
+  for (const [script, expected] of [['scripts/generate-protocol-units.mjs', /Protocol generation is clean/], ['scripts/generate-coverage.mjs', /Coverage generation is clean/], ['scripts/check-coverage.mjs', /exact units/]]) {
+    const result = spawnSync(process.execPath, [script], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, expected);
+  }
+  const packedSources = JSON.parse(readFileSync(new URL('../specs/sources.json', import.meta.url)));
+  assert.ok(packedSources.sources.every((source) => source.redistribution === 'reference-only' || source.redistribution === 'snapshot-approved'));
+});
+
+test('coverage binding fails when the CLI and the gate disagree', () => {
+  const registry = [
+    { path: 'thing list', service: 'thing' },
+    { path: 'thing get', service: 'thing' },
+    { path: 'version', service: 'local' },
+  ];
+  const local = new Set(['version']);
+  const ok = [
+    { unit: 'thing:GET /things', disposition: 'curated-command', command: ['thing list'] },
+    { unit: 'thing:GET /things/{id}', disposition: 'curated-command', command: ['thing get'] },
+    { unit: 'thing:DELETE /things/{id}', disposition: 'excluded-permanent' },
+  ];
+  assert.doesNotThrow(() => assertRegistryBinding(ok, registry, local, assert));
+
+  // A shipped command with no claiming unit is the defect this gate exists to catch.
+  assert.throws(() => assertRegistryBinding(ok.slice(1), registry, local, assert), /unclaimed by any coverage unit: thing list/);
+  // A unit naming a command that does not exist.
+  assert.throws(() => assertRegistryBinding([...ok, { unit: 'x', disposition: 'curated-command', command: ['thing ghost'] }], registry, local, assert), /absent from the registry: thing ghost/);
+  // Free-text and compound command strings.
+  assert.throws(() => assertRegistryBinding([{ unit: 'x', disposition: 'curated-command', command: ['thing list --all'] }, ...ok.slice(1)], registry, local, assert), /not free text/);
+  // An excluded operation must not be reachable through a command.
+  assert.throws(() => assertRegistryBinding([...ok.slice(0, 2), { unit: 'y', disposition: 'excluded-permanent', command: ['thing get'] }], registry, local, assert), /must not name a command/);
+  // A local-only command must not claim upstream surface.
+  assert.throws(() => assertRegistryBinding([...ok, { unit: 'z', disposition: 'curated-command', command: ['version'] }], registry, local, assert), /Local-only command must not claim/);
+});
+
+test('every permanent exclusion matches a PLAN 8.3 rule', () => {
+  const excluded = (unit) => ({ unit, disposition: 'excluded-permanent' });
+  assert.doesNotThrow(() => assertExclusionRules([
+    excluded('svc:GET /admin/metrics'),
+    excluded('svc:GET /stats/jobs'),
+    excluded('fiks:GET /api/v1/meg/abonnenter'),
+    excluded('fiks:GET /api/v1/ansvarlig'),
+    excluded('svc:POST /api/v1/things'),
+    excluded('nvdb-core:uberiket:GET /api/v1/vegobjekter'),
+    { unit: 'svc:GET /public/read', disposition: 'curated-command', command: ['svc read'] },
+  ], assert));
+
+  // An anonymous GET matching no rule is excluded by accident, not by policy. This is the
+  // shape of the original defect: shipped reads sitting in the exclusion bucket.
+  assert.throws(
+    () => assertExclusionRules([excluded('svc:GET /api/v1/public/read')], assert),
+    /excluded by accident rather than by policy: svc:GET \/api\/v1\/public\/read/,
+  );
+});
+
+test('shadowed routes are excluded rather than reached by omitting a header', () => {
+  const coverage = JSON.parse(readFileSync(new URL('../coverage.json', import.meta.url), 'utf8'));
+  for (const target of SHADOWED_ROUTES) {
+    const unit = coverage.units.find((candidate) => candidate.unit === target);
+    assert.ok(unit, `shadowed route is absent from coverage: ${target}`);
+    assert.equal(unit.disposition, 'excluded-permanent', `shadowed route must stay excluded: ${target}`);
+    assert.ok(!unit.command, `shadowed route must not be reachable from a command: ${target}`);
+  }
+});
+
+test('pinned source URLs stay on canonical https vegvesen origins', () => {
+  const sources = sourcesSchema.parse(JSON.parse(readFileSync(new URL('../specs/sources.json', import.meta.url), 'utf8'))).sources;
+  for (const source of sources) {
+    const url = new URL(source.url);
+    assert.equal(url.protocol, 'https:', `${source.contract_id} must use https`);
+    assert.equal(url.username, '', `${source.contract_id} must not carry credentials`);
+    assert.ok(url.hostname === 'vegvesen.no' || url.hostname.endsWith('.vegvesen.no'), `${source.contract_id} host ${url.hostname} is outside vegvesen.no`);
+  }
+});

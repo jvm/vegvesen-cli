@@ -1,0 +1,14 @@
+query PublishedIndex($id: Int!, $year: Year!, $month: Month) {
+  publishedAreaTrafficVolumeIndex(id: $id, year: $year, month: $month) {
+    id name period { calculationMonth { year month } baseMonth { year month } }
+    aggregatedTrafficVolumeIndex {
+      area { name type }
+      byRoadCategoryCombination {
+        roadCategoryCombination
+        monthIndicesByDayType { dayType byLengthRange { lengthRange { representation } volumeIndexNumber { indexNumber percentageChange calculationVolume baseVolume } volumeIndexCoverage { hours { percentage numerator denominator } } } }
+        last12MonthsIndicesByDayType { dayType byLengthRange { lengthRange { representation } volumeIndexNumber { indexNumber percentageChange calculationVolume baseVolume } } }
+        yearToDateIndicesByDayType { dayType byLengthRange { lengthRange { representation } volumeIndexNumber { indexNumber percentageChange calculationVolume baseVolume } } }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "contract_id": "ogc:maps",
+  "source_digest": "sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "ogc:OGC API maps api",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map api"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps collection",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map collection get"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps collections",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map collection list"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps conformance",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map conformance"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps landing",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map landing"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps render",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map render"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API maps styles",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc:maps source sha256:08e7f121a53f010f9397bc9f4959865a5cbbc2509a7163b08040fbdb9ff1de6d; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc map style list"
+      ]
+    }
+  ]
+}

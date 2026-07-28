@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "contract_id": "ogc",
+  "source_digest": "sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "ogc:OGC API features api",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature api"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features collection",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature collection get"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features collections",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature collection list"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features conformance",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature conformance"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features item",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature item get"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features items",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature item list"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features landing",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature landing"
+      ]
+    },
+    {
+      "target_id": "ogc:OGC API features queryables",
+      "effect": "protocol",
+      "retry": "safe",
+      "evidence": "ogc source sha256:db875e3c18419ef6234a1f13fcf5df20fe869793bed8bc3645269b1e7c22acea; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "dynamic-protocol",
+      "command": [
+        "ogc feature queryable list"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-export",
+  "source_digest": "sha256:bb57aa56e5b5cd6b9ccdf525b718509f5df0422746232881d97ee869c2bef8d3",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-export:network CSV/SOSI artifact",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "nvdb-export source sha256:bb57aa56e5b5cd6b9ccdf525b718509f5df0422746232881d97ee869c2bef8d3; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb export network"
+      ]
+    },
+    {
+      "target_id": "nvdb-export:object CSV/SOSI artifact",
+      "effect": "artifact",
+      "retry": "safe",
+      "evidence": "nvdb-export source sha256:bb57aa56e5b5cd6b9ccdf525b718509f5df0422746232881d97ee869c2bef8d3; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb export object"
+      ]
+    }
+  ]
+}

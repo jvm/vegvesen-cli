@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "retrieved_at", "sources"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "retrieved_at": {"type": "string"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["service", "contract_id", "kind", "url", "sha256", "redistribution", "license", "redistribution_evidence", "retrieved_at"],
+        "properties": {
+          "service": {"type": "string"},
+          "contract_id": {"type": "string"},
+          "kind": {"type": "string"},
+          "url": {"type": "string", "format": "uri"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "redistribution": {"enum": ["reference-only", "snapshot-approved"]},
+          "license": {"type": "string", "minLength": 1},
+          "redistribution_evidence": {"type": "string", "minLength": 1},
+          "retrieved_at": {"type": "string"},
+          "expected_status": {"type": "integer"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

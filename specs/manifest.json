@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-27T00:00:00Z",
+  "services": [
+    {
+      "id": "catalog",
+      "title": "Dataportalen",
+      "origin": "https://dataut.vegvesen.no",
+      "spec_url": "https://dataut.vegvesen.no/api/3/action/help_show",
+      "kind": "ckan-action",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "catalog"
+      ],
+      "overlays": [
+        "specs/overlays/catalog.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-catalog",
+      "title": "NVDB Datakatalog",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "spec_url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/datakatalog",
+      "kind": "openapi",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-catalog"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-catalog.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-areas",
+      "title": "NVDB Områder",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "spec_url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/omrader",
+      "kind": "openapi",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-areas"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-areas.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "parking",
+      "title": "Parking Register read API",
+      "origin": "https://parkreg-open.atlas.vegvesen.no",
+      "spec_url": "https://parkreg-open.atlas.vegvesen.no/ws/docs/openapi",
+      "kind": "openapi",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "parking"
+      ],
+      "overlays": [
+        "specs/overlays/parking.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-status",
+      "title": "NVDB Status",
+      "origin": "https://nvdbstatus-api.atlas.vegvesen.no",
+      "spec_url": "https://nvdbstatus-api.atlas.vegvesen.no/api-docs",
+      "kind": "openapi-websocket",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-status"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-status.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-core",
+      "title": "NVDB API Les V4",
+      "origin": "https://nvdbapiles.atlas.vegvesen.no",
+      "spec_url": "https://nvdbapiles.atlas.vegvesen.no/",
+      "kind": "openapi",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-core:monitor",
+        "nvdb-core:uberiket",
+        "nvdb-core:vegnett",
+        "nvdb-core:vegobjekter"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-core--monitor.json",
+        "specs/overlays/nvdb-core--uberiket.json",
+        "specs/overlays/nvdb-core--vegnett.json",
+        "specs/overlays/nvdb-core--vegobjekter.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "tnits",
+      "title": "NVDB TN-ITS Export",
+      "origin": "https://nvdb-tnits.atlas.vegvesen.no",
+      "spec_url": "https://nvdb-tnits.atlas.vegvesen.no/",
+      "kind": "openapi-gml",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "tnits"
+      ],
+      "overlays": [
+        "specs/overlays/tnits.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "traffic",
+      "title": "Trafikkdata",
+      "origin": "https://trafikkdata-api.atlas.vegvesen.no",
+      "spec_url": "https://trafikkdata.no/graphql",
+      "kind": "graphql",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "snapshot-approved",
+      "contracts": [
+        "traffic"
+      ],
+      "overlays": [
+        "specs/overlays/traffic.json"
+      ],
+      "provenance": "Official introspection endpoint pinned by SHA-256; schema metadata snapshot approved by the owner and excluded from the npm tarball",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "route",
+      "title": "Route Planning V3 open",
+      "origin": "https://www.vegvesen.no",
+      "spec_url": "https://www.vegvesen.no/ws/no/vegvesen/ruteplan/routingservice_v3_0/open/routingService/swagger/v1/swagger.json",
+      "kind": "swagger",
+      "access_tier": "public-anonymous",
+      "health": "stable-policy-caution",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "route"
+      ],
+      "overlays": [
+        "specs/overlays/route.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "fiks",
+      "title": "Fiksvegdata public subset",
+      "origin": "https://fiksvegdata-api.atlas.vegvesen.no",
+      "spec_url": "https://fiksvegdata-api.atlas.vegvesen.no/api-docs",
+      "kind": "openapi",
+      "access_tier": "public-anonymous",
+      "health": "stable-policy-caution",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "fiks"
+      ],
+      "overlays": [
+        "specs/overlays/fiks.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "ogc",
+      "title": "Legacy and modern OGC reads",
+      "origin": "https://ogckart-sn1.atlas.vegvesen.no",
+      "spec_url": "https://www.vegvesen.no/fag/teknologi/apne-data/et-utvalg-apne-data/ogc-karttjenester/kartlag/",
+      "kind": "ogc-dynamic",
+      "access_tier": "public-anonymous",
+      "health": "stable-dynamic",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#official-wmswfs-layer-families",
+      "redistribution": "reference-only",
+      "contracts": [
+        "ogc",
+        "ogc:legacy",
+        "ogc:maps",
+        "ogc:styles"
+      ],
+      "overlays": [
+        "specs/overlays/ogc.json",
+        "specs/overlays/ogc--legacy.json",
+        "specs/overlays/ogc--maps.json",
+        "specs/overlays/ogc--styles.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#official-wmswfs-layer-families",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-export",
+      "title": "NVDB Export",
+      "origin": "https://nvdb-eksport-x.atlas.vegvesen.no",
+      "spec_url": "https://nvdb-eksport-x.atlas.vegvesen.no/",
+      "kind": "rest-artifact",
+      "access_tier": "public-anonymous",
+      "health": "stable",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-export"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-export.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    },
+    {
+      "id": "nvdb-reports",
+      "title": "NVDB Reports",
+      "origin": "https://nvdbrapportapi.atlas.vegvesen.no",
+      "spec_url": "https://nvdbrapportapi.atlas.vegvesen.no/swagger-ui/",
+      "kind": "openapi-job-artifact",
+      "access_tier": "public-anonymous",
+      "health": "stable-policy-caution",
+      "verified_at": "2026-07-26T00:00:00Z",
+      "evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "redistribution": "reference-only",
+      "contracts": [
+        "nvdb-reports"
+      ],
+      "overlays": [
+        "specs/overlays/nvdb-reports.json"
+      ],
+      "provenance": "Official service source URL pinned by SHA-256; raw contract retained only when redistribution is approved",
+      "anonymous_evidence": "docs/research/public-apis.md#1-publicly-callable-without-an-account",
+      "health_evidence": "Dated read-only verification recorded in docs/attestations"
+    }
+  ]
+}

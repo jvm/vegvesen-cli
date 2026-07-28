@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jvm/vegvesen-cli/schemas/output.schema.json",
+  "type": "object",
+  "required": ["schema_version", "command", "source", "data", "meta"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "command": {"type": "string"},
+    "source": {
+      "type": "object",
+      "required": ["service", "spec_digest"],
+      "additionalProperties": false,
+      "properties": {"service": {"type": "string"}, "spec_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+    },
+    "data": {},
+    "meta": {
+      "type": "object",
+      "required": ["count", "has_more", "next_cursor", "partial"],
+      "properties": {"count": {"type": "integer", "minimum": 0}, "has_more": {"type": "boolean"}, "next_cursor": {"type": ["string", "null"]}, "partial": {"type": "boolean"}}
+    }
+  }
+}

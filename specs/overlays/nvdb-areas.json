@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "contract_id": "nvdb-areas",
+  "source_digest": "sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c",
+  "reviewed_at": "2026-07-27",
+  "owner": "Jose Mocito",
+  "operations": [
+    {
+      "target_id": "nvdb-areas:GET /api/v4/adresser",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area address list"
+      ]
+    },
+    {
+      "target_id": "nvdb-areas:GET /api/v4/fylker",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area county list"
+      ]
+    },
+    {
+      "target_id": "nvdb-areas:GET /api/v4/kommuner",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area municipality list"
+      ]
+    },
+    {
+      "target_id": "nvdb-areas:GET /api/v4/kontraktsomrader",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area contract list"
+      ]
+    },
+    {
+      "target_id": "nvdb-areas:GET /api/v4/riksvegruter",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area national-route list"
+      ]
+    },
+    {
+      "target_id": "nvdb-areas:GET /api/v4/vegforvaltere",
+      "effect": "query",
+      "retry": "safe",
+      "evidence": "nvdb-areas source sha256:9241ed30e80d7de2d42a2a8f0cbd2b3c2a411b472a9071f25a5ae6c7f08d950c; owner classification 2026-07-27",
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb area road-authority list"
+      ]
+    }
+  ]
+}

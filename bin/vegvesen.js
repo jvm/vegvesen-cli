@@ -1,30 +1,25 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'node:fs';
+import { processSignalError } from '../dist/contracts/error.js';
+import { main } from '../dist/main.js';
+import { processRuntime } from '../dist/runtime.js';
 
-const { version } = JSON.parse(
-  readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
-);
+const controller = new globalThis.AbortController();
+let receivedSignal = false;
+const handlers = Object.fromEntries(['SIGINT', 'SIGTERM'].map((signal) => [signal, () => {
+  if (receivedSignal) {
+    process.removeListener('SIGINT', handlers.SIGINT);
+    process.removeListener('SIGTERM', handlers.SIGTERM);
+    process.kill(process.pid, signal);
+    return;
+  }
+  receivedSignal = true;
+  controller.abort(processSignalError(signal));
+}]));
+for (const [signal, handler] of Object.entries(handlers)) process.on(signal, handler);
 
-const help = `vegvesen-cli ${version}
-
-A CLI for Norwegian Public Roads Administration services.
-
-Usage:
-  vegvesen [options]
-
-Options:
-  -h, --help     Show help
-  -v, --version  Show version
-`;
-
-const args = process.argv.slice(2);
-
-if (args.length === 0 || args.includes('-h') || args.includes('--help')) {
-  process.stdout.write(help);
-} else if (args.length === 1 && ['-v', '--version'].includes(args[0])) {
-  process.stdout.write(`${version}\n`);
-} else {
-  process.stderr.write(`Unknown argument: ${args[0]}\nRun 'vegvesen --help' for usage.\n`);
-  process.exitCode = 1;
+try {
+  process.exitCode = await main(process.argv.slice(2), processRuntime(controller.signal));
+} finally {
+  for (const [signal, handler] of Object.entries(handlers)) process.removeListener(signal, handler);
 }

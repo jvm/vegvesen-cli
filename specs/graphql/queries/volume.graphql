@@ -1,0 +1,11 @@
+query Volume($id: String!, $from: ZonedDateTime!, $to: ZonedDateTime!, $first: PositiveInt, $after: String) {
+  trafficData(trafficRegistrationPointId: $id) {
+    trafficRegistrationPoint { id name }
+    volume {
+      byHour(from: $from, to: $to, first: $first, after: $after) {
+        edges { cursor node { from to total { volumeNumbers { volume validSpeed { percentage numerator denominator } validLength { percentage numerator denominator } } coverage { percentage unit included { percentage numerator denominator } uncertain { percentage numerator denominator } unavailable { percentage numerator denominator } } } byLengthRange { lengthRange { lowerBound upperBound } total { volumeNumbers { volume } coverage { percentage } } } } }
+        pageInfo { endCursor hasNextPage }
+      }
+    }
+  }
+}

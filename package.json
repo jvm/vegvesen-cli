@@ -9,7 +9,16 @@
     "vegvesen": "bin/vegvesen.js"
   },
   "files": [
-    "bin"
+    "bin",
+    "dist",
+    "schemas",
+    "specs",
+    "!specs/graphql/traffic-introspection.json",
+    "coverage.json",
+    "README.md",
+    "COMMANDS.md",
+    "SECURITY.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=20"
@@ -23,11 +32,50 @@
   },
   "homepage": "https://github.com/jvm/vegvesen-cli#readme",
   "scripts": {
-    "test": "node --test"
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test",
+    "check:coverage": "node scripts/check-coverage.mjs",
+    "check:graphql": "node scripts/check-graphql.mjs",
+    "fetch:specs": "node scripts/fetch-specs.mjs",
+    "generate:protocol-units": "node scripts/generate-protocol-units.mjs --write",
+    "generate:coverage": "npm run generate:protocol-units && node scripts/generate-coverage.mjs --write",
+    "check:specs": "node scripts/generate-protocol-units.mjs && node scripts/generate-coverage.mjs && node scripts/check-coverage.mjs",
+    "check:spec-drift": "node scripts/check-spec-drift.mjs",
+    "check:examples": "node scripts/check-examples.mjs",
+    "test:package": "npm run build && node scripts/package-probe.mjs",
+    "prepack": "npm run build && npm test",
+    "generate:docs": "npm run build && node scripts/generate-command-reference.mjs",
+    "check:generated": "npm run generate:docs && node scripts/generate-protocol-units.mjs && node scripts/generate-coverage.mjs && git diff --exit-code -- COMMANDS.md",
+    "lint": "eslint .",
+    "audit": "npm audit --omit=dev --audit-level=high",
+    "validate": "npm run lint && npm run typecheck && npm test && npm run check:specs && npm run check:generated && npm run check:graphql && npm run check:examples && npm run audit && npm run test:package",
+    "security:secrets": "betterleaks dir . --no-banner --redact --exit-code=2",
+    "security:workflows": "actionlint .github/workflows/*.yml && zizmor --persona auditor --min-severity high --min-confidence medium .github/workflows/",
+    "security:local": "npm run audit && npm run security:secrets && npm run security:workflows"
   },
   "keywords": [
     "cli",
     "norway",
     "vegvesen"
-  ]
+  ],
+  "dependencies": {
+    "commander": "14.0.3",
+    "fast-xml-parser": "^5.10.1",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "20.19.43",
+    "eslint": "^10.8.0",
+    "eslint-plugin-security": "^4.0.1",
+    "graphql": "16.14.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.65.0",
+    "yaml": "2.9.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
