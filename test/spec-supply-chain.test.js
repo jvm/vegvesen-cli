@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
+import { assertExclusionRules, assertRegistryBinding, canonicalizeSource, extractOperations, generateProtocolUnits, validateOverlayTargets, validatePublicOperations } from '../scripts/spec-lib.mjs';
 import { overlaySchema, sourcesSchema } from '../scripts/spec-schema.mjs';
 
 const fixture = JSON.stringify({
@@ -96,4 +96,24 @@ test('coverage binding fails when the CLI and the gate disagree', () => {
   assert.throws(() => assertRegistryBinding([...ok.slice(0, 2), { unit: 'y', disposition: 'excluded-permanent', command: ['thing get'] }], registry, local, assert), /must not name a command/);
   // A local-only command must not claim upstream surface.
   assert.throws(() => assertRegistryBinding([...ok, { unit: 'z', disposition: 'curated-command', command: ['version'] }], registry, local, assert), /Local-only command must not claim/);
+});
+
+test('every permanent exclusion matches a PLAN 8.3 rule', () => {
+  const excluded = (unit) => ({ unit, disposition: 'excluded-permanent' });
+  assert.doesNotThrow(() => assertExclusionRules([
+    excluded('svc:GET /admin/metrics'),
+    excluded('svc:GET /stats/jobs'),
+    excluded('fiks:GET /api/v1/meg/abonnenter'),
+    excluded('fiks:GET /api/v1/ansvarlig'),
+    excluded('svc:POST /api/v1/things'),
+    excluded('nvdb-core:uberiket:GET /api/v1/vegobjekter'),
+    { unit: 'svc:GET /public/read', disposition: 'curated-command', command: ['svc read'] },
+  ], assert));
+
+  // An anonymous GET matching no rule is excluded by accident, not by policy. This is the
+  // shape of the original defect: shipped reads sitting in the exclusion bucket.
+  assert.throws(
+    () => assertExclusionRules([excluded('svc:GET /api/v1/public/read')], assert),
+    /excluded by accident rather than by policy: svc:GET \/api\/v1\/public\/read/,
+  );
 });

@@ -201,3 +201,36 @@ export function assertRegistryBinding(units, commandRegistry, localOnlyCommands,
   for (const path of localOnlyCommands) assert(registryPaths.has(path), `Local-only allowlist names a command absent from the registry: ${path}`);
   return claimed;
 }
+
+// PLAN 8.3 exclusion rules, applied mechanically. Free-text reasons drift and cannot be trusted:
+// the original coverage defect hid behind a reason claiming "missing security metadata" on paths
+// that were actually administrative, account-scoped, or mutations. Every permanent exclusion must
+// match a rule here, so an anonymous read cannot sit excluded by accident.
+export const EXCLUSION_RULES = [
+  { id: 'administrative', matches: (unit) => /\/admin\/|\/stats\//.test(path(unit)) },
+  { id: 'account-scoped', matches: (unit) => /\/meg\/|\/ansvarlig(\/|$)/.test(path(unit)) },
+  { id: 'mutation', matches: (unit) => method(unit) !== null && method(unit) !== 'GET' },
+  // PLAN 4.2 names the NVDB /uberiket long-tail as a whole: unenriched duplicates of shipped V4 reads.
+  { id: 'named-long-tail', matches: (unit) => /^nvdb-core:uberiket:/.test(unit.unit) },
+  { id: 'protocol-unit', matches: (unit) => method(unit) === null },
+];
+
+function method(unit) {
+  const match = /:([A-Z]+) \//.exec(unit.unit);
+  return match ? match[1] : null;
+}
+function path(unit) {
+  const match = / (\/\S*)$/.exec(unit.unit);
+  return match ? match[1] : '';
+}
+
+export function assertExclusionRules(units, assert) {
+  const applied = new Map();
+  for (const unit of units) {
+    if (unit.disposition !== 'excluded-permanent') continue;
+    const rule = EXCLUSION_RULES.find((candidate) => candidate.matches(unit));
+    assert(rule, `Permanent exclusion matches no PLAN 8.3 rule, so it is excluded by accident rather than by policy: ${unit.unit}`);
+    applied.set(rule.id, (applied.get(rule.id) ?? 0) + 1);
+  }
+  return applied;
+}

@@ -12,7 +12,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:GET /admin/filerepository/count",
@@ -21,7 +21,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:GET /admin/jobrepository/count",
@@ -30,7 +30,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:GET /rapporter/bruksklasser",
@@ -249,7 +249,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:job download",
@@ -335,7 +335,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:POST /admin/jobrepository/purge",
@@ -344,7 +344,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "nvdb-reports:POST /rapporter/egendefinert",
@@ -353,7 +353,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-reports:POST /rapporter/omraader/oppdater",
@@ -362,7 +362,7 @@
       "evidence": "nvdb-reports source sha256:2b0dac7f6f97e378ef016ab65b7a034ff1ebd2fd0365c29dce7efd54d011760e; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     }
   ]
 }

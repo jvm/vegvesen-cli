@@ -12,7 +12,7 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "tnits:family RestrictionForVehicles",
@@ -73,7 +73,7 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     },
     {
       "target_id": "tnits:GET /api/v1/download",
@@ -138,7 +138,7 @@
       "evidence": "tnits source sha256:ddbdfc3a606ca259eceb01c347483bfde88f53e34ded0ec069eb0da21e9819f5; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Administrative or internal-statistics surface; PLAN 4.2 excludes /admin/ and /stats/ paths by rule regardless of whether they answer anonymously"
     }
   ]
 }

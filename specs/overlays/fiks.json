@@ -12,7 +12,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/kategorier",
@@ -21,7 +21,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:DELETE /api/v1/ansvarlig/{brukernavn}/omrader",
@@ -30,7 +30,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}",
@@ -39,7 +39,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde",
@@ -48,7 +48,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/avmelde/{abonnent}",
@@ -57,7 +57,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
@@ -66,7 +66,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:DELETE /api/v1/feilmelding/{id}/vedlegg",
@@ -75,7 +75,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig",
@@ -84,7 +84,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig/{brukernavn}",
@@ -93,7 +93,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:GET /api/v1/ansvarlig/sok",
@@ -102,7 +102,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:GET /api/v1/feilmelding",
@@ -155,7 +155,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:GET /api/v1/meg/ansvarlig",
@@ -164,7 +164,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:GET /api/v1/meg/feilmeldinger",
@@ -173,7 +173,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "admin",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:PATCH /api/v1/feilmelding/{id}/ansvarlig",
@@ -182,7 +182,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig",
@@ -191,7 +191,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/kategorier",
@@ -200,7 +200,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:POST /api/v1/ansvarlig/{brukernavn}/omrader",
@@ -209,7 +209,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Bound to an authenticated identity and meaningless anonymously; PLAN 4.2 excludes account-scoped Fiks paths"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding",
@@ -218,7 +218,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/abonner",
@@ -227,7 +227,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/avvist",
@@ -236,7 +236,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/dov",
@@ -245,7 +245,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/kommentar",
@@ -254,7 +254,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/lukk",
@@ -263,7 +263,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/rapporter/karverket",
@@ -272,7 +272,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/start",
@@ -281,7 +281,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/svv",
@@ -290,7 +290,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/{id}/vedlegg",
@@ -310,7 +310,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:POST /api/v1/feilmelding/anonym",
@@ -330,7 +330,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "fiks:PUT /api/v1/feilmelding/{id}/kommentar/{kommentarId}",
@@ -339,7 +339,7 @@
       "evidence": "fiks source sha256:375db92890c6043c7f2cc9fc51460a60b7837469e6ccdf14a26d3a68ac47bf3b; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     }
   ]
 }

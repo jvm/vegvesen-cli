@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { coverageSchema, manifestSchema, overlaySchema, sourcesSchema } from './spec-schema.mjs';
-import { assertRegistryBinding, generateProtocolUnits, validatePublicOperations } from './spec-lib.mjs';
+import { assertExclusionRules, assertRegistryBinding, generateProtocolUnits, validatePublicOperations } from './spec-lib.mjs';
 
 const root = new URL('../', import.meta.url);
 const manifest = manifestSchema.parse(json('specs/manifest.json'));
@@ -93,6 +93,7 @@ for (const unit of coverage.units) {
 assert.equal(coverageUnits.size, expected.size, `Coverage completeness mismatch: ${coverageUnits.size}/${expected.size}`);
 
 assertRegistryBinding(coverage.units, commandRegistry, localOnlyCommands, assert);
+assertExclusionRules(coverage.units, assert);
 console.log(`Coverage classified: ${coverage.units.length} exact units (${openapi.length} contract operations, ${protocol.length} protocol units) across ${services.size} services`);
 
 function json(path) { return JSON.parse(readFileSync(new URL(path, root))); }

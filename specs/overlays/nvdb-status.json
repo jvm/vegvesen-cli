@@ -12,7 +12,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
@@ -21,7 +21,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}",
@@ -30,7 +30,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avhengigheter",
@@ -39,7 +39,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avmeld/{epost}",
@@ -48,7 +48,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/tjenester/{tjenesteId}",
@@ -57,7 +57,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger",
@@ -174,9 +174,11 @@
       "effect": "query",
       "retry": "safe",
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
-      "access": "requires-access",
-      "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "access": "public-anonymous",
+      "disposition": "curated-command",
+      "command": [
+        "nvdb status message list"
+      ]
     },
     {
       "target_id": "nvdb-status:GET /api/v1/statistikk",
@@ -241,7 +243,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
@@ -250,7 +252,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/los",
@@ -259,7 +261,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/meldinger",
@@ -268,7 +270,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/systemer",
@@ -277,7 +279,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/abonner",
@@ -286,7 +288,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/avhengigheter",
@@ -295,7 +297,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/slack",
@@ -304,7 +306,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/tjenester",
@@ -313,7 +315,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Operation is not in the approved anonymous v1 runtime surface; missing security metadata is not treated as public evidence"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/arsak",
@@ -322,7 +324,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
@@ -331,7 +333,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/omskriv",
@@ -340,7 +342,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/OppdaterTittel",
@@ -349,7 +351,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/status",
@@ -358,7 +360,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/systemer",
@@ -367,7 +369,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/aktiver",
@@ -376,7 +378,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/deaktiver",
@@ -385,7 +387,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     },
     {
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
@@ -394,7 +396,7 @@
       "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
       "access": "requires-access",
       "disposition": "excluded-permanent",
-      "reason": "Protected, administrative, subscription, or case-management operation is outside anonymous-only v1"
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     }
   ]
 }
