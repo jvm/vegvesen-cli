@@ -10,11 +10,15 @@ export async function readJsonInput(runtime: Runtime, input: string | undefined,
   try {
     if (input === '-') text = await readStdin(runtime, field);
     else if (input.startsWith('@') && input.length > 1) {
-      const path = resolve(runtime.cwd, input.slice(1));
-      const stat = runtime.fs.statSync(path);
-      if (!stat.isFile()) throw usageError(`--${field} input must be a regular file`, `Pass --${field} @request.json`, field);
-      if (stat.size > MAX_JSON_INPUT_BYTES) throw inputTooLarge(field);
-      text = runtime.fs.readFileSync(path, 'utf8');
+      // Check and read through one descriptor: validating the path and then re-opening it by
+      // name lets the target be swapped in between, bypassing both the type and size checks.
+      const descriptor = runtime.fs.openSync(resolve(runtime.cwd, input.slice(1)), 'r');
+      try {
+        const stat = runtime.fs.fstatSync(descriptor);
+        if (!stat.isFile()) throw usageError(`--${field} input must be a regular file`, `Pass --${field} @request.json`, field);
+        if (stat.size > MAX_JSON_INPUT_BYTES) throw inputTooLarge(field);
+        text = runtime.fs.readFileSync(descriptor, 'utf8');
+      } finally { runtime.fs.closeSync(descriptor); }
     }
     else throw usageError(`--${field} must use @PATH or -`, `Pass --${field} @request.json or --${field} -`, field);
   } catch (error) {

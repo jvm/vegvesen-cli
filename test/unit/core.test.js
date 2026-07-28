@@ -123,3 +123,29 @@ test('prompt policy rejects machine and detached-stdin input paths', () => {
     (error) => error.details.code === 'MISSING_INPUT' && error.details.exitCode === 2,
   );
 });
+
+test('file input is validated and read through one descriptor', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'vegvesen-toctou-'));
+  writeFileSync(join(directory, 'small.json'), JSON.stringify({ ok: true }));
+  const base = processRuntime();
+  const byPath = [];
+  const runtime = {
+    ...base,
+    cwd: directory,
+    fs: {
+      ...base.fs,
+      // Validating a path and then re-opening it by name lets the target be swapped in
+      // between, bypassing the regular-file and size checks. Reads must use the descriptor.
+      readFileSync: (target, ...rest) => {
+        if (typeof target !== 'number') byPath.push(target);
+        return base.fs.readFileSync(target, ...rest);
+      },
+      statSync: (target) => { byPath.push(target); return base.fs.statSync(target); },
+    },
+  };
+  assert.deepEqual(await readJsonInput(runtime, '@small.json'), { ok: true });
+  assert.deepEqual(byPath, [], 'input was resolved by path after the descriptor was opened');
+
+  await assert.rejects(readJsonInput(runtime, '@missing.json'), (error) => error.details.code === 'INPUT_IO_FAILED');
+  await assert.rejects(readJsonInput(runtime, `@${directory}`), (error) => error.details.exitCode === 2);
+});

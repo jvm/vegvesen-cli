@@ -47,20 +47,35 @@ export async function fiksAddAttachment(runtime: Runtime, issueId: string, paths
   if (paths.length === 0) throw usageError('At least one --file is required', 'Pass --file PATH', 'file');
   if (paths.length > 10) throw usageError('At most 10 attachments are allowed per request', 'Split files across separately confirmed requests', 'file');
   const resolvedPaths = paths.map((path) => resolve(runtime.cwd, path));
-  let totalSize = 0;
-  for (const path of resolvedPaths) {
-    if (!runtime.fs.existsSync(path)) throw usageError(`Attachment does not exist: ${path}`, 'Pass an existing local file', 'file');
-    const stat = runtime.fs.statSync(path);
-    if (!stat.isFile()) throw usageError(`Attachment must be a regular file: ${path}`, 'Pass a regular local file', 'file');
-    if (stat.size > 10 * 1024 * 1024) throw usageError(`Attachment exceeds 10 MiB: ${basename(path)}`, 'Reduce the file size', 'file');
-    totalSize += stat.size;
+  // Validate and read through one descriptor per file. Re-opening by name after the size checks
+  // would let the target be swapped in between, bypassing the per-file and combined ceilings on
+  // a request that is a real remote mutation.
+  const open: { path: string; descriptor: number }[] = [];
+  try {
+    for (const path of resolvedPaths) {
+      try { open.push({ path, descriptor: runtime.fs.openSync(path, 'r') }); }
+      catch { throw usageError(`Attachment does not exist or is not readable: ${path}`, 'Pass an existing local file', 'file'); }
+    }
+    let totalSize = 0;
+    for (const { path, descriptor } of open) {
+      const stat = runtime.fs.fstatSync(descriptor);
+      if (!stat.isFile()) throw usageError(`Attachment must be a regular file: ${path}`, 'Pass a regular local file', 'file');
+      if (stat.size > 10 * 1024 * 1024) throw usageError(`Attachment exceeds 10 MiB: ${basename(path)}`, 'Reduce the file size', 'file');
+      totalSize += stat.size;
+    }
+    if (totalSize > 25 * 1024 * 1024) throw usageError('Combined attachments exceed 25 MiB', 'Split files across separately confirmed requests', 'file');
+    const plan = { dry_run: options.dryRun === true, method: 'POST', path: `/api/v1/feilmelding/${issueId}/vedlegg`, files: resolvedPaths.map((path) => basename(path)), total_size_bytes: totalSize };
+    if (options.dryRun) return { command: 'fiks attachment add', source: serviceSource('fiks'), data: plan };
+    if (!options.yes) throw new CliError({ code: 'CONFIRMATION_REQUIRED', message: 'Attachment upload requires --yes', exitCode: EXIT.conflict, retryable: false, field: 'yes', hint: 'Review with --dry-run, then repeat with --yes' });
+    const form = new FormData();
+    for (const { path, descriptor } of open) form.append('file', new Blob([runtime.fs.readFileSync(descriptor)]), basename(path));
+    return await submitAttachment(runtime, issueId, form, options);
+  } finally {
+    for (const { descriptor } of open) { try { runtime.fs.closeSync(descriptor); } catch { /* already closed */ } }
   }
-  if (totalSize > 25 * 1024 * 1024) throw usageError('Combined attachments exceed 25 MiB', 'Split files across separately confirmed requests', 'file');
-  const plan = { dry_run: options.dryRun === true, method: 'POST', path: `/api/v1/feilmelding/${issueId}/vedlegg`, files: resolvedPaths.map((path) => basename(path)), total_size_bytes: totalSize };
-  if (options.dryRun) return { command: 'fiks attachment add', source: serviceSource('fiks'), data: plan };
-  if (!options.yes) throw new CliError({ code: 'CONFIRMATION_REQUIRED', message: 'Attachment upload requires --yes', exitCode: EXIT.conflict, retryable: false, field: 'yes', hint: 'Review with --dry-run, then repeat with --yes' });
-  const form = new FormData();
-  for (const path of resolvedPaths) form.append('file', new Blob([runtime.fs.readFileSync(path)]), basename(path));
+}
+
+async function submitAttachment(runtime: Runtime, issueId: string, form: FormData, options: MutationOptions): Promise<CommandResult> {
   try {
     const result = await requestJson<unknown>(runtime, { service: 'fiks', canonicalOrigin: fiksOrigin, path: `api/v1/feilmelding/${issueId}/vedlegg`, method: 'POST', body: form, timeout: options.timeout, retries: 0, safeToRetry: false });
     return { command: 'fiks attachment add', source: serviceSource('fiks'), data: result.data, raw: result.raw };

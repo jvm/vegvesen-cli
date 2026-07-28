@@ -5,6 +5,7 @@ export interface RuntimeFileSystem {
   closeSync: typeof nodeFs.closeSync;
   createWriteStream: typeof nodeFs.createWriteStream;
   existsSync: typeof nodeFs.existsSync;
+  fstatSync: typeof nodeFs.fstatSync;
   fsyncSync: typeof nodeFs.fsyncSync;
   linkSync: typeof nodeFs.linkSync;
   mkdirSync: typeof nodeFs.mkdirSync;
