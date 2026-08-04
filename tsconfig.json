@@ -12,6 +12,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
+    "types": ["node"],
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
