@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "nvdb-status",
-  "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
-  "reviewed_at": "2026-07-27",
+  "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
+  "reviewed_at": "2026-08-10",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -18,7 +18,7 @@
       "target_id": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -27,7 +27,7 @@
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -36,7 +36,7 @@
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avhengigheter",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -45,7 +45,7 @@
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/avmeld/{epost}",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -54,7 +54,7 @@
       "target_id": "nvdb-status:DELETE /api/v1/systemer/{id}/tjenester/{tjenesteId}",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -63,7 +63,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -74,7 +74,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{id}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -85,7 +85,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; live probe 2026-07-28: 200 without Accept, 404 with Accept: application/json",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; live probe 2026-07-28: 200 without Accept, 404 with Accept: application/json",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Shadowed by GET /api/v1/feilmeldinger/{id}, which wins upstream content negotiation and answers 404 for a system id; reachable only by omitting a correct Accept header"
@@ -94,7 +94,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/aktive",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -105,7 +105,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/planlagt",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -116,7 +116,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/aktiv",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -127,7 +127,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/avsluttet",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -138,7 +138,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/mellom",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -149,7 +149,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/planlagt",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -160,7 +160,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -171,7 +171,7 @@
       "target_id": "nvdb-status:GET /api/v1/feilmeldinger/ulost",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -182,7 +182,7 @@
       "target_id": "nvdb-status:GET /api/v1/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -193,7 +193,7 @@
       "target_id": "nvdb-status:GET /api/v1/statistikk/nokkeldata",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -204,7 +204,7 @@
       "target_id": "nvdb-status:GET /api/v1/systemer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -216,7 +216,7 @@
       "target_id": "nvdb-status:GET /api/v1/systemer/{id}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -227,7 +227,7 @@
       "target_id": "nvdb-status:GET /api/v1/systemer/{id}/status",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -238,7 +238,7 @@
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -247,7 +247,7 @@
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -256,7 +256,7 @@
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/los",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -265,7 +265,7 @@
       "target_id": "nvdb-status:POST /api/v1/feilmeldinger/{id}/meldinger",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -274,7 +274,7 @@
       "target_id": "nvdb-status:POST /api/v1/systemer",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -283,7 +283,7 @@
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/abonner",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -292,7 +292,7 @@
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/avhengigheter",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -301,7 +301,7 @@
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/slack",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -310,7 +310,7 @@
       "target_id": "nvdb-status:POST /api/v1/systemer/{id}/tjenester",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -319,7 +319,25 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/arsak",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/datoer",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/konsekvens",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -328,7 +346,7 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -337,7 +355,7 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/omskriv",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -346,7 +364,7 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/OppdaterTittel",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -355,7 +373,7 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/status",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -364,7 +382,7 @@
       "target_id": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/systemer",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -373,7 +391,7 @@
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/aktiver",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -382,7 +400,7 @@
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/slack/deaktiver",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
@@ -391,7 +409,7 @@
       "target_id": "nvdb-status:PUT /api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
       "effect": "mutation",
       "retry": "unsafe",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "access": "requires-access",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"

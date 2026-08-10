@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "nvdb-core:uberiket",
-  "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
-  "reviewed_at": "2026-07-27",
+  "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
+  "reviewed_at": "2026-08-10",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/endringssett/{endringssettId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -18,7 +18,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -27,7 +27,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/noder/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -36,7 +36,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -45,7 +45,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -54,7 +54,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/stream",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -63,7 +63,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -72,7 +72,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -81,7 +81,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -90,7 +90,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -99,7 +99,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -108,7 +108,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/stream",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -117,7 +117,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/siste",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -126,7 +126,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -135,7 +135,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/noder/{nodeId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -144,7 +144,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenker/stream",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -153,7 +153,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -162,7 +162,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -171,7 +171,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}/historisk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -180,7 +180,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/stream",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -189,7 +189,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -198,7 +198,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -207,7 +207,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -216,7 +216,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/{versjon}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -225,7 +225,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/historisk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -234,7 +234,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/id/{vegobjektId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"
@@ -243,7 +243,7 @@
       "target_id": "nvdb-core:uberiket:GET /api/v1/vegobjekter/stream",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27",
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10",
       "access": "public-anonymous",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope"

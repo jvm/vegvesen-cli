@@ -138,126 +138,126 @@
       "id": "ogc:datex_3_1 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:datex_3_1 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:datex_3_1 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:datex_3_1 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:datex_3_1 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:datex_3_1 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:norstoy_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:nvdb_2_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
@@ -411,84 +411,84 @@
       "id": "ogc:rapportweb_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:rapportweb_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:rapportweb_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:rapportweb_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:rapportweb_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:rapportweb_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {
       "id": "ogc:vegvar_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "kind": "ogc-operation"
     },
     {

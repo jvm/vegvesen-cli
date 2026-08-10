@@ -673,253 +673,253 @@
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/endringssett/{endringssettId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/noder",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/noder/siste",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/siste",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/veglenkesekvenser/stream",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegnett/siste",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/siste",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/{typeId}/stream",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/hendelser/vegobjekter/siste",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/noder",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/noder/{nodeId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenker/stream",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/{veglenkesekvensId}/historisk",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegnett/veglenkesekvenser/stream",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/{versjon}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/{typeId}/{vegobjektId}/historisk",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/id/{vegobjektId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:uberiket:GET /api/v1/vegobjekter/stream",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:uberiket",
-      "source_digest": "sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "source_digest": "sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "disposition": "excluded-permanent",
       "reason": "Unenriched duplicate of a shipped V4 read; PLAN 4.2 names the NVDB /uberiket long-tail as out of scope",
-      "evidence": "nvdb-core:uberiket source sha256:9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e; owner classification 2026-07-27"
+      "evidence": "nvdb-core:uberiket source sha256:5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-core:vegnett:GET /api/v4/beta/vegnett/rute",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network route calculate"
       ]
@@ -928,10 +928,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/noder",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network node list"
       ]
@@ -940,10 +940,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/noder/{id}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network node get"
       ]
@@ -952,10 +952,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/posisjon",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network position locate"
       ]
@@ -964,10 +964,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veg",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network road-position locate"
       ]
@@ -976,10 +976,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veg/batch",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network road-position batch"
       ]
@@ -988,10 +988,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network link list"
       ]
@@ -1000,10 +1000,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/{veglenkesekvensId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
       "command": [
         "nvdb network link get"
       ]
@@ -1012,10 +1012,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/endringer",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network link changes"
       ]
@@ -1024,10 +1024,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network segment list"
       ]
@@ -1036,10 +1036,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/{veglenkesekvensId}",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
       "command": [
         "nvdb network segment get"
       ]
@@ -1048,10 +1048,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
       "command": [
         "nvdb network segment statistics"
       ]
@@ -1060,10 +1060,10 @@
       "unit": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "generated-operation",
-      "reason": "generated-operation approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
+      "reason": "generated-operation approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10; reviewed mapping in specs/public-operations.json",
       "command": [
         "api operation call"
       ]
@@ -1072,10 +1072,10 @@
       "unit": "nvdb-core:vegnett:POST /api/v4/beta/vegnett/rute",
       "service": "nvdb-core",
       "contract_id": "nvdb-core:vegnett",
-      "source_digest": "sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-core:vegnett source sha256:3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
       "command": [
         "nvdb network route calculate"
       ]
@@ -1625,64 +1625,64 @@
       "unit": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:DELETE /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:DELETE /api/v1/systemer/{id}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:DELETE /api/v1/systemer/{id}/avhengigheter",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:DELETE /api/v1/systemer/{id}/avmeld/{epost}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:DELETE /api/v1/systemer/{id}/tjenester/{tjenesteId}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:GET /api/v1/feilmeldinger",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "command": [
         "nvdb status message list"
       ]
@@ -1691,10 +1691,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/{id}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "command": [
         "nvdb status message get"
       ]
@@ -1703,19 +1703,19 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Shadowed by GET /api/v1/feilmeldinger/{id}, which wins upstream content negotiation and answers 404 for a system id; reachable only by omitting a correct Accept header",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; live probe 2026-07-28: 200 without Accept, 404 with Accept: application/json"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; live probe 2026-07-28: 200 without Accept, 404 with Accept: application/json"
     },
     {
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/aktive",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1724,10 +1724,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/{systemId}/planlagt",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1736,10 +1736,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/aktiv",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "command": [
         "nvdb status message list"
       ]
@@ -1748,10 +1748,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/avsluttet",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1760,10 +1760,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/mellom",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1772,10 +1772,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/planlagt",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1784,10 +1784,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/siste",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status message list"
       ]
@@ -1796,10 +1796,10 @@
       "unit": "nvdb-status:GET /api/v1/feilmeldinger/ulost",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "command": [
         "nvdb status message list"
       ]
@@ -1808,10 +1808,10 @@
       "unit": "nvdb-status:GET /api/v1/statistikk",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status statistics get"
       ]
@@ -1820,10 +1820,10 @@
       "unit": "nvdb-status:GET /api/v1/statistikk/nokkeldata",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status statistics get"
       ]
@@ -1832,10 +1832,10 @@
       "unit": "nvdb-status:GET /api/v1/systemer",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10",
       "command": [
         "nvdb status current",
         "nvdb status dependency list"
@@ -1845,10 +1845,10 @@
       "unit": "nvdb-status:GET /api/v1/systemer/{id}",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status system get"
       ]
@@ -1857,10 +1857,10 @@
       "unit": "nvdb-status:GET /api/v1/systemer/{id}/status",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "curated-command",
-      "reason": "curated-command approved by Jose Mocito on 2026-07-27",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
+      "reason": "curated-command approved by Jose Mocito on 2026-08-10",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; docs/attestations/2026-07-27-phases-5-7.md anonymous attestation; PLAN 4.3 promotion rule",
       "command": [
         "nvdb status system health"
       ]
@@ -1869,172 +1869,190 @@
       "unit": "nvdb-status:POST /api/v1/feilmeldinger",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/feilmeldinger/{hendelseId}/tilbakemelding",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/feilmeldinger/{id}/los",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/feilmeldinger/{id}/meldinger",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/systemer",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/systemer/{id}/abonner",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/systemer/{id}/avhengigheter",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/systemer/{id}/slack",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:POST /api/v1/systemer/{id}/tjenester",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/arsak",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
+    },
+    {
+      "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/datoer",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
+    },
+    {
+      "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/konsekvens",
+      "service": "nvdb-status",
+      "contract_id": "nvdb-status",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
+      "disposition": "excluded-permanent",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/meldinger/{meldingsId}/omskriv",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/omskriv",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/OppdaterTittel",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/status",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/feilmeldinger/{id}/systemer",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/systemer/{id}/slack/aktiver",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/systemer/{id}/slack/deaktiver",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "nvdb-status:PUT /api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
       "service": "nvdb-status",
       "contract_id": "nvdb-status",
-      "source_digest": "sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "source_digest": "sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "disposition": "excluded-permanent",
       "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments",
-      "evidence": "nvdb-status source sha256:1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a; owner classification 2026-07-27"
+      "evidence": "nvdb-status source sha256:7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960; owner classification 2026-08-10"
     },
     {
       "unit": "ogc:datex_3_1 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs describe"
       ]
@@ -2043,10 +2061,10 @@
       "unit": "ogc:datex_3_1 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs capabilities"
       ]
@@ -2055,10 +2073,10 @@
       "unit": "ogc:datex_3_1 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs feature"
       ]
@@ -2067,10 +2085,10 @@
       "unit": "ogc:datex_3_1 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms capabilities"
       ]
@@ -2079,10 +2097,10 @@
       "unit": "ogc:datex_3_1 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms feature-info"
       ]
@@ -2091,10 +2109,10 @@
       "unit": "ogc:datex_3_1 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms map"
       ]
@@ -2103,10 +2121,10 @@
       "unit": "ogc:norstoy_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs describe"
       ]
@@ -2115,10 +2133,10 @@
       "unit": "ogc:norstoy_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs capabilities"
       ]
@@ -2127,10 +2145,10 @@
       "unit": "ogc:norstoy_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs feature"
       ]
@@ -2139,10 +2157,10 @@
       "unit": "ogc:norstoy_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms capabilities"
       ]
@@ -2151,10 +2169,10 @@
       "unit": "ogc:norstoy_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms feature-info"
       ]
@@ -2163,10 +2181,10 @@
       "unit": "ogc:norstoy_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms map"
       ]
@@ -2175,10 +2193,10 @@
       "unit": "ogc:nvdb_2_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs describe"
       ]
@@ -2187,10 +2205,10 @@
       "unit": "ogc:nvdb_2_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs capabilities"
       ]
@@ -2199,10 +2217,10 @@
       "unit": "ogc:nvdb_2_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs feature"
       ]
@@ -2211,10 +2229,10 @@
       "unit": "ogc:nvdb_2_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms capabilities"
       ]
@@ -2223,10 +2241,10 @@
       "unit": "ogc:nvdb_2_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms feature-info"
       ]
@@ -2235,10 +2253,10 @@
       "unit": "ogc:nvdb_2_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms map"
       ]
@@ -2499,10 +2517,10 @@
       "unit": "ogc:rapportweb_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs describe"
       ]
@@ -2511,10 +2529,10 @@
       "unit": "ogc:rapportweb_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs capabilities"
       ]
@@ -2523,10 +2541,10 @@
       "unit": "ogc:rapportweb_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs feature"
       ]
@@ -2535,10 +2553,10 @@
       "unit": "ogc:rapportweb_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms capabilities"
       ]
@@ -2547,10 +2565,10 @@
       "unit": "ogc:rapportweb_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms feature-info"
       ]
@@ -2559,10 +2577,10 @@
       "unit": "ogc:rapportweb_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms map"
       ]
@@ -2571,10 +2589,10 @@
       "unit": "ogc:vegvar_1_0 WFS DescribeFeatureType",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs describe"
       ]
@@ -2583,10 +2601,10 @@
       "unit": "ogc:vegvar_1_0 WFS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs capabilities"
       ]
@@ -2595,10 +2613,10 @@
       "unit": "ogc:vegvar_1_0 WFS GetFeature",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wfs feature"
       ]
@@ -2607,10 +2625,10 @@
       "unit": "ogc:vegvar_1_0 WMS GetCapabilities",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms capabilities"
       ]
@@ -2619,10 +2637,10 @@
       "unit": "ogc:vegvar_1_0 WMS GetFeatureInfo",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms feature-info"
       ]
@@ -2631,10 +2649,10 @@
       "unit": "ogc:vegvar_1_0 WMS GetMap",
       "service": "ogc",
       "contract_id": "ogc:legacy",
-      "source_digest": "sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "source_digest": "sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "disposition": "dynamic-protocol",
-      "reason": "dynamic-protocol approved by Jose Mocito on 2026-07-27",
-      "evidence": "ogc:legacy source sha256:6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde; owner classification 2026-07-27",
+      "reason": "dynamic-protocol approved by Jose Mocito on 2026-08-10",
+      "evidence": "ogc:legacy source sha256:294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda; owner classification 2026-08-10",
       "command": [
         "ogc wms map"
       ]
