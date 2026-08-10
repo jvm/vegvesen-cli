@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "retrieved_at": "2026-07-27T00:00:00Z",
+  "retrieved_at": "2026-08-10T08:27:53Z",
   "sources": [
     {
       "service": "catalog",
@@ -66,9 +66,9 @@
       "contract_id": "nvdb-core:uberiket",
       "kind": "openapi",
       "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/uberiket",
-      "sha256": "9ce5f54576dcc2db68f04408f955fcb4c723a4ae330f53fd1e7ba31d7c27541e",
+      "sha256": "5c42c193a738852f855f7ddd36592aeae0e4f9dd0157e7939a15e3e2d417a606",
       "redistribution": "reference-only",
-      "retrieved_at": "2026-07-27T00:00:00Z",
+      "retrieved_at": "2026-08-10T08:27:53Z",
       "license": "Upstream terms not verified for raw redistribution",
       "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
@@ -76,11 +76,11 @@
       "service": "nvdb-core",
       "unit": "vegnett",
       "url": "https://nvdbapiles.atlas.vegvesen.no/api-docs/vegnett",
-      "sha256": "3442217956c5bf731b85bb96b617272e70b500234cea429081cbeeb118ccd7af",
+      "sha256": "ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
       "redistribution": "reference-only",
       "kind": "openapi",
       "contract_id": "nvdb-core:vegnett",
-      "retrieved_at": "2026-07-27T00:00:00Z",
+      "retrieved_at": "2026-08-10T08:27:53Z",
       "license": "Upstream terms not verified for raw redistribution",
       "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
@@ -121,11 +121,11 @@
     {
       "service": "nvdb-status",
       "url": "https://nvdbstatus-api.atlas.vegvesen.no/api-docs",
-      "sha256": "1b9e7925c8e0515c38a7faf96b21bc44e4fa22cdbf52804d1614ca0ed8b7383a",
+      "sha256": "7d8ebb24ad66e96ead07f7d1a0ebab43b89f0a73b6a385537fd9fc3c8b575960",
       "redistribution": "reference-only",
       "kind": "openapi",
       "contract_id": "nvdb-status",
-      "retrieved_at": "2026-07-27T00:00:00Z",
+      "retrieved_at": "2026-08-10T08:27:53Z",
       "license": "Upstream terms not verified for raw redistribution",
       "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
@@ -145,9 +145,9 @@
       "contract_id": "ogc:legacy",
       "kind": "html-links",
       "url": "https://www.vegvesen.no/fag/teknologi/apne-data/et-utvalg-apne-data/ogc-karttjenester/kartlag/",
-      "sha256": "6a1e18e5fdb04e0fe3dcbed54cd0078fd5c2c436a309c6f913a2658666459cde",
+      "sha256": "294ea76e67ed30c6c5dffe3820abb9b1437ac824ef37f6139a54dc60d07acdda",
       "redistribution": "reference-only",
-      "retrieved_at": "2026-07-27T00:00:00Z",
+      "retrieved_at": "2026-08-10T08:27:53Z",
       "license": "Upstream terms not verified for raw redistribution",
       "redistribution_evidence": "docs/attestations/2026-07-27-phases-0-1.md#redistribution-decisions"
     },
