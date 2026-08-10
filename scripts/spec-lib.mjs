@@ -169,9 +169,17 @@ function graphqlEvidence(text) {
 }
 
 function normalizePath(path) { const value = `/${String(path).replace(/^\/+/, '')}`; return value.length > 1 ? value.replace(/\/+$/, '') : value; }
-function sortJson(value) {
-  if (Array.isArray(value)) return value.map(sortJson);
-  if (value !== null && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((key) => [key, sortJson(value[key])]));
+// JSON Schema composition keywords whose members carry no order. Some upstreams (Fiks) emit
+// them in a different order per response, which would otherwise read as specification drift.
+const UNORDERED_KEYS = new Set(['oneOf', 'anyOf']);
+
+function sortJson(value, key) {
+  if (Array.isArray(value)) {
+    const items = value.map((item) => sortJson(item));
+    if (!UNORDERED_KEYS.has(key)) return items;
+    return items.map((item) => [JSON.stringify(item), item]).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([, item]) => item);
+  }
+  if (value !== null && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((name) => [name, sortJson(value[name], name)]));
   return value;
 }
 

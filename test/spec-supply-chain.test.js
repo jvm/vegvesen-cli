@@ -28,6 +28,9 @@ test('contract extraction is deterministic and preserves security/media evidence
   assert.deepEqual(operations[1].media_types, ['application/geo+json', 'application/json']);
   assert.deepEqual(operations[0].path_parameters, ['id']);
   assert.deepEqual(operations[0].required_query_parameters, []);
+  const schema = (refs) => JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { oneOf: refs.map(($ref) => ({ $ref })), enum: ['b', 'a'] } } } });
+  assert.equal(canonicalizeSource(schema(['#/a', '#/b']), 'openapi').sha256, canonicalizeSource(schema(['#/b', '#/a']), 'openapi').sha256, 'oneOf member order must not read as drift');
+  assert.notEqual(canonicalizeSource(schema(['#/a', '#/b']), 'openapi').sha256, canonicalizeSource(JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { oneOf: [{ $ref: '#/a' }, { $ref: '#/b' }], enum: ['a', 'b'] } } } }), 'openapi').sha256, 'ordered arrays keep their order');
   assert.equal(canonicalizeSource('<a href="/b?nonce=1"><a href="/a">', 'html-links').sha256, canonicalizeSource('<a href="/a"><a href="/b?nonce=2">', 'html-links').sha256);
 });
 
