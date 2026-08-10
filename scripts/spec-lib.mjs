@@ -36,6 +36,10 @@ export function extractOperations(source, parsed, digest) {
         .filter((parameter) => parameter && typeof parameter === 'object' && !('$ref' in parameter));
       const parameterNames = (location) => [...new Set(parameters.filter((parameter) => parameter.in === location).map((parameter) => parameter.name))].sort();
       const requiredQuery = [...new Set(parameters.filter((parameter) => parameter.in === 'query' && parameter.required === true).map((parameter) => parameter.name))].sort();
+      const pathParameters = [...new Set([
+        ...parameterNames('path'),
+        ...[...normalizePath(path).matchAll(/\{([^}]+)\}/g)].map((match) => match[1]),
+      ])].sort();
       operations.push({
         id: `${source.contract_id}:${method.toUpperCase()} ${normalizePath(path)}`,
         service: source.service,
@@ -44,7 +48,7 @@ export function extractOperations(source, parsed, digest) {
         method: method.toUpperCase(),
         path: normalizePath(path),
         operation_id: operation.operationId ?? null,
-        path_parameters: parameterNames('path'),
+        path_parameters: pathParameters,
         query_parameters: parameterNames('query'),
         required_query_parameters: requiredQuery,
         declared_security: operation.security ?? parsed.security ?? null,

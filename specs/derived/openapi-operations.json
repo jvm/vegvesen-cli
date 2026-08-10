@@ -3921,6 +3921,7 @@
       "path": "/api/v1/systemer/{id}/tjenester/{tjenesteId}/destinasjon",
       "operation_id": "endreTjenesteDestinasjon",
       "path_parameters": [
+        "id",
         "tjenesteId"
       ],
       "query_parameters": [],

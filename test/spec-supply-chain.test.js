@@ -26,7 +26,7 @@ test('contract extraction is deterministic and preserves security/media evidence
   assert.deepEqual(operations[0].declared_security, [{ bearerAuth: [] }]);
   assert.deepEqual(operations[1].declared_security, []);
   assert.deepEqual(operations[1].media_types, ['application/geo+json', 'application/json']);
-  assert.deepEqual(operations[0].path_parameters, []);
+  assert.deepEqual(operations[0].path_parameters, ['id']);
   assert.deepEqual(operations[0].required_query_parameters, []);
   assert.equal(canonicalizeSource('<a href="/b?nonce=1"><a href="/a">', 'html-links').sha256, canonicalizeSource('<a href="/a"><a href="/b?nonce=2">', 'html-links').sha256);
 });
