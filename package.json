@@ -66,13 +66,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "26.1.2",
-    "eslint": "^10.8.0",
-    "eslint-plugin-security": "^4.0.1",
+    "@types/node": "26.6.3",
+    "eslint": "^10.11.0",
+    "eslint-plugin-security": "^4.1.0",
     "graphql": "17.0.2",
-    "typescript": "6.0.3",
-    "typescript-eslint": "^8.65.0",
-    "yaml": "2.9.0"
+    "typescript": "7.0.2",
+    "typescript-eslint": "^8.70.1",
+    "yaml": "2.9.1"
   },
   "publishConfig": {
     "access": "public",
