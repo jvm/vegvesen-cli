@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 20
           cache: npm
@@ -57,7 +57,7 @@ jobs:
         run: betterleaks dir . --no-banner --redact --exit-code=2 --report-path betterleaks.sarif --report-format sarif
       - name: Upload SARIF
         if: always()
-        uses: github/codeql-action/upload-sarif@d1ba80a13dd99fba24a470575428917156a28b43 # v4.37.5
+        uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
         with:
           sarif_file: betterleaks.sarif
 
@@ -76,7 +76,7 @@ jobs:
       - run: semgrep scan --config p/default --error --sarif-output semgrep.sarif
       - name: Upload SARIF
         if: always()
-        uses: github/codeql-action/upload-sarif@d1ba80a13dd99fba24a470575428917156a28b43 # v4.37.5
+        uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
         with:
           sarif_file: semgrep.sarif
 
