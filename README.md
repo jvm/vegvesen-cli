@@ -6,7 +6,7 @@ Supports Dataportalen; NVDB catalog, areas, road data, exports, reports, status,
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 22.12 or newer
 
 ## Install
 

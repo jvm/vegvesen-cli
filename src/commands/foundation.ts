@@ -100,10 +100,16 @@ export async function doctorResult(runtime: Runtime, options: DoctorOptions = {}
   })).map((check) => [check.name, check])) : new Map<string, Record<string, unknown>>();
   const checks = [
     configCheck,
-    { name: 'node', status: Number(process.versions.node.split('.')[0]) >= 20 ? 'ok' : 'failed', version: process.versions.node, hint: 'Install Node.js 20 or newer' },
+    { name: 'node', status: supportedNode(process.versions.node) ? 'ok' : 'failed', version: process.versions.node, hint: 'Install Node.js 22.12 or newer' },
     ...manifest.services.map((service) => liveChecks.get(service.id) ?? ({ name: service.id, status: service.health.startsWith('stable') ? 'not_checked' : service.health, access: service.access_tier, hint: service.health.startsWith('stable') ? "Pass --live to verify anonymous reachability" : service.evidence })),
   ];
   return result('doctor', 'local', checks, { ready: checks.every((check) => !['failed', 'down', 'registration_required'].includes(String(check.status))), live: options.live === true });
+}
+
+// Matches package.json engines; Commander 15 requires Node.js 22.12+.
+function supportedNode(version: string): boolean {
+  const [major = 0, minor = 0] = version.split('.').map(Number);
+  return major > 22 || (major === 22 && minor >= 12);
 }
 
 async function probeAnonymousServices(runtime: Runtime, options: { timeout?: string | undefined; retries?: string | undefined; xClient: string }): Promise<Array<Record<string, unknown>>> {
