@@ -20,6 +20,22 @@ updates:
         update-types: ["version-update:semver-major"]
     labels: [dependencies]
 
+  - package-ecosystem: pip
+    # Hashed pip-compile lock for the Semgrep CI tool. Regenerate it with Python 3.12:
+    # pip-compile --allow-unsafe --generate-hashes --strip-extras --output-file=semgrep.txt semgrep.in
+    directory: /.github/requirements
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:15"
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      semgrep:
+        patterns: ["*"]
+    labels: [dependencies]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
