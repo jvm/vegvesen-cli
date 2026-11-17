@@ -14,6 +14,10 @@ updates:
         dependency-type: production
       npm-development:
         dependency-type: development
+    ignore:
+      # typescript-eslint 8.x peers on typescript <6.1. Remove when it supports TypeScript 7.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
     labels: [dependencies]
 
   - package-ecosystem: github-actions
