@@ -73,8 +73,8 @@ function addNvdb(program: Command, runtime: Runtime, setResult: ResultSetter): v
   const property = catalog.command('property').description('Read NVDB property metadata.');
   exactLeaf(property, 'get <property-id>', 'Get exact property type.', 'nvdb catalog property get', 'nvdb-catalog', (id) => `api/v1/egenskapstyper/${integer(id, 'property-id')}`);
   leaf(property, 'categories', 'List property categories.', 'nvdb catalog property categories', 'nvdb-catalog', 'api/v1/egenskapstypekategorier');
-  const product = catalog.command('product-spec').description('Read product specifications.');
-  exactLeaf(product, 'get <type-id>', 'Get type product specification.', 'nvdb catalog product-spec get', 'nvdb-catalog', (id) => `api/v1/vegobjekttyper/${integer(id, 'type-id')}/produktspesifikasjon`);
+  const product = catalog.command('product-spec').description('Read product specifications and registration rules.');
+  exactLeaf(product, 'get <type-id>', 'Get type product specification link and registration rules.', 'nvdb catalog product-spec get', 'nvdb-catalog', (id) => `api/v1/vegobjekttyper/${integer(id, 'type-id')}/registreringsregler`);
   const category = catalog.command('category').description('Read object categories.');
   leaf(category, 'list', 'List object categories.', 'nvdb catalog category list', 'nvdb-catalog', 'api/v1/kategorier');
   const unit = catalog.command('unit').description('Read catalog units.');

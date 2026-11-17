@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "route",
-  "source_digest": "sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a",
-  "reviewed_at": "2026-07-27",
+  "source_digest": "sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69",
+  "reviewed_at": "2026-11-17",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "route:GET /api/Matrix",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -20,7 +20,7 @@
       "target_id": "route:GET /api/Route/best",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -31,7 +31,7 @@
       "target_id": "route:GET /api/Route/bike",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -42,7 +42,7 @@
       "target_id": "route:GET /api/Route/bruksklasse12100",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -53,7 +53,7 @@
       "target_id": "route:GET /api/Route/bruksklasse1265",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -64,7 +64,7 @@
       "target_id": "route:GET /api/Route/bruksklasseModulvognTog",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -75,7 +75,7 @@
       "target_id": "route:GET /api/Route/bruksklasseNormalTransport",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -86,7 +86,7 @@
       "target_id": "route:GET /api/Route/bruksklasseSpesialTransport",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -97,7 +97,7 @@
       "target_id": "route:GET /api/Route/bruksklasseTommerTransport",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -108,7 +108,7 @@
       "target_id": "route:GET /api/Route/tourist",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -119,7 +119,7 @@
       "target_id": "route:POST /api/RoadFeature/roadFeatures",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -130,7 +130,7 @@
       "target_id": "route:POST /api/RoadFeature/roadFeaturesWithBruksklasse",
       "effect": "query",
       "retry": "safe",
-      "evidence": "route source sha256:afe9c23e037be9609ea0eb12c3b4c76c2be0a3ab4469eafd5e3a502729bb081a; owner classification 2026-07-27",
+      "evidence": "route source sha256:a5ed73bdebc1d6f4590b27e4b29d53702664bca2cab002605ae9417a5a8e2c69; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [

@@ -37,7 +37,7 @@ export const commandRegistry: CommandDefinition[] = [
   { path: 'nvdb catalog property get', description: 'Get exact NVDB property type', class: 'query', service: 'nvdb-catalog' },
   { path: 'nvdb catalog type property', description: 'Get exact property type within an object type', class: 'query', service: 'nvdb-catalog' },
   { path: 'nvdb catalog property categories', description: 'List NVDB property categories', class: 'query', service: 'nvdb-catalog' },
-  { path: 'nvdb catalog product-spec get', description: 'Get object type product specification', class: 'query', service: 'nvdb-catalog' },
+  { path: 'nvdb catalog product-spec get', description: 'Get object type product specification link and registration rules', class: 'query', service: 'nvdb-catalog' },
   { path: 'nvdb catalog category list', description: 'List NVDB object categories', class: 'query', service: 'nvdb-catalog' },
   { path: 'nvdb catalog unit list', description: 'List NVDB units', class: 'query', service: 'nvdb-catalog' },
   { path: 'nvdb area county list', description: 'List counties', class: 'query', service: 'nvdb-areas' },

@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "nvdb-core:vegobjekter",
-  "source_digest": "sha256:49f8d1fc61a8f9ce5442391099cb867fa68c728c19cfe1f914ec66159974f827",
-  "reviewed_at": "2026-07-27",
+  "source_digest": "sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec",
+  "reviewed_at": "2026-11-17",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekt",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -20,7 +20,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -31,7 +31,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -42,7 +42,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/{versjon}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -53,7 +53,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/{vegobjektId}/versjoner",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -64,7 +64,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeId}/endringer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -75,7 +75,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -86,7 +86,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "generated-operation",
       "command": [
@@ -97,7 +97,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; owner classification 2026-07-27; reviewed mapping in specs/public-operations.json",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "generated-operation",
       "command": [
@@ -108,7 +108,7 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/endringer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -119,12 +119,75 @@
       "target_id": "nvdb-core:vegobjekter:GET /api/v4/vegobjekter/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegobjekter source sha256:d1a4273214b7bb8095068fb17b6a8b8e9c2988deb3f53a63f3a3916456acbd32; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
         "nvdb object statistics"
       ]
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/{vegobjekttypeId}",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/{vegobjekttypeId}/endringer",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/{vegobjekttypeid}/statistikk",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/{vegobjekttypeid}/statistikk/gruppert/egenskap",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/endringer",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
+    },
+    {
+      "target_id": "nvdb-core:vegobjekter:POST /api/v4/vegobjekter/statistikk",
+      "effect": "mutation",
+      "retry": "unsafe",
+      "access": "requires-access",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegobjekter source sha256:b096314a9cf79b1ae21443bb2fe010b43b72a716ee1d5755f939a8023da43bec; owner classification 2026-11-17",
+      "reason": "Write operation outside the approved anonymous mutation set; PLAN 4.2 permits only anonymous Fiks issue creation and attachments"
     }
   ]
 }
