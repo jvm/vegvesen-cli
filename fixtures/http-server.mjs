@@ -118,6 +118,8 @@ const server = createServer(async (request, response) => {
     response.end(JSON.stringify([{ id: 42, detaljert: true }]));
   } else if (/^\/datakatalog\/api\/v1\/vegobjekttyper\/\d+\/\d+$/.test(url.pathname)) {
     response.end(JSON.stringify({ id: Number(url.pathname.split('/').at(-1)) }));
+  } else if (/^\/datakatalog\/api\/v1\/vegobjekttyper\/\d+\/registreringsregler$/.test(url.pathname)) {
+    response.end(JSON.stringify({ url: 'https://example.invalid/produktspesifikasjon.pdf', registrationConstraints: [{ title: 'Innledning', content: 'fixture', examples: [] }] }));
   } else if (url.pathname === '/api/v1/systemer') {
     response.end(JSON.stringify([{ id: 1, navn: 'fixture' }]));
   } else if (url.pathname === '/ws/docs/openapi') {
