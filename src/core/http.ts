@@ -111,13 +111,26 @@ function resolveBaseUrl(runtime: Runtime, service: string, canonicalOrigin: stri
 async function fetchWithRedirects(runtime: Runtime, initial: URL, headers: Headers, options: HttpOptions, timeoutMs: number): Promise<HttpResponse> {
   let url = initial;
   for (let redirect = 0; redirect <= 5; redirect += 1) {
-    const response = await runtime.fetch(url, {
-      method: options.method ?? 'GET',
-      headers,
-      ...(options.body === undefined ? {} : { body: options.body }),
-      redirect: 'manual',
-      signal: combineSignals([AbortSignal.timeout(timeoutMs), runtime.signal]),
-    });
+    const timeout = timeoutSignal(timeoutMs);
+    let response: Response;
+    try {
+      response = await runtime.fetch(url, {
+        method: options.method ?? 'GET',
+        headers,
+        ...(options.body === undefined ? {} : { body: options.body }),
+        redirect: 'manual',
+        signal: combineSignals([timeout.signal, runtime.signal]),
+      });
+    } catch (error) {
+      timeout.clear();
+      throw error;
+    }
+    // Only a successful body is read, so only it keeps the timeout armed until the body settles.
+    // Error and redirect bodies are discarded: cancel them so the connection does not stay open.
+    if (response.status < 200 || response.status >= 300 || !response.body) {
+      response.body?.cancel().catch(() => undefined);
+      timeout.clear();
+    } else response = withBodyCleanup(response, timeout.clear);
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get('location');
       if (!location) throw new CliError({ code: 'INVALID_REDIRECT', message: 'Upstream redirect omitted Location', exitCode: EXIT.protocol, retryable: false, service: options.service, hint: 'Report the upstream protocol failure' });
@@ -172,6 +185,38 @@ function backoff(attempt: number, random: () => number): number {
 
 function isTransientNetworkError(error: unknown): boolean {
   return error instanceof TypeError || (error instanceof DOMException && error.name === 'AbortError');
+}
+
+// AbortSignal.any() holds its sources weakly, so an AbortSignal.timeout() passed only to it can be
+// garbage-collected before it fires, and the request then never times out. The timer closure here
+// keeps the controller alive; unref() lets the process exit, and clear() releases the timer once
+// the request settles.
+function timeoutSignal(ms: number): { signal: AbortSignal; clear: () => void } {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(new DOMException('The operation was aborted due to timeout', 'TimeoutError')), ms);
+  timer.unref();
+  return { signal: controller.signal, clear: () => clearTimeout(timer) };
+}
+
+// Re-wraps the body so cleanup runs when it is fully read, fails, or is cancelled.
+function withBodyCleanup(response: Response, cleanup: () => void): Response {
+  const reader = (response.body as ReadableStream<Uint8Array>).getReader();
+  const body = new ReadableStream<Uint8Array>({
+    async pull(controller) {
+      try {
+        const { done, value } = await reader.read();
+        if (done) { cleanup(); controller.close(); } else controller.enqueue(value);
+      } catch (error) {
+        cleanup();
+        controller.error(error);
+      }
+    },
+    cancel(reason) {
+      cleanup();
+      return reader.cancel(reason);
+    },
+  });
+  return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
 }
 
 function combineSignals(signals: AbortSignal[]): AbortSignal {
