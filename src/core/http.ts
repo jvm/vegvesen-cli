@@ -126,8 +126,11 @@ async function fetchWithRedirects(runtime: Runtime, initial: URL, headers: Heade
       throw error;
     }
     // Only a successful body is read, so only it keeps the timeout armed until the body settles.
-    if (response.status < 200 || response.status >= 300 || !response.body) timeout.clear();
-    else response = withBodyCleanup(response, timeout.clear);
+    // Error and redirect bodies are discarded: cancel them so the connection does not stay open.
+    if (response.status < 200 || response.status >= 300 || !response.body) {
+      response.body?.cancel().catch(() => undefined);
+      timeout.clear();
+    } else response = withBodyCleanup(response, timeout.clear);
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get('location');
       if (!location) throw new CliError({ code: 'INVALID_REDIRECT', message: 'Upstream redirect omitted Location', exitCode: EXIT.protocol, retryable: false, service: options.service, hint: 'Report the upstream protocol failure' });

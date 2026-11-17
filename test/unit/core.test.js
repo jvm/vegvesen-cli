@@ -173,7 +173,10 @@ test('request timers are released once the request settles', async (t) => {
   await streamed.response.body.cancel();
   assert.equal(pending.size, 0, 'cancelled body clears the timer');
 
-  await assert.rejects(request({ ...processRuntime(), fetch: respond(404, '{}') }, options));
+  let cancelled = false;
+  const endless = new globalThis.ReadableStream({ pull: (controller) => controller.enqueue(new Uint8Array(1)), cancel: () => { cancelled = true; } });
+  await assert.rejects(request({ ...processRuntime(), fetch: async () => new Response(endless, { status: 404 }) }, options));
+  assert.ok(cancelled, 'discarded error body is cancelled, not left streaming');
   await assert.rejects(request({ ...processRuntime(), fetch: async () => { throw new TypeError('fetch failed'); } }, options));
   assert.equal(pending.size, 0, 'error statuses and network failures clear the timer');
 });
