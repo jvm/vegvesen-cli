@@ -63,7 +63,7 @@ jobs:
 
   semgrep:
     name: Semgrep SAST
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Python 3.12, which .github/requirements/semgrep.txt is compiled for
     timeout-minutes: 15
     permissions:
       contents: read
@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 -m pip install --user semgrep==1.171.0
+      - run: python3 -m pip install --user --require-hashes --no-deps -r .github/requirements/semgrep.txt
       - run: semgrep scan --config p/default --error --sarif-output semgrep.sarif
       - name: Upload SARIF
         if: always()
