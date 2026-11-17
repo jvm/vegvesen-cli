@@ -31,6 +31,12 @@ test('contract extraction is deterministic and preserves security/media evidence
   const schema = (refs) => JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { oneOf: refs.map(($ref) => ({ $ref })), enum: ['b', 'a'] } } } });
   assert.equal(canonicalizeSource(schema(['#/a', '#/b']), 'openapi').sha256, canonicalizeSource(schema(['#/b', '#/a']), 'openapi').sha256, 'oneOf member order must not read as drift');
   assert.notEqual(canonicalizeSource(schema(['#/a', '#/b']), 'openapi').sha256, canonicalizeSource(JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { oneOf: [{ $ref: '#/a' }, { $ref: '#/b' }], enum: ['a', 'b'] } } } }), 'openapi').sha256, 'ordered arrays keep their order');
+  const payload = (key, items) => JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { type: 'object', [key]: { oneOf: items, nested: { anyOf: items } } } } } });
+  for (const key of ['example', 'default', 'x-vendor']) {
+    assert.notEqual(canonicalizeSource(payload(key, ['first', 'second']), 'openapi').sha256, canonicalizeSource(payload(key, ['second', 'first']), 'openapi').sha256, `${key} payload arrays named oneOf/anyOf keep their order`);
+  }
+  const property = (refs) => JSON.stringify({ openapi: '3.0.0', paths: {}, components: { schemas: { e: { properties: { default: { oneOf: refs.map(($ref) => ({ $ref })) } } } } } });
+  assert.equal(canonicalizeSource(property(['#/a', '#/b']), 'openapi').sha256, canonicalizeSource(property(['#/b', '#/a']), 'openapi').sha256, 'a property named default is still a schema');
   assert.equal(canonicalizeSource('<a href="/b?nonce=1"><a href="/a">', 'html-links').sha256, canonicalizeSource('<a href="/a"><a href="/b?nonce=2">', 'html-links').sha256);
 });
 

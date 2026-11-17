@@ -172,14 +172,22 @@ function normalizePath(path) { const value = `/${String(path).replace(/^\/+/, ''
 // JSON Schema composition keywords whose members carry no order. Some upstreams (Fiks) emit
 // them in a different order per response, which would otherwise read as specification drift.
 const UNORDERED_KEYS = new Set(['oneOf', 'anyOf']);
+// Keys whose values are payload data, not schema. Arrays below them keep their order even when
+// a field happens to be named oneOf or anyOf.
+const PAYLOAD_KEYS = new Set(['example', 'examples', 'default', 'enum', 'const']);
+// Objects whose keys are user-chosen names, so a property named "default" is still a schema.
+const NAME_MAPS = new Set(['properties', 'patternProperties', 'definitions', '$defs', 'schemas']);
 
-function sortJson(value, key) {
+function sortJson(value, key, payload = false) {
   if (Array.isArray(value)) {
-    const items = value.map((item) => sortJson(item));
-    if (!UNORDERED_KEYS.has(key)) return items;
+    const items = value.map((item) => sortJson(item, undefined, payload));
+    if (payload || !UNORDERED_KEYS.has(key)) return items;
     return items.map((item) => [JSON.stringify(item), item]).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([, item]) => item);
   }
-  if (value !== null && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((name) => [name, sortJson(value[name], name)]));
+  if (value !== null && typeof value === 'object') {
+    const names = !payload && NAME_MAPS.has(key);
+    return Object.fromEntries(Object.keys(value).sort().map((name) => [name, sortJson(value[name], names ? undefined : name, payload || (!names && (PAYLOAD_KEYS.has(name) || name.startsWith('x-'))))]));
+  }
   return value;
 }
 
