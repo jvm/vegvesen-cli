@@ -32,6 +32,12 @@ function requests() {
   return readFileSync(requestLog, 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
 }
 
+// Count only requests to the upstream path under test. Client-side timeout tests leave requests
+// that the fixture can log after the CLI exits, so a global count is not deterministic.
+function countRequests(pattern) {
+  return requests().filter((request) => pattern.test(request.url)).length;
+}
+
 function run(args, extra = {}) {
   return spawnSync(process.execPath, [cli, ...args], {
     encoding: 'utf8',
@@ -73,7 +79,8 @@ test('prints focused help and bare version', () => {
 });
 
 test('rejects unknown commands, options, and trailing input before network access', () => {
-  const beforeCount = requests().length;
+  const catalogCalls = /\/api\/3\/action\//;
+  const beforeCount = countRequests(catalogCalls);
   for (const args of [['wat', '--json'], ['catalog', 'package', 'search', '--unknown', '--json'], ['catalog', 'status', 'get', 'trailing', '--json']]) {
     const result = run(args);
     assert.equal(result.status, 2, `${args.join(' ')}: ${result.stderr}`);
@@ -82,7 +89,7 @@ test('rejects unknown commands, options, and trailing input before network acces
     assert.equal(error.error.code, 'INVALID_USAGE');
     assert.match(error.error.hint, /--help/);
   }
-  assert.equal(requests().length, beforeCount);
+  assert.equal(countRequests(catalogCalls), beforeCount);
 });
 
 test('machine mode has clean JSON and detached stdin cannot hang', () => {
@@ -227,12 +234,13 @@ test('Routing V3 validates and maps all nine profiles', () => {
     assert.equal(result.status, 0, `${profile}: ${result.stderr}`);
     assert.equal(JSON.parse(result.stdout).data.routes.length, 1);
   }
-  const beforeCount = requests().length;
+  const routeCalls = /routingservice/i;
+  const beforeCount = countRequests(routeCalls);
   const invalid = run(['route', 'calculate', '--profile', 'spaceship', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json']);
   assert.equal(invalid.status, 2);
   const missingLoadClass = run(['route', 'calculate', '--profile', 'normal-transport', '--stop', '10.7,59.9', '--stop', '10.8,60.0', '--json']);
   assert.equal(missingLoadClass.status, 2);
-  assert.equal(requests().length, beforeCount);
+  assert.equal(countRequests(routeCalls), beforeCount);
 });
 
 test('Trafikkdata supports bounded cursors, streams, and partial results', () => {
@@ -329,13 +337,14 @@ test('Phase 6 mutations require dry-run or confirmation and jobs are resumable',
   const directory = mkdtempSync(join(tmpdir(), 'vegvesen-fiks-'));
   const bodyPath = join(directory, 'issue.json');
   writeFileSync(bodyPath, JSON.stringify({ emne: 'Fixture', kategori: 'FEIL_I_KARTDATA', lokasjon: { latitude: 59.9, longitude: 10.7 }, vegsystemreferanse: 'EV6' }));
-  const before = requests().length;
+  const fiksCalls = /^\/api\/v1\/feilmelding\//;
+  const before = countRequests(fiksCalls);
   const preview = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--dry-run', '--json', '--no-input']);
   assert.equal(preview.status, 0, preview.stderr);
-  assert.equal(requests().length, before);
+  assert.equal(countRequests(fiksCalls), before);
   const refused = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--json', '--no-input']);
   assert.equal(refused.status, 5);
-  assert.equal(requests().length, before);
+  assert.equal(countRequests(fiksCalls), before);
   const created = run(['fiks', 'issue', 'create', '--body', `@${bodyPath}`, '--yes', '--json', '--no-input']);
   assert.equal(created.status, 0, created.stderr);
   assert.equal(JSON.parse(created.stdout).data.id, 43);
@@ -347,13 +356,14 @@ test('Phase 6 mutations require dry-run or confirmation and jobs are resumable',
   assert.equal(JSON.parse(ambiguous.stderr).error.code, 'MUTATION_OUTCOME_UNKNOWN');
   assert.ok(requests().filter((request) => request.url === '/api/v1/feilmelding/anonym').length <= timeoutBefore + 1);
   assert.equal(run(['nvdb', 'report', 'family', 'list', '--json', '--no-input']).status, 0);
-  const reportBefore = requests().length;
+  const reportCalls = /^\/rapporter\//;
+  const reportBefore = countRequests(reportCalls);
   const reportPreview = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--dry-run', '--json', '--no-input']);
   assert.equal(reportPreview.status, 0, reportPreview.stderr);
-  assert.equal(requests().length, reportBefore);
+  assert.equal(countRequests(reportCalls), reportBefore);
   const reportRefused = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--json', '--no-input']);
   assert.equal(reportRefused.status, 5);
-  assert.equal(requests().length, reportBefore);
+  assert.equal(countRequests(reportCalls), reportBefore);
   const reportCallsBefore = requests().filter((request) => request.url.startsWith('/rapporter/veglister/889')).length;
   const reportFailed = run(['nvdb', 'report', 'generate', '--family', 'road-list', '--param', 'class=889', '--param', 'dato=2026-07-27', '--param', 'kommune=5028', '--yes', '--retries', '5', '--json', '--no-input']);
   assert.equal(reportFailed.status, 6);
@@ -380,12 +390,13 @@ test('Phase 7 generated API exposes reviewed operations only', () => {
   assert.equal(network.status, 0, network.stderr);
   const networkRequest = requests().findLast((request) => request.url.startsWith('/api/v4/veglenkesekvenser/segmentert/statistikk/gruppert'));
   assert.equal(new URL(networkRequest.url, origin).searchParams.get('gruppering'), 'kommune');
-  const before = requests().length;
+  const statisticsCalls = /\/statistikk/;
+  const before = countRequests(statisticsCalls);
   const missingRequired = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'vegobjekttypeid=105', '--json', '--no-input']);
   assert.equal(missingRequired.status, 2);
   const invalid = run(['api', 'operation', 'call', 'nvdb-core', 'object-statistics-grouped', '--param', 'url=https://evil.example', '--json', '--no-input']);
   assert.equal(invalid.status, 2);
-  assert.equal(requests().length, before);
+  assert.equal(countRequests(statisticsCalls), before);
 });
 
 test('paging loops, server-capped pages, and mid-stream failures are explicit', () => {
@@ -647,8 +658,9 @@ test('NVDB route accepts a read-only POST body and retries it', () => {
   assert.equal(attempts, 3, 'read-only POST should retry the configured number of times');
 
   // --body and --start/--end are mutually exclusive and rejected before any request.
-  const conflictBefore = requests().length;
+  const routeCalls = /\/vegnett\/api\/v4\/beta\/vegnett\/rute/;
+  const conflictBefore = countRequests(routeCalls);
   const conflict = run(['nvdb', 'network', 'route', 'calculate', '--body', `@${bodyPath}`, '--start', '0.1@1', '--json']);
   assert.equal(conflict.status, 2);
-  assert.equal(requests().length, conflictBefore);
+  assert.equal(countRequests(routeCalls), conflictBefore);
 });
