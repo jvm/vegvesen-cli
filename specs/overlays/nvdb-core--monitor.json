@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "nvdb-core:monitor",
-  "source_digest": "sha256:f8a10f07a4f748c929b658d3f27c631de8c30881552ae40e2281c3499b90481a",
-  "reviewed_at": "2026-07-27",
+  "source_digest": "sha256:a06e9b484b50ddcf5969fdf5a6015ca854812cfecfa7cf114362f6f4e1e82888",
+  "reviewed_at": "2026-11-17",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "nvdb-core:monitor:GET /api/v1/endringssett/{id}/status",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:monitor source sha256:f8a10f07a4f748c929b658d3f27c631de8c30881552ae40e2281c3499b90481a; owner classification 2026-07-27",
+      "evidence": "nvdb-core:monitor source sha256:a06e9b484b50ddcf5969fdf5a6015ca854812cfecfa7cf114362f6f4e1e82888; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [

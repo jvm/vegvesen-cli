@@ -149,3 +149,34 @@ test('file input is validated and read through one descriptor', async () => {
   await assert.rejects(readJsonInput(runtime, '@missing.json'), (error) => error.details.code === 'INPUT_IO_FAILED');
   await assert.rejects(readJsonInput(runtime, `@${directory}`), (error) => error.details.exitCode === 2);
 });
+
+test('request timers are released once the request settles', async (t) => {
+  // Unref'd timers are absent from process.getActiveResourcesInfo(), so track them directly.
+  const pending = new Set();
+  const { setTimeout: realSet, clearTimeout: realClear } = globalThis;
+  t.after(() => { globalThis.setTimeout = realSet; globalThis.clearTimeout = realClear; });
+  globalThis.setTimeout = (callback, ms, ...args) => {
+    const timer = realSet(() => { pending.delete(timer); callback(...args); }, ms);
+    pending.add(timer);
+    return timer;
+  };
+  globalThis.clearTimeout = (timer) => { pending.delete(timer); realClear(timer); };
+
+  const respond = (status, body) => async () => new Response(body, { status, headers: { 'content-type': 'application/json' } });
+  const options = { service: 'fixture', canonicalOrigin: 'https://fixture.test', path: '/', retries: 0, timeout: '10m' };
+
+  await requestJson({ ...processRuntime(), fetch: respond(200, '{"ok":true}') }, options);
+  assert.equal(pending.size, 0, 'fully read body clears the timer');
+
+  const streamed = await request({ ...processRuntime(), fetch: respond(200, '{"ok":true}') }, options);
+  assert.equal(pending.size, 1, 'timer stays armed while the body is unread');
+  await streamed.response.body.cancel();
+  assert.equal(pending.size, 0, 'cancelled body clears the timer');
+
+  let cancelled = false;
+  const endless = new globalThis.ReadableStream({ pull: (controller) => controller.enqueue(new Uint8Array(1)), cancel: () => { cancelled = true; } });
+  await assert.rejects(request({ ...processRuntime(), fetch: async () => new Response(endless, { status: 404 }) }, options));
+  assert.ok(cancelled, 'discarded error body is cancelled, not left streaming');
+  await assert.rejects(request({ ...processRuntime(), fetch: async () => { throw new TypeError('fetch failed'); } }, options));
+  assert.equal(pending.size, 0, 'error statuses and network failures clear the timer');
+});

@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "contract_id": "nvdb-core:vegnett",
-  "source_digest": "sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b",
-  "reviewed_at": "2026-08-10",
+  "source_digest": "sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd",
+  "reviewed_at": "2026-11-17",
   "owner": "Jose Mocito",
   "operations": [
     {
       "target_id": "nvdb-core:vegnett:GET /api/v4/beta/vegnett/rute",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -20,7 +20,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/noder",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -31,7 +31,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/noder/{id}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -42,7 +42,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/posisjon",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -53,7 +53,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veg",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -64,7 +64,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veg/batch",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -75,7 +75,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -86,7 +86,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/{veglenkesekvensId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -97,7 +97,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/endringer",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -108,7 +108,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -119,7 +119,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/{veglenkesekvensId}",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -130,7 +130,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
@@ -141,7 +141,7 @@
       "target_id": "nvdb-core:vegnett:GET /api/v4/veglenkesekvenser/segmentert/statistikk/gruppert",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; owner classification 2026-08-10; reviewed mapping in specs/public-operations.json",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "generated-operation",
       "command": [
@@ -152,12 +152,66 @@
       "target_id": "nvdb-core:vegnett:POST /api/v4/beta/vegnett/rute",
       "effect": "query",
       "retry": "safe",
-      "evidence": "nvdb-core:vegnett source sha256:ae73f321bfe6ab916bbc09887a00f8bdf126b4a006601cacdae086ab6914771b; docs/attestations/2026-07-27-phases-3-4.md anonymous attestation",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
       "access": "public-anonymous",
       "disposition": "curated-command",
       "command": [
         "nvdb network route calculate"
       ]
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/noder",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/posisjon",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/veg/batch",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/veglenkesekvenser",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/veglenkesekvenser/endringer",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
+    },
+    {
+      "target_id": "nvdb-core:vegnett:POST /api/v4/veglenkesekvenser/segmentert",
+      "effect": "query",
+      "retry": "safe",
+      "access": "public-anonymous",
+      "disposition": "excluded-permanent",
+      "evidence": "nvdb-core:vegnett source sha256:395082899a252fcf21f2ddcf1e56edb6cd931a41ab3f05b1672f6fe2493f4efd; owner classification 2026-11-17",
+      "reason": "Non-GET operation outside the approved anonymous set (PLAN 8.3 rule 2); body-query variant of GET reads already exposed as curated commands"
     }
   ]
 }
