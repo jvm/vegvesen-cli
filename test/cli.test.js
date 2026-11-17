@@ -443,11 +443,12 @@ test('route matrix and road-feature POSTs are mapped and retried as read-only', 
 test('existing normalized output fails before network access', () => {
   const directory = mkdtempSync(join(tmpdir(), 'vegvesen-output-'));
   writeFileSync(join(directory, 'result.json'), 'existing');
-  const beforeCount = requests().length;
-  const result = run(['catalog', 'package', 'search', '--output', 'result.json', '--json'], { cwd: directory });
+  // Match on a unique marker: a global request count also sees late requests from earlier tests.
+  const marker = 'output-exists-marker';
+  const result = run(['catalog', 'package', 'search', '--query', marker, '--output', 'result.json', '--json'], { cwd: directory });
   assert.equal(result.status, 5);
   assert.equal(JSON.parse(result.stderr).error.code, 'OUTPUT_EXISTS');
-  assert.equal(requests().length, beforeCount);
+  assert.equal(requests().filter((request) => request.url.includes(marker)).length, 0);
   assert.equal(readFileSync(join(directory, 'result.json'), 'utf8'), 'existing');
 });
 

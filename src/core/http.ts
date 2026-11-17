@@ -116,7 +116,7 @@ async function fetchWithRedirects(runtime: Runtime, initial: URL, headers: Heade
       headers,
       ...(options.body === undefined ? {} : { body: options.body }),
       redirect: 'manual',
-      signal: combineSignals([AbortSignal.timeout(timeoutMs), runtime.signal]),
+      signal: combineSignals([timeoutSignal(timeoutMs), runtime.signal]),
     });
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get('location');
@@ -172,6 +172,15 @@ function backoff(attempt: number, random: () => number): number {
 
 function isTransientNetworkError(error: unknown): boolean {
   return error instanceof TypeError || (error instanceof DOMException && error.name === 'AbortError');
+}
+
+// AbortSignal.any() holds its sources weakly, so an AbortSignal.timeout() passed only to it can be
+// garbage-collected before it fires, and the request then never times out. The timer closure here
+// keeps the controller alive; unref() lets the process exit once the request settles.
+function timeoutSignal(ms: number): AbortSignal {
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(new DOMException('The operation was aborted due to timeout', 'TimeoutError')), ms).unref();
+  return controller.signal;
 }
 
 function combineSignals(signals: AbortSignal[]): AbortSignal {
