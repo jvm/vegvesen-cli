@@ -540,6 +540,7 @@ test('promoted anonymous reads map to their exact upstream operations', () => {
     [['nvdb', 'report', 'custom', 'get', '9'], '/rapporter/egendefinert/9'],
     [['nvdb', 'report', 'custom', 'aggregate'], '/rapporter/egendefinert/aggregate'],
     [['nvdb', 'catalog', 'type', 'property', '105', '1'], '/datakatalog/api/v1/vegobjekttyper/105/1'],
+    [['nvdb', 'catalog', 'product-spec', 'get', '105'], '/datakatalog/api/v1/vegobjekttyper/105/registreringsregler'],
     [['fiks', 'issue', 'list', '--detailed'], '/api/v1/feilmelding/detaljert'],
   ];
   for (const [args, expected] of cases) {

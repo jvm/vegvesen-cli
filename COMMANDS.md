@@ -54,7 +54,7 @@ Generated from the same registry used by `vegvesen schema command`.
 - `vegvesen nvdb catalog property get` — Get exact NVDB property type
 - `vegvesen nvdb catalog type property` — Get exact property type within an object type
 - `vegvesen nvdb catalog property categories` — List NVDB property categories
-- `vegvesen nvdb catalog product-spec get` — Get object type product specification
+- `vegvesen nvdb catalog product-spec get` — Get object type product specification link and registration rules
 - `vegvesen nvdb catalog category list` — List NVDB object categories
 - `vegvesen nvdb catalog unit list` — List NVDB units
 - `vegvesen nvdb area county list` — List counties
